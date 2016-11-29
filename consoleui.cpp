@@ -7,6 +7,8 @@
 
 using namespace std;
 
+string Commands();
+
 ConsoleUI::ConsoleUI()
 {
 
@@ -16,17 +18,7 @@ void ConsoleUI::run()
 {
     do
     {
-        cout << "=================================================" << endl;
-        cout << "|| Please enter one of the following commands: ||" << endl;
-        cout << "=================================================" << endl;
-        cout << "|| \t add    - to add a new person \t       ||" << endl;
-        cout << "|| \t list   - to get a list of persons     ||" << endl;
-        cout << "|| \t search - to search list \t       ||" << endl;
-        cout << "|| \t quit   - to exit program \t       ||" << endl;
-        cout << "=================================================" << endl;
-
-        string command;
-        cin >> command;
+        string command = Commands();
 
         if(command == "add")
         {
@@ -100,4 +92,25 @@ void ConsoleUI::run()
     }while(true);
 }
 
-// tester tester
+string Commands()
+{
+    while(true)
+        {
+    string com;
+        cout << "=================================================" << endl;
+        cout << "|| Please enter one of the following commands: ||" << endl;
+        cout << "=================================================" << endl;
+        cout << "|| \t add    - to add a new person \t       ||" << endl;
+        cout << "|| \t list   - to get a list of persons     ||" << endl;
+        cout << "|| \t search - to search list \t       ||" << endl;
+        cout << "|| \t quit   - to exit program \t       ||" << endl;
+        cout << "=================================================" << endl;
+    cin >> com;
+    if(com == "add" || com == "list" || com == "search" || com == "quit")
+    {
+        return com;
+        break;
+    }
+        }
+
+}

@@ -75,7 +75,8 @@ void ConsoleUI::run()
             cout << "=================================================" << endl;
             cout << "|| \t name - sort by name alphabeticaly     ||" << endl;
             cout << "|| \t year - sort by year of birth \t       ||" << endl;
-            cout << "|| \t or press Enter to get unsorted list   ||" << endl;
+            cout << "|| \t country - sort by country \t          ||" << endl;
+            cout << "|| \t unsorted - get unsorted list          ||" << endl;
             cout << "=================================================" << endl;
             string sort;
             cin >> sort;
@@ -85,7 +86,9 @@ void ConsoleUI::run()
                 persons = _service.getPersons(1);
             else if (sort == "year")
                 persons = _service.getPersons(2);
-            else
+            else if (sort == "country")
+                persons = _service.getPersons(3);
+            else if (sort == "unsorted")
                 persons = _service.getPersons(0);
 
             for (size_t i = 0; i < persons.size(); ++i)

@@ -34,6 +34,8 @@ void ConsoleUI::run()
             string country;
 
             cout << "Please add the parameters for the scientists" << endl;
+
+
             cout << "Name:";
             cin >> name;
 

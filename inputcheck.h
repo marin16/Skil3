@@ -8,9 +8,10 @@ class inputcheck
 {
 public:
     inputcheck();
+    inputcheck(string name);
 
-    bool name_check(string _name);
-    friend ostream& operator << (ostream& out, const inputcheck& i);
+    bool name_check(string name);
+    friend ostream& operator << (ostream& out, inputcheck& input);
 
 private:
     string _name;

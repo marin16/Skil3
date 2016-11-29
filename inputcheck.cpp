@@ -5,24 +5,29 @@ using namespace std;
 
 inputcheck::inputcheck()
 {
-    string name = _name;
+
 }
 
-/*operator << (ostream& out, const inputcheck& i)
+inputcheck::inputcheck(string name)
 {
-    out << i.name;
+    _name = name;
+}
+
+
+ostream& operator << (ostream& out, inputcheck& input)
+{
+    out << input._name;
 
  return out;
-}*/
+}
 
-bool inputcheck::name_check(string _name)
+
+bool inputcheck::name_check(string name)
 {
-    ///cout << "Enter string: ";
-    ///cin >> _name;
 
-    for (size_t n = 0; n < _name.length(); n++)
+    for (size_t n = 0; n < name.length(); n++)
     {
-        if (isdigit( _name[ n ] ))
+        if (isdigit( name[ n ] ))
         {
             return false;
         }

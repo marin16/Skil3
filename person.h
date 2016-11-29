@@ -9,15 +9,11 @@ class Person
 {
 public:
     Person();
-    Person(string name, int age, char gender, int birth, int death, string country);
+    Person(string name, char gender, int birth, int death, string country);
 
     string getName() const
     {
         return _name;
-    }
-    int getAge() const
-    {
-        return _age;
     }
     char getGender() const
     {
@@ -38,7 +34,6 @@ public:
 
 private:
     string _name;
-    int _age;
     char _gender;
     int _birth;
     int _death;

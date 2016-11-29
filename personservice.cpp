@@ -3,10 +3,9 @@
 #include "personservice.h"
 
 //http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
-bool cmd(const Person & p1, const Person & p2)
+bool sortByName(const Person & p1, const Person & p2)
 {
    if (p1.getName() != p2.getName()) return p1.getName() < p2.getName();
-   //return s1.grade < s2.grade;
 }
 
 PersonService::PersonService()
@@ -24,7 +23,7 @@ vector<Person> PersonService::getPersons(int sortBy)
 
     // TODO: logic sort search etc...
     if(sortBy == 1)
-        sort(persons.begin(), persons.end(), cmd);
+        sort(persons.begin(), persons.end(), sortByName);
 
     return persons;
 }

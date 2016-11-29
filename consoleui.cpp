@@ -16,11 +16,14 @@ void ConsoleUI::run()
 {
     do
     {
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "add - add a new person" << endl;
-        cout << "list - to get a list of persons" << endl;
-        cout << "search - search" << endl;
-        cout << "quit - Exit program" << endl;
+        cout << "=================================================" << endl;
+        cout << "|| Please enter one of the following commands: ||" << endl;
+        cout << "=================================================" << endl;
+        cout << "|| \t add    - to add a new person \t       ||" << endl;
+        cout << "|| \t list   - to get a list of persons     ||" << endl;
+        cout << "|| \t search - to search list \t       ||" << endl;
+        cout << "|| \t quit   - to exit program \t       ||" << endl;
+        cout << "=================================================" << endl;
 
         string command;
         cin >> command;
@@ -33,7 +36,9 @@ void ConsoleUI::run()
             int death;
             string country;
 
-            cout << "Please add the parameters for the scientists" << endl;
+            cout << "=================================================" << endl;
+            cout << "||Please add the parameters for the scientists ||" << endl;
+            cout << "=================================================" << endl;
 
 
             cout << "Name:";

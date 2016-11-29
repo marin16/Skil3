@@ -33,7 +33,7 @@ bool inputcheck::name_check(string name)
         }
     }
 
-return true;
+    return true;
 }
 
 bool inputcheck::gender_check(char gender)

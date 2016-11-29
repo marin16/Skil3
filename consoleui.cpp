@@ -41,16 +41,15 @@ void ConsoleUI::run()
             cout << "=================================================" << endl;
 
 
-            cout << "Name:";
+            cout << "Name: ";
             cin >> name;
-
-            cout << "Gender:";
+            cout << "Gender: ";
             cin >> gender;
-            cout << "Year born:";
+            cout << "Year born: ";
             cin >> birth;
-            cout << "Year of death:";
+            cout << "Year of death: ";
             cin >> death;
-            cout << "Country of origin:";
+            cout << "Country of origin: ";
             cin >> country;
             //TODO: check for invalid data
 
@@ -66,12 +65,22 @@ void ConsoleUI::run()
         else if(command == "list")
         {
             // TODO: let user sort
-            // cout << "Please enter one of the following commands:" << endl;
-            // cout << "alpha - to sorth alphabeticaly" << endl;
-            // cout << "dob - sort by date of birth" << endl;
-            // ....
+            cout << "Please enter one of the following commands:" << endl;
+            cout << "name - sort by name alphabeticaly" << endl;
+            cout << "year - sort by year of birth" << endl;
+            cout << "or press Enter to get unsorted list" << endl;
+            string sort;
+            cin >> sort;
 
-            vector<Person> persons = _service.getPersons();
+            if (sort == "")
+                vector<Person> persons = _service.getPersons(0);
+            else if (sort == "name")
+                vector<Person> persons = _service.getPersons(1);
+            else if (sort == "year")
+                vector<Person persons = _service.getPersons(2);
+            else:
+                cout << "Invalid sort command!" << endl;
+
             for (size_t i = 0; i < persons.size(); ++i)
             {
                 // TODO: let user decide wich properties to show

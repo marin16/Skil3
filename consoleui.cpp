@@ -7,6 +7,8 @@
 
 using namespace std;
 
+string Commands();
+
 ConsoleUI::ConsoleUI()
 {
 
@@ -16,17 +18,7 @@ void ConsoleUI::run()
 {
     do
     {
-        cout << "=================================================" << endl;
-        cout << "|| Please enter one of the following commands: ||" << endl;
-        cout << "=================================================" << endl;
-        cout << "|| \t add    - to add a new person \t       ||" << endl;
-        cout << "|| \t list   - to get a list of persons     ||" << endl;
-        cout << "|| \t search - to search list \t       ||" << endl;
-        cout << "|| \t quit   - to exit program \t       ||" << endl;
-        cout << "=================================================" << endl;
-
-        string command;
-        cin >> command;
+        string command = Commands();
 
         if(command == "add")
         {
@@ -78,10 +70,13 @@ void ConsoleUI::run()
         else if(command == "list")
         {
             // TODO: let user sort
-            cout << "Please enter one of the following commands:" << endl;
-            cout << "name - sort by name alphabeticaly" << endl;
-            cout << "year - sort by year of birth" << endl;
-            cout << "or press Enter to get unsorted list" << endl;
+            cout << "=================================================" << endl;
+            cout << "|| Please enter one of the following commands: ||" << endl;
+            cout << "=================================================" << endl;
+            cout << "|| \t name - sort by name alphabeticaly     ||" << endl;
+            cout << "|| \t year - sort by year of birth \t       ||" << endl;
+            cout << "|| \t or press Enter to get unsorted list   ||" << endl;
+            cout << "=================================================" << endl;
             string sort;
             cin >> sort;
             vector<Person> persons;
@@ -113,4 +108,25 @@ void ConsoleUI::run()
     }while(true);
 }
 
-// tester tester
+string Commands()
+{
+    while(true)
+        {
+    string com;
+        cout << "=================================================" << endl;
+        cout << "|| Please enter one of the following commands: ||" << endl;
+        cout << "=================================================" << endl;
+        cout << "|| \t add    - to add a new person \t       ||" << endl;
+        cout << "|| \t list   - to get a list of persons     ||" << endl;
+        cout << "|| \t search - to search list \t       ||" << endl;
+        cout << "|| \t quit   - to exit program \t       ||" << endl;
+        cout << "=================================================" << endl;
+    cin >> com;
+    if(com == "add" || com == "list" || com == "search" || com == "quit")
+    {
+        return com;
+        break;
+    }
+        }
+
+}

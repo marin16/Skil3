@@ -110,15 +110,15 @@ void ConsoleUI::search()
 
 void ConsoleUI::list()
 {
-    // TODO: let user sort
     cout << "=================================================" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
     cout << "|| \t name - sort by name alphabeticaly     ||" << endl;
     cout << "|| \t year - sort by year of birth \t       ||" << endl;
-    cout << "|| \t country - sort by country \t          ||" << endl;
+    cout << "|| \t country - sort by country \t       ||" << endl;
     cout << "|| \t unsorted - get unsorted list          ||" << endl;
     cout << "=================================================" << endl;
+
     string sort;
     cin >> sort;
     vector<Person> persons;

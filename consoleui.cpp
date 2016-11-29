@@ -18,6 +18,7 @@ void ConsoleUI::run()
         cout << "Please enter one of the following commands:" << endl;
         cout << "add - add a new person" << endl;
         cout << "list - to get a list of persons" << endl;
+        cout << "search - search" << endl;
 
         string command;
         cin >> command;
@@ -35,6 +36,10 @@ void ConsoleUI::run()
 
             //TODO: error casting (enum _service.addPerson(new...))
             _service.addPerson(newPerson);
+        }
+        else if(command == "search")
+        {
+            //TODO: implement search
         }
         else if(command == "list")
         {

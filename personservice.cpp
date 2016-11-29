@@ -9,7 +9,8 @@ vector<Person> PersonService::getPersons(/* TODO: params, search, sort*/)
 {
     vector<Person> persons;
 
-    // TODO: read from file
+    // reads all persons from csv
+    persons = _dataAccess.readPersons();
 
     // TODO: logic sort search etc...
 
@@ -18,5 +19,5 @@ vector<Person> PersonService::getPersons(/* TODO: params, search, sort*/)
 
 void PersonService::addPerson(Person newPerson)
 {
-
+    _dataAccess.writePerson(newPerson);
 }

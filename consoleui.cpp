@@ -70,7 +70,7 @@ void ConsoleUI::run()
             for (size_t i = 0; i < persons.size(); ++i)
             {
                 // TODO: let user decide wich properties to show
-                cout << persons[i].getName() << endl;
+                cout << "Name: " << persons[i].getName() << " Gender: " << persons[i].getGender() << " Date of birth: " << persons[i].getBirth() << " Date of death: " << persons[i].getDeath() << " Country: " << persons[i].getCountry() << endl;
             }
         }
         else if(command == "quit")

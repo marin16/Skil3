@@ -10,7 +10,7 @@ class PersonService
 public:
     PersonService();
 
-    vector<Person> getPersons(int sort);
+    vector<Person> getPersons(int sortBy);
     void addPerson(Person newPerson);
 private:
     DataAccess _dataAccess;

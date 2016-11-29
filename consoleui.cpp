@@ -71,15 +71,14 @@ void ConsoleUI::run()
             cout << "or press Enter to get unsorted list" << endl;
             string sort;
             cin >> sort;
+            vector<Person> persons;
 
-            if (sort == "")
-                vector<Person> persons = _service.getPersons(0);
-            else if (sort == "name")
-                vector<Person> persons = _service.getPersons(1);
+            if (sort == "name")
+                persons = _service.getPersons(1);
             else if (sort == "year")
-                vector<Person persons = _service.getPersons(2);
-            else:
-                cout << "Invalid sort command!" << endl;
+                persons = _service.getPersons(2);
+            else
+                persons = _service.getPersons(0);
 
             for (size_t i = 0; i < persons.size(); ++i)
             {

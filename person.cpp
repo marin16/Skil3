@@ -9,4 +9,8 @@ Person::Person(string name, int age)
     // TODO: more properties
     _name = name;
     _age = age;
+    _gender = gender;
+    _birth = birth;
+    _death = death;
+    _country = country;
 }

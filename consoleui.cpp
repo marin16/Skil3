@@ -52,7 +52,20 @@ void ConsoleUI::run()
         }
         else if(command == "search")
         {
-            //TODO: implement search
+            cout << "Please enter what you want to search: " << endl;
+
+            string searchList;
+            cin >> searchList;
+            vector<Person> persons;
+
+            persons = _service.getPersons(0);
+
+            for(size_t i = 0; i < persons.size(); ++i){
+                if(persons[i].getName() == searchList)
+                {
+                    cout << searchList << endl;
+                }
+            }
         }
         else if(command == "list")
         {

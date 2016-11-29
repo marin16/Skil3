@@ -28,18 +28,15 @@ void ConsoleUI::run()
         if(command == "add")
         {
             string name;
-            int age;
             char gender;
             int birth;
             int death;
             string country;
 
             cout << "Please add the parameters for the scientists" << endl;
-           /// cout << "Name:";
-           /// cin >> name;
+            cout << "Name:";
+            cin >> name;
 
-            cout << "Age:";
-            cin >> age;
             cout << "Gender:";
             cin >> gender;
             cout << "Year born:";
@@ -50,7 +47,7 @@ void ConsoleUI::run()
             cin >> country;
             //TODO: check for invalid data
 
-            Person newPerson(name, age, gender, birth, death, country);
+            Person newPerson(name, gender, birth, death, country);
 
             //TODO: error casting (enum _service.addPerson(new...))
             _service.addPerson(newPerson);

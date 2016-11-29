@@ -14,7 +14,9 @@ DataAccess::DataAccess()
 void DataAccess::writePerson(Person person)
 {
     // create fstream to data.csv
-    ofstream file ("data.csv");
+    ofstream file;
+    //open file in append mode
+    file.open("data.csv", ios::app);
     if(file.is_open())
     {
         // write data from param: person to the file

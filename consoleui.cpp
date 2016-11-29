@@ -19,20 +19,36 @@ void ConsoleUI::run()
         cout << "add - add a new person" << endl;
         cout << "list - to get a list of persons" << endl;
         cout << "search - search" << endl;
+        cout << "quit - Exit program" << endl;
 
         string command;
         cin >> command;
 
         if(command == "add")
         {
-            //TODO: implement add performer
             string name;
             int age;
+            char gender;
+            int birth;
+            int death;
+            string country;
+
+            cout << "Please add the parameters for the scientists" << endl;
+            cout << "Name:";
             cin >> name;
+            cout << "Age:";
             cin >> age;
+            cout << "Gender:";
+            cin >> gender;
+            cout << "Year born:";
+            cin >> birth;
+            cout << "Year of death:";
+            cin >> death;
+            cout << "Country of origin:";
+            cin >> country;
             //TODO: check for invalid data
 
-            Person newPerson(name, age);
+            Person newPerson(name, age, gender, birth, death, country);
 
             //TODO: error casting (enum _service.addPerson(new...))
             _service.addPerson(newPerson);
@@ -55,6 +71,10 @@ void ConsoleUI::run()
                 // TODO: let user decide wich properties to show
                 cout << persons[i].getName() << endl;
             }
+        }
+        else if(command == "quit")
+        {
+            break;
         }
         else
         {

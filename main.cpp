@@ -1,11 +1,10 @@
-#include <QCoreApplication>
-#include <QDebug>
+#include <consoleui.h>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    ConsoleUI ui;
 
-    qDebug() << "Hello wrld!\n";
+    ui.run();
 
-    return a.exec();
+    return 0;
 }

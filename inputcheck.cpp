@@ -72,4 +72,3 @@ bool inputcheck::death_check(int death)
     else
         return false;
 }
-//TEst test

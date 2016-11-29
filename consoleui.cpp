@@ -57,10 +57,13 @@ void ConsoleUI::run()
         else if(command == "list")
         {
             // TODO: let user sort
-            cout << "Please enter one of the following commands:" << endl;
-            cout << "name - sort by name alphabeticaly" << endl;
-            cout << "year - sort by year of birth" << endl;
-            cout << "or press Enter to get unsorted list" << endl;
+            cout << "=================================================" << endl;
+            cout << "|| Please enter one of the following commands: ||" << endl;
+            cout << "=================================================" << endl;
+            cout << "|| \t name - sort by name alphabeticaly     ||" << endl;
+            cout << "|| \t year - sort by year of birth \t       ||" << endl;
+            cout << "|| \t or press Enter to get unsorted list   ||" << endl;
+            cout << "=================================================" << endl;
             string sort;
             cin >> sort;
             vector<Person> persons;

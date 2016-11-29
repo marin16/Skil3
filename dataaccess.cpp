@@ -44,7 +44,7 @@ vector<Person> DataAccess::readPersons()
         }
     }
     // loop through the lines from the file
-    for(int i = 0; i < parsedCsv.size(); i++)
+    for(size_t i = 0; i < parsedCsv.size(); i++)
     {
         // fetching data from parsedCsv and converting data
         // convert string to int http://www.cplusplus.com/forum/general/13135/

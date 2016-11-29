@@ -5,17 +5,17 @@
 //http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
 bool sortByName(const Person & p1, const Person & p2)
 {
-   if (p1.getName() != p2.getName()) return p1.getName() < p2.getName();
+   return p1.getName() < p2.getName();
 }
 
 bool sortByBirth(const Person & p1, const Person & p2)
 {
-   if (p1.getBirth() != p2.getBirth()) return p1.getBirth() < p2.getBirth();
+   return p1.getBirth() < p2.getBirth();
 }
 
 bool sortByCountry(const Person & p1, const Person & p2)
 {
-    if (p1.getCountry() != p2.getCountry()) return p1.getCountry() < p2.getCountry();
+    return p1.getCountry() < p2.getCountry();
 }
 
 PersonService::PersonService()

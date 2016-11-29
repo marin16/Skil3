@@ -36,3 +36,40 @@ bool inputcheck::name_check(string name)
 return true;
 }
 
+bool inputcheck::gender_check(char gender)
+{
+    if(gender != 'm' || gender != 'f')
+        return false;
+    else
+        return true;
+}
+
+bool inputcheck::komma_check(string word)
+{
+    if(word.find(',')!=std::string::npos)
+        {
+           /// cout << ", er i ordinu, reyndu aftur";
+            return true;
+        }
+        else
+        {
+           /// cout << ", er ekki i ordinu";
+            return false;
+        }
+}
+
+bool inputcheck::birth_check(int birth)
+{
+    if(birth<0||birth>2016)
+        return false;
+    else
+        return true;
+}
+
+bool inputcheck::death_check(int death)
+{
+    if(death == 0 || (death>=birth && death <=2016))
+        return true;
+    else
+        return false;
+}

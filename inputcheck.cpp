@@ -13,7 +13,6 @@ inputcheck::inputcheck(string name)
     _name = name;
 }
 
-
 ostream& operator << (ostream& out, inputcheck& input)
 {
     out << input._name;
@@ -21,7 +20,7 @@ ostream& operator << (ostream& out, inputcheck& input)
  return out;
 }
 
-
+///Checks if name is legal (does not include numbers)
 bool inputcheck::name_check(string name)
 {
 
@@ -38,7 +37,7 @@ bool inputcheck::name_check(string name)
 
 bool inputcheck::gender_check(char gender)
 {
-    if(gender != 'm' || gender != 'f')
+    if(gender != 'm' || gender != 'M' || gender != 'f' || gender != 'F')
         return false;
     else
         return true;
@@ -48,12 +47,12 @@ bool inputcheck::komma_check(string word)
 {
     if(word.find(',')!=std::string::npos)
         {
-           /// cout << ", er i ordinu, reyndu aftur";
+           /// cout << "Thad er komma (,) i ordinu, reyndu aftur";
             return true;
         }
         else
         {
-           /// cout << ", er ekki i ordinu";
+           /// cout << "Thad er ekki komma (,) i ordinu";
             return false;
         }
 }

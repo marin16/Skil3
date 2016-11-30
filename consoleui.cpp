@@ -88,16 +88,26 @@ void ConsoleUI::add()
         cout << "Gender (m/f): ";
         cin >> gender;
     }while(!_Valid.genderCheck(gender));
-    do
-    {
-        cout << "Year born: ";
-        cin >> birth;
-    }while(!_Valid.birthCheck(birth));
-    do
-    {
+
+    cout << "Year born: ";
+    cin >> birth;
+    while (birth < 0 || birth > 2016 || cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "Year born: ";
+            cin >> birth;
+        }
+
         cout << "Year of death: ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth));
+        while(death > 2016 || death < 0 || death < birth || cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "Year of death: ";
+            cin >> death;
+        }
     do
     {
         cout << "Country of origin: ";

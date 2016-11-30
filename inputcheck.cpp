@@ -8,18 +8,6 @@ inputcheck::inputcheck()
 
 }
 
-/*inputcheck::inputcheck(string name)
-{
-    _name = name;
-}
-
-ostream& operator << (ostream& out, inputcheck& input)
-{
-    out << input._name;
-
- return out;
-}*/
-
 /*
  * Checks if name includes numbers
  */
@@ -50,24 +38,3 @@ bool inputcheck::commaCheck(string word)
         return false;
 }
 
-/*
- * Check if input is under 0 or over 2016
- */
-bool inputcheck::birthCheck(int& birth)
-{
-    if( birth < 0 || birth > 2016 )
-        return false;
-    else
-        return true;
-}
-
-/*
- * Checks if dod is over 2016 or under 0
- */
-bool inputcheck::deathCheck(int death, int& birth)
-{
-    if(death == 0 || (death <= 2016 && death > 0 && death > birth))
-        return true;
-    else
-        return false;
-}

@@ -122,26 +122,37 @@ void ConsoleUI::search()
     cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
-    cout << "||    name    - to search by first name        ||" << endl;
-    cout << "||    birth   - to search by year of birth     ||" << endl;
-    cout << "||    death   - to search by year of death     ||" << endl;
-    cout << "||    country - to search by first name        ||" << endl;
+    cout << "||   name    - to search by first name         ||" << endl;
+    cout << "||   birth   - to search by year of birth      ||" << endl;
+    cout << "||   death   - to search by year of death      ||" << endl;
+    cout << "||   country - to search by country of origin  ||" << endl;
     cout << "=================================================" << endl;
 
     string searchList;
     cin >> searchList;
     vector<Person> persons;
+    vector<Person> results;
 
     persons = _service.getPersons(0);
 
-    vector<Person> results;
-
+    /*
+     * TODO: Fix search by country and split search
+     * into catagories (death and birth seperate f.e.)
+     */
     for(size_t i = 0; i < persons.size(); ++i){
         if(persons[i].getName() == searchList)
         {
             results.push_back(persons[i]);
         }
         else if(persons[i].getBirth() == atoi(searchList.c_str()))
+        {
+            results.push_back(persons[i]);
+        }
+        else if(persons[i].getDeath() == atoi(searchList.c_str()))
+        {
+            results.push_back(persons[i]);
+        }
+        else if(persons[i].getCountry() == searchList)
         {
             results.push_back(persons[i]);
         }

@@ -13,8 +13,8 @@ public:
     bool nameCheck(const string &name);
     bool genderCheck(char gender);
     bool commaCheck(string word);
-    bool birthCheck(int birth);
-    bool deathCheck(int death);
+    bool birthCheck(int& birth);
+    bool deathCheck(int death, int& birth);
     //friend ostream& operator << (ostream& out, inputcheck& input);
 
 private:

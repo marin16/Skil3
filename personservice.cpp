@@ -1,7 +1,5 @@
 #include <algorithm>
 #include <string>
-#include <iostream>
-#include <cctype>
 
 
 #include "personservice.h"

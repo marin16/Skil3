@@ -125,6 +125,10 @@ void ConsoleUI::search()
         {
             displayPerson(persons[i]);
         }
+        else if(persons[i].getBirth() == atoi(searchList.c_str()))
+        {
+            displayPerson(persons[i]);
+        }
     }
 }
 

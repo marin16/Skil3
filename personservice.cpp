@@ -1,11 +1,20 @@
 #include <algorithm>
+#include <string>
+#include <iostream>
+#include <cctype>
+
 
 #include "personservice.h"
 
 //http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
 bool sortByName(const Person & p1, const Person & p2)
 {
-   return p1.getName() < p2.getName();
+   string p1string = p1.getName();
+   string p2string = p2.getName();
+   p1string[0] = toupper(p1string[0]);
+   p2string[0] = toupper(p2string[0]);
+
+   return p1string < p2string;
 }
 
 bool sortByBirth(const Person & p1, const Person & p2)
@@ -15,7 +24,12 @@ bool sortByBirth(const Person & p1, const Person & p2)
 
 bool sortByCountry(const Person & p1, const Person & p2)
 {
-    return p1.getCountry() < p2.getCountry();
+    string p1string = p1.getCountry();
+    string p2string = p2.getCountry();
+    p1string[0] = toupper(p1string[0]);
+    p2string[0] = toupper(p2string[0]);
+
+    return p1string < p2string;
 }
 
 PersonService::PersonService()

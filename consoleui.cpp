@@ -134,16 +134,20 @@ void ConsoleUI::search()
 
     persons = _service.getPersons(0);
 
+    vector<Person> results;
+
     for(size_t i = 0; i < persons.size(); ++i){
         if(persons[i].getName() == searchList)
         {
-            displayPerson(persons[i]);
+            results.push_back(persons[i]);
         }
         else if(persons[i].getBirth() == atoi(searchList.c_str()))
         {
-            displayPerson(persons[i]);
+            results.push_back(persons[i]);
         }
     }
+
+    displayPersons(results);
 }
 
 void ConsoleUI::list()

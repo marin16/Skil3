@@ -79,5 +79,5 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
             results.push_back(persons[i]);
         }
     }
-    return resluts;
+    return results;
 }

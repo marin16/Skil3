@@ -39,7 +39,7 @@ bool inputcheck::commaCheck(string word)
 }
 
 /*
- * Chec if answer is either y/Y or n/N
+ * Check if answer is either y/Y or n/N
  */
 bool inputcheck::answerCheck(char answer)
 {
@@ -48,4 +48,3 @@ bool inputcheck::answerCheck(char answer)
     else
         return false;
 }
-

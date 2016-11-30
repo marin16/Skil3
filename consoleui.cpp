@@ -84,37 +84,41 @@ void ConsoleUI::add()
         cin.ignore();
         cin.getline(charname,sizeof(charname));
         name = string(charname);
-    }while(!_Valid.nameCheck(name));
+    } while (!_Valid.nameCheck(name));
     do
     {
         cout << "Gender (m/f): ";
         cin >> gender;
-    }while(!_Valid.genderCheck(gender));
+    } while (!_Valid.genderCheck(gender));
 
-    cout << "Year born: ";
-    cin >> birth;
-    while (birth < 0 || birth > 2016 || cin.fail())
+	do
     {
-		cin.clear();
-		cin.ignore();
 		cout << "Year born: ";
 		cin >> birth;
-	}
-
-	cout << "Year of death: ";
-	cin >> death;
-	while(death > 2016 || death < 0 || death < birth || cin.fail())
-    {
 		cin.clear();
 		cin.ignore();
+	} while (birth < 0 || birth > 2016 || cin.fail());
+
+	do
+    {
 		cout << "Year of death: ";
 		cin >> death;
-    }
+		// if a non int is entered the person is alive, represented as -1
+		if (cin.fail()) {
+			death = -1;
+			cin.clear();
+			cin.ignore();
+			break;
+		}
+		cin.clear();
+		cin.ignore();
+    } while (death > 2016 || death < 0 || death < birth);
+
     do
     {
         cout << "Country of origin: ";
         cin >> country;
-    }while(!_Valid.nameCheck(country));
+    } while (!_Valid.nameCheck(country));
 
     Person newPerson(name, gender, birth, death, country);
     do

@@ -124,16 +124,16 @@ void ConsoleUI::add()
             cin >> answer;
         }while(!_Valid.answerCheck(answer));
 
-        if (answer == 'y' || answer == 'Y')
-            {
-                cin.ignore();
-                _service.addPerson(newPerson);
-            }
-        else if (answer == 'n' || answer == 'N')
-            {
-                cin.ignore();
-                add();
-            }
+	if (answerwer == 'y' || answer == 'Y')
+	{
+		cin.ignore();
+		_service.addPerson(newPerson);
+	}
+	else if (answer == 'n' || answer == 'N')
+	{
+		cin.ignore();
+		add();
+	}
 }
 
 /*

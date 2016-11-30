@@ -103,7 +103,7 @@ void ConsoleUI::add()
 
         cout << "Year of death: ";
         cin >> death;
-        while(death > 2016 || death < 0 || death < birth || cin.fail())
+        while(death > 2016 || death < 0 || (death < birth && death != 0) || cin.fail())
         {
             cin.clear();
             cin.ignore();

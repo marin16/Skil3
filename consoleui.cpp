@@ -66,6 +66,8 @@ void ConsoleUI::add()
     int death;
     string country;
 
+
+
     cout << "=======================================================" << endl;
     cout << "||Please add the parameters for the scientists       ||" << endl;
     cout << "||if you input invalid data you will be asked again. ||" << endl;
@@ -76,8 +78,11 @@ void ConsoleUI::add()
      */
     do
     {
+        char temp[50];
         cout << "Name: ";
-        cin >> name;
+        cin.ignore();
+        cin.getline(temp,sizeof(temp));
+        name = string(temp);
     }while(!_Valid.nameCheck(name));
     do
     {

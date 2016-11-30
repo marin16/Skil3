@@ -60,3 +60,24 @@ bool PersonService::addPerson(Person newPerson)
     return true;
 }
 
+vector<Person> PersonService::searchForPerson(string search, string searchBy)
+{
+    vector<Person> persons = getPersons(0);
+    vector<Person> results;
+    for(size_t i = 0; i < persons.size(); ++i){
+        if(searchBy == "name" && persons[i].getName() == search){
+            results.push_back(persons[i]);
+        }
+        // http://www.cplusplus.com/reference/string/stoi/
+        else if(searchBy == "birth" && persons[i].getBirth() == stoi(search,nullptr,0)){
+            results.push_back(persons[i]);
+        }
+        else if(searchBy == "death" && persons[i].getDeath() == stoi (search,nullptr,0)){
+            results.push_back(persons[i]);
+        }
+        else if(searchBy == "country" && persons[i].getCountry() == search){
+            results.push_back(persons[i]);
+        }
+    }
+    return results;
+}

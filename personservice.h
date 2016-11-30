@@ -11,7 +11,7 @@ public:
     PersonService();
 
     vector<Person> getPersons(int sortBy);
-    void addPerson(Person newPerson);
+    bool addPerson(Person newPerson);
 private:
     DataAccess _dataAccess;
 };

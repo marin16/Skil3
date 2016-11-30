@@ -3,7 +3,6 @@
 #include <fstream>
 #include "consoleui.h"
 #include "person.h"
-#include "inputcheck.h"
 
 using namespace std;
 
@@ -32,7 +31,7 @@ void ConsoleUI::run()
         {
             list();
         }
-        else if(command == "quit")
+        else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
         }
@@ -67,27 +66,48 @@ void ConsoleUI::add()
     int death;
     string country;
 
-    cout << "=================================================" << endl;
-    cout << "||Please add the parameters for the scientists ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "=======================================================" << endl;
+    cout << "||Please add the parameters for the scientists       ||" << endl;
+    cout << "||if you input invalid data you will be asked again. ||" << endl;
+    cout << "=======================================================" << endl;
 
-
-    cout << "Name: ";
-    cin >> name;
-    cout << "Gender: ";
-    cin >> gender;
-    cout << "Year born: ";
-    cin >> birth;
-    cout << "Year of death: ";
-    cin >> death;
-    cout << "Country of origin: ";
-    cin >> country;
-    //TODO: check for invalid data
+    /*
+     * TODO: debug why you cant enter a name that is more than one word
+     */
+    do
+    {
+        cout << "Name: ";
+        cin >> name;
+    }while(!_Valid.nameCheck(name));
+    do
+    {
+        cout << "Gender: ";
+        cin >> gender;
+    }while(!_Valid.genderCheck(gender));
+    do
+    {
+        cout << "Year born: ";
+        cin >> birth;
+    }while(!_Valid.birthCheck(birth));
+    do
+    {
+        cout << "Year of death: ";
+        cin >> death;
+    }while(!_Valid.deathCheck(death));
+    do
+    {
+        cout << "Country of origin: ";
+        cin >> country;
+    }while(!_Valid.nameCheck(country));
 
     Person newPerson(name, gender, birth, death, country);
 
-    //TODO: error casting (enum _service.addPerson(new...))
-    _service.addPerson(newPerson);
+    bool success = _service.addPerson(newPerson);
+
+    if(success)
+        cout << "Success!" << endl;
+    else
+        cout << "There was an error writing the data!" << endl;
 }
 
 void ConsoleUI::search()

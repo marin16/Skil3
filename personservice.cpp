@@ -42,8 +42,9 @@ vector<Person> PersonService::getPersons(int sortBy)
     return persons;
 }
 
-void PersonService::addPerson(Person newPerson)
+bool PersonService::addPerson(Person newPerson)
 {
     _dataAccess.writePerson(newPerson);
+    return true;
 }
 

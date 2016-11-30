@@ -119,6 +119,10 @@ void ConsoleUI::add()
  */
 void ConsoleUI::search()
 {
+    vector<Person> results;
+    string searchBy;
+    string search;
+
     cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
@@ -127,36 +131,12 @@ void ConsoleUI::search()
     cout << "||   death   - to search by year of death      ||" << endl;
     cout << "||   country - to search by country of origin  ||" << endl;
     cout << "=================================================" << endl;
+    cin >> searchBy;
 
-    string searchList;
-    cin >> searchList;
-    vector<Person> persons;
-    vector<Person> results;
+    cout << "Value: ";
+    cin >> search;
 
-    persons = _service.getPersons(0);
-
-    /*
-     * TODO: Fix search by country and split search
-     * into catagories (death and birth seperate f.e.)
-     */
-    for(size_t i = 0; i < persons.size(); ++i){
-        if(persons[i].getName() == searchList)
-        {
-            results.push_back(persons[i]);
-        }
-        else if(persons[i].getBirth() == atoi(searchList.c_str()))
-        {
-            results.push_back(persons[i]);
-        }
-        else if(persons[i].getDeath() == atoi(searchList.c_str()))
-        {
-            results.push_back(persons[i]);
-        }
-        else if(persons[i].getCountry() == searchList)
-        {
-            results.push_back(persons[i]);
-        }
-    }
+    results = _service.searchForPerson(search, searchBy);
 
     displayPersons(results);
 }

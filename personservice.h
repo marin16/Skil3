@@ -11,6 +11,7 @@ public:
     PersonService();
 
     vector<Person> getPersons(int sortBy);
+    vector<Person> searchForPerson(string search, string searchBy);
     bool addPerson(Person newPerson);
 private:
     DataAccess _dataAccess;

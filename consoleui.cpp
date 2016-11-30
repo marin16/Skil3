@@ -56,6 +56,7 @@ void ConsoleUI::instructions()
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
+    cout << "Command: ";
 }
 
 void ConsoleUI::add()
@@ -152,6 +153,7 @@ void ConsoleUI::search()
     cout << "||   death   - to search by year of death      ||" << endl;
     cout << "||   country - to search by country of origin  ||" << endl;
     cout << "=================================================" << endl;
+    cout << "Parameter: ";
     cin >> searchBy;
 
     cout << "Value: ";

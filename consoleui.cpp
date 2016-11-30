@@ -13,7 +13,7 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-    do
+    while(true)
     {
         instructions();
         string command;
@@ -38,12 +38,12 @@ void ConsoleUI::run()
         else
         {
             /*
-             *  Unknown command handeling
+             *  Unknown command handling
              */
             cout << "Unknown command: " << command << endl;
             cout << "please try again." << endl;
         }
-    }while(true);
+    }
 }
 
 void ConsoleUI::instructions()
@@ -94,22 +94,22 @@ void ConsoleUI::add()
     cout << "Year born: ";
     cin >> birth;
     while (birth < 0 || birth > 2016 || cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-            cout << "Year born: ";
-            cin >> birth;
-        }
+    {
+		cin.clear();
+		cin.ignore();
+		cout << "Year born: ";
+		cin >> birth;
+	}
 
-        cout << "Year of death: ";
-        cin >> death;
-        while(death > 2016 || death < 0 || death < birth || cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-            cout << "Year of death: ";
-            cin >> death;
-        }
+	cout << "Year of death: ";
+	cin >> death;
+	while(death > 2016 || death < 0 || death < birth || cin.fail())
+    {
+		cin.clear();
+		cin.ignore();
+		cout << "Year of death: ";
+		cin >> death;
+    }
     do
     {
         cout << "Country of origin: ";
@@ -124,7 +124,7 @@ void ConsoleUI::add()
             cin >> answer;
         }while(!_Valid.answerCheck(answer));
 
-	if (answerwer == 'y' || answer == 'Y')
+	if (answer == 'y' || answer == 'Y')
 	{
 		cin.ignore();
 		_service.addPerson(newPerson);

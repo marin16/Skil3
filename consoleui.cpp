@@ -97,7 +97,7 @@ void ConsoleUI::add()
     {
         cout << "Year of death: ";
         cin >> death;
-    }while(!_Valid.deathCheck(death));
+    }while(!_Valid.deathCheck(death, birth));
     do
     {
         cout << "Country of origin: ";

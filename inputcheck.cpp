@@ -53,7 +53,7 @@ bool inputcheck::commaCheck(string word)
 /*
  * Check if input is under 0 or over 2016
  */
-bool inputcheck::birthCheck(int birth)
+bool inputcheck::birthCheck(int& birth)
 {
     if( birth < 0 || birth > 2016 )
         return false;
@@ -64,9 +64,9 @@ bool inputcheck::birthCheck(int birth)
 /*
  * Checks if dod is over 2016 or under 0
  */
-bool inputcheck::deathCheck(int death)
+bool inputcheck::deathCheck(int death, int& birth)
 {
-    if(death == 0 || (death <= 2016 && death > 0))
+    if(death == 0 || (death <= 2016 && death > 0 && death > birth))
         return true;
     else
         return false;

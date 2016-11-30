@@ -65,7 +65,7 @@ void ConsoleUI::add()
     int birth;
     int death;
     string country;
-
+    char charname[50];
 
 
     cout << "=======================================================" << endl;
@@ -78,11 +78,10 @@ void ConsoleUI::add()
      */
     do
     {
-        char temp[50];
         cout << "Name: ";
         cin.ignore();
-        cin.getline(temp,sizeof(temp));
-        name = string(temp);
+        cin.getline(charname,sizeof(charname));
+        name = string(charname);
     }while(!_Valid.nameCheck(name));
     do
     {

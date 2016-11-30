@@ -66,6 +66,7 @@ void ConsoleUI::add()
     int death;
     string country;
     char charname[50];
+    char answer;
 
 
     cout << "=======================================================" << endl;
@@ -115,13 +116,23 @@ void ConsoleUI::add()
     }while(!_Valid.nameCheck(country));
 
     Person newPerson(name, gender, birth, death, country);
+    do
+        {
+            displayPerson(newPerson);
+            cout << "Is the information correct?(Y/N) ";
+            cin >> answer;
+        }while(!_Valid.answerCheck(answer));
 
-    bool success = _service.addPerson(newPerson);
-
-    if(success)
-        cout << endl << "Success!" << endl;
-    else
-        cout << "There was an error writing the data!" << endl;
+        if (answer == 'y' || answer == 'Y')
+            {
+                cin.ignore();
+                _service.addPerson(newPerson);
+            }
+        else if (answer == 'n' || answer == 'N')
+            {
+                cin.ignore();
+                add();
+            }
 }
 
 /*

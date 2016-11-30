@@ -38,3 +38,14 @@ bool inputcheck::commaCheck(string word)
         return false;
 }
 
+/*
+ * Chec if answer is either y/Y or n/N
+ */
+bool inputcheck::answerCheck(char answer)
+{
+    if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
+        return true;
+    else
+        return false;
+}
+

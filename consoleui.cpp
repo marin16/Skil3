@@ -122,11 +122,11 @@ void ConsoleUI::add()
 
     Person newPerson(name, gender, birth, death, country);
     do
-        {
-            displayPerson(newPerson);
-            cout << "Is the information correct?(Y/N) ";
-            cin >> answer;
-        }while(!_Valid.answerCheck(answer));
+    {
+		displayPerson(newPerson);
+		cout << "Is the information correct?(Y/N) ";
+		cin >> answer;
+	} while (!_Valid.answerCheck(answer));
 
 	if (answer == 'y' || answer == 'Y')
 	{

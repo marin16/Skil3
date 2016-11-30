@@ -51,10 +51,10 @@ void ConsoleUI::instructions()
     cout << "=================================================" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
-    cout << "|| \t add    - to add a new person \t       ||" << endl;
-    cout << "|| \t list   - to get a list of persons     ||" << endl;
-    cout << "|| \t search - to search list \t       ||" << endl;
-    cout << "|| \t quit   - to exit program \t       ||" << endl;
+    cout << "||    add    - to add a new person             ||" << endl;
+    cout << "||    list   - to get a list of persons        ||" << endl;
+    cout << "||    search - to search list                  ||" << endl;
+    cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
 }
 
@@ -81,7 +81,7 @@ void ConsoleUI::add()
     }while(!_Valid.nameCheck(name));
     do
     {
-        cout << "Gender: ";
+        cout << "Gender (m/f): ";
         cin >> gender;
     }while(!_Valid.genderCheck(gender));
     do
@@ -105,14 +105,21 @@ void ConsoleUI::add()
     bool success = _service.addPerson(newPerson);
 
     if(success)
-        cout << "Success!" << endl;
+        cout << endl << "Success!" << endl;
     else
         cout << "There was an error writing the data!" << endl;
 }
 
+/*
+ * TODO: add more search options
+ */
 void ConsoleUI::search()
 {
-    cout << "Please enter what you want to search: ";
+    cout << "=================================================" << endl;
+    cout << "||             Enter search parameter:         ||" << endl;
+    cout << "=================================================" << endl;
+    cout << "||         name - to search by first name      ||" << endl;
+    cout << "=================================================" << endl;
 
     string searchList;
     cin >> searchList;
@@ -133,10 +140,10 @@ void ConsoleUI::list()
     cout << "=================================================" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
-    cout << "|| \t name - sort by name alphabeticaly     ||" << endl;
-    cout << "|| \t year - sort by year of birth \t       ||" << endl;
-    cout << "|| \t country - sort by country \t       ||" << endl;
-    cout << "|| \t unsorted - get unsorted list          ||" << endl;
+    cout << "||    name     - sort by name alphabeticaly    ||" << endl;
+    cout << "||    year     - sort by year of birth         ||" << endl;
+    cout << "||    country  - sort by country               ||" << endl;
+    cout << "||    unsorted - get unsorted list             ||" << endl;
     cout << "=================================================" << endl;
 
     string sort;

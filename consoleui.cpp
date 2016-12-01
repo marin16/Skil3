@@ -13,9 +13,10 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
+    _instructions();
     do
     {
-        _instructions();
+        cout << "Command: ";
         string command;
         cin >> command;
 
@@ -31,17 +32,17 @@ void ConsoleUI::run()
         {
             _list();
         }
+        else if(command == "help" || command == "instructuins")
+        {
+            _instructions();
+        }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
         }
         else
         {
-            /*
-             *  Unknown command handeling
-             */
-            cout << "Unknown command: " << command << endl;
-            cout << "please try again." << endl;
+
         }
     }while(true);
 }
@@ -54,9 +55,9 @@ void ConsoleUI::_instructions()
     cout << "||    add    - to add a new person             ||" << endl;
     cout << "||    list   - to get a list of persons        ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
+    cout << "||    help   - to view this again              ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
-    cout << "Command: ";
 }
 
 void ConsoleUI::_add()
@@ -128,9 +129,9 @@ void ConsoleUI::_add()
             {
                 cin.ignore();
                 if (_service.addPerson(newPerson))
-                    cout << "Success";
+                    cout << "Success!" << endl;
                 else
-                    cout << "Could not write this data to file";
+                    cout << "Could not write this data to file" << endl;
             }
         else if (answer == 'n' || answer == 'N')
             {

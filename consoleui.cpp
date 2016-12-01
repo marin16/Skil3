@@ -45,9 +45,6 @@ void ConsoleUI::run()
         }
         else
         {
-            /*
-             *  Unknown command handeling
-             */
             cout << "Unknown command: " << command << endl;
             cout << "please try again." << endl;
         }
@@ -68,6 +65,9 @@ void ConsoleUI::_instructions()
     cout << "=================================================" << endl;
 }
 
+/*
+ * _add: Takes user input and adds to vector
+ */
 void ConsoleUI::_add()
 {
     string name;
@@ -185,9 +185,9 @@ void ConsoleUI::_delete()
     vector<Person> deleteResult;
     string deleteP;
 
-    cout << "====================================================" << endl;
-    cout << "||         Please enter a name to delete:         ||" << endl;
-    cout << "====================================================" << endl;
+    cout << "=================================================" << endl;
+    cout << "||        Please enter a name to delete:       ||" << endl;
+    cout << "=================================================" << endl;
 
     cout << "Name: ";
     cin >> deleteP;
@@ -242,13 +242,13 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 void ConsoleUI::_clear()
 {
     string confirm;
-    cout << "*******************   WARNING   *******************" << endl;
-    cout << "*         you are about to clear all data         *" << endl;
-    cout << "*                                                 *" << endl;
-    cout << "*      confirm  - if you want to clear all data   *" << endl;
-    cout << "*      cancel   - if you dont want to continue    *" << endl;
-    cout << "*                                                 *" << endl;
-    cout << "******************   *WARNING   *******************" << endl;
+    cout << "*******************   WARNING   *****************" << endl;
+    cout << "*        you are about to clear all data        *" << endl;
+    cout << "*                                               *" << endl;
+    cout << "*     confirm  - if you want to clear all data  *" << endl;
+    cout << "*     cancel   - if you dont want to continue   *" << endl;
+    cout << "*                                               *" << endl;
+    cout << "******************   *WARNING   *****************" << endl;
     do{
         cout << "confirm / cancel: ";
         cin >> confirm;

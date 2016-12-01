@@ -17,9 +17,7 @@ bool inputcheck::nameCheck(const string &name)
     return !(name.find_first_of("0123456789") != string::npos);
 }
 
-/*
- * Checks if input is F, M, f or m
- */
+
 bool inputcheck::genderCheck(char gender)
 {
     if(gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F')
@@ -36,20 +34,16 @@ bool inputcheck::birthCheck(int& birth)
         return true;
 }
 
-/*
- * TODO: fix error check for input = 0
- */
+
 bool inputcheck::deathCheck(int death, int& birth)
 {
-    if(death > 2016 || death < 0 || (death < birth && death != 0) || death == isdigit(death))
+    if((death != 0 && (death < birth || death > 2016)) || death == isdigit(death))
         return false;
     else
         return true;
 }
 
-/*
- * Check if there is a comma in the input
- */
+
 bool inputcheck::commaCheck(string word)
 {
     if(word.find(',')!=std::string::npos)
@@ -58,9 +52,7 @@ bool inputcheck::commaCheck(string word)
         return false;
 }
 
-/*
- * Chec if answer is either y/Y or n/N
- */
+
 bool inputcheck::answerCheck(char answer)
 {
     if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')

@@ -156,8 +156,11 @@ void ConsoleUI::_search()
     cout << "||   death   - to search by year of death      ||" << endl;
     cout << "||   country - to search by country of origin  ||" << endl;
     cout << "=================================================" << endl;
-    cout << "Parameter: ";
-    cin >> searchBy;
+
+    do{
+        cout << "Parameter: ";
+        cin >> searchBy;
+    }while(searchBy != "name" && searchBy != "birth" && searchBy != "death" && searchBy != "country");
 
     cout << "Value: ";
     cin >> search;

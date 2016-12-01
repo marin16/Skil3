@@ -90,6 +90,7 @@ void ConsoleUI::_add()
     {
         cout << "Gender (m/f): ";
         cin >> gender;
+        gender = toupper(gender);
     }while(!_Valid.genderCheck(gender));
 
     cout << "Year born: ";

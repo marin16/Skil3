@@ -63,3 +63,11 @@ vector<Person> DataAccess::readPersons()
     // TODO: check if parsedCsv is valid
     return persons;
 }
+
+/*void DataAccess::reWriteList()
+{
+    ofstream file ("data.csv");
+    file.open("data.csv", ofstream::out | ofstream::trunc);
+    file.close();
+
+}*/

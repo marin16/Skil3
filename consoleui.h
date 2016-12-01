@@ -16,6 +16,7 @@ private:
     void _search();
     void _list();
     void _instructions();
+    void _delete();
     // Displays a single person to the display from parameter
     void _displayPerson(Person person);
     // Takes in a vector of persons and prints them to the display

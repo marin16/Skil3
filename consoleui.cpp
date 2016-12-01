@@ -13,10 +13,9 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-    _instructions();
     do
     {
-        cout << "Command: ";
+        _instructions();
         string command;
         cin >> command;
 
@@ -32,13 +31,21 @@ void ConsoleUI::run()
         {
             _list();
         }
-        else if(command == "help" || command == "instructions")
+        else if(command == "delete")
         {
-            _instructions();
+            _delete();
         }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
+        }
+        else
+        {
+            /*
+             *  Unknown command handeling
+             */
+            cout << "Unknown command: " << command << endl;
+            cout << "please try again." << endl;
         }
     }while(true);
 }
@@ -168,6 +175,23 @@ void ConsoleUI::_search()
     results = _service.searchForPerson(search, searchBy);
 
     _displayPersons(results);
+}
+
+void ConsoleUI::_delete()
+{
+    vector<Person> deleteResult;
+    string deleteP;
+
+    cout << "====================================================" << endl;
+    cout << "||         Please enter a name to delete:         ||" << endl;
+    cout << "====================================================" << endl;
+
+    cout << "Name: ";
+    cin >> deleteP;
+
+    deleteResult = _service.deletePerson(deleteP);
+
+    _displayPersons(deleteResult);
 }
 
 void ConsoleUI::_list()

@@ -54,10 +54,15 @@ vector<Person> PersonService::getPersons(int sortBy)
     return persons;
 }
 
-bool PersonService::addPerson(Person newPerson)
+bool PersonService::addPerson(Person p)
 {
-    _dataAccess.writePerson(newPerson);
-    return true;
+    if(p.getName() != "" && p.getBirth() != NULL && p.getGender() != NULL && p.getDeath() != NULL && p.getCountry() != "")
+    {
+        _dataAccess.writePerson(p);
+        return true;
+    }
+    else
+        return false;
 }
 
 vector<Person> PersonService::searchForPerson(string search, string searchBy)

@@ -127,7 +127,10 @@ void ConsoleUI::_add()
         if (answer == 'y' || answer == 'Y')
             {
                 cin.ignore();
-                _service.addPerson(newPerson);
+                if (_service.addPerson(newPerson))
+                    cout << "Success";
+                else
+                    cout << "Could not write this data to file";
             }
         else if (answer == 'n' || answer == 'N')
             {

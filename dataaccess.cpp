@@ -19,7 +19,7 @@ void DataAccess::writePerson(Person person)
     file.open("data.csv", ios::app);
     if(file.is_open())
     {
-        // write data from param: person to the file
+        // write data from param: person to the file in csv format
         file << person.getName() << "," << person.getGender() << "," << person.getBirth() << "," << person.getDeath() << "," << person.getCountry() << "\n";
     }
 }
@@ -49,7 +49,6 @@ vector<Person> DataAccess::readPersons()
     for(size_t i = 0; i < parsedCsv.size(); i++)
     {
         // fetching data from parsedCsv and converting data
-        // convert string to int http://www.cplusplus.com/forum/general/13135/
         string name = parsedCsv[i][0];
         char gender = parsedCsv[i][1].at(0);
         int dob = atoi(parsedCsv[i][2].c_str());
@@ -59,15 +58,6 @@ vector<Person> DataAccess::readPersons()
         // adding data to person and adding person to persons
         Person person = Person(name, gender, dob, dod, country);
         persons.push_back(person);
-
-        // loop throgh the cells
-        /*
-        for(int j = 0; j < parsedCsv[i].size(); j++)
-        {
-            cout << parsedCsv[i][j] << " ";
-        }
-        cout << endl;
-        */
     }
 
     // TODO: check if parsedCsv is valid

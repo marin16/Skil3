@@ -94,3 +94,16 @@ void PersonService::clearData()
 {
     _dataAccess.clearList();
 }
+
+vector<Person> PersonService::deletePerson(string deleteP)
+{
+    vector<Person> persons = getPersons(0);
+    vector<Person> deleteResult;
+    for(size_t i = 0; i < persons.size(); ++i){
+        if(persons[i].getName() == deleteP){
+            persons.erase(persons.begin() + i);
+            continue;
+        }
+    }
+    return deleteResult;
+}

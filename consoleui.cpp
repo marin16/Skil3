@@ -206,7 +206,7 @@ void ConsoleUI::_delete()
     }
     else
     {
-        cout << "Faild. (nothing found to delete or multiple results found" << endl;
+        cout << "Faild. (nothing found to delete or multiple results found)" << endl;
     }
 }
 

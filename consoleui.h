@@ -8,16 +8,18 @@ class ConsoleUI
 {
 public:
     ConsoleUI();
-    void instructions();
     void run();
-    void add();
-    void search();
-    void list();
-    void displayPerson(Person person);
-    void displayPersons(vector<Person> persons);
 private:
     PersonService _service;
     inputcheck _Valid;
+    void _add();
+    void _search();
+    void _list();
+    void _instructions();
+    // Displays a single person to the display from parameter
+    void _displayPerson(Person person);
+    // Takes in a vector of persons and prints them to the display
+    void _displayPersons(vector<Person> persons);
 };
 
 #endif // CONSOLEUI_H

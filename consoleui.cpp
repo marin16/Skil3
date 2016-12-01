@@ -15,21 +15,21 @@ void ConsoleUI::run()
 {
     do
     {
-        instructions();
+        _instructions();
         string command;
         cin >> command;
 
         if(command == "add")
         {
-            add();
+            _add();
         }
         else if(command == "search")
         {
-            search();
+            _search();
         }
         else if(command == "list")
         {
-            list();
+            _list();
         }
         else if(command == "quit" || command == "q" || command == "exit")
         {
@@ -46,7 +46,7 @@ void ConsoleUI::run()
     }while(true);
 }
 
-void ConsoleUI::instructions()
+void ConsoleUI::_instructions()
 {
     cout << "=================================================" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
@@ -59,7 +59,7 @@ void ConsoleUI::instructions()
     cout << "Command: ";
 }
 
-void ConsoleUI::add()
+void ConsoleUI::_add()
 {
     string name;
     char gender;
@@ -119,7 +119,7 @@ void ConsoleUI::add()
     Person newPerson(name, gender, birth, death, country);
     do
         {
-            displayPerson(newPerson);
+            _displayPerson(newPerson);
             cout << "Is the information correct?(Y/N) ";
             cin >> answer;
         }while(!_Valid.answerCheck(answer));
@@ -132,14 +132,14 @@ void ConsoleUI::add()
         else if (answer == 'n' || answer == 'N')
             {
                 cin.ignore();
-                add();
+                _add();
             }
 }
 
 /*
  * TODO: add more search options
  */
-void ConsoleUI::search()
+void ConsoleUI::_search()
 {
     vector<Person> results;
     string searchBy;
@@ -161,10 +161,10 @@ void ConsoleUI::search()
 
     results = _service.searchForPerson(search, searchBy);
 
-    displayPersons(results);
+    _displayPersons(results);
 }
 
-void ConsoleUI::list()
+void ConsoleUI::_list()
 {
     cout << "=================================================" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
@@ -188,16 +188,16 @@ void ConsoleUI::list()
     else //if (sort == "unsorted")
         persons = _service.getPersons(0);
 
-    displayPersons(persons);
+    _displayPersons(persons);
 }
 
-void ConsoleUI::displayPerson(Person person)
+void ConsoleUI::_displayPerson(Person person)
 {
     cout << "Name:" << "\t\t" << "Gender:" << "\t" << "DoB:" << "\t" << "DoD:" << "\t" << "Country:" << endl;
     cout << person.getName() << "\t\t" << person.getGender() << "\t" << person.getBirth() << "\t" << person.getDeath() << "\t" << person.getCountry() << endl;
 }
 
-void ConsoleUI::displayPersons(vector<Person> persons)
+void ConsoleUI::_displayPersons(vector<Person> persons)
 {
     cout << "Name:" << "\t\t" << "Gender:" << "\t" << "DoB:" << "\t" << "DoD:" << "\t" << "Country:" << endl;
     for (size_t i = 0; i < persons.size(); ++i)

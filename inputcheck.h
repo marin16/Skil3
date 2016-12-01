@@ -8,14 +8,10 @@ class inputcheck
 {
 public:
     inputcheck();
-    //inputcheck(string name);
-
     bool nameCheck(const string &name);
     bool genderCheck(char gender);
     bool commaCheck(string word);
     bool answerCheck(char answer);
-    //friend ostream& operator << (ostream& out, inputcheck& input);
-
 private:
     string _name;
     char _gender;

@@ -13,9 +13,10 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
+    _instructions();
     do
     {
-        _instructions();
+        cout << "Command: ";
         string command;
         cin >> command;
 
@@ -34,6 +35,10 @@ void ConsoleUI::run()
         else if(command == "delete")
         {
             _delete();
+        }
+        else if(command == "help")
+        {
+            _instructions();
         }
         else if(command == "clear")
         {
@@ -242,13 +247,13 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 void ConsoleUI::_clear()
 {
     string confirm;
-    cout << "*******************   WARNING   *****************" << endl;
+    cout << "******************   WARNING   ******************" << endl;
     cout << "*        you are about to clear all data        *" << endl;
     cout << "*                                               *" << endl;
     cout << "*     confirm  - if you want to clear all data  *" << endl;
     cout << "*     cancel   - if you dont want to continue   *" << endl;
     cout << "*                                               *" << endl;
-    cout << "******************   *WARNING   *****************" << endl;
+    cout << "******************   WARNING   ******************" << endl;
     do{
         cout << "confirm / cancel: ";
         cin >> confirm;

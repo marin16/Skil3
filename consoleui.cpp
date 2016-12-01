@@ -64,6 +64,7 @@ void ConsoleUI::_add()
     int death;
     string country;
     char charname[50];
+    char charcountry[50];
     char answer;
 
 
@@ -109,7 +110,9 @@ void ConsoleUI::_add()
     do
     {
         cout << "Country of origin: ";
-        cin >> country;
+        cin.ignore();
+        cin.getline(charcountry,sizeof(charcountry));
+        country = string(charcountry);
     }while(!_Valid.nameCheck(country));
 
     Person newPerson(name, gender, birth, death, country);

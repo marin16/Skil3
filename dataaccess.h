@@ -12,6 +12,7 @@ public:
     void writePerson(Person person);
     // Reads all persons from the datafiel and returns them in a vector
     vector<Person> readPersons();
+    void clearList();
 };
 
 #endif // DATAACCESS_H

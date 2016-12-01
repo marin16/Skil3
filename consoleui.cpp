@@ -13,10 +13,9 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-    _instructions();
     do
     {
-        cout << "Command: ";
+        _instructions();
         string command;
         cin >> command;
 
@@ -32,13 +31,25 @@ void ConsoleUI::run()
         {
             _list();
         }
-        else if(command == "help" || command == "instructions")
+        else if(command == "delete")
         {
-            _instructions();
+            _delete();
+        }
+        else if(command == "clear")
+        {
+            _clear();
         }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
+        }
+        else
+        {
+            /*
+             *  Unknown command handeling
+             */
+            cout << "Unknown command: " << command << endl;
+            cout << "please try again." << endl;
         }
     }while(true);
 }
@@ -52,6 +63,7 @@ void ConsoleUI::_instructions()
     cout << "||    list   - to get a list of persons        ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    clear  - to clear all data               ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
 }
@@ -81,6 +93,7 @@ void ConsoleUI::_add()
         cin.getline(charname,sizeof(charname));
         name = string(charname);
     }while(!_Valid.nameCheck(name));
+
     do
     {
         cout << "Gender (m/f): ";
@@ -167,6 +180,23 @@ void ConsoleUI::_search()
     _displayPersons(results);
 }
 
+void ConsoleUI::_delete()
+{
+    vector<Person> deleteResult;
+    string deleteP;
+
+    cout << "====================================================" << endl;
+    cout << "||         Please enter a name to delete:         ||" << endl;
+    cout << "====================================================" << endl;
+
+    cout << "Name: ";
+    cin >> deleteP;
+
+    deleteResult = _service.deletePerson(deleteP);
+
+    _displayPersons(deleteResult);
+}
+
 void ConsoleUI::_list()
 {
     cout << "=================================================" << endl;
@@ -207,4 +237,29 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
     {
         cout << persons[i].getName() << "\t\t" << persons[i].getGender() << "\t" << persons[i].getBirth() << "\t" << persons[i].getDeath() << "\t" << persons[i].getCountry() << endl;
     }
+}
+
+void ConsoleUI::_clear()
+{
+    string confirm;
+    cout << "*******************   WARNING   *******************" << endl;
+    cout << "*         you are about to clear all data         *" << endl;
+    cout << "*                                                 *" << endl;
+    cout << "*      confirm  - if you want to clear all data   *" << endl;
+    cout << "*      cancel   - if you dont want to continue    *" << endl;
+    cout << "*                                                 *" << endl;
+    cout << "******************   *WARNING   *******************" << endl;
+    do{
+        cout << "confirm / cancel: ";
+        cin >> confirm;
+        if(confirm == "confirm")
+        {
+            _service.clearData();
+            cout << "All data was erased." << endl;
+        }
+        else if(confirm == "cancel")
+        {
+            cout << "No data was erased." << endl;
+        }
+    }while(confirm != "confirm" && confirm != "cancel");
 }

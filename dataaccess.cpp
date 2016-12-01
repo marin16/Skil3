@@ -64,10 +64,10 @@ vector<Person> DataAccess::readPersons()
     return persons;
 }
 
-/*void DataAccess::reWriteList()
+void DataAccess::clearList()
 {
     ofstream file ("data.csv");
     file.open("data.csv", ofstream::out | ofstream::trunc);
     file.close();
 
-}*/
+}

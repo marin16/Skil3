@@ -32,17 +32,13 @@ void ConsoleUI::run()
         {
             _list();
         }
-        else if(command == "help" || command == "instructuins")
+        else if(command == "help" || command == "instructions")
         {
             _instructions();
         }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
-        }
-        else
-        {
-
         }
     }while(true);
 }
@@ -76,9 +72,7 @@ void ConsoleUI::_add()
     cout << "||if you input invalid data you will be asked again. ||" << endl;
     cout << "=======================================================" << endl;
 
-    /*
-     * TODO: debug why you cant enter a name that is more than one word
-     */
+
     do
     {
         cout << "Name: ";
@@ -90,19 +84,20 @@ void ConsoleUI::_add()
     {
         cout << "Gender (m/f): ";
         cin >> gender;
+        gender = toupper(gender);
     }while(!_Valid.genderCheck(gender));
 
-    cout << "Year born: ";
+    cout << "Year of birth: ";
     cin >> birth;
     while (birth < 0 || birth > 2016 || cin.fail())
         {
             cin.clear();
             cin.ignore();
-            cout << "Year born: ";
+            cout << "Year of birth: ";
             cin >> birth;
         }
 
-        cout << "Year of death: ";
+        cout << "Year of death (0 if alive): ";
         cin >> death;
         while(death > 2016 || death < 0 || (death < birth && death != 0) || cin.fail())
         {
@@ -153,6 +148,7 @@ void ConsoleUI::_search()
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
     cout << "||   name    - to search by first name         ||" << endl;
+    cout << "||   gender  - to search by gender             ||" << endl;
     cout << "||   birth   - to search by year of birth      ||" << endl;
     cout << "||   death   - to search by year of death      ||" << endl;
     cout << "||   country - to search by country of origin  ||" << endl;
@@ -161,7 +157,7 @@ void ConsoleUI::_search()
     do{
         cout << "Parameter: ";
         cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "birth" && searchBy != "death" && searchBy != "country");
+    }while(searchBy != "name" && searchBy != "gender" && searchBy != "birth" && searchBy != "death" && searchBy != "country");
 
     cout << "Value: ";
     cin >> search;

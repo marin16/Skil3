@@ -73,6 +73,9 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
         if(searchBy == "name" && persons[i].getName() == search){
             results.push_back(persons[i]);
         }
+        else if(searchBy == "gender" && persons[i].getGender() == search.at(0)){
+            results.push_back(persons[i]);
+        }
         // http://www.cplusplus.com/reference/string/stoi/
         else if(searchBy == "birth" && persons[i].getBirth() == stoi(search,nullptr,0)){
             results.push_back(persons[i]);

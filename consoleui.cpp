@@ -121,7 +121,7 @@ void ConsoleUI::_add()
         cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth) && death);
+    }while(!_Valid.deathCheck(death, birth) && (death != 0));
 
     do
     {
@@ -239,16 +239,26 @@ void ConsoleUI::_list()
 
 void ConsoleUI::_displayPerson(Person person)
 {
-    cout << "Name:" << "\t\t" << "Gender:" << "\t" << "DoB:" << "\t" << "DoD:" << "\t" << "Country:" << endl;
-    cout << person.getName() << "\t\t" << person.getGender() << "\t" << person.getBirth() << "\t" << person.getDeath() << "\t" << person.getCountry() << endl;
+    cout << "=================================================" << endl;
+    cout << "Name: " << person.getName() << endl;
+    cout << "Gender: " << person.getGender() << endl;
+    cout << "Birth: " << person.getBirth() << endl;
+    cout << "Death: " << person.getDeath() << endl;
+    cout << "Nationality: " << person.getCountry() << endl;
+    cout << "=================================================" << endl;
 }
 
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
-    cout << "Name:" << "\t\t" << "Gender:" << "\t" << "DoB:" << "\t" << "DoD:" << "\t" << "Country:" << endl;
+    cout << "=================================================" << endl;
     for (size_t i = 0; i < persons.size(); ++i)
     {
-        cout << persons[i].getName() << "\t\t" << persons[i].getGender() << "\t" << persons[i].getBirth() << "\t" << persons[i].getDeath() << "\t" << persons[i].getCountry() << endl;
+        cout << "Name: " << persons[i].getName() << endl;
+        cout << "Gender: " << persons[i].getGender() << endl;
+        cout << "Birth: " << persons[i].getBirth() << endl;
+        cout << "Death: " << persons[i].getDeath() << endl;
+        cout << "Nationality: " << persons[i].getCountry() << endl;
+        cout << "=================================================" << endl;
     }
 }
 

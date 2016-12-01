@@ -56,7 +56,7 @@ vector<Person> PersonService::getPersons(int sortBy)
 
 bool PersonService::addPerson(Person p)
 {
-    if(p.getName() != "" && p.getBirth() != NULL && p.getGender() != NULL && p.getDeath() != NULL && p.getCountry() != "")
+    if(p.getName() != "" && p.getGender() != NULL && p.getCountry() != "")
     {
         _dataAccess.writePerson(p);
         return true;

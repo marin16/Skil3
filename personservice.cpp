@@ -100,4 +100,5 @@ vector<Person> PersonService::deletePerson(string deleteP)
             continue;
         }
     }
+    return deleteResult;
 }

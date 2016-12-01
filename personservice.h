@@ -12,6 +12,7 @@ public:
     vector<Person> getPersons(int sortBy);
     vector<Person> searchForPerson(string search, string searchBy);
     bool addPerson(Person newPerson);
+    void clearData();
 private:
     DataAccess _dataAccess;
 };

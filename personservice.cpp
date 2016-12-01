@@ -89,3 +89,8 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
     }
     return results;
 }
+
+void PersonService::clearData()
+{
+    _dataAccess.clearList();
+}

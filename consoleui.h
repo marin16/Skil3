@@ -20,6 +20,7 @@ private:
     void _displayPerson(Person person);
     // Takes in a vector of persons and prints them to the display
     void _displayPersons(vector<Person> persons);
+    void _clear();
 };
 
 #endif // CONSOLEUI_H

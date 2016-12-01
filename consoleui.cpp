@@ -36,6 +36,10 @@ void ConsoleUI::run()
         {
             _instructions();
         }
+        else if(command == "clear")
+        {
+            _clear();
+        }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
@@ -52,6 +56,7 @@ void ConsoleUI::_instructions()
     cout << "||    list   - to get a list of persons        ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    clear  - to clear all data               ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
 }
@@ -81,6 +86,7 @@ void ConsoleUI::_add()
         cin.getline(charname,sizeof(charname));
         name = string(charname);
     }while(!_Valid.nameCheck(name));
+
     do
     {
         cout << "Gender (m/f): ";
@@ -209,5 +215,29 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
     for (size_t i = 0; i < persons.size(); ++i)
     {
         cout << persons[i].getName() << "\t\t" << persons[i].getGender() << "\t" << persons[i].getBirth() << "\t" << persons[i].getDeath() << "\t" << persons[i].getCountry() << endl;
+    }
+}
+
+void ConsoleUI::_clear()
+{
+    cout << "*******************   WARNING   *******************" << endl;
+    cout << "*         you are about to clear all data         *" << endl;
+    cout << "*                                                 *" << endl;
+    cout << "*      confirm  - if you want to clear all data   *" << endl;
+    cout << "*      cancel   - if you dont want to continue    *" << endl;
+    cout << "*                                                 *" << endl;
+    cout << "******************   *WARNING   *******************" << endl;
+    cout << "confirm / cancel:";
+
+    string confirm;
+    cin >> confirm;
+    if(confirm == "confirm")
+    {
+        _service.clearData();
+        cout << "All data was erased." << endl;
+    }
+    else if(confirm == "cancel")
+    {
+        cout << "No data was erased." << endl;
     }
 }

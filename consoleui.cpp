@@ -13,9 +13,10 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
+    _instructions();
     do
     {
-        _instructions();
+        cout << "Command: ";
         string command;
         cin >> command;
 
@@ -35,6 +36,10 @@ void ConsoleUI::run()
         {
             _delete();
         }
+        else if(command == "help")
+        {
+            _instructions();
+        }
         else if(command == "clear")
         {
             _clear();
@@ -45,9 +50,6 @@ void ConsoleUI::run()
         }
         else
         {
-            /*
-             *  Unknown command handeling
-             */
             cout << "Unknown command: " << command << endl;
             cout << "please try again." << endl;
         }
@@ -60,14 +62,18 @@ void ConsoleUI::_instructions()
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
     cout << "||    add    - to add a new person             ||" << endl;
-    cout << "||    list   - to get a list of persons        ||" << endl;
+    cout << "||    list   - to get a list of scientsits     ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    delete - to delete a scientist           ||" << endl;
     cout << "||    clear  - to clear all data               ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
 }
 
+/*
+ * _add: Takes user input and adds to vector
+ */
 void ConsoleUI::_add()
 {
     string name;
@@ -115,7 +121,7 @@ void ConsoleUI::_add()
         cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth));
+    }while(!_Valid.deathCheck(death, birth) && death);
 
     do
     {
@@ -182,19 +188,26 @@ void ConsoleUI::_search()
 
 void ConsoleUI::_delete()
 {
-    vector<Person> deleteResult;
+    bool deleteResult;
     string deleteP;
 
-    cout << "====================================================" << endl;
-    cout << "||         Please enter a name to delete:         ||" << endl;
-    cout << "====================================================" << endl;
+    cout << "=================================================" << endl;
+    cout << "||        Please enter a name to delete:       ||" << endl;
+    cout << "=================================================" << endl;
 
     cout << "Name: ";
     cin >> deleteP;
 
     deleteResult = _service.deletePerson(deleteP);
 
-    _displayPersons(deleteResult);
+    if(deleteResult)
+    {
+        cout << "Success!" << endl;
+    }
+    else
+    {
+        cout << "Faild. (nothing found to delete or multiple results found" << endl;
+    }
 }
 
 void ConsoleUI::_list()
@@ -242,13 +255,13 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 void ConsoleUI::_clear()
 {
     string confirm;
-    cout << "*******************   WARNING   *******************" << endl;
-    cout << "*         you are about to clear all data         *" << endl;
-    cout << "*                                                 *" << endl;
-    cout << "*      confirm  - if you want to clear all data   *" << endl;
-    cout << "*      cancel   - if you dont want to continue    *" << endl;
-    cout << "*                                                 *" << endl;
-    cout << "******************   *WARNING   *******************" << endl;
+    cout << "******************   WARNING   ******************" << endl;
+    cout << "*        you are about to clear all data        *" << endl;
+    cout << "*                                               *" << endl;
+    cout << "*     confirm  - if you want to clear all data  *" << endl;
+    cout << "*     cancel   - if you dont want to continue   *" << endl;
+    cout << "*                                               *" << endl;
+    cout << "******************   WARNING   ******************" << endl;
     do{
         cout << "confirm / cancel: ";
         cin >> confirm;

@@ -62,9 +62,10 @@ void ConsoleUI::_instructions()
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
     cout << "||    add    - to add a new person             ||" << endl;
-    cout << "||    list   - to get a list of persons        ||" << endl;
+    cout << "||    list   - to get a list of scientsits     ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    delete - to delete a scientist           ||" << endl;
     cout << "||    clear  - to clear all data               ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;

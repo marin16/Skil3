@@ -1,5 +1,6 @@
 #include "inputcheck.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -25,6 +26,22 @@ bool inputcheck::genderCheck(char gender)
         return true;
     else
         return false;
+}
+
+bool inputcheck::birthCheck(int& birth)
+{
+    if(birth < 0 || birth > 2016 || birth == isdigit(birth))
+        return false;
+    else
+        return true;
+}
+
+bool inputcheck::deathCheck(int death, int& birth)
+{
+    if(death > 2016 || death < 0 || (death < birth && death != 0) || death == isdigit(death))
+        return false;
+    else
+        return true;
 }
 
 /*

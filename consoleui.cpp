@@ -88,25 +88,22 @@ void ConsoleUI::_add()
         gender = toupper(gender);
     }while(!_Valid.genderCheck(gender));
 
-    cout << "Year of birth: ";
-    cin >> birth;
-    while (birth < 0 || birth > 2016 || cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-            cout << "Year of birth: ";
-            cin >> birth;
-        }
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        cout << "Year of birth: ";
+        cin >> birth;
+    }while(!_Valid.birthCheck(birth));
 
+    do
+    {
+        cin.clear();
+        cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-        while(death > 2016 || death < 0 || (death < birth && death != 0) || cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-            cout << "Year of death: ";
-            cin >> death;
-        }
+    }while(!_Valid.deathCheck(death, birth));
+
     do
     {
         cout << "Country of origin: ";
@@ -117,25 +114,25 @@ void ConsoleUI::_add()
 
     Person newPerson(name, gender, birth, death, country);
     do
-        {
-            _displayPerson(newPerson);
-            cout << "Is the information correct?(Y/N) ";
-            cin >> answer;
-        }while(!_Valid.answerCheck(answer));
+    {
+        _displayPerson(newPerson);
+        cout << "Is the information correct?(Y/N) ";
+        cin >> answer;
+    }while(!_Valid.answerCheck(answer));
 
-        if (answer == 'y' || answer == 'Y')
-            {
-                cin.ignore();
-                if (_service.addPerson(newPerson))
-                    cout << "Success!" << endl;
-                else
-                    cout << "Could not write this data to file" << endl;
-            }
-        else if (answer == 'n' || answer == 'N')
-            {
-                cin.ignore();
-                _add();
-            }
+    if (answer == 'y' || answer == 'Y')
+    {
+        cin.ignore();
+        if (_service.addPerson(newPerson))
+            cout << "Success!" << endl;
+        else
+            cout << "Could not write this data to file" << endl;
+    }
+    else if (answer == 'n' || answer == 'N')
+    {
+        cin.ignore();
+        _add();
+    }
 }
 
 /*

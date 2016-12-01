@@ -244,6 +244,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 
 void ConsoleUI::_clear()
 {
+    string confirm;
     cout << "*******************   WARNING   *******************" << endl;
     cout << "*         you are about to clear all data         *" << endl;
     cout << "*                                                 *" << endl;
@@ -251,17 +252,17 @@ void ConsoleUI::_clear()
     cout << "*      cancel   - if you dont want to continue    *" << endl;
     cout << "*                                                 *" << endl;
     cout << "******************   *WARNING   *******************" << endl;
-    cout << "confirm / cancel:";
-
-    string confirm;
-    cin >> confirm;
-    if(confirm == "confirm")
-    {
-        _service.clearData();
-        cout << "All data was erased." << endl;
-    }
-    else if(confirm == "cancel")
-    {
-        cout << "No data was erased." << endl;
-    }
+    do{
+        cout << "confirm / cancel: ";
+        cin >> confirm;
+        if(confirm == "confirm")
+        {
+            _service.clearData();
+            cout << "All data was erased." << endl;
+        }
+        else if(confirm == "cancel")
+        {
+            cout << "No data was erased." << endl;
+        }
+    }while(confirm != "confirm" && confirm != "cancel");
 }

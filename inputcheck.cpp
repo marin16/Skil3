@@ -13,7 +13,7 @@ inputcheck::inputcheck()
  */
 bool inputcheck::nameCheck(const string &name)
 {
-    return !(name.find_first_of("0123456789") != string::npos);
+    return !(name.find_first_of("0123456789") != string::npos) && name != "";
 }
 
 /*

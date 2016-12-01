@@ -36,6 +36,9 @@ bool inputcheck::birthCheck(int& birth)
         return true;
 }
 
+/*
+ * TODO: fix error check for input = 0
+ */
 bool inputcheck::deathCheck(int death, int& birth)
 {
     if(death > 2016 || death < 0 || (death < birth && death != 0) || death == isdigit(death))

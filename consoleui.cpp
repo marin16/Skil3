@@ -121,7 +121,7 @@ void ConsoleUI::_add()
         cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth));
+    }while(!_Valid.deathCheck(death, birth) && death);
 
     do
     {
@@ -188,7 +188,7 @@ void ConsoleUI::_search()
 
 void ConsoleUI::_delete()
 {
-    vector<Person> deleteResult;
+    bool deleteResult;
     string deleteP;
 
     cout << "=================================================" << endl;
@@ -200,7 +200,14 @@ void ConsoleUI::_delete()
 
     deleteResult = _service.deletePerson(deleteP);
 
-    _displayPersons(deleteResult);
+    if(deleteResult)
+    {
+        cout << "Success!" << endl;
+    }
+    else
+    {
+        cout << "Faild. (nothing found to delete or multiple results found" << endl;
+    }
 }
 
 void ConsoleUI::_list()

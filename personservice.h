@@ -11,7 +11,7 @@ public:
     PersonService();
     vector<Person> getPersons(int sortBy);
     vector<Person> searchForPerson(string search, string searchBy);
-    vector<Person> deletePerson(string deleteP);
+    bool deletePerson(string deleteP);
     bool addPerson(Person newPerson);
     void clearData();
 private:

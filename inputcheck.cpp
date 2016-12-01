@@ -9,9 +9,7 @@ inputcheck::inputcheck()
 
 }
 
-/*
- * Checks if name includes numbers
- */
+
 bool inputcheck::nameCheck(const string &name)
 {
     return !(name.find_first_of("0123456789") != string::npos);
@@ -37,10 +35,10 @@ bool inputcheck::birthCheck(int& birth)
 
 bool inputcheck::deathCheck(int death, int& birth)
 {
-    if((death != 0 && (death < birth || death > 2016)) || death == isdigit(death))
-        return false;
-    else
+    if(death == 0 || (death <= 2016 && death > birth))
         return true;
+    else if(death == isdigit(death) || (death != 0 && (death < birth || death > 2016)))
+        return false;
 }
 
 

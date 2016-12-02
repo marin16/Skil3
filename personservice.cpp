@@ -71,7 +71,7 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
     vector<Person> persons = getPersons(0);
     vector<Person> results;
     for(size_t i = 0; i < persons.size(); ++i){
-        if(searchBy == "name" && regex_match (persons[i].getName(), regex(search, regex_constants::icase))){
+        if(searchBy == "name" && regex_match(persons[i].getName(),regex(search,regex_constants::icase))){
             results.push_back(persons[i]);
         }
         else if(searchBy == "gender" && persons[i].getGender() == search.at(0)){

@@ -162,6 +162,7 @@ void ConsoleUI::_search()
     vector<Person> results;
     string searchBy;
     string search;
+    char charsearch[100];
 
     cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
@@ -179,7 +180,10 @@ void ConsoleUI::_search()
     }while(searchBy != "name" && searchBy != "gender" && searchBy != "birth" && searchBy != "death" && searchBy != "country");
 
     cout << "Value: ";
-    cin >> search;
+
+    cin.ignore();
+    cin.getline(charsearch,sizeof(charsearch));
+    search = string(charsearch);
 
     results = _service.searchForPerson(search, searchBy);
 

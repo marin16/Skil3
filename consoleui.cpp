@@ -70,6 +70,9 @@ void ConsoleUI::run()
     }while(true);
 }
 
+/*
+ * _instructions: Display instructions menu
+ */
 void ConsoleUI::_instructions()
 {
     cout << "=================================================" << endl;
@@ -171,9 +174,8 @@ void ConsoleUI::_add()
         _add();
     }
 }
-
 /*
- * TODO: add more search options
+ * _search: search based on user's input
  */
 void ConsoleUI::_search()
 {
@@ -208,6 +210,10 @@ void ConsoleUI::_search()
     _displayPersons(results);
 }
 
+/*
+ * _delete: deletes from list
+ */
+
 void ConsoleUI::_delete()
 {
     bool deleteResult;
@@ -235,6 +241,9 @@ void ConsoleUI::_delete()
     }
 }
 
+/*
+ * _list: Displays menu for list. Displays list based on user's input.
+ */
 void ConsoleUI::_list()
 {
     cout << "=================================================" << endl;
@@ -242,7 +251,7 @@ void ConsoleUI::_list()
     cout << "=================================================" << endl;
     cout << "||    name     - sort by name alphabeticaly    ||" << endl;
     cout << "||    year     - sort by year of birth         ||" << endl;
-    cout << "||    country  - sort by country               ||" << endl;
+    cout << "||    country  - sort by nationality           ||" << endl;
     cout << "||    unsorted - get unsorted list (default)   ||" << endl;
     cout << "=================================================" << endl;
 
@@ -262,6 +271,9 @@ void ConsoleUI::_list()
     _displayPersons(persons);
 }
 
+/*
+ * _edit: edits a pearson
+ */
 void ConsoleUI::_edit()
 {
     Person newPerson;
@@ -389,6 +401,9 @@ void ConsoleUI::_edit()
     }
 }
 
+/*
+ * _displayPerson: Displays one person
+ */
 void ConsoleUI::_displayPerson(Person person)
 {
 	const int offset = 4;
@@ -411,6 +426,9 @@ void ConsoleUI::_displayPerson(Person person)
 	cout << person.getCountry() << endl;
 }
 
+/*
+ * _displayPersons: Displays multiple persons
+ */
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
 	if (persons.size() > 0) {
@@ -452,7 +470,9 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 	}
 	cout << "The list contains: " << persons.size() << " scientists." << endl;
 }
-
+/*
+ * _clear: Clears the data from the list
+ */
 void ConsoleUI::_clear()
 {
     string confirm;

@@ -167,7 +167,7 @@ void ConsoleUI::_search()
     cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
-    cout << "||   name    - to search by first name         ||" << endl;
+    cout << "||   name    - to search by full name          ||" << endl;
     cout << "||   gender  - to search by gender             ||" << endl;
     cout << "||   birth   - to search by year of birth      ||" << endl;
     cout << "||   death   - to search by year of death      ||" << endl;

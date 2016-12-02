@@ -194,13 +194,16 @@ void ConsoleUI::_delete()
 {
     bool deleteResult;
     string deleteP;
+    char chardeleteP[100];
 
     cout << "=================================================" << endl;
-    cout << "||        Please enter a name to delete:       ||" << endl;
+    cout << "||      Please enter a full name to delete:       ||" << endl;
     cout << "=================================================" << endl;
 
     cout << "Name: ";
-    cin >> deleteP;
+    cin.ignore();
+    cin.getline(chardeleteP,sizeof(chardeleteP));
+    deleteP = string(chardeleteP);
 
     deleteResult = _service.deletePerson(deleteP);
 

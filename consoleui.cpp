@@ -432,7 +432,7 @@ void ConsoleUI::_displayPerson(Person person)
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
 	if (persons.size() > 0) {
-		int longestName = 0;
+		size_t longestName = 0;
 		bool hasDeadPerson = false;
 		for (size_t i = 0; i < persons.size(); ++i) {
 			if (persons[i].getName().length() > longestName) {

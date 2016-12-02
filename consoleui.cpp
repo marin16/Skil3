@@ -287,9 +287,11 @@ void ConsoleUI::_displayPerson(Person person)
 // TODO: make this the same as the other.
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
+    int count = 0;
     cout << "=================================================" << endl;
     for (size_t i = 0; i < persons.size(); ++i)
     {
+        count = count + 1;
         cout << "Name: " << persons[i].getName() << endl;
         cout << "Gender: " << persons[i].getGender() << endl;
         cout << "Birth: " << persons[i].getBirth() << endl;
@@ -297,6 +299,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
         cout << "Nationality: " << persons[i].getCountry() << endl;
         cout << "=================================================" << endl;
     }
+        cout << "The list contains: " << count << " scientists." << endl;
 }
 
 void ConsoleUI::_clear()

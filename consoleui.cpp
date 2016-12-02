@@ -44,6 +44,10 @@ void ConsoleUI::run()
         {
             _delete();
         }
+        else if(command == "edit")
+        {
+            _edit();
+        }
         else if(command == "help")
         {
             _instructions();
@@ -75,6 +79,7 @@ void ConsoleUI::_instructions()
     cout << "||    list   - to get a list of scientsits     ||" << endl;
     cout << "||    search - to search list                  ||" << endl;
     cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    edit   - to edit an entry                ||" << endl;
     cout << "||    delete - to delete a scientist           ||" << endl;
     cout << "||    clear  - to clear all data               ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
@@ -255,6 +260,133 @@ void ConsoleUI::_list()
         persons = _service.getPersons(0);
 
     _displayPersons(persons);
+}
+
+void ConsoleUI::_edit()
+{
+    Person newPerson;
+    vector<Person> results;
+    bool deleteResult;
+    string deleteP;
+    char chardeleteP[100];
+    string name;
+    char gender;
+    string birth;
+    string death;
+    string country;
+    char charname[100];
+    char charcountry[100];
+    char answer;
+
+    cout << "=================================================" << endl;
+    cout << "||      Please enter a full name to edit:      ||" << endl;
+    cout << "=================================================" << endl;
+    cout << "Name: ";
+    cin.ignore();
+    cin.getline(chardeleteP,sizeof(chardeleteP));
+    deleteP = string(chardeleteP);
+
+    results = _service.searchForPerson(deleteP, "name");
+    deleteResult = _service.deletePerson(deleteP);
+
+    if(deleteResult)
+    {
+        Person orgPers = results[0];
+        string edit;
+        cout << "=================================================" << endl;
+        cout << "||            Enter parameter to edit:         ||" << endl;
+        cout << "=================================================" << endl;
+        cout << "||   name    - to edit name                    ||" << endl;
+        cout << "||   gender  - to edit gender                  ||" << endl;
+        cout << "||   birth   - to eidt year of birth           ||" << endl;
+        cout << "||   death   - to edit year of death           ||" << endl;
+        cout << "||   country - to edit country of origin       ||" << endl;
+        cout << "=================================================" << endl;
+        do
+        {
+            cout << "Value: ";
+            cin >> edit;
+        }while(edit != "name" && edit != "gender" && edit != "birth" && edit != "death" && edit != "country");
+
+        if(edit == "name")
+        {
+            do
+            {
+                cout << "Name: ";
+                cin.ignore();
+                cin.getline(charname,sizeof(charname));
+                name = string(charname);
+            }while(!_Valid.nameCheck(name));
+            newPerson = Person(name, orgPers.getGender(), orgPers.getBirth(), orgPers.getDeath(), orgPers.getCountry());
+        }
+        else if(edit == "gender")
+        {
+            do
+            {
+                cout << "Gender (m/f): ";
+                cin >> gender;
+                gender = toupper(gender);
+            }while(!_Valid.genderCheck(gender));
+            newPerson = Person(orgPers.getName(), gender, orgPers.getBirth(), orgPers.getDeath(), orgPers.getCountry());
+        }
+        else if(edit == "birth" || edit == "death")
+        {
+            do
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Year of birth: ";
+                cin >> birth;
+            }while(!_Valid.birthCheck(birth));
+
+            do
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Year of death (0 if alive): ";
+                cin >> death;
+            }while(!_Valid.deathCheck(death, birth));
+            int birthint = atoi(birth.c_str());
+            int deathint = atoi(death.c_str());
+            newPerson = Person(orgPers.getName(), orgPers.getGender(), birthint, deathint, orgPers.getCountry());
+
+        }
+        else if(edit == "country")
+        {
+            do
+            {
+                cout << "Country of origin: ";
+                cin.ignore();
+                cin.getline(charcountry,sizeof(charcountry));
+                country = string(charcountry);
+            }while(!_Valid.nameCheck(country));
+            newPerson = Person(orgPers.getName(), orgPers.getGender(), orgPers.getBirth(), orgPers.getDeath(), country);
+         }
+        do
+        {
+            _displayPerson(newPerson);
+            cout << "Is the information correct?(Y/N) ";
+            cin >> answer;
+        }while(!_Valid.answerCheck(answer));
+
+        if (answer == 'y' || answer == 'Y')
+        {
+            cin.ignore();
+            if (_service.addPerson(newPerson))
+                cout << "Success!" << endl;
+            else
+                cout << "Could not write this data to file" << endl;
+        }
+        else if (answer == 'n' || answer == 'N')
+        {
+            cin.ignore();
+            _add();
+        }
+    }
+    else
+    {
+        cout << "Failed. (nothing found to edit or multiple results found)" << endl;
+    }
 }
 
 void ConsoleUI::_displayPerson(Person person)

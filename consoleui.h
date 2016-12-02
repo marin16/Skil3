@@ -17,11 +17,10 @@ private:
     void _list();
     void _instructions();
     void _delete();
-    // Displays a single person to the display from parameter
     void _displayPerson(Person person);
-    // Takes in a vector of persons and prints them to the display
     void _displayPersons(vector<Person> persons);
     void _clear();
+    void _edit();
 };
 
 #endif // CONSOLEUI_H

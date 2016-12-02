@@ -102,7 +102,7 @@ bool PersonService::deletePerson(string deleteP)
     int orgSize = persons.size();
     for(size_t i = 0; i < persons.size(); ++i)
     {
-        if(persons[i].getName() == deleteP)
+        if(regex_match(persons[i].getName(), regex(deleteP,regex_constants::icase)))
         {
             persons.erase(persons.begin() + i);
         }

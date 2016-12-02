@@ -31,6 +31,17 @@ bool sortByCountry(const Person & p1, const Person & p2)
     return p1string < p2string;
 }
 
+//Fall sem breytir streng fyrir gender i char
+char genderStr2Char(string fmale)
+{
+    if(regex_match(fmale,regex("male|m",regex_constants::icase)))
+        return 'M';
+    else if(regex_match(fmale,regex("female|f",regex_constants::icase)))
+        return 'F';
+    else
+        return '0';
+}
+
 PersonService::PersonService()
 {
 
@@ -74,7 +85,7 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
         if(searchBy == "name" && regex_match(persons[i].getName(),regex(search,regex_constants::icase))){
             results.push_back(persons[i]);
         }
-        else if(searchBy == "gender" && toupper(persons[i].getGender()) == toupper(search.at(0))){
+        else if(searchBy == "gender" && (toupper(persons[i].getGender()) == genderStr2Char(search))){
             results.push_back(persons[i]);
         }
         // http://www.cplusplus.com/reference/string/stoi/
@@ -90,6 +101,8 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
     }
     return results;
 }
+
+
 
 void PersonService::clearData()
 {

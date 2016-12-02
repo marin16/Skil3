@@ -48,6 +48,8 @@ bool inputcheck::deathCheck(string death, string birth)
         return true;
     else if((deathint != 0 && (deathint < birthint || deathint > 2016)))
         return false;
+	else
+		return false;
 }
 
 

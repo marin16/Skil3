@@ -4,6 +4,7 @@
 #include "consoleui.h"
 #include "person.h"
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -259,47 +260,57 @@ void ConsoleUI::_displayPerson(Person person)
 	}
 	cout << "Nationality:" << endl;
 
-	cout << person.getName() << string(max(int(offset), int((5 - person.getName().length()) + offset)), ' ')
-		 << (person.getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
-	// Should probably use a logarithm.
-	if (person.getBirth() < 10) {
-		cout << person.getBirth() << string(offset+5, ' ');
-	} else if (person.getBirth() < 100) {
-		cout << person.getBirth() << string(offset+4, ' ');
-	} else if (person.getBirth() < 1000) {
-		cout << person.getBirth() << string(offset+3, ' ');
-	} else {
-		cout << person.getBirth() << string(offset+2, ' ');
-	}
-	if (person.getDeath() == 0) {
-	} else if (person.getDeath() < 10) {
-		cout << person.getDeath() << string(offset+5, ' ');
-	} else if (person.getDeath() < 100) {
-		cout << person.getDeath() << string(offset+4, ' ');
-	} else if (person.getDeath() < 1000) {
-		cout << person.getDeath() << string(offset+3, ' ');
-	} else {
-		cout << person.getDeath() << string(offset+2, ' ');
+	cout << person.getName() << string(max(int(offset), int((5 - person.getName().length()) + offset)), ' ');
+	// Properly prints the gender
+	cout << (person.getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
+	// Uses a logarithm to calculate the spacing
+	cout << person.getBirth() << string(offset+(5-int(log10(person.getBirth()))), ' ');
+	if (person.getDeath() != 0) {
+		cout << person.getDeath() << string(offset+(5-int(log10(person.getDeath()))), ' ');
 	}
 	cout << person.getCountry() << endl;
 }
 
-// TODO: make this the same as the other.
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
-    int count = 0;
-    cout << "=================================================" << endl;
-    for (size_t i = 0; i < persons.size(); ++i)
-    {
-        count = count + 1;
-        cout << "Name: " << persons[i].getName() << endl;
-        cout << "Gender: " << persons[i].getGender() << endl;
-        cout << "Birth: " << persons[i].getBirth() << endl;
-        cout << "Death: " << persons[i].getDeath() << endl;
-        cout << "Nationality: " << persons[i].getCountry() << endl;
-        cout << "=================================================" << endl;
-    }
-        cout << "The list contains: " << count << " scientists." << endl;
+	if (persons.size() > 0) {
+		int longestName = 0;
+		bool hasDeadPerson = false;
+		for (size_t i = 0; i < persons.size(); ++i) {
+			if (persons[i].getName().length() > longestName) {
+				longestName = persons[i].getName().length();
+			}
+			hasDeadPerson |= persons[i].getDeath() != 0;
+		}
+
+		const int offset = 4;
+		cout << "Name:" << string(max(int(offset), int((longestName - 5) + offset)), ' ')
+			 << "Gender:" << string(offset, ' ')
+			 << "Birth:" << string(offset, ' ');
+		if (hasDeadPerson) {
+			cout << "Death:" << string(offset, ' ');
+		}
+		cout << "Nationality:" << endl;
+
+		for (size_t i = 0; i < persons.size(); ++i) {
+
+			cout << persons[i].getName() << string(max(int(offset), int((longestName - persons[i].getName().length()) + offset)), ' ');
+			// Properly prints the gender
+			cout << (persons[i].getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
+			// Uses a logarithm to calculate the spacing
+			cout << persons[i].getBirth() << string(offset+(5-int(log10(max(1, persons[i].getBirth())))), ' ');
+			if (hasDeadPerson) {
+				if (persons[i].getDeath() == 0) {
+					cout << string(offset + 6, ' ');
+				} else {
+					cout << persons[i].getDeath() << string(offset+(5-int(log10(persons[i].getDeath()))), ' ');
+				}
+			}
+			cout << persons[i].getCountry() << endl;
+
+		}
+	}
+	cout << "The list contains: " << persons.size() << " scientists." << endl;
 }
 
 void ConsoleUI::_clear()

@@ -143,7 +143,7 @@ void ConsoleUI::_add()
 
     do
     {
-        cout << "Country of origin: ";
+        cout << "Nationality: ";
         cin.ignore();
         cin.getline(charcountry,sizeof(charcountry));
         country = string(charcountry);
@@ -221,7 +221,7 @@ void ConsoleUI::_delete()
     char chardeleteP[100];
 
     cout << "=================================================" << endl;
-    cout << "||      Please enter a full name to delete:       ||" << endl;
+    cout << "||     Please enter a full name to delete:     ||" << endl;
     cout << "=================================================" << endl;
 
     cout << "Name: ";
@@ -310,9 +310,9 @@ void ConsoleUI::_edit()
         cout << "=================================================" << endl;
         cout << "||   name    - to edit name                    ||" << endl;
         cout << "||   gender  - to edit gender                  ||" << endl;
-        cout << "||   birth   - to eidt year of birth           ||" << endl;
+        cout << "||   birth   - to edit year of birth           ||" << endl;
         cout << "||   death   - to edit year of death           ||" << endl;
-        cout << "||   country - to edit country of origin       ||" << endl;
+        cout << "||   country - to edit Nationality             ||" << endl;
         cout << "=================================================" << endl;
         do
         {
@@ -367,7 +367,7 @@ void ConsoleUI::_edit()
         {
             do
             {
-                cout << "Country of origin: ";
+                cout << "Nationality: ";
                 cin.ignore();
                 cin.getline(charcountry,sizeof(charcountry));
                 country = string(charcountry);

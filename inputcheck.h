@@ -10,16 +10,16 @@ public:
     inputcheck();
     bool nameCheck(const string &name);
     bool genderCheck(char gender);
-    bool birthCheck(int& birth);
-    bool deathCheck(int death, int& birth);
+    bool birthCheck(string birth);
+    bool deathCheck(string death, string birth);
     bool commaCheck(string word);
     bool answerCheck(char answer);
 private:
     string _name;
     char _gender;
     string _word;
-    int birth;
-    int death;
+    string birth;
+    string death;
 
 };
 

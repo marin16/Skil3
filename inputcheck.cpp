@@ -24,20 +24,29 @@ bool inputcheck::genderCheck(char gender)
         return false;
 }
 
-bool inputcheck::birthCheck(int& birth)
+bool inputcheck::birthCheck(string birth)
 {
-    if(birth < 0 || birth > 2016 || birth == isdigit(birth))
+    for(size_t i = 0; i < birth.length(); i++)
+        if(!isdigit(birth[i]))
+            return false;
+    int birthint = atoi(birth.c_str());
+    if(birthint < 0 || birthint > 2016)
         return false;
     else
         return true;
 }
 
 
-bool inputcheck::deathCheck(int death, int& birth)
+bool inputcheck::deathCheck(string death, string birth)
 {
-    if(death == 0 || (death <= 2016 && death > birth))
+    for(size_t i = 0; i < death.length(); i++)
+        if(!isdigit(death[i]))
+            return false;
+    int birthint = atoi(birth.c_str());
+    int deathint = atoi(death.c_str());
+    if(deathint == 0 || (deathint <= 2016 && deathint > birthint))
         return true;
-    else if(death == isdigit(death) || (death != 0 && (death < birth || death > 2016)))
+    else if((deathint != 0 && (deathint < birthint || deathint > 2016)))
         return false;
 }
 

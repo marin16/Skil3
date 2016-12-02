@@ -3,6 +3,7 @@
 #include <fstream>
 #include "consoleui.h"
 #include "person.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -78,8 +79,8 @@ void ConsoleUI::_add()
 {
     string name;
     char gender;
-    int birth;
-    int death;
+    string birth;
+    string death;
     string country;
     char charname[100];
     char charcountry[100];
@@ -121,7 +122,7 @@ void ConsoleUI::_add()
         cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth) && (death != 0));
+    }while(!_Valid.deathCheck(death, birth));
 
     do
     {
@@ -131,7 +132,10 @@ void ConsoleUI::_add()
         country = string(charcountry);
     }while(!_Valid.nameCheck(country));
 
-    Person newPerson(name, gender, birth, death, country);
+    int birthint = atoi(birth.c_str());
+    int deathint = atoi(death.c_str());
+    Person newPerson(name, gender, birthint, deathint, country);
+
     do
     {
         _displayPerson(newPerson);
@@ -279,17 +283,6 @@ void ConsoleUI::_displayPerson(Person person)
 	}
 	cout << person.getCountry() << endl;
 }
-
-// void ConsoleUI::_displayPerson(Person person)
-// {
-//     cout << "=================================================" << endl;
-//     cout << "Name: " << person.getName() << endl;
-//     cout << "Gender: " << person.getGender() << endl;
-//     cout << "Birth: " << person.getBirth() << endl;
-//     cout << "Death: " << person.getDeath() << endl;
-//     cout << "Nationality: " << person.getCountry() << endl;
-//     cout << "=================================================" << endl;
-// }
 
 // TODO: make this the same as the other.
 void ConsoleUI::_displayPersons(vector<Person> persons)

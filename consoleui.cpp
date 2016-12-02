@@ -81,8 +81,8 @@ void ConsoleUI::_add()
     int birth;
     int death;
     string country;
-    char charname[50];
-    char charcountry[50];
+    char charname[100];
+    char charcountry[100];
     char answer;
 
 
@@ -206,7 +206,7 @@ void ConsoleUI::_delete()
     }
     else
     {
-        cout << "Faild. (nothing found to delete or multiple results found)" << endl;
+        cout << "Failed. (nothing found to delete or multiple results found)" << endl;
     }
 }
 
@@ -239,15 +239,52 @@ void ConsoleUI::_list()
 
 void ConsoleUI::_displayPerson(Person person)
 {
-    cout << "=================================================" << endl;
-    cout << "Name: " << person.getName() << endl;
-    cout << "Gender: " << person.getGender() << endl;
-    cout << "Birth: " << person.getBirth() << endl;
-    cout << "Death: " << person.getDeath() << endl;
-    cout << "Nationality: " << person.getCountry() << endl;
-    cout << "=================================================" << endl;
+	const int offset = 4;
+    cout << "Name:" << string(max(int(offset), int((person.getName().length() - 5) + offset)), ' ')
+		 << "Gender:" << string(offset, ' ')
+		 << "Birth:" << string(offset, ' ');
+	if (person.getDeath() != 0) {
+		cout << "Death:" << string(offset, ' ');
+	}
+	cout << "Nationality:" << endl;
+
+	cout << person.getName() << string(max(int(offset), int((5 - person.getName().length()) + offset)), ' ')
+		 << (person.getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
+	// Should probably use a logarithm.
+	if (person.getBirth() < 10) {
+		cout << person.getBirth() << string(offset+5, ' ');
+	} else if (person.getBirth() < 100) {
+		cout << person.getBirth() << string(offset+4, ' ');
+	} else if (person.getBirth() < 1000) {
+		cout << person.getBirth() << string(offset+3, ' ');
+	} else {
+		cout << person.getBirth() << string(offset+2, ' ');
+	}
+	if (person.getDeath() == 0) {
+	} else if (person.getDeath() < 10) {
+		cout << person.getDeath() << string(offset+5, ' ');
+	} else if (person.getDeath() < 100) {
+		cout << person.getDeath() << string(offset+4, ' ');
+	} else if (person.getDeath() < 1000) {
+		cout << person.getDeath() << string(offset+3, ' ');
+	} else {
+		cout << person.getDeath() << string(offset+2, ' ');
+	}
+	cout << person.getCountry() << endl;
 }
 
+// void ConsoleUI::_displayPerson(Person person)
+// {
+//     cout << "=================================================" << endl;
+//     cout << "Name: " << person.getName() << endl;
+//     cout << "Gender: " << person.getGender() << endl;
+//     cout << "Birth: " << person.getBirth() << endl;
+//     cout << "Death: " << person.getDeath() << endl;
+//     cout << "Nationality: " << person.getCountry() << endl;
+//     cout << "=================================================" << endl;
+// }
+
+// TODO: make this the same as the other.
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
     cout << "=================================================" << endl;

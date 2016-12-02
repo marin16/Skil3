@@ -81,10 +81,10 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
         else if(searchBy == "birth" && persons[i].getBirth() == stoi(search,nullptr,0)){
             results.push_back(persons[i]);
         }
-        else if(searchBy == "death" && persons[i].getDeath() == stoi (search,nullptr,0)){
+        else if(searchBy == "death" && persons[i].getDeath() == stoi(search,nullptr,0)){
             results.push_back(persons[i]);
         }
-        else if(searchBy == "country" && regex_match (persons[i].getCountry(), regex(search, regex_constants::icase))){
+        else if(searchBy == "country" && regex_match(persons[i].getCountry(), regex(search, regex_constants::icase))){
             results.push_back(persons[i]);
         }
     }

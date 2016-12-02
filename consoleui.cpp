@@ -15,14 +15,14 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-	bool seperate = false;
+	bool separate = false;
     _instructions();
     do
     {
-		if (seperate) {
+		if (separate) {
 			cout << endl;
 		}
-		seperate = true;
+		separate = true;
 
         cout << "Command: ";
         string command;
@@ -47,7 +47,7 @@ void ConsoleUI::run()
         else if(command == "help")
         {
             _instructions();
-			seperate = false;
+			separate = false;
         }
         else if(command == "clear")
         {
@@ -61,7 +61,7 @@ void ConsoleUI::run()
         {
             cout << "Unknown command: " << command << endl;
             cout << "please try again or write \"help\" for a list of commands." << endl;
-			seperate = false;
+			separate = false;
         }
     }while(true);
 }

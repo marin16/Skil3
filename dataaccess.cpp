@@ -3,13 +3,24 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <QtSql>
 
 #include "dataaccess.h"
 #include "person.h"
 
+using namespace std;
+
 DataAccess::DataAccess()
 {
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString dbName = "csdb";
+    db.setDatabaseName(dbName);
 
+    if(!db.open())
+    {
+        //DB did not open
+    }
 }
 void DataAccess::writePerson(Person person)
 {
@@ -26,41 +37,22 @@ void DataAccess::writePerson(Person person)
 
 vector<Person> DataAccess::readPersons()
 {
-    // http://stackoverflow.com/questions/34218040/how-to-read-a-csv-file-data-into-an-array
-    ifstream file ("data.csv");
-    string line;
-    vector<vector<string> > parsedCsv;
     vector<Person> persons;
-    if(file.is_open())
-    {
-        while(getline(file,line))
-        {
-            stringstream lineStream(line);
-            string cell;
-            vector<string> parsedRow;
-            while(getline(lineStream,cell, ','))
-            {
-                parsedRow.push_back(cell);
-            }
-            parsedCsv.push_back(parsedRow);
-        }
-    }
-    // loop through the lines from the file
-    for(size_t i = 0; i < parsedCsv.size(); i++)
-    {
-        // fetching data from parsedCsv and converting data
-        string name = parsedCsv[i][0];
-        char gender = parsedCsv[i][1].at(0);
-        int dob = atoi(parsedCsv[i][2].c_str());
-        int dod = atoi(parsedCsv[i][3].c_str());
-        string country = parsedCsv[i][4];
 
-        // adding data to person and adding person to persons
-        Person person = Person(name, gender, dob, dod, country);
-        persons.push_back(person);
+    //db.open();
+    QSqlQuery query(_db);
+    query.exec("SELECT * from Scientists");
+
+    while(query.next()){
+        string name = query.value("name").toString().toStdString();
+        //char gender = query.value("gender").toChar().toStdChar();
+        int dob = query.value("dob").toUInt();
+        int dod = query.value("dod").toUInt();
+        string country = query.value("country").toString().toStdString();
+
+        persons.push_back(Person(name,'F',dob,dod,country));
     }
 
-    // TODO: check if parsedCsv is valid
     return persons;
 }
 

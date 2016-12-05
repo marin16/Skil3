@@ -2,6 +2,8 @@
 #define DATAACCESS_H
 
 #include <vector>
+#include <QtSql>
+
 #include "person.h"
 
 class DataAccess
@@ -13,6 +15,8 @@ public:
     // Reads all persons from the datafiel and returns them in a vector
     vector<Person> readPersons();
     void clearList();
+private:
+    QSqlDatabase _db;
 };
 
 #endif // DATAACCESS_H

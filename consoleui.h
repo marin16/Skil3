@@ -12,9 +12,13 @@ public:
 private:
     PersonService _service;
     inputcheck _Valid;
+    void runSci();
+    void runCom();
     void _add();
     void _search();
     void _list();
+    void _computers();
+    void _scientists();
     void _instructions();
     void _delete();
     void _displayPerson(Person person);

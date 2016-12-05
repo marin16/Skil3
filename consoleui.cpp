@@ -13,10 +13,97 @@ ConsoleUI::ConsoleUI()
 
 }
 
+
 void ConsoleUI::run()
 {
-	bool separate = false;
+    int oneTwo = 0;
     _instructions();
+
+    do
+    {
+        cout << "Command: ";
+        cin >> oneTwo;
+
+        if(oneTwo == 1)
+        {
+            runCom();
+        }
+        if(oneTwo == 2)
+        {
+            runSci();
+        }
+        else
+        {
+            cout << "Wrong input, please try again!" << endl;
+        }
+    }while(oneTwo != 1 && oneTwo != 2);
+}
+
+void ConsoleUI::runCom()
+{
+    bool separate = false;
+    _computers();
+    do
+    {
+        if (separate) {
+            cout << endl;
+        }
+        separate = true;
+
+        cout << "Command: ";
+        string command;
+        cin >> command;
+
+        if(command == "add")
+        {
+            //_add();
+        }
+        else if(command == "search")
+        {
+            //_search();
+        }
+        else if(command == "list")
+        {
+            //_list();
+        }
+        else if(command == "delete")
+        {
+            //_delete();
+        }
+        else if(command == "edit")
+        {
+            //_edit();
+        }
+        else if(command == "help")
+        {
+            _computers();
+            separate = false;
+        }
+        else if(command == "clear")
+        {
+            //_clear();
+        }
+        else if(command == "main")
+        {
+            run();
+        }
+        else if(command == "quit" || command == "q" || command == "exit")
+        {
+            break;
+        }
+        else
+        {
+            cout << "Unknown command: " << command << endl;
+            cout << "please try again or write \"help\" for a list of commands." << endl;
+            separate = false;
+        }
+    }while(true);
+}
+
+void ConsoleUI::runSci()
+{
+	bool separate = false;
+    _scientists();
     do
     {
 		if (separate) {
@@ -50,12 +137,16 @@ void ConsoleUI::run()
         }
         else if(command == "help")
         {
-            _instructions();
+            _scientists();
 			separate = false;
         }
         else if(command == "clear")
         {
             _clear();
+        }
+        else if(command == "main")
+        {
+            run();
         }
         else if(command == "quit" || command == "q" || command == "exit")
         {
@@ -70,12 +161,44 @@ void ConsoleUI::run()
     }while(true);
 }
 
-/*
- * _instructions: Display instructions menu
- */
 void ConsoleUI::_instructions()
 {
     cout << "=================================================" << endl;
+    cout << "|| Please enter one of the following commands: ||" << endl;
+    cout << "=================================================" << endl;
+    cout << "=================================================" << endl;
+    cout << "||       1 - to view the Computers menu        ||" << endl;
+    cout << "||       2 - to view the Scientists menu       ||" << endl;
+    cout << "=================================================" << endl;
+}
+
+
+void ConsoleUI::_computers()
+{
+    cout << "=================================================" << endl;
+    cout << "||              Famous Computers               ||" << endl;
+    cout << "|| Please enter one of the following commands: ||" << endl;
+    cout << "=================================================" << endl;
+    cout << "||    add    - to add a new computer           ||" << endl;
+    cout << "||    list   - to get a list of computers      ||" << endl;
+    cout << "||    search - to search list                  ||" << endl;
+    cout << "||    help   - to view this again              ||" << endl;
+    cout << "||    edit   - to edit an entry                ||" << endl;
+    cout << "||    delete - to delete a computer            ||" << endl;
+    cout << "||    clear  - to clear all data               ||" << endl;
+    cout << "||    main   - to go to main menu              ||" << endl;
+    cout << "||    quit   - to exit program                 ||" << endl;
+    cout << "=================================================" << endl;
+}
+
+
+/*
+ * _instructions: Display instructions menu
+ */
+void ConsoleUI::_scientists()
+{
+    cout << "=================================================" << endl;
+    cout << "||             Computer Scientists             ||" << endl;
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
     cout << "||    add    - to add a new person             ||" << endl;
@@ -85,6 +208,7 @@ void ConsoleUI::_instructions()
     cout << "||    edit   - to edit an entry                ||" << endl;
     cout << "||    delete - to delete a scientist           ||" << endl;
     cout << "||    clear  - to clear all data               ||" << endl;
+    cout << "||    main   - to go to main menu              ||" << endl;
     cout << "||    quit   - to exit program                 ||" << endl;
     cout << "=================================================" << endl;
 }

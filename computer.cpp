@@ -9,10 +9,10 @@ Computer::Computer()
 
 }
 
-Computer::Computer(int id, string name, int builty, string type, bool built)
+Computer::Computer(string name, int builty, string type, bool built)
 {
     _name = name;
-    _bulty = builty;
+    _builty = builty;
     _type = type;
     _built = built;
 }

@@ -37,7 +37,6 @@ DataAccess::DataAccess()
     }
     else
     {
-        //Fuck you
         db.close();
     }
 }
@@ -77,7 +76,6 @@ vector<Person> DataAccess::readPersons()
 
     while(query.next()){
         string name = query.value("name").toString().toStdString();
-        //TODO: Fix char
         char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
@@ -98,7 +96,6 @@ vector<Computer> DataAccess::readComputers()
 
     while(query.next()){
         string name = query.value("name").toString().toStdString();
-        //TODO: Fix char
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();
         bool built = query.value("built").toBool();

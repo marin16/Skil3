@@ -16,7 +16,7 @@ public:
     vector<Person> readPersons();
     void clearList();
 private:
-    QSqlDatabase db;
+    QSqlDatabase _db;
 };
 
 #endif // DATAACCESS_H

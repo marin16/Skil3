@@ -12,35 +12,26 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
-    //cout << "Cunt! " << endl;
-    //QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
-    db.setDatabaseName(dbName);
-    //cout << "Fucker";
-    if(!db.open())
-    {
-        QSqlQuery ScientistsTable;
-        ScientistsTable.exec("create table if not exists Scientists ("
-                             "id integer primary key autoincrement,"
-                             "name varchar(50) not null,"
-                             "gender char not null,"
-                             "dob integer not null,"
-                             "dod integer,"
-                             "country varchar(50))");
-        QSqlQuery ComputersTable;
-        ComputersTable.exec("create table if not exists Computers ("
-                            "id integer primary key autoincrement,"
-                            "name varchar(50) not null,"
-                            "builty integer,"
-                            "type varchar(50),"
-                            "built bool not null)");
-    }
-    else
-    {
-        //Fuck you
+    _db.setDatabaseName(dbName);
 
-    }
+    _db.open();
+    QSqlQuery ScientistsTable;
+    ScientistsTable.exec("create table if not exists Scientists ("
+                         "id integer primary key autoincrement,"
+                         "name varchar(50) not null,"
+                         "gender char not null,"
+                         "dob integer not null,"
+                         "dod integer,"
+                         "country varchar(50))");
+    QSqlQuery ComputersTable;
+    ComputersTable.exec("create table if not exists Computers ("
+                        "id integer primary key autoincrement,"
+                        "name varchar(50) not null,"
+                        "builty integer,"
+                        "type varchar(50),"
+                        "built bool not null)");
 }
 void DataAccess::writePerson(Person person)
 {

@@ -79,8 +79,10 @@ vector<Person> DataAccess::readPersons()
 
 void DataAccess::clearList()
 {
-    ofstream file ("data.csv");
+    /*ofstream file ("data.csv");
     file.open("data.csv", ofstream::out | ofstream::trunc);
-    file.close();
+    file.close();*/
+    QSqlQuery query;
+    query.exec("delete from Scientists");
 
 }

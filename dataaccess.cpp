@@ -12,12 +12,12 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
-    cout << "Cunt! " << endl;
+    //cout << "Cunt! " << endl;
     //QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
     db.setDatabaseName(dbName);
-    cout << "Fucker";
+    //cout << "Fucker";
     if(!db.open())
     {
         QSqlQuery ScientistsTable;

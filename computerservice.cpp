@@ -57,7 +57,7 @@ bool ComputerService::addComputer(Computer c)
 {
     if(c.getName() != "" && c.getType() != "")
     {
-        //_dataAccess.writeComputer(c);
+        _dataAccess.writeComputer(c);
         return true;
     }
     else

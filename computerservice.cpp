@@ -85,7 +85,7 @@ vector<Computer> ComputerService::searchForComputer(string search, string search
 
 void ComputerService::clearData()
 {
-    _dataAccess.clearList();
+    //_dataAccess.clearList();
 }
 
 
@@ -102,7 +102,7 @@ bool ComputerService::deleteComputer(string deleteC)
     }
     if(orgSize-1 == computers.size())
     {
-        _dataAccess.clearList();
+        //_dataAccess.clearList();
         for(size_t i  = 0; i < computers.size(); i++)
         {
            // _dataAccess.writeComputer(computers[i]);

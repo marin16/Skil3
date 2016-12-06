@@ -13,21 +13,26 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
-    db.setDatabaseName(dbName);
+    _db.setDatabaseName(dbName);
 
-    db.open();
-
-    QSqlQuery query;
-    query.exec("create table if not exists Scientists ("
-               "id integer primary key autoincrement,"
-               "name varchar(50) not null,"
-               "gender char not null,"
-               "dob integer not null,"
-               "dod integer,"
-               "country varchar(50))");
+    _db.open();
+    QSqlQuery ScientistsTable;
+    ScientistsTable.exec("create table if not exists Scientists ("
+                         "id integer primary key autoincrement,"
+                         "name varchar(50) not null,"
+                         "gender char not null,"
+                         "dob integer not null,"
+                         "dod integer,"
+                         "country varchar(50))");
+    QSqlQuery ComputersTable;
+    ComputersTable.exec("create table if not exists Computers ("
+                        "id integer primary key autoincrement,"
+                        "name varchar(50) not null,"
+                        "builty integer,"
+                        "type varchar(50),"
+                        "built bool not null)");
 }
 void DataAccess::writePerson(Person person)
 {
@@ -61,18 +66,18 @@ vector<Person> DataAccess::readPersons()
     vector<Person> persons;
 
     //db.open();
-    QSqlQuery query(db);
+    QSqlQuery query;
     query.exec("SELECT * from Scientists");
 
     while(query.next()){
         string name = query.value("name").toString().toStdString();
         //TODO: Fix char
-        //char gender = query.value("gender").toChar().toStdChar();
+        char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(name,'F',dob,dod,country));
+        persons.push_back(Person(name,gender,dob,dod,country));
     }
 
     return persons;
@@ -96,8 +101,11 @@ void DataAccess::writeComputer(Computer computer)
 
 void DataAccess::clearList()
 {
-    ofstream file ("data.csv");
-    file.open("data.csv", ofstream::out | ofstream::trunc);
-    file.close();
+
+    QSqlQuery querySci;
+    querySci.exec("delete from Scientists");
+
+    QSqlQuery queryCom;
+    queryCom.exec("delete from Computers");
 
 }

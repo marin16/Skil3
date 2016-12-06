@@ -17,7 +17,7 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-    int oneTwo = 0;
+    string oneTwo;
     _instructions();
 
     do
@@ -25,15 +25,15 @@ void ConsoleUI::run()
         cout << "Command: ";
         cin >> oneTwo;
 
-        if(oneTwo == 1)
+        if(oneTwo == "1")
         {
             runCom();
         }
-        else if(oneTwo == 2)
+        else if(oneTwo == "2")
         {
             runSci();
         }
-        else if(oneTwo == 3)
+        else if(oneTwo == "3")
         {
             break;
         }
@@ -41,7 +41,7 @@ void ConsoleUI::run()
         {
             cout << "Wrong input, please try again!" << endl;
         }
-    }while(oneTwo != 1 && oneTwo != 2);
+    }while(oneTwo != "1" && oneTwo != "2");
 }
 
 void ConsoleUI::runCom()

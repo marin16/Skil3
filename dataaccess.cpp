@@ -15,32 +15,6 @@ DataAccess::DataAccess()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
-<<<<<<< HEAD
-    db.setDatabaseName(dbName);
-    cout << "Fucker";
-    if(!db.open())
-    {
-        QSqlQuery ScientistsTable;
-        ScientistsTable.exec("create table if not exists Scientists ("
-                             "id integer primary key autoincrement,"
-                             "name varchar(50) not null,"
-                             "gender char not null,"
-                             "dob integer not null,"
-                             "dod integer,"
-                             "country varchar(50))");
-        QSqlQuery ComputersTable;
-        ComputersTable.exec("create table if not exists Computers ("
-                            "id integer primary key autoincrement,"
-                            "name varchar(50) not null,"
-                            "builty integer,"
-                            "type varchar(50),"
-                            "built bool not null)");
-    }
-    else
-    {
-        db.close();
-    }
-=======
     _db.setDatabaseName(dbName);
 
     _db.open();
@@ -59,7 +33,6 @@ DataAccess::DataAccess()
                         "builty integer,"
                         "type varchar(50),"
                         "built bool not null)");
->>>>>>> ef93251a6a2e849f10622990e2ff6e23d234220c
 }
 void DataAccess::writePerson(Person person)
 {
@@ -108,7 +81,7 @@ vector<Person> DataAccess::readPersons()
     return persons;
 }
 
-<<<<<<< HEAD
+
 vector<Computer> DataAccess::readComputers()
 {
     vector<Computer> computers;
@@ -129,7 +102,6 @@ vector<Computer> DataAccess::readComputers()
 }
 
 
-=======
 void DataAccess::writeComputer(Computer computer)
 {
     QSqlQuery query;
@@ -146,7 +118,7 @@ void DataAccess::writeComputer(Computer computer)
         cout << "Query failed" << endl; //TODO: change to return false
 }
 
->>>>>>> dfaeadec602f4ea2c3a09c443b2e3edadd9e4bff
+
 void DataAccess::clearList()
 {
 

@@ -7,6 +7,7 @@
 
 #include "dataaccess.h"
 #include "person.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -107,6 +108,7 @@ vector<Person> DataAccess::readPersons()
     return persons;
 }
 
+<<<<<<< HEAD
 vector<Computer> DataAccess::readComputers()
 {
     vector<Computer> computers;
@@ -127,6 +129,24 @@ vector<Computer> DataAccess::readComputers()
 }
 
 
+=======
+void DataAccess::writeComputer(Computer computer)
+{
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO computers (name, buildy, type, built) VALUES (:name, :buildy, :type, :built)");
+    query.bindValue(":name", QString::fromStdString(computer.getName()));
+    query.bindValue(":buildy", computer.getBuilty());
+    query.bindValue(":type",QString::fromStdString(computer.getType()));
+    query.bindValue(":built",computer.getBuilt());
+
+    if(query.exec())
+        cout << "Query executed" << endl; //TODO: change to return true
+    else
+        cout << "Query failed" << endl; //TODO: change to return false
+}
+
+>>>>>>> dfaeadec602f4ea2c3a09c443b2e3edadd9e4bff
 void DataAccess::clearList()
 {
 

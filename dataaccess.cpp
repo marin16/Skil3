@@ -16,17 +16,30 @@ DataAccess::DataAccess()
     db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
     db.setDatabaseName(dbName);
-
-    db.open();
-
-    QSqlQuery query;
-    query.exec("create table if not exists Scientists ("
-               "id integer primary key autoincrement,"
-               "name varchar(50) not null,"
-               "gender char not null,"
-               "dob integer not null,"
-               "dod integer,"
-               "country varchar(50))");
+    cout << "Fucker";
+    if(!db.open())
+    {
+        QSqlQuery ScientistsTable;
+        ScientistsTable.exec("create table if not exists Scientists ("
+                             "id integer primary key autoincrement,"
+                             "name varchar(50) not null,"
+                             "gender char not null,"
+                             "dob integer not null,"
+                             "dod integer,"
+                             "country varchar(50))");
+        QSqlQuery ComputersTable;
+        ComputersTable.exec("create table if not exists Computers ("
+                            "id integer primary key autoincrement,"
+                            "name varchar(50) not null,"
+                            "builty integer,"
+                            "type varchar(50),"
+                            "built bool not null)");
+    }
+    else
+    {
+        //Fuck you
+        db.close();
+    }
 }
 void DataAccess::writePerson(Person person)
 {
@@ -60,7 +73,7 @@ vector<Person> DataAccess::readPersons()
     vector<Person> persons;
 
     //db.open();
-    QSqlQuery query(db);
+    QSqlQuery query;
     query.exec("SELECT * from Scientists");
 
     while(query.next()){
@@ -79,8 +92,7 @@ vector<Person> DataAccess::readPersons()
 
 void DataAccess::clearList()
 {
-    ofstream file ("data.csv");
-    file.open("data.csv", ofstream::out | ofstream::trunc);
-    file.close();
+    QSqlQuery query;
+    query.exec("delete from Scientists");
 
 }

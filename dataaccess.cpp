@@ -17,10 +17,16 @@ DataAccess::DataAccess()
     QString dbName = "csdb";
     db.setDatabaseName(dbName);
 
-    if(!db.open())
-    {
-        //DB did not open
-    }
+    db.open();
+
+    QSqlQuery query;
+    query.exec("create table if not exists Scientists ("
+               "id integer primary key autoincrement,"
+               "name varchar(50) not null,"
+               "gender char not null,"
+               "dob integer not null,"
+               "dod integer,"
+               "country varchar(50))");
 }
 void DataAccess::writePerson(Person person)
 {

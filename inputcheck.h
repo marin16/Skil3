@@ -14,12 +14,17 @@ public:
     bool deathCheck(string death, string birth);
     bool commaCheck(string word);
     bool answerCheck(char answer);
+    bool builtyCheck(string builty);
+    bool builtCheck(bool built);
 private:
     string _name;
+    string _cpuname;
     char _gender;
     string _word;
     string birth;
     string death;
+    string builty;
+    bool built;
 
 };
 

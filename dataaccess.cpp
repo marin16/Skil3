@@ -60,12 +60,12 @@ vector<Person> DataAccess::readPersons()
     while(query.next()){
         string name = query.value("name").toString().toStdString();
         //TODO: Fix char
-        //char gender = query.value("gender").toChar().toStdChar();
+        char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(name,'F',dob,dod,country));
+        persons.push_back(Person(name,gender,dob,dod,country));
     }
 
     return persons;

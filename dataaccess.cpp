@@ -93,7 +93,11 @@ vector<Person> DataAccess::readPersons()
 
 void DataAccess::clearList()
 {
-    QSqlQuery query;
-    query.exec("delete from Scientists");
+
+    QSqlQuery querySci;
+    querySci.exec("delete from Scientists");
+
+    QSqlQuery queryCom;
+    queryCom.exec("delete from Computers");
 
 }

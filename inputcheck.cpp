@@ -74,3 +74,23 @@ bool inputcheck::answerCheck(char answer)
     else
         return false;
 }
+
+bool inputcheck::builtyCheck(string builty)
+{
+    for(size_t i = 0; i < builty.length(); i++)
+        if(!isdigit(builty[i]) || ispunct(builty[i]))
+            return false;
+    int builtyint = atoi(builty.c_str());
+    if(builtyint > 2016)
+        return false;
+    else
+        return true;
+}
+
+bool inputcheck::builtCheck(bool built)
+{
+    if(built == 1 || built == 0)
+        return true;
+    else
+        return false;
+}

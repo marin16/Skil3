@@ -5,6 +5,7 @@
 #include <QtSql>
 
 #include "person.h"
+#include "computer.h"
 
 class DataAccess
 {
@@ -12,8 +13,10 @@ public:
     DataAccess();
     // Writes a single person to the datafile
     void writePerson(Person person);
-    // Reads all persons from the datafiel and returns them in a vector
+    // Reads all persons from the datafile and returns them in a vector
     vector<Person> readPersons();
+    //Writes a single computer to the datafile
+    void writeComputer(Computer computer);
     void clearList();
 private:
     QSqlDatabase db;

@@ -82,7 +82,11 @@ void DataAccess::clearList()
     /*ofstream file ("data.csv");
     file.open("data.csv", ofstream::out | ofstream::trunc);
     file.close();*/
-    QSqlQuery query;
-    query.exec("delete from Scientists");
+    QSqlQuery querySci;
+    querySci.exec("delete from Scientists");
+
+    QSqlQuery queryCom;
+    queryCom.exec("delete from Scientists");
+
 
 }

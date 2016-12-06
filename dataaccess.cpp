@@ -72,7 +72,6 @@ vector<Person> DataAccess::readPersons()
 {
     vector<Person> persons;
 
-    //db.open();
     QSqlQuery query;
     query.exec("SELECT * from Scientists");
 
@@ -89,6 +88,27 @@ vector<Person> DataAccess::readPersons()
 
     return persons;
 }
+
+vector<Computer> DataAccess::readComputers()
+{
+    vector<Computer> computers;
+
+    QSqlQuery query;
+    query.exec("SELECT * from Scientists");
+
+    while(query.next()){
+        string name = query.value("name").toString().toStdString();
+        //TODO: Fix char
+        int buildy = query.value("buildy").toUInt();
+        string type = query.value("type").toString().toStdString();
+        bool built = query.value("built").toBool();
+
+        computers.push_back(Computer(name,buildy,type,built));
+    }
+
+    return computers;
+}
+
 
 void DataAccess::clearList()
 {

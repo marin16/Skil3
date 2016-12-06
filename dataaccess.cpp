@@ -12,7 +12,8 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
-    QSqlDatabase db;
+    cout << "Cunt! " << endl;
+    //QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
     db.setDatabaseName(dbName);
@@ -38,7 +39,7 @@ DataAccess::DataAccess()
     else
     {
         //Fuck you
-        db.close();
+
     }
 }
 void DataAccess::writePerson(Person person)

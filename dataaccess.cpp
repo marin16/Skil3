@@ -12,9 +12,9 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
+<<<<<<< HEAD
     db.setDatabaseName(dbName);
     cout << "Fucker";
     if(!db.open())
@@ -39,6 +39,26 @@ DataAccess::DataAccess()
     {
         db.close();
     }
+=======
+    _db.setDatabaseName(dbName);
+
+    _db.open();
+    QSqlQuery ScientistsTable;
+    ScientistsTable.exec("create table if not exists Scientists ("
+                         "id integer primary key autoincrement,"
+                         "name varchar(50) not null,"
+                         "gender char not null,"
+                         "dob integer not null,"
+                         "dod integer,"
+                         "country varchar(50))");
+    QSqlQuery ComputersTable;
+    ComputersTable.exec("create table if not exists Computers ("
+                        "id integer primary key autoincrement,"
+                        "name varchar(50) not null,"
+                        "builty integer,"
+                        "type varchar(50),"
+                        "built bool not null)");
+>>>>>>> ef93251a6a2e849f10622990e2ff6e23d234220c
 }
 void DataAccess::writePerson(Person person)
 {

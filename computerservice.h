@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "computer.h"
-#include "dataaccess.h"
+//#include "dataaccess.h"
 
 class ComputerService
 {
@@ -15,6 +15,6 @@ public:
     bool addComputer(Computer newComputer);
     void clearData();
 private:
-    DataAccess _dataAccess;
+//    DataAccess _dataAccess;
 };
 #endif // COMPUTERSERVICE_H

@@ -28,9 +28,13 @@ void ConsoleUI::run()
         {
             runCom();
         }
-        if(oneTwo == 2)
+        else if(oneTwo == 2)
         {
             runSci();
+        }
+        else if(oneTwo == 3)
+        {
+            break;
         }
         else
         {
@@ -169,6 +173,7 @@ void ConsoleUI::_instructions()
     cout << "=================================================" << endl;
     cout << "||       1 - to view the Computers menu        ||" << endl;
     cout << "||       2 - to view the Scientists menu       ||" << endl;
+    cout << "||       3 - to quit the program               ||" << endl;
     cout << "=================================================" << endl;
 }
 

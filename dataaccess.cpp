@@ -24,6 +24,7 @@ DataAccess::DataAccess()
 }
 void DataAccess::writePerson(Person person)
 {
+    /*
     // create fstream to data.csv
     ofstream file;
     //open file in append mode
@@ -33,6 +34,19 @@ void DataAccess::writePerson(Person person)
         // write data from param: person to the file in csv format
         file << person.getName() << "," << person.getGender() << "," << person.getBirth() << "," << person.getDeath() << "," << person.getCountry() << "\n";
     }
+    */
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO Scientists (name, gender, dob, dod, country) VALUES (:name, :gender, :dob, :dod, :country)");
+    query.bindValue(":name", QString::fromStdString(person.getName()));
+    query.bindValue(":gender", person.getGender());
+    query.bindValue(":dob", person.getBirth());
+    query.bindValue(":dod", person.getDeath());
+    query.bindValue(":country", QString::fromStdString(person.getCountry()));
+    if(query.exec())
+        cout << "Query executed" << endl; //TODO: change to return true
+    else
+        cout << "Query failed" << endl; //TODO: change to return false
 }
 
 vector<Person> DataAccess::readPersons()
@@ -40,11 +54,12 @@ vector<Person> DataAccess::readPersons()
     vector<Person> persons;
 
     //db.open();
-    QSqlQuery query(_db);
+    QSqlQuery query(db);
     query.exec("SELECT * from Scientists");
 
     while(query.next()){
         string name = query.value("name").toString().toStdString();
+        //TODO: Fix char
         //char gender = query.value("gender").toChar().toStdChar();
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();

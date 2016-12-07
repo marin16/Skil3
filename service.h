@@ -22,7 +22,7 @@ public:
     bool deleteComputer(string deleteC);
     bool addComputer(Computer newComputer);
 
-// Shared
+// Shared service
     void clearData();
 
 private:

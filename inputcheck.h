@@ -17,16 +17,6 @@ public:
     bool answerCheck(char answer);
     bool buildyCheck(string buildy);
     bool builtCheck(bool built);
-private:
-    string _name;
-    string _cpuname;
-    char _gender;
-    string _word;
-    string birth;
-    string death;
-    string buildy;
-    bool built;
-
 };
 
 #endif // INPUTCHECK_H

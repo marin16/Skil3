@@ -1,6 +1,7 @@
 #include "inputcheck.h"
 #include <string>
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
@@ -18,6 +19,19 @@ bool inputcheck::nameCheck(const string &name)
                 return false;
     }
     return !(name.find_first_of("0123456789") != string::npos) && name.length() < 100;
+}
+
+bool inputcheck::cpuCheck(const string &cpuname)
+{
+
+    for(size_t i = 0; i < cpuname.length(); i++)
+    {
+        if (ispunct(cpuname[i]) || isspace(cpuname[i]) || cpuname.empty())
+        {
+                return false;
+        }
+    }
+    return cpuname.length() < 100;
 }
 
 

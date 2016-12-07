@@ -3,7 +3,7 @@
 #include <regex>
 
 
-#include "personservice.h"
+#include "service.h"
 
 //http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
 bool sortPersonByName(const Person & p1, const Person & p2)
@@ -67,12 +67,12 @@ bool sortByType(const Computer & p1, const Computer & p2)
     return p1string < p2string;
 }
 
-PersonService::PersonService()
+Service::Service()
 {
 
 }
 
-vector<Person> PersonService::getPersons(int sortBy)
+vector<Person> Service::getPersons(int sortBy)
 {
     vector<Person> persons;
 
@@ -91,7 +91,7 @@ vector<Person> PersonService::getPersons(int sortBy)
     return persons;
 }
 
-bool PersonService::addPerson(Person p)
+bool Service::addPerson(Person p)
 {
     if(p.getName() != "" && p.getGender() != NULL && p.getCountry() != "")
     {
@@ -102,7 +102,7 @@ bool PersonService::addPerson(Person p)
         return false;
 }
 
-vector<Person> PersonService::searchForPerson(string search, string searchBy)
+vector<Person> Service::searchForPerson(string search, string searchBy)
 {
     vector<Person> persons = getPersons(0);
     vector<Person> results;
@@ -129,12 +129,12 @@ vector<Person> PersonService::searchForPerson(string search, string searchBy)
 
 
 
-void PersonService::clearData()
+void Service::clearData()
 {
     _dataAccess.clearList();
 }
 
-bool PersonService::deletePerson(string deleteP)
+bool Service::deletePerson(string deleteP)
 {
     vector<Person> persons = getPersons(0);
     int orgSize = persons.size();
@@ -162,7 +162,7 @@ bool PersonService::deletePerson(string deleteP)
 
 
 
-vector<Computer> PersonService::getComputers(int sortBy)
+vector<Computer> Service::getComputers(int sortBy)
 {
     vector<Computer> computers;
 
@@ -181,7 +181,7 @@ vector<Computer> PersonService::getComputers(int sortBy)
     return computers;
 }
 
-bool PersonService::addComputer(Computer c)
+bool Service::addComputer(Computer c)
 {
     if(c.getName() != "" && c.getType() != "")
     {
@@ -192,7 +192,7 @@ bool PersonService::addComputer(Computer c)
         return false;
 }
 
-vector<Computer> PersonService::searchForComputer(string search, string searchBy)
+vector<Computer> Service::searchForComputer(string search, string searchBy)
 {
     vector<Computer> computers = getComputers(0);
     vector<Computer> results;
@@ -211,7 +211,7 @@ vector<Computer> PersonService::searchForComputer(string search, string searchBy
     return results;
 }
 
-bool PersonService::deleteComputer(string deleteC)
+bool Service::deleteComputer(string deleteC)
 {
     vector<Computer> computers = getComputers(0);
     int orgSize = computers.size();

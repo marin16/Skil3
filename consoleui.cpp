@@ -98,6 +98,9 @@ void ConsoleUI::run()
     }while(true);
 }
 
+/*
+ * _instructions(): prints out instructions for the user informing him of what commands he has available.
+ */
 void ConsoleUI::_instructions()
 {
     cout << "===================================================" << endl;
@@ -138,12 +141,10 @@ void ConsoleUI::_add()
     char charcountry[100];
     char answer;
 
-
     cout << "=======================================================" << endl;
     cout << "||Please add the parameters for the scientists       ||" << endl;
     cout << "||if you input invalid data you will be asked again. ||" << endl;
     cout << "=======================================================" << endl;
-
 
     do
     {
@@ -622,7 +623,7 @@ void ConsoleUI::_displayPerson(Person person)
 
     // nameLength cant be shorter than "Name: " (6)
     if (nameLength < 6)
-        nameLength == 6;
+        nameLength = 6;
 
     // Labels
     cout << setw(nameLength+1) << left << "Name:";
@@ -656,7 +657,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
 
         // longest name cant be shorter than "Name: " (6)
         if (longestName < 6)
-            longestName == 6;
+            longestName = 6;
 
         // Labels for table
         cout << setw(longestName+1) << left << "Name:";

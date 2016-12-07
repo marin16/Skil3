@@ -1,7 +1,7 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
-#include "personservice.h"
+#include "service.h"
 //#include "computerservice.h"
 #include "inputcheck.h"
 
@@ -11,7 +11,7 @@ public:
     ConsoleUI();
     void run();
 private:
-    PersonService _service;
+    Service _service;
     //ComputerService _computerservice;
     inputcheck _Valid;
     void runSci();

@@ -1,16 +1,16 @@
-#ifndef PERSONSERVICE_H
-#define PERSONSERVICE_H
+#ifndef Service_H
+#define Service_H
 
 #include <vector>
 #include "person.h"
 #include "computer.h"
 #include "dataaccess.h"
 
-class PersonService
+class Service
 {
 public:
 // Service for persons
-    PersonService();
+    Service();
     vector<Person> getPersons(int sortBy);
     vector<Person> searchForPerson(string search, string searchBy);
     bool deletePerson(string deleteP);
@@ -30,4 +30,4 @@ private:
     DataAccess _dataAccess;
 };
 
-#endif // PERSONSERVICE_H
+#endif // Service_H

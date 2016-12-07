@@ -11,16 +11,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     consoleui.cpp \
-    personservice.cpp \
     person.cpp \
     dataaccess.cpp \
     inputcheck.cpp \
-    computer.cpp
+    computer.cpp \
+    service.cpp
 
 HEADERS += \
     consoleui.h \
-    personservice.h \
     person.h \
     dataaccess.h \
     inputcheck.h \
-    computer.h
+    computer.h \
+    service.h

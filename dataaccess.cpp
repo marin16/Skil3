@@ -87,10 +87,8 @@ vector<Computer> DataAccess::readComputers()
     vector<Computer> computers;
 
     QSqlQuery query;
-    query.exec("SELECT * from Scientists");
-    cout <<"Lesa"<<endl;
+    query.exec("SELECT * from computers");
     while(query.next()){
-        cout <<"inni"<<endl;
         string name = query.value("name").toString().toStdString();
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();

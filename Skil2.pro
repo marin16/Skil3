@@ -15,8 +15,7 @@ SOURCES += main.cpp \
     person.cpp \
     dataaccess.cpp \
     inputcheck.cpp \
-    computer.cpp \
-    computerservice.cpp
+    computer.cpp
 
 HEADERS += \
     consoleui.h \
@@ -24,5 +23,4 @@ HEADERS += \
     person.h \
     dataaccess.h \
     inputcheck.h \
-    computer.h \
-    computerservice.h
+    computer.h

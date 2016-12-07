@@ -2,7 +2,7 @@
 #define CONSOLEUI_H
 
 #include "personservice.h"
-#include "computerservice.h"
+//#include "computerservice.h"
 #include "inputcheck.h"
 
 class ConsoleUI
@@ -11,8 +11,8 @@ public:
     ConsoleUI();
     void run();
 private:
-    PersonService _personservice;
-    ComputerService _computerservice;
+    PersonService _service;
+    //ComputerService _computerservice;
     inputcheck _Valid;
     void runSci();
     void runCom();

@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "consoleui.h"
-#include "person.h"
 #include <algorithm>
 #include <cmath>
+
+#include "consoleui.h"
+#include "person.h"
 #include "computer.h"
 
 using namespace std;
@@ -298,7 +299,7 @@ void ConsoleUI::_add()
     if (answer == 'y' || answer == 'Y')
     {
         cin.ignore();
-        if (_personservice.addPerson(newPerson))
+        if (_service.addPerson(newPerson))
         {
             cout << "Success!" << endl;
         }
@@ -380,7 +381,7 @@ void ConsoleUI::_addCPU()
     if (answer == 'y' || answer == 'Y')
     {
         cin.ignore();
-        if (_computerservice.addComputer(newComputer))
+        if (_service.addComputer(newComputer))
             cout << "Success!" << endl;
         else
             cout << "Could not write this data to the database" << endl;
@@ -424,7 +425,7 @@ void ConsoleUI::_search()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _personservice.searchForPerson(search, searchBy);
+    results = _service.searchForPerson(search, searchBy);
 
     _displayPersons(results);
 }
@@ -459,7 +460,7 @@ void ConsoleUI::_searchCPU()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _computerservice.searchForComputer(search, searchBy);
+    results = _service.searchForComputer(search, searchBy);
 
     _displayComputers(results);
 }
@@ -482,7 +483,7 @@ void ConsoleUI::_delete()
     cin.getline(chardeleteP,sizeof(chardeleteP));
     deleteP = string(chardeleteP);
 
-    deleteResult = _personservice.deletePerson(deleteP);
+    deleteResult = _service.deletePerson(deleteP);
 
     if(deleteResult)
     {
@@ -512,7 +513,7 @@ void ConsoleUI::_deleteCPU()
     cin.getline(chardeleteC,sizeof(chardeleteC));
     deleteC = string(chardeleteC);
 
-    deleteResult = _computerservice.deleteComputer(deleteC);
+    deleteResult = _service.deleteComputer(deleteC);
 
     if(deleteResult)
     {
@@ -543,13 +544,13 @@ void ConsoleUI::_list()
     vector<Person> persons;
 
     if (sort == "name")
-        persons = _personservice.getPersons(1);
+        persons = _service.getPersons(1);
     else if (sort == "year")
-        persons = _personservice.getPersons(2);
+        persons = _service.getPersons(2);
     else if (sort == "country")
-        persons = _personservice.getPersons(3);
+        persons = _service.getPersons(3);
     else //if (sort == "unsorted")
-        persons = _personservice.getPersons(0);
+        persons = _service.getPersons(0);
 
     _displayPersons(persons);
 }
@@ -573,13 +574,13 @@ void ConsoleUI::_listCPU()
     vector<Computer> computers;
 
     if (sort == "name")
-        computers = _computerservice.getComputers(1);
+        computers = _service.getComputers(1);
     else if (sort == "buildy")
-        computers = _computerservice.getComputers(2);
+        computers = _service.getComputers(2);
     else if (sort == "type")
-        computers = _computerservice.getComputers(3);
+        computers = _service.getComputers(3);
     else //if (sort == "unsorted")
-        computers = _computerservice.getComputers(0);
+        computers = _service.getComputers(0);
 
     _displayComputers(computers);
 }
@@ -611,8 +612,8 @@ void ConsoleUI::_edit()
     cin.getline(chardeleteP,sizeof(chardeleteP));
     deleteP = string(chardeleteP);
 
-    results = _personservice.searchForPerson(deleteP, "name");
-    deleteResult = _personservice.deletePerson(deleteP);
+    results = _service.searchForPerson(deleteP, "name");
+    deleteResult = _service.deletePerson(deleteP);
 
     if(deleteResult)
     {
@@ -697,7 +698,7 @@ void ConsoleUI::_edit()
         if (answer == 'y' || answer == 'Y')
         {
             cin.ignore();
-            if (_personservice.addPerson(newPerson))
+            if (_service.addPerson(newPerson))
                 cout << "Success!" << endl;
             else
                 cout << "Could not write this data to file" << endl;
@@ -860,7 +861,7 @@ void ConsoleUI::_clear()
         cin >> confirm;
         if(confirm == "confirm")
         {
-            _personservice.clearData();
+            _service.clearData();
             cout << "All data was erased." << endl;
         }
         else if(confirm == "cancel")
@@ -888,7 +889,7 @@ void ConsoleUI::_clearCPU()
         cin >> confirm;
         if(confirm == "confirm")
         {
-            _computerservice.clearData();
+            _service.clearData();
             cout << "All data was erased." << endl;
         }
         else if(confirm == "cancel")

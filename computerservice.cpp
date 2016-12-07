@@ -39,7 +39,7 @@ vector<Computer> ComputerService::getComputers(int sortBy)
     vector<Computer> computers;
 
     // reads all persons from csv
-    //computers = _dataAccess.readComputers();
+    computers = _dataAccess.readComputers();
 
 
     // TODO: logic sort search etc...

@@ -299,11 +299,11 @@ void ConsoleUI::_addCPU()
 void ConsoleUI::_search()
 {
     vector<Person> results;
-    string searchBy;
+    //string searchBy;
     string search;
     char charsearch[100];
 
-    cout << "=================================================" << endl;
+   /* cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
     cout << "||   name    - to search by full name          ||" << endl;
@@ -316,7 +316,7 @@ void ConsoleUI::_search()
     do{
         cout << "Parameter: ";
         cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "gender" && searchBy != "birth" && searchBy != "death" && searchBy != "country");
+    }while(searchBy != "name" && searchBy != "gender" && searchBy != "birth" && searchBy != "death" && searchBy != "country");*/
 
     cout << "Value: ";
 
@@ -324,7 +324,7 @@ void ConsoleUI::_search()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForPerson(search, searchBy);
+    results = _service.searchForPerson(search/*, searchBy*/);
 
     _displayPersons(results);
 }
@@ -511,7 +511,7 @@ void ConsoleUI::_edit()
     cin.getline(chardeleteP,sizeof(chardeleteP));
     deleteP = string(chardeleteP);
 
-    results = _service.searchForPerson(deleteP, "name");
+    results = _service.searchForPerson(deleteP/*, "name"*/);
     deleteResult = _service.deletePerson(deleteP);
 
     if(deleteResult)

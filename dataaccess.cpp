@@ -36,17 +36,6 @@ DataAccess::DataAccess()
 }
 void DataAccess::writePerson(Person person)
 {
-    /*
-    // create fstream to data.csv
-    ofstream file;
-    //open file in append mode
-    file.open("data.csv", ios::app);
-    if(file.is_open())
-    {
-        // write data from param: person to the file in csv format
-        file << person.getName() << "," << person.getGender() << "," << person.getBirth() << "," << person.getDeath() << "," << person.getCountry() << "\n";
-    }
-    */
     QSqlQuery query;
 
     query.prepare("INSERT INTO Scientists (name, gender, dob, dod, country) VALUES (:name, :gender, :dob, :dod, :country)");

@@ -31,7 +31,8 @@ public:
     {
         return _country;
     }
-
+    // Returns true if Person contains search Term (source: example solution for week 1 dabs)
+    bool contains(string searchTerm);
 private:
     string _name;
     char _gender;

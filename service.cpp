@@ -102,11 +102,11 @@ bool Service::addPerson(Person p)
         return false;
 }
 
-vector<Person> Service::searchForPerson(string search, string searchBy)
+vector<Person> Service::searchForPerson(string search/*, string searchBy*/)
 {
     vector<Person> persons = getPersons(0);
     vector<Person> results;
-    for(size_t i = 0; i < persons.size(); ++i){
+    /*for(size_t i = 0; i < persons.size(); ++i){
         if(searchBy == "name" && regex_match(persons[i].getName(),regex(search,regex_constants::icase))){
             results.push_back(persons[i]);
         }
@@ -122,6 +122,13 @@ vector<Person> Service::searchForPerson(string search, string searchBy)
         }
         else if(searchBy == "country" && regex_match(persons[i].getCountry(), regex(search, regex_constants::icase))){
             results.push_back(persons[i]);
+        }
+    }*/
+    for (size_t i = 0; i < persons.size(); i++)
+    {
+        if (persons.at(i).contains(search))
+        {
+            results.push_back(persons.at(i));
         }
     }
     return results;

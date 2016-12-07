@@ -12,7 +12,7 @@ public:
 // Service for persons
     Service();
     vector<Person> getPersons(int sortBy);
-    vector<Person> searchForPerson(string search, string searchBy);
+    vector<Person> searchForPerson(string search/*, string searchBy*/);
     bool deletePerson(string deleteP);
     bool addPerson(Person newPerson);
 

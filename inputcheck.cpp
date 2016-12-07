@@ -27,9 +27,7 @@ bool inputcheck::cpuCheck(const string &cpuname)
     for(size_t i = 0; i < cpuname.length(); i++)
     {
         if (ispunct(cpuname[i]) || isspace(cpuname[i]) || cpuname.empty())
-        {
-                return false;
-        }
+            return false;
     }
     return cpuname.length() < 100;
 }
@@ -37,10 +35,7 @@ bool inputcheck::cpuCheck(const string &cpuname)
 
 bool inputcheck::genderCheck(char gender)
 {
-    if(gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F')
-        return true;
-    else
-        return false;
+    return (gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F');
 }
 
 bool inputcheck::birthCheck(string birth)
@@ -49,10 +44,7 @@ bool inputcheck::birthCheck(string birth)
         if(!isdigit(birth[i]) || ispunct(birth[i]))
             return false;
     int birthint = atoi(birth.c_str());
-    if(birthint < 0 || birthint > 2016)
-        return false;
-    else
-        return true;
+    return !(birthint < 0 || birthint > 2016);
 }
 
 
@@ -63,30 +55,19 @@ bool inputcheck::deathCheck(string death, string birth)
             return false;
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
-    if(deathint == 0 || (deathint <= 2016 && deathint > birthint))
-        return true;
-    else if((deathint != 0 && (deathint < birthint || deathint > 2016)))
-        return false;
-	else
-		return false;
+    return (deathint == 0 || (deathint <= 2016 && deathint > birthint));
 }
 
 
 bool inputcheck::commaCheck(string word)
 {
-    if(word.find(',')!=std::string::npos)
-        return true;
-    else
-        return false;
+    return (word.find(',')!=std::string::npos);
 }
 
 
 bool inputcheck::answerCheck(char answer)
 {
-    if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
-        return true;
-    else
-        return false;
+    return (answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N');
 }
 
 bool inputcheck::buildyCheck(string buildy)
@@ -95,16 +76,10 @@ bool inputcheck::buildyCheck(string buildy)
         if(!isdigit(buildy[i]) || ispunct(buildy[i]))
             return false;
     int buildyint = atoi(buildy.c_str());
-    if(buildyint > 2016)
-        return false;
-    else
-        return true;
+    return (buildyint <= 2016);
 }
 
 bool inputcheck::builtCheck(bool built)
 {
-    if(built == 1 || built == 0)
-        return true;
-    else
-        return false;
+    return (built == 1 || built == 0);
 }

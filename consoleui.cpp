@@ -46,7 +46,7 @@ void ConsoleUI::run()
         {
             cout << "Wrong input, please try again!" << endl;
         }
-    }while(oneTwo != "1" && oneTwo != "2");
+    }while(true);
 }
 
 void ConsoleUI::runCom()

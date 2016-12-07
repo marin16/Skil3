@@ -3,6 +3,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cmath>
+#include <iomanip>
 
 #include "consoleui.h"
 #include "person.h"
@@ -18,41 +19,8 @@ ConsoleUI::ConsoleUI()
 
 void ConsoleUI::run()
 {
-    string oneTwo;
-    _instructions();
-
-    do
-    {
-        cout << "Command: ";
-        cin >> oneTwo;
-
-        if(oneTwo == "1")
-        {
-            runCom();
-        }
-        else if(oneTwo == "2")
-        {
-            runSci();
-        }
-        else if(oneTwo == "3")
-        {
-            //runCon();
-        }
-        else if(oneTwo == "4")
-        {
-            break;
-        }
-        else
-        {
-            cout << "Wrong input, please try again!" << endl;
-        }
-    }while(true);
-}
-
-void ConsoleUI::runCom()
-{
     bool separate = false;
-    _computers();
+    _instructions();
     do
     {
         if (separate) {
@@ -64,100 +32,59 @@ void ConsoleUI::runCom()
         string command;
         cin >> command;
 
-        if(command == "add")
+        if(command == "add-c")
         {
             _addCPU();
         }
-        else if(command == "search")
+        else if(command == "search-c")
         {
             _searchCPU();
         }
-        else if(command == "list")
+        else if(command == "list-c")
         {
             _listCPU();
         }
-        else if(command == "delete")
+        else if(command == "delete-c")
         {
             _deleteCPU();
         }
-        else if(command == "edit")
+        else if(command == "edit-c")
         {
             //_edit();
         }
-        else if(command == "help")
-        {
-            _computers();
-            separate = false;
-        }
-        else if(command == "clear")
-        {
-            _clearCPU();
-        }
-        else if(command == "main")
-        {
-            run();
-        }
-        else if(command == "quit" || command == "q" || command == "exit")
-        {
-            break;
-        }
-        else
-        {
-            cout << "Unknown command: " << command << endl;
-            cout << "please try again or write \"help\" for a list of commands." << endl;
-            separate = false;
-        }
-    }while(true);
-}
-
-void ConsoleUI::runSci()
-{
-	bool separate = false;
-    _scientists();
-    do
-    {
-		if (separate) {
-			cout << endl;
-		}
-		separate = true;
-
-        cout << "Command: ";
-        string command;
-        cin >> command;
-
-        if(command == "add")
+        if(command == "add-s")
         {
             _add();
         }
-        else if(command == "search")
+        else if(command == "search-s")
         {
             _search();
         }
-        else if(command == "list")
+        else if(command == "list-s")
         {
             _list();
         }
-        else if(command == "delete")
+        else if(command == "delete-s")
         {
             _delete();
         }
-        else if(command == "edit")
+        else if(command == "edit-s")
         {
             _edit();
         }
+        else if(command == "link")
+        {
+            //_link();
+        }
         else if(command == "help")
         {
-            _scientists();
-			separate = false;
+            _instructions();
+            separate = false;
         }
         else if(command == "clear")
         {
             _clear();
         }
-        else if(command == "main")
-        {
-            run();
-        }
         else if(command == "quit" || command == "q" || command == "exit")
         {
             break;
@@ -166,63 +93,35 @@ void ConsoleUI::runSci()
         {
             cout << "Unknown command: " << command << endl;
             cout << "please try again or write \"help\" for a list of commands." << endl;
-			separate = false;
+            separate = false;
         }
     }while(true);
 }
 
 void ConsoleUI::_instructions()
 {
-    cout << "=================================================" << endl;
-    cout << "|| Please enter one of the following commands: ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "=================================================" << endl;
-    cout << "||       1 - to view the Computers menu        ||" << endl;
-    cout << "||       2 - to view the Scientists menu       ||" << endl;
-    cout << "||       3 - to link scientist and computer    ||" << endl;
-    cout << "||       4 - to quit the program               ||" << endl;
-    cout << "=================================================" << endl;
-}
-
-
-void ConsoleUI::_computers()
-{
-    cout << "=================================================" << endl;
-    cout << "||              Famous Computers               ||" << endl;
-    cout << "|| Please enter one of the following commands: ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||    add    - to add a new computer           ||" << endl;
-    cout << "||    list   - to get a list of computers      ||" << endl;
-    cout << "||    search - to search list                  ||" << endl;
-    cout << "||    help   - to view this again              ||" << endl;
-    cout << "||    edit   - to edit an entry                ||" << endl;
-    cout << "||    delete - to delete a computer            ||" << endl;
-    cout << "||    clear  - to clear all data               ||" << endl;
-    cout << "||    main   - to go to main menu              ||" << endl;
-    cout << "||    quit   - to exit program                 ||" << endl;
-    cout << "=================================================" << endl;
-}
-
-
-/*
- * _instructions: Display instructions menu
- */
-void ConsoleUI::_scientists()
-{
-    cout << "=================================================" << endl;
-    cout << "||             Computer Scientists             ||" << endl;
-    cout << "|| Please enter one of the following commands: ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||    add    - to add a new person             ||" << endl;
-    cout << "||    list   - to get a list of scientsits     ||" << endl;
-    cout << "||    search - to search list                  ||" << endl;
-    cout << "||    help   - to view this again              ||" << endl;
-    cout << "||    edit   - to edit an entry                ||" << endl;
-    cout << "||    delete - to delete a scientist           ||" << endl;
-    cout << "||    clear  - to clear all data               ||" << endl;
-    cout << "||    main   - to go to main menu              ||" << endl;
-    cout << "||    quit   - to exit program                 ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "===================================================" << endl;
+    cout << "||  Please enter one of the following commands:  ||" << endl;
+    cout << "===================================================" << endl;
+    cout << "||                                               ||" << endl;
+    cout << "||    add-c    - to add a new computer           ||" << endl;
+    cout << "||    list-c   - to get a list of computers      ||" << endl;
+    cout << "||    search-c - to search for computer          ||" << endl;
+    cout << "||    edit-c   - to edit an computer             ||" << endl;
+    cout << "||    delete-c - to delete a computer            ||" << endl;
+    cout << "||                                               ||" << endl;
+    cout << "||    add-s    - to add a new person             ||" << endl;
+    cout << "||    list-s   - to get a list of scientsits     ||" << endl;
+    cout << "||    search-s - to search for scientist         ||" << endl;
+    cout << "||    edit-s   - to edit an scientist            ||" << endl;
+    cout << "||    delete-s - to delete a scientist           ||" << endl;
+    cout << "||                                               ||" << endl;
+    cout << "||    link     - to link scientist and computer  ||" << endl;
+    cout << "||    clear    - to clear all data               ||" << endl;
+    cout << "||    help     - to view this again              ||" << endl;
+    cout << "||    quit     - to exit program                 ||" << endl;
+    cout << "||                                               ||" << endl;
+    cout << "===================================================" << endl;
 }
 
 /*
@@ -396,7 +295,6 @@ void ConsoleUI::_addCPU()
 /*
  * _search: search scientists based on user's input
  */
-
 void ConsoleUI::_search()
 {
     vector<Person> results;
@@ -720,39 +618,20 @@ void ConsoleUI::_edit()
  */
 void ConsoleUI::_displayPerson(Person person)
 {
-	const int offset = 4;
-    cout << "Name:" << string(max(int(offset), int((person.getName().length() - 5) + offset)), ' ')
-		 << "Gender:" << string(offset, ' ')
-		 << "Birth:" << string(offset, ' ');
-	if (person.getDeath() != 0) {
-		cout << "Death:" << string(offset, ' ');
-	}
-	cout << "Nationality:" << endl;
+    size_t nameLength = person.getName().length();
+    // Labels
+    cout << setw(nameLength+1) << left << "Name:";
+    cout << setw(8) << left << "Gender:";
+    cout << setw(7) << left << "Born:";
+    cout << setw(7) << left << "Died:";
+    cout << "Country:" << endl;
 
-	cout << person.getName() << string(max(int(offset), int((5 - person.getName().length()) + offset)), ' ');
-	// Properly prints the gender
-	cout << (person.getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
-	// Uses a logarithm to calculate the spacing
-	cout << person.getBirth() << string(offset+(5-int(log10(person.getBirth()))), ' ');
-	if (person.getDeath() != 0) {
-		cout << person.getDeath() << string(offset+(5-int(log10(person.getDeath()))), ' ');
-	}
-	cout << person.getCountry() << endl;
-}
-
-void ConsoleUI::_displayComputer(Computer computer)
-{
-    const int offset = 4;
-    cout << "Name:" << string(max(int(offset), int((computer.getName().length() - 5) + offset)), ' ')
-         << "Built year:" << string(offset, ' ')
-         << "Type:" << string(offset, ' ');
-    cout << "Built:" << endl;
-
-    cout << computer.getName() << string(max(int(offset), int((5 - computer.getName().length()) + offset)), ' ');
-    cout << computer.getbuildy() << string(offset+(5-int(log10(computer.getbuildy()))), ' ');
-    cout << computer.getType() << string(max(int(offset), int((5 - computer.getType().length()) + offset)), ' ');
-    // Properly prints build status
-    cout << (computer.getBuilt() == 0 ? "No     " : "Yes    ") << string(offset, ' ') << endl;
+    // Print the person
+    cout << setw(nameLength+1) << left << person.getName();
+    cout << setw(8) << left << person.getGender();
+    cout << setw(7) << left << person.getBirth();
+    cout << setw(7) << left << person.getDeath();
+    cout << person.getCountry() << endl;
 }
 
 /*
@@ -760,44 +639,38 @@ void ConsoleUI::_displayComputer(Computer computer)
  */
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
-	if (persons.size() > 0) {
-		size_t longestName = 0;
-		bool hasDeadPerson = false;
-		for (size_t i = 0; i < persons.size(); ++i) {
-			if (persons[i].getName().length() > longestName) {
-				longestName = persons[i].getName().length();
-			}
-			hasDeadPerson |= persons[i].getDeath() != 0;
-		}
+    // If there is no person in list we do not want to display anything.
+    if (persons.size() > 0) {
+        size_t longestName = 0;
+        // Get the longest name, dob, dod, so we can determine with of columns in table.
+        for (size_t i = 0; i < persons.size(); ++i)
+        {
+            if (persons[i].getName().length() > longestName)
+                longestName = persons[i].getName().length();
+        }
 
-		const int offset = 4;
-		cout << "Name:" << string(max(int(offset), int((longestName - 5) + offset)), ' ')
-			 << "Gender:" << string(offset, ' ')
-			 << "Birth:" << string(offset, ' ');
-		if (hasDeadPerson) {
-			cout << "Death:" << string(offset, ' ');
-		}
-		cout << "Nationality:" << endl;
+        // Labels for table
+        cout << setw(longestName+1) << left << "Name:";
+        cout << setw(8) << left << "Gender:";
+        cout << setw(7) << left << "Born:";
+        cout << setw(7) << left << "Died:";
+        cout << "Country:" << endl;
 
-		for (size_t i = 0; i < persons.size(); ++i) {
+        // Display every person from the list
+        for(size_t i = 0; i < persons.size(); i++)
+        {
+            cout << setw(longestName+1) << left << persons[i].getName();
+            cout << setw(8) << left << persons[i].getGender();
+            cout << setw(7) << left << persons[i].getBirth();
+            cout << setw(7) << left << persons[i].getDeath();
+            cout << persons[i].getCountry() << endl;
+        }
+    }
+}
 
-			cout << persons[i].getName() << string(max(int(offset), int((longestName - persons[i].getName().length()) + offset)), ' ');
-			// Properly prints the gender
-            cout << (persons[i].getGender() == 'M' ? "Male   " : "Female ") << string(offset, ' ');
-			// Uses a logarithm to calculate the spacing
-			cout << persons[i].getBirth() << string(offset+(5-int(log10(max(1, persons[i].getBirth())))), ' ');
-			if (hasDeadPerson) {
-				if (persons[i].getDeath() == 0) {
-					cout << string(offset + 6, ' ');
-				} else {
-					cout << persons[i].getDeath() << string(offset+(5-int(log10(persons[i].getDeath()))), ' ');
-				}
-			}
-			cout << persons[i].getCountry() << endl;
+void ConsoleUI::_displayComputer(Computer computers)
+{
 
-		}
-	}
-	cout << "The list contains: " << persons.size() << " scientists." << endl;
 }
 
 /*
@@ -805,76 +678,13 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
  */
 void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
-    if (computers.size() > 0) {
-        size_t longestName = 0;
-        bool wasBuilt = false;
-        for (size_t i = 0; i < computers.size(); ++i) {
-            if (computers[i].getName().length() > longestName) {
-                longestName = computers[i].getName().length();
-            }
-            wasBuilt |= computers[i].getBuilt() != 0;
-        }
 
-        const int offset = 4;
-        cout << "Name:" << string(max(int(offset), int((longestName - 5) + offset)), ' ')
-             << "Type" << string(offset, ' ');
-        if (wasBuilt) {
-            cout << "Built in the year:" << string(offset, ' ');
-        }
-        else {
-            cout << "Was not built!" << string(offset, ' ');
-        }
-
-        for (size_t i = 0; i < computers.size(); ++i) {
-
-            cout << computers[i].getName() << string(max(int(offset), int((longestName - computers[i].getName().length()) + offset)), ' ');
-            cout << computers[i].getType() << string(max(int(offset), int((5 - computers[i].getType().length()) + offset)), ' ');
-            // Uses a logarithm to calculate the spacing
-            if (wasBuilt) {
-                if (computers[i].getBuilt() == 0) {
-                    cout << string(offset + 6, ' ');
-                } else {
-                    cout << computers[i].getbuildy() << string(offset+(5-int(log10(computers[i].getbuildy()))), ' ');
-                }
-            }
-            cout << endl;
-        }
-    }
-    cout << "The list contains: " << computers.size() << " computers." << endl;
 }
 
 /*
  * _clear: Clears the data from the list of scientists
  */
 void ConsoleUI::_clear()
-{
-    string confirm;
-    cout << "******************   WARNING   ******************" << endl;
-    cout << "*        you are about to clear all data        *" << endl;
-    cout << "*                                               *" << endl;
-    cout << "*     confirm  - if you want to clear all data  *" << endl;
-    cout << "*     cancel   - if you dont want to continue   *" << endl;
-    cout << "*                                               *" << endl;
-    cout << "******************   WARNING   ******************" << endl;
-    do{
-        cout << "confirm / cancel: ";
-        cin >> confirm;
-        if(confirm == "confirm")
-        {
-            _service.clearData();
-            cout << "All data was erased." << endl;
-        }
-        else if(confirm == "cancel")
-        {
-            cout << "No data was erased." << endl;
-        }
-    }while(confirm != "confirm" && confirm != "cancel");
-}
-
-/*
- * _clear: Clears the data from the list of computers
- */
-void ConsoleUI::_clearCPU()
 {
     string confirm;
     cout << "******************   WARNING   ******************" << endl;

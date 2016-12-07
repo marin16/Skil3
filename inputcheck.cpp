@@ -31,7 +31,7 @@ bool inputcheck::cpuCheck(const string &cpuname)
                 return false;
         }
     }
-    return true; ///cpuname.length() < 100;
+    return cpuname.length() < 100;
 }
 
 

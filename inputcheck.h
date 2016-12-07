@@ -9,6 +9,7 @@ class inputcheck
 public:
     inputcheck();
     bool nameCheck(const string &name);
+    bool cpuCheck(const string &cpuname);
     bool genderCheck(char gender);
     bool birthCheck(string birth);
     bool deathCheck(string death, string birth);

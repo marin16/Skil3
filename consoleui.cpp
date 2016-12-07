@@ -341,13 +341,13 @@ void ConsoleUI::_addCPU()
         cin.ignore();
         cin.getline(charcpuname,sizeof(charcpuname));
         cpuname = string(charcpuname);
-    }while(!_Valid.nameCheck(cpuname));
+    }while(!_Valid.cpuCheck(cpuname));
 
     do
     {
         cin.clear();
         //cin.ignore();
-        cout << "Built year: ";
+        cout << "Build year: ";
         cin >> buildy;
     }while(!_Valid.buildyCheck(buildy));
 

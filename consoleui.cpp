@@ -619,6 +619,11 @@ void ConsoleUI::_edit()
 void ConsoleUI::_displayPerson(Person person)
 {
     size_t nameLength = person.getName().length();
+
+    // nameLength cant be shorter than "Name: " (6)
+    if (nameLength < 6)
+        nameLength == 6;
+
     // Labels
     cout << setw(nameLength+1) << left << "Name:";
     cout << setw(8) << left << "Gender:";
@@ -648,6 +653,10 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
             if (persons[i].getName().length() > longestName)
                 longestName = persons[i].getName().length();
         }
+
+        // longest name cant be shorter than "Name: " (6)
+        if (longestName < 6)
+            longestName == 6;
 
         // Labels for table
         cout << setw(longestName+1) << left << "Name:";

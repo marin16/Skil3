@@ -14,9 +14,9 @@ bool sortByName(const Computer & p1, const Computer & p2)
    return p1string < p2string;
 }
 
-bool sortByBuilty(const Computer & p1, const Computer & p2)
+bool sortBybuildy(const Computer & p1, const Computer & p2)
 {
-   return p1.getBuilty() < p2.getBuilty();
+   return p1.getbuildy() < p2.getbuildy();
 }
 
 bool sortByType(const Computer & p1, const Computer & p2)
@@ -46,7 +46,7 @@ vector<Computer> ComputerService::getComputers(int sortBy)
     if(sortBy == 1)
         sort(computers.begin(), computers.end(), sortByName);
     else if(sortBy == 2)
-        sort(computers.begin(), computers.end(), sortByBuilty);
+        sort(computers.begin(), computers.end(), sortBybuildy);
     else if(sortBy == 3)
         sort(computers.begin(), computers.end(), sortByType);
 
@@ -76,7 +76,7 @@ vector<Computer> ComputerService::searchForComputer(string search, string search
             results.push_back(computers[i]);
         }
         // http://www.cplusplus.com/reference/string/stoi/
-        else if(searchBy == "builty" && computers[i].getBuilty() == stoi(search,nullptr,0)){
+        else if(searchBy == "buildy" && computers[i].getbuildy() == stoi(search,nullptr,0)){
             results.push_back(computers[i]);
         }
     }

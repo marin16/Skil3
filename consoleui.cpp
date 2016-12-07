@@ -320,7 +320,7 @@ void ConsoleUI::_add()
 void ConsoleUI::_addCPU()
 {
     string cpuname;
-    string builty;
+    string buildy;
     string type;
     char built;
     char charcpuname[100];
@@ -347,8 +347,8 @@ void ConsoleUI::_addCPU()
         cin.clear();
         //cin.ignore();
         cout << "Built year: ";
-        cin >> builty;
-    }while(!_Valid.builtyCheck(builty));
+        cin >> buildy;
+    }while(!_Valid.buildyCheck(buildy));
 
     do
     {
@@ -367,8 +367,8 @@ void ConsoleUI::_addCPU()
             boolbuilt = true;
     }while(!_Valid.answerCheck(built));
 
-    int builtyint = atoi(builty.c_str());
-    Computer newComputer(cpuname, builtyint, type, boolbuilt);
+    int buildyint = atoi(buildy.c_str());
+    Computer newComputer(cpuname, buildyint, type, boolbuilt);
 
     do
     {
@@ -445,13 +445,13 @@ void ConsoleUI::_searchCPU()
     cout << "=================================================" << endl;
     cout << "||   name    - to search by full name          ||" << endl;
     cout << "||   type    - to search by typer              ||" << endl;
-    cout << "||   builty  - to search by built year         ||" << endl;
+    cout << "||   buildy  - to search by built year         ||" << endl;
     cout << "=================================================" << endl;
 
     do{
         cout << "Parameter: ";
         cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "type" && searchBy != "builty");
+    }while(searchBy != "name" && searchBy != "type" && searchBy != "buildy");
 
     cout << "Value: ";
 
@@ -563,7 +563,7 @@ void ConsoleUI::_listCPU()
     cout << "|| Please enter one of the following commands: ||" << endl;
     cout << "=================================================" << endl;
     cout << "||    name     - sort by name alphabeticaly    ||" << endl;
-    cout << "||    builty   - sort by built year            ||" << endl;
+    cout << "||    buildy   - sort by built year            ||" << endl;
     cout << "||    type     - sort by type                  ||" << endl;
     cout << "||    unsorted - get unsorted list (default)   ||" << endl;
     cout << "=================================================" << endl;
@@ -574,7 +574,7 @@ void ConsoleUI::_listCPU()
 
     if (sort == "name")
         computers = _computerservice.getComputers(1);
-    else if (sort == "builty")
+    else if (sort == "buildy")
         computers = _computerservice.getComputers(2);
     else if (sort == "type")
         computers = _computerservice.getComputers(3);
@@ -748,7 +748,7 @@ void ConsoleUI::_displayComputer(Computer computer)
     cout << "Built:" << endl;
 
     cout << computer.getName() << string(max(int(offset), int((5 - computer.getName().length()) + offset)), ' ');
-    cout << computer.getBuilty() << string(offset+(5-int(log10(computer.getBuilty()))), ' ');
+    cout << computer.getbuildy() << string(offset+(5-int(log10(computer.getbuildy()))), ' ');
     cout << computer.getType() << string(max(int(offset), int((5 - computer.getType().length()) + offset)), ' ');
     // Properly prints build status
     cout << (computer.getBuilt() == 0 ? "No     " : "Yes    ") << string(offset, ' ') << endl;
@@ -833,7 +833,7 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
                 if (computers[i].getBuilt() == 0) {
                     cout << string(offset + 6, ' ');
                 } else {
-                    cout << computers[i].getBuilty() << string(offset+(5-int(log10(computers[i].getBuilty()))), ' ');
+                    cout << computers[i].getbuildy() << string(offset+(5-int(log10(computers[i].getbuildy()))), ' ');
                 }
             }
             cout << endl;

@@ -9,14 +9,14 @@ class Computer
 {
 public:
     Computer();
-    Computer(string name, int builty, string type, bool built);
+    Computer(string name, int buildy, string type, bool built);
     string getName() const
     {
         return _name;
     }
-    int getBuilty() const
+    int getbuildy() const
     {
-        return _builty;
+        return _buildy;
     }
     string getType() const
     {
@@ -28,7 +28,7 @@ public:
     }
 private:
     string _name;
-    int _builty;
+    int _buildy;
     string _type;
     bool _built;
 };

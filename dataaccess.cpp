@@ -30,7 +30,7 @@ DataAccess::DataAccess()
     ComputersTable.exec("create table if not exists Computers ("
                         "id integer primary key autoincrement,"
                         "name varchar(50) not null,"
-                        "builty integer,"
+                        "buildy integer,"
                         "type varchar(50),"
                         "built bool not null)");
 }
@@ -107,7 +107,7 @@ void DataAccess::writeComputer(Computer computer)
 
     query.prepare("INSERT INTO computers (name, buildy, type, built) VALUES (:name, :buildy, :type, :built)");
     query.bindValue(":name", QString::fromStdString(computer.getName()));
-    query.bindValue(":buildy", computer.getBuilty());
+    query.bindValue(":buildy", computer.getbuildy());
     query.bindValue(":type",QString::fromStdString(computer.getType()));
     query.bindValue(":built",computer.getBuilt());
 

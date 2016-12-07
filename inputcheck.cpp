@@ -75,13 +75,13 @@ bool inputcheck::answerCheck(char answer)
         return false;
 }
 
-bool inputcheck::builtyCheck(string builty)
+bool inputcheck::buildyCheck(string buildy)
 {
-    for(size_t i = 0; i < builty.length(); i++)
-        if(!isdigit(builty[i]) || ispunct(builty[i]))
+    for(size_t i = 0; i < buildy.length(); i++)
+        if(!isdigit(buildy[i]) || ispunct(buildy[i]))
             return false;
-    int builtyint = atoi(builty.c_str());
-    if(builtyint > 2016)
+    int buildyint = atoi(buildy.c_str());
+    if(buildyint > 2016)
         return false;
     else
         return true;

@@ -14,7 +14,7 @@ public:
     bool deathCheck(string death, string birth);
     bool commaCheck(string word);
     bool answerCheck(char answer);
-    bool builtyCheck(string builty);
+    bool buildyCheck(string buildy);
     bool builtCheck(bool built);
 private:
     string _name;
@@ -23,7 +23,7 @@ private:
     string _word;
     string birth;
     string death;
-    string builty;
+    string buildy;
     bool built;
 
 };

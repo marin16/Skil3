@@ -26,7 +26,7 @@ bool inputcheck::cpuCheck(const string &cpuname)
 
     for(size_t i = 0; i < cpuname.length(); i++)
     {
-        if (ispunct(cpuname[i]) || isspace(cpuname[i]) || cpuname.empty())
+        if (ispunct(cpuname[i]) || isspace(cpuname[0]) || cpuname.empty())
             return false;
     }
     return cpuname.length() < 100;

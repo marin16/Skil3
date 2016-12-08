@@ -13,13 +13,14 @@ Service::Service()
 vector<Scientist> Service::getScientists(int sortBy)
 {
     vector<Scientist> scientists;
-
+    // To make alive appear in right places
+    // http://stackoverflow.com/questions/15023226/sql-sort-by-priority-but-put-0-last
     if(sortBy == 1)
         scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by name asc");
     else if(sortBy == 2)
         scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob asc");
     else if(sortBy == 3)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod asc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod=0,dod asc");
     else if(sortBy == 4)
         scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country asc");
     else if(sortBy == 5)
@@ -27,7 +28,7 @@ vector<Scientist> Service::getScientists(int sortBy)
     else if(sortBy == 6)
         scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob desc");
     else if(sortBy == 7)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod desc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by case dod when 0 then 1 else 2 end, dod desc");
     else if(sortBy == 8)
         scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country desc");
     else

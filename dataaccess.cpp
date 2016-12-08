@@ -42,7 +42,7 @@ DataAccess::DataAccess()
                         "foreign key(cid) references Computers(id),"
                         "primary key(sid, cid))");
     QSqlQuery scientistHasComputerView;
-    scientistHasComputerView.exec("create view if not exists SC_view as select C.id, C.name, C.buildy, C.type, C.built, S.id, S.name, S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
+    scientistHasComputerView.exec("create view if not exists SC_view as select C.id as 'cId', C.name as 'cName', C.buildy, C.type, C.built, S.id as 'sId', S.name as 'sName', S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
 
 }
 bool DataAccess::writePerson(Person person)
@@ -147,13 +147,13 @@ vector<Linked> DataAccess::readLinked()
     QSqlQuery query;
     query.exec("select * from SC_view");
     while(query.next()){
-        int cId = query.value("id").toUInt();
-        string cName = query.value("name").toString().toStdString();
+        int cId = query.value("cId").toUInt();
+        string cName = query.value("cName").toString().toStdString();
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();
         bool built = query.value("built").toBool();
-        int pId = query.value("id:1").toUInt();
-        string pName = query.value("name:1").toString().toStdString();
+        int pId = query.value("sId").toUInt();
+        string pName = query.value("sName").toString().toStdString();
         char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
@@ -172,13 +172,13 @@ vector<Linked> DataAccess::readLinkedFromQuery(string q)
     query.exec(QString::fromStdString(q));
 
     while(query.next()){
-        int cId = query.value("id").toUInt();
-        string cName = query.value("name").toString().toStdString();
+        int cId = query.value("cId").toUInt();
+        string cName = query.value("cName").toString().toStdString();
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();
         bool built = query.value("built").toBool();
-        int pId = query.value("id:1").toUInt();
-        string pName = query.value("name:1").toString().toStdString();
+        int pId = query.value("sId").toUInt();
+        string pName = query.value("sName").toString().toStdString();
         char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();

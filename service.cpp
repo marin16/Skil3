@@ -98,13 +98,13 @@ vector<Linked> Service::getLinks(int sortBy)
     vector<Linked> links;
 
     if(sortBy == 1)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name asc");
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by cName asc");
     else if(sortBy == 2)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name:1 asc");
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by sName asc");
     else if(sortBy == 3)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name desc");
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by cName desc");
     else if(sortBy == 4)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name:1 desc");
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by sName desc");
     else
         links =_dataAccess.readLinked();
     return links;

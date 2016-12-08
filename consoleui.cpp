@@ -682,7 +682,7 @@ Person ConsoleUI::_createPerson()
     string country;
     char charname[100];
     char charcountry[100];
-    char gender[100];
+    string gender;
 
     do
     {
@@ -695,10 +695,8 @@ Person ConsoleUI::_createPerson()
     do
     {
         cout << "Gender (m/f): ";
-        cin.ignore();
-        cin.getline(gender,sizeof(gender));
-        genderstring = string(gender);
-    }while(!_Valid.genderCheck(genderstring));
+        cin >> gender;
+    }while(!_Valid.genderCheck(gender));
 
     do
     {

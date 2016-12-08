@@ -36,17 +36,7 @@ bool inputcheck::cpuCheck(const string &cpuname)
 
 bool inputcheck::genderCheck(const string &genderstring)
 {
-    if (genderstring.length() > 1) {
-        return false;
-    }
-    {
-        if (ispunct(genderstring[0]) || genderstring.empty() || isspace(genderstring[0])) {
-            return false;
-        }
-        else if (genderstring[0] == 'm' || genderstring[0] == 'M' || genderstring[0] == 'f' || genderstring[0] == 'F') {
-            return true;
-        }
-    }
+    return (genderstring[0] == 'm' || genderstring[0] == 'M' || genderstring[0] == 'f' || genderstring[0] == 'F') && genderstring.length() == 1;
 }
 
 bool inputcheck::birthCheck(string birth)

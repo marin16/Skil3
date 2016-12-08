@@ -429,26 +429,41 @@ void ConsoleUI::_deleteCPU()
  */
 void ConsoleUI::_list()
 {
-    cout << "=================================================" << endl;
-    cout << "|| Please enter one of the following commands: ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||    name     - sort by name alphabeticaly    ||" << endl;
-    cout << "||    year     - sort by year of birth         ||" << endl;
-    cout << "||    country  - sort by nationality           ||" << endl;
-    cout << "||    unsorted - get unsorted list (default)   ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "==============================================================" << endl;
+    cout << "||        Please enter one of the following commands:       ||" << endl;
+    cout << "==============================================================" << endl;
+    cout << "||    name-asc      - sort by name alphabeticaly ascending  ||" << endl;
+    cout << "||    birth-asc     - sort by year of birth ascending       ||" << endl;
+    cout << "||    death-asc     - sort by year of death ascending       ||" << endl;
+    cout << "||    country-asc   - sort by nationality ascending         ||" << endl;
+    cout << "||    name-desc     - sort by name alphabeticaly descending ||" << endl;
+    cout << "||    birth-desc    - sort by year of birth descending      ||" << endl;
+    cout << "||    death-desc    - sort by year of birth descending      ||" << endl;
+    cout << "||    country-desc  - sort by nationality descending        ||" << endl;
+    cout << "||    unsorted      - get unsorted list (default)           ||" << endl;
+    cout << "==============================================================" << endl;
 
     string sort;
     cin >> sort;
     vector<Person> persons;
 
-    if (sort == "name")
+    if (sort == "name-asc")
         persons = _service.getPersons(1);
-    else if (sort == "year")
+    else if (sort == "birth-asc")
         persons = _service.getPersons(2);
-    else if (sort == "country")
+    else if (sort == "death-asc")
         persons = _service.getPersons(3);
-    else //if (sort == "unsorted")
+    else if (sort == "country-asc")
+        persons = _service.getPersons(4);
+    else if (sort == "name-desc")
+        persons = _service.getPersons(5);
+    else if (sort == "birth-desc")
+        persons = _service.getPersons(6);
+    else if (sort == "death-desc")
+        persons = _service.getPersons(7);
+    else if (sort == "country-desc")
+        persons = _service.getPersons(8);
+    else
         persons = _service.getPersons(0);
 
     _displayPersons(persons);

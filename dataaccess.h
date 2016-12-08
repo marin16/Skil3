@@ -19,6 +19,8 @@ public:
     //Writes a single computer to the datafile
     void writeComputer(Computer computer);
     void clearList();
+    // Returs persons returned from the databasequery
+    vector<Person> readPersonsFromQuery(string q);
 private:
     QSqlDatabase _db;
 };

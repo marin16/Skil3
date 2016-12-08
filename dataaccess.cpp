@@ -70,6 +70,26 @@ vector<Person> DataAccess::readPersons()
     return persons;
 }
 
+vector<Person> DataAccess::readPersonsFromQuery(string q)
+{
+    vector<Person> persons;
+
+    QSqlQuery query;
+    query.exec(QString::fromStdString(q));
+    //query.exec("select * from Scientists order by name asc");
+
+    while(query.next()){
+        string name = query.value("name").toString().toStdString();
+        char gender = query.value("gender").toString().toStdString().at(0);
+        int dob = query.value("dob").toUInt();
+        int dod = query.value("dod").toUInt();
+        string country = query.value("country").toString().toStdString();
+
+        persons.push_back(Person(name,gender,dob,dod,country));
+    }
+
+    return persons;
+}
 
 vector<Computer> DataAccess::readComputers()
 {
@@ -88,7 +108,6 @@ vector<Computer> DataAccess::readComputers()
 
     return computers;
 }
-
 
 void DataAccess::writeComputer(Computer computer)
 {

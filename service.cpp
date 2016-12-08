@@ -6,7 +6,7 @@
 #include "service.h"
 
 //http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
-bool sortPersonByName(const Person & p1, const Person & p2)
+/*bool sortPersonByName(const Person & p1, const Person & p2)
 {
    string p1string = p1.getName();
    string p2string = p2.getName();
@@ -39,7 +39,7 @@ bool sortByCountry(const Person & p1, const Person & p2)
     p2string[0] = toupper(p2string[0]);
 
     return p1string < p2string;
-}
+}*/
 
 //Fall sem breytir streng fyrir gender i char
 char genderStr2Char(string fmale)
@@ -76,18 +76,25 @@ vector<Person> Service::getPersons(int sortBy)
 {
     vector<Person> persons;
 
-    // reads all persons from csv
-    persons = _dataAccess.readPersons();
-
-
     // TODO: logic sort search etc...
     if(sortBy == 1)
-        sort(persons.begin(), persons.end(), sortPersonByName);
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by name asc");
     else if(sortBy == 2)
-        sort(persons.begin(), persons.end(), sortByBirth);
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dob asc");
     else if(sortBy == 3)
-        sort(persons.begin(), persons.end(), sortByCountry);
-
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dod asc");
+    else if(sortBy == 4)
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by country asc");
+    else if(sortBy == 5)
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by name desc");
+    else if(sortBy == 6)
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dob desc");
+    else if(sortBy == 7)
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dod desc");
+    else if(sortBy == 8)
+        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by country desc");
+    else
+        persons = _dataAccess.readPersons();
     return persons;
 }
 
@@ -178,12 +185,12 @@ vector<Computer> Service::getComputers(int sortBy)
 
 
     // TODO: logic sort search etc...
-    if(sortBy == 1)
+    /*if(sortBy == 1)
         sort(computers.begin(), computers.end(), sortComputerByName);
     else if(sortBy == 2)
         sort(computers.begin(), computers.end(), sortBybuildy);
     else if(sortBy == 3)
-        sort(computers.begin(), computers.end(), sortByType);
+        sort(computers.begin(), computers.end(), sortByType);*/
 
     return computers;
 }

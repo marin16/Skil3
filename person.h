@@ -9,8 +9,14 @@ class Person
 {
 public:
     Person();
+
+    Person(int id, string name, char gender, int birth, int death, string country);
     Person(string name, char gender, int birth, int death, string country);
 
+    int getId() const
+    {
+        return _id;
+    }
     string getName() const
     {
         return _name;
@@ -34,6 +40,7 @@ public:
     // Returns true if Person contains search Term (source: example solution for week 1 dabs)
     bool contains(string searchTerm);
 private:
+    int _id;
     string _name;
     char _gender;
     int _birth;

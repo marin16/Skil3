@@ -38,7 +38,7 @@ bool DataAccess::writePerson(Person person)
 {
     QSqlQuery query;
 
-    query.prepare("INSERT INTO Scientists (name, gender, dob, dod, country) VALUES (:name, :gender, :dob, :dod, :country)");
+    query.prepare("insert into Scientists (name, gender, dob, dod, country) values (:name, :gender, :dob, :dod, :country)");
     query.bindValue(":name", QString::fromStdString(person.getName()));
     query.bindValue(":gender", person.getGender());
     query.bindValue(":dob", person.getBirth());
@@ -53,16 +53,17 @@ vector<Person> DataAccess::readPersons()
     vector<Person> persons;
 
     QSqlQuery query;
-    query.exec("SELECT * from Scientists");
+    query.exec("select * from Scientists");
 
     while(query.next()){
+        int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(name,gender,dob,dod,country));
+        persons.push_back(Person(id,name,gender,dob,dod,country));
     }
 
     return persons;
@@ -76,13 +77,14 @@ vector<Person> DataAccess::readPersonsFromQuery(string q)
     query.exec(QString::fromStdString(q));
 
     while(query.next()){
+        int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         char gender = query.value("gender").toString().toStdString().at(0);
         int dob = query.value("dob").toUInt();
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(name,gender,dob,dod,country));
+        persons.push_back(Person(id,name,gender,dob,dod,country));
     }
 
     return persons;
@@ -95,12 +97,13 @@ vector<Computer> DataAccess::readComputers()
     QSqlQuery query;
     query.exec("SELECT * from computers");
     while(query.next()){
+        int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();
         bool built = query.value("built").toBool();
 
-        computers.push_back(Computer(name,buildy,type,built));
+        computers.push_back(Computer(id,name,buildy,type,built));
     }
 
     return computers;
@@ -114,12 +117,13 @@ vector<Computer> DataAccess::readComputersFromQuery(string q)
     query.exec(QString::fromStdString(q));
 
     while(query.next()){
+        int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         int buildy = query.value("buildy").toUInt();
         string type = query.value("type").toString().toStdString();
         bool built = query.value("built").toBool();
 
-        computers.push_back(Computer(name,buildy,type,built));
+        computers.push_back(Computer(id,name,buildy,type,built));
     }
 
     return computers;
@@ -129,7 +133,7 @@ bool DataAccess::writeComputer(Computer computer)
 {
     QSqlQuery query;
 
-    query.prepare("INSERT INTO computers (name, buildy, type, built) VALUES (:name, :buildy, :type, :built)");
+    query.prepare("insert into computers (name, buildy, type, built) values (:name, :buildy, :type, :built)");
     query.bindValue(":name", QString::fromStdString(computer.getName()));
     query.bindValue(":buildy", computer.getBuildy());
     query.bindValue(":type",QString::fromStdString(computer.getType()));
@@ -138,6 +142,54 @@ bool DataAccess::writeComputer(Computer computer)
     return query.exec();
 }
 
+bool DataAccess::deletePerson(int id)
+{
+    QSqlQuery query;
+
+    query.prepare("delete from Scientists where  id = :id");
+    query.bindValue(":id", id);
+
+    return query.exec();
+}
+
+bool DataAccess::deleteComputer(int id)
+{
+    QSqlQuery query;
+
+    query.prepare("delete from Computers where  id = :id");
+    query.bindValue(":id", id);
+
+    return query.exec();
+}
+
+bool DataAccess::editPerson(int id, Person person)
+{
+    QSqlQuery query;
+
+    query.prepare("update Scientists set name = :name, gender = :gender, dob = :dob, dod = :dod, country = :country where id = :id");
+    query.bindValue(":name", QString::fromStdString(person.getName()));
+    query.bindValue(":gender", person.getGender());
+    query.bindValue(":dob", person.getBirth());
+    query.bindValue(":dod", person.getDeath());
+    query.bindValue(":country", QString::fromStdString(person.getCountry()));
+    query.bindValue(":id", id);
+
+    return query.exec();
+}
+
+bool DataAccess::editComputer(int id, Computer computer)
+{
+    QSqlQuery query;
+
+    query.prepare("update Computers set name = :name, buildy = :buildy, type = :type, built = :built where id = :id");
+    query.bindValue(":name", QString::fromStdString(computer.getName()));
+    query.bindValue(":buildy", computer.getBuildy());
+    query.bindValue(":type",QString::fromStdString(computer.getType()));
+    query.bindValue(":built",computer.getBuilt());
+    query.bindValue(":id", id);
+
+    return query.exec();
+}
 
 void DataAccess::clearList()
 {

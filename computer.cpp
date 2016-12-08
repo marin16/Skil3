@@ -10,6 +10,15 @@ Computer::Computer()
 
 }
 
+Computer::Computer(int id, string name, int buildy, string type, bool built)
+{
+    _id = id;
+    _name = name;
+    _buildy = buildy;
+    _type = type;
+    _built = built;
+}
+
 Computer::Computer(string name, int buildy, string type, bool built)
 {
     _name = name;

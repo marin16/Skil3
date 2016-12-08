@@ -37,7 +37,7 @@ vector<Person> Service::getPersons(int sortBy)
 
 bool Service::addPerson(Person p)
 {
-    if(p.getName() != "" && p.getGender() != NULL && p.getCountry() != "")
+    if(p.getName() != "" && p.getGender() != 0 && p.getCountry() != "")
     {
         return _dataAccess.writePerson(p);
     }
@@ -67,33 +67,10 @@ void Service::clearData()
     _dataAccess.clearList();
 }
 
-bool Service::deletePerson(string deleteP)
+bool Service::deletePerson(int id)
 {
-    vector<Person> persons = getPersons(0);
-    int orgSize = persons.size();
-    for(size_t i = 0; i < persons.size(); ++i)
-    {
-        if(regex_match(persons[i].getName(), regex(deleteP,regex_constants::icase)))
-        {
-            persons.erase(persons.begin() + i);
-        }
-    }
-    if(orgSize-1 == persons.size())
-    {
-        _dataAccess.clearList();
-        for(size_t i  = 0; i < persons.size(); i++)
-        {
-            _dataAccess.writePerson(persons[i]);
-        }
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return _dataAccess.deletePerson(id);
 }
-
-
 
 vector<Computer> Service::getComputers(int sortBy)
 {
@@ -127,7 +104,7 @@ bool Service::addComputer(Computer c)
         return false;
 }
 
-vector<Computer> Service::searchForComputer(string search/*, string searchBy*/)
+vector<Computer> Service::searchForComputer(string search)
 {
     vector<Computer> computers = getComputers(0);
     vector<Computer> results;
@@ -142,28 +119,17 @@ vector<Computer> Service::searchForComputer(string search/*, string searchBy*/)
     return results;
 }
 
-bool Service::deleteComputer(string deleteC)
+bool Service::deleteComputer(int id)
 {
-    vector<Computer> computers = getComputers(0);
-    int orgSize = computers.size();
-    for(size_t i = 0; i < computers.size(); ++i)
-    {
-        if(regex_match(computers[i].getName(), regex(deleteC,regex_constants::icase)))
-        {
-            computers.erase(computers.begin() + i);
-        }
-    }
-    if(orgSize-1 == computers.size())
-    {
-        //_dataAccess.clearList();
-        for(size_t i  = 0; i < computers.size(); i++)
-        {
-           // _dataAccess.writeComputer(computers[i]);
-        }
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return _dataAccess.deleteComputer(id);
+}
+
+bool Service::editPerson(int id, Person editPerson)
+{
+    return _dataAccess.editPerson(id, editPerson);
+}
+
+bool Service::editComputer(int id, Computer editComputer)
+{
+    return _dataAccess.editComputer(id, editComputer);
 }

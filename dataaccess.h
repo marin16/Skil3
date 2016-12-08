@@ -27,6 +27,14 @@ public:
     vector<Person> readPersonsFromQuery(string q);
     // returns vector of computers returned by the database query
     vector<Computer> readComputersFromQuery(string q);
+    // deletes a person from the database by ID
+    bool deletePerson(int id);
+    // deletes a computer from the database by ID
+    bool deleteComputer(int id);
+    // edits a person by ID
+    bool editPerson(int id, Person person);
+    // edits computer by ID
+    bool editComputer(int id, Computer computer);
 private:
     QSqlDatabase _db;
 };

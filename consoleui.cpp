@@ -8,6 +8,7 @@
 #include "consoleui.h"
 #include "person.h"
 #include "computer.h"
+#include "utilities.h"
 
 using namespace std;
 
@@ -50,7 +51,7 @@ void ConsoleUI::run()
         }
         else if(command == "edit-c")
         {
-            //_edit();
+            _editComputer();
         }
         else if(command == "add-s")
         {
@@ -132,13 +133,6 @@ void ConsoleUI::_instructions()
  */
 void ConsoleUI::_add()
 {
-    string name;
-    char gender;
-    string birth;
-    string death;
-    string country;
-    char charname[100];
-    char charcountry[100];
     char answer;
 
     cout << "=======================================================" << endl;
@@ -146,48 +140,7 @@ void ConsoleUI::_add()
     cout << "||if you input invalid data you will be asked again. ||" << endl;
     cout << "=======================================================" << endl;
 
-    do
-    {
-        cout << "Name: ";
-        cin.ignore();
-        cin.getline(charname,sizeof(charname));
-        name = string(charname);
-    }while(!_Valid.nameCheck(name));
-
-    do
-    {
-        cout << "Gender (m/f): ";
-        cin >> gender;
-        gender = toupper(gender);
-    }while(!_Valid.genderCheck(gender));
-
-    do
-    {
-        cin.clear();
-        cin.ignore();
-        cout << "Year of birth: ";
-        cin >> birth;
-    }while(!_Valid.birthCheck(birth));
-
-    do
-    {
-        cin.clear();
-        cin.ignore();
-        cout << "Year of death (0 if alive): ";
-        cin >> death;
-    }while(!_Valid.deathCheck(death, birth));
-
-    do
-    {
-        cout << "Nationality: ";
-        cin.ignore();
-        cin.getline(charcountry,sizeof(charcountry));
-        country = string(charcountry);
-    }while(!_Valid.nameCheck(country));
-
-    int birthint = atoi(birth.c_str());
-    int deathint = atoi(death.c_str());
-    Person newPerson(name, gender, birthint, deathint, country);
+    Person newPerson = _createPerson();
 
     do
     {
@@ -220,56 +173,13 @@ void ConsoleUI::_add()
  */
 void ConsoleUI::_addCPU()
 {
-    string cpuname;
-    string buildy;
-    string type;
-    char built;
-    char charcpuname[100];
-    char charcputype[100];
     char answer;
-    bool boolbuilt = false;
-
     cout << "=======================================================" << endl;
     cout << "||Please add the parameters for the computer         ||" << endl;
     cout << "||if you input invalid data you will be asked again. ||" << endl;
     cout << "=======================================================" << endl;
 
-
-    do
-    {
-        cout << "Computer name: ";
-        cin.ignore();
-        cin.getline(charcpuname,sizeof(charcpuname));
-        cpuname = string(charcpuname);
-    }while(!_Valid.cpuCheck(cpuname));
-
-    do
-    {
-        cin.clear();
-        //cin.ignore();
-        cout << "Build year: ";
-        cin >> buildy;
-    }while(!_Valid.buildyCheck(buildy));
-
-    do
-    {
-        cout << "Type of computer: ";
-        cin.ignore();
-        cin.getline(charcputype,sizeof(charcputype));
-        type = string(charcputype);
-    }while(!_Valid.nameCheck(type));
-
-    do
-    {
-        cout << "Was the computer built (Y/N)?: ";
-        cin >> built;
-        built = toupper(built);
-        if (built == 'Y')
-            boolbuilt = true;
-    }while(!_Valid.answerCheck(built));
-
-    int buildyint = atoi(buildy.c_str());
-    Computer newComputer(cpuname, buildyint, type, boolbuilt);
+    Computer newComputer = _createComputer();
 
     do
     {
@@ -338,29 +248,20 @@ void ConsoleUI::_searchCPU()
  */
 void ConsoleUI::_delete()
 {
-    bool deleteResult;
-    string deleteP;
-    char chardeleteP[100];
+    int delId;
 
-    cout << "=================================================" << endl;
-    cout << "||     Please enter a full name to delete:     ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the scientist     ||" << endl;
+    cout << "||              you what to delete:             ||" << endl;
+    cout << "==================================================" << endl;
 
-    cout << "Name: ";
-    cin.ignore();
-    cin.getline(chardeleteP,sizeof(chardeleteP));
-    deleteP = string(chardeleteP);
+    cout << "ID: ";
+    cin >> delId;
 
-    deleteResult = _service.deletePerson(deleteP);
-
-    if(deleteResult)
-    {
+    if(_service.deletePerson(delId))
         cout << "Success!" << endl;
-    }
     else
-    {
-        cout << "Failed. (nothing found to delete or multiple results found)" << endl;
-    }
+        cout << "Failed." << endl;
 }
 
 /*
@@ -368,29 +269,20 @@ void ConsoleUI::_delete()
  */
 void ConsoleUI::_deleteCPU()
 {
-    bool deleteResult;
-    string deleteC;
-    char chardeleteC[100];
+    int delId;
 
-    cout << "=================================================" << endl;
-    cout << "||     Please enter a cpu name to delete:      ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the computer      ||" << endl;
+    cout << "||              you what to delete:             ||" << endl;
+    cout << "==================================================" << endl;
 
-    cout << "Name: ";
-    cin.ignore();
-    cin.getline(chardeleteC,sizeof(chardeleteC));
-    deleteC = string(chardeleteC);
+    cout << "ID: ";
+    cin >> delId;
 
-    deleteResult = _service.deleteComputer(deleteC);
-
-    if(deleteResult)
-    {
+    if(_service.deleteComputer(delId))
         cout << "Success!" << endl;
-    }
     else
-    {
-        cout << "Failed. (nothing found to delete or multiple results found)" << endl;
-    }
+        cout << "Failed." << endl;
 }
 
 /*
@@ -482,129 +374,34 @@ void ConsoleUI::_listCPU()
  */
 void ConsoleUI::_edit()
 {
-    Person newPerson;
-    vector<Person> results;
-    bool deleteResult;
-    string deleteP;
-    char chardeleteP[100];
-    string name;
-    char gender;
-    string birth;
-    string death;
-    string country;
-    char charname[100];
-    char charcountry[100];
-    char answer;
+    int editId;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the scientist     ||" << endl;
+    cout << "||              you what to delete:             ||" << endl;
+    cout << "==================================================" << endl;
+    cout << "ID: ";
+    cin >> editId;
 
-    cout << "=================================================" << endl;
-    cout << "||      Please enter a full name to edit:      ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "Name: ";
-    cin.ignore();
-    cin.getline(chardeleteP,sizeof(chardeleteP));
-    deleteP = string(chardeleteP);
-
-    results = _service.searchForPerson(deleteP/*, "name"*/);
-    deleteResult = _service.deletePerson(deleteP);
-
-    if(deleteResult)
-    {
-        Person orgPers = results[0];
-        string edit;
-        cout << "=================================================" << endl;
-        cout << "||            Enter parameter to edit:         ||" << endl;
-        cout << "=================================================" << endl;
-        cout << "||   name    - to edit name                    ||" << endl;
-        cout << "||   gender  - to edit gender                  ||" << endl;
-        cout << "||   birth   - to edit year of birth           ||" << endl;
-        cout << "||   death   - to edit year of death           ||" << endl;
-        cout << "||   country - to edit Nationality             ||" << endl;
-        cout << "=================================================" << endl;
-        do
-        {
-            cout << "Value: ";
-            cin >> edit;
-        }while(edit != "name" && edit != "gender" && edit != "birth" && edit != "death" && edit != "country");
-
-        if(edit == "name")
-        {
-            do
-            {
-                cout << "Name: ";
-                cin.ignore();
-                cin.getline(charname,sizeof(charname));
-                name = string(charname);
-            }while(!_Valid.nameCheck(name));
-            newPerson = Person(name, orgPers.getGender(), orgPers.getBirth(), orgPers.getDeath(), orgPers.getCountry());
-        }
-        else if(edit == "gender")
-        {
-            do
-            {
-                cout << "Gender (m/f): ";
-                cin >> gender;
-                gender = toupper(gender);
-            }while(!_Valid.genderCheck(gender));
-            newPerson = Person(orgPers.getName(), gender, orgPers.getBirth(), orgPers.getDeath(), orgPers.getCountry());
-        }
-        else if(edit == "birth" || edit == "death")
-        {
-            do
-            {
-                cin.clear();
-                cin.ignore();
-                cout << "Year of birth: ";
-                cin >> birth;
-            }while(!_Valid.birthCheck(birth));
-
-            do
-            {
-                cin.clear();
-                cin.ignore();
-                cout << "Year of death (0 if alive): ";
-                cin >> death;
-            }while(!_Valid.deathCheck(death, birth));
-            int birthint = atoi(birth.c_str());
-            int deathint = atoi(death.c_str());
-            newPerson = Person(orgPers.getName(), orgPers.getGender(), birthint, deathint, orgPers.getCountry());
-
-        }
-        else if(edit == "country")
-        {
-            do
-            {
-                cout << "Nationality: ";
-                cin.ignore();
-                cin.getline(charcountry,sizeof(charcountry));
-                country = string(charcountry);
-            }while(!_Valid.nameCheck(country));
-            newPerson = Person(orgPers.getName(), orgPers.getGender(), orgPers.getBirth(), orgPers.getDeath(), country);
-         }
-        do
-        {
-            _displayPerson(newPerson);
-            cout << "Is the information correct?(Y/N) ";
-            cin >> answer;
-        }while(!_Valid.answerCheck(answer));
-
-        if (answer == 'y' || answer == 'Y')
-        {
-            cin.ignore();
-            if (_service.addPerson(newPerson))
-                cout << "Success!" << endl;
-            else
-                cout << "Could not write this data to file" << endl;
-        }
-        else if (answer == 'n' || answer == 'N')
-        {
-            cin.ignore();
-            _add();
-        }
-    }
+    if(_service.editPerson(editId,_createPerson()))
+        cout << "Person successfully edited." << endl;
     else
-    {
-        cout << "Failed. (nothing found to edit or multiple results found)" << endl;
-    }
+        cout << "Failed." << endl;
+}
+
+void ConsoleUI::_editComputer()
+{
+    int editId;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the computer      ||" << endl;
+    cout << "||              you what to delete:             ||" << endl;
+    cout << "==================================================" << endl;
+    cout << "ID: ";
+    cin >> editId;
+
+    if(_service.editComputer(editId,_createComputer()))
+        cout << "Computer successfully edited." << endl;
+    else
+        cout << "Failed." << endl;
 }
 
 /*
@@ -641,11 +438,14 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
     // If there is no person in list we do not want to display anything.
     if (persons.size() > 0) {
         size_t longestName = 0;
+        size_t longestId = 5;
         // Get the longest name, so we can determine with of columns in table.
         for (size_t i = 0; i < persons.size(); ++i)
         {
             if (persons[i].getName().length() > longestName)
                 longestName = persons[i].getName().length();
+            if (utils::intToString(persons[i].getId()).length() > longestId)
+                longestId = utils::intToString(persons[i].getId()).length();
         }
 
         // longest name cant be shorter than "Name: " (6)
@@ -653,6 +453,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
             longestName = 6;
 
         // Labels for table
+        cout << setw(longestId+1) << left << "ID:";
         cout << setw(longestName+1) << left << "Name:";
         cout << setw(8) << left << "Gender:";
         cout << setw(7) << left << "Born:";
@@ -662,6 +463,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
         // Display every person from the list
         for(size_t i = 0; i < persons.size(); i++)
         {
+            cout << setw(longestId+1) << left << persons[i].getId();
             cout << setw(longestName+1) << left << persons[i].getName();
             cout << setw(8) << left << persons[i].getGender();
             cout << setw(7) << left << persons[i].getBirth();
@@ -702,8 +504,9 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
     // If there is no computer in list we do not want to display anything.
     if (computers.size() > 0) {
-        size_t longestName = 0;
-        size_t longestType = 0;
+        size_t longestName = 6;
+        size_t longestType = 6;
+        size_t longestId = 5;
         // Get the longest name, dob, dod, so we can determine with of columns in table.
         for (size_t i = 0; i < computers.size(); ++i)
         {
@@ -711,16 +514,12 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
                 longestName = computers[i].getName().length();
             if (computers[i].getType().length() > longestType)
                 longestType = computers[i].getType().length();
+            if (utils::intToString(computers[i].getId()).length() > longestId)
+                longestId = utils::intToString(computers[i].getId()).length();
         }
 
-        // longest name cant be shorter than "Name: " (6)
-        if (longestName < 6)
-            longestName = 6;
-        // same for type
-        if (longestType < 6)
-            longestType = 6;
-
         // Labels for table
+        cout << setw(longestId+1) << left << "ID:";
         cout << setw(longestName+1) << left << "Name:";
         cout << setw(longestType+1) << left << "Type:";
         cout << setw(13) << left << "Year built:";
@@ -729,6 +528,7 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
         // Display every person from the list
         for(size_t i = 0; i < computers.size(); i++)
         {
+            cout << setw(longestId+1) << left << computers[i].getId();
             cout << setw(longestName+1) << left << computers[i].getName();
             cout << setw(longestType+1) << left << computers[i].getType();
             cout << setw(13) << left << computers[i].getBuildy();
@@ -763,4 +563,105 @@ void ConsoleUI::_clear()
             cout << "No data was erased." << endl;
         }
     }while(confirm != "confirm" && confirm != "cancel");
+}
+
+Person ConsoleUI::_createPerson()
+{
+    string name;
+    char gender;
+    string birth;
+    string death;
+    string country;
+    char charname[100];
+    char charcountry[100];
+
+    do
+    {
+        cout << "Name: ";
+        cin.ignore();
+        cin.getline(charname,sizeof(charname));
+        name = string(charname);
+    }while(!_Valid.nameCheck(name));
+
+    do
+    {
+        cout << "Gender (m/f): ";
+        cin >> gender;
+        gender = toupper(gender);
+    }while(!_Valid.genderCheck(gender));
+
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        cout << "Year of birth: ";
+        cin >> birth;
+    }while(!_Valid.birthCheck(birth));
+
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        cout << "Year of death (0 if alive): ";
+        cin >> death;
+    }while(!_Valid.deathCheck(death, birth));
+
+    do
+    {
+        cout << "Nationality: ";
+        cin.ignore();
+        cin.getline(charcountry,sizeof(charcountry));
+        country = string(charcountry);
+    }while(!_Valid.nameCheck(country));
+
+    int birthint = atoi(birth.c_str());
+    int deathint = atoi(death.c_str());
+    return Person(name, gender, birthint, deathint, country);
+}
+
+Computer ConsoleUI::_createComputer()
+{
+    string cpuname;
+    string buildy;
+    string type;
+    char built;
+    char charcpuname[100];
+    char charcputype[100];
+    bool boolbuilt = false;
+
+    do
+    {
+        cout << "Computer name: ";
+        cin.ignore();
+        cin.getline(charcpuname,sizeof(charcpuname));
+        cpuname = string(charcpuname);
+    }while(!_Valid.cpuCheck(cpuname));
+
+    do
+    {
+        cin.clear();
+        //cin.ignore();
+        cout << "Build year: ";
+        cin >> buildy;
+    }while(!_Valid.buildyCheck(buildy));
+
+    do
+    {
+        cout << "Type of computer: ";
+        cin.ignore();
+        cin.getline(charcputype,sizeof(charcputype));
+        type = string(charcputype);
+    }while(!_Valid.nameCheck(type));
+
+    do
+    {
+        cout << "Was the computer built (Y/N)?: ";
+        cin >> built;
+        built = toupper(built);
+        if (built == 'Y')
+            boolbuilt = true;
+    }while(!_Valid.answerCheck(built));
+
+    int buildyint = atoi(buildy.c_str());
+    return Computer(cpuname, buildyint, type, boolbuilt);
 }

@@ -121,7 +121,7 @@ void ConsoleUI::_instructions()
     cout << "||    delete-c - to delete a computer                   ||" << endl;
     cout << "||                                                      ||" << endl;
     cout << "||    add-s    - to add a new scientist                 ||" << endl;
-    cout << "||    list-s   - to get a list of scientsits            ||" << endl;
+    cout << "||    list-s   - to get a list of scientists            ||" << endl;
     cout << "||    search-s - to search for scientist                ||" << endl;
     cout << "||    edit-s   - to edit an scientist                   ||" << endl;
     cout << "||    delete-s - to delete a scientist                  ||" << endl;
@@ -259,7 +259,7 @@ void ConsoleUI::_delete()
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
-    cout << "||              you what to delete:             ||" << endl;
+    cout << "||              you want to delete:             ||" << endl;
     cout << "==================================================" << endl;
 
     cout << "ID: ";
@@ -280,7 +280,7 @@ void ConsoleUI::_deleteCPU()
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
-    cout << "||              you what to delete:             ||" << endl;
+    cout << "||              you want to delete:             ||" << endl;
     cout << "==================================================" << endl;
 
     cout << "ID: ";
@@ -417,7 +417,7 @@ void ConsoleUI::_edit()
     int editId;
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
-    cout << "||              you what to delete:             ||" << endl;
+    cout << "||              you want to delete:             ||" << endl;
     cout << "==================================================" << endl;
     cout << "ID: ";
     cin >> editId;
@@ -436,7 +436,7 @@ void ConsoleUI::_editComputer()
     int editId;
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
-    cout << "||              you what to delete:             ||" << endl;
+    cout << "||              you want to delete:             ||" << endl;
     cout << "==================================================" << endl;
     cout << "ID: ";
     cin >> editId;
@@ -640,13 +640,13 @@ void ConsoleUI::_link()
     int sciId;
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
-    cout << "||              you what to link  :             ||" << endl;
+    cout << "||              you want to link  :             ||" << endl;
     cout << "==================================================" << endl;
     cout << "ID: ";
     cin >> compId;
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
-    cout << "||              you what to link  :             ||" << endl;
+    cout << "||              you want to link  :             ||" << endl;
     cout << "==================================================" << endl;
     cout << "ID: ";
     cin >> sciId;
@@ -667,7 +667,7 @@ void ConsoleUI::_clear()
     cout << "*        you are about to clear all data        *" << endl;
     cout << "*                                               *" << endl;
     cout << "*     confirm  - if you want to clear all data  *" << endl;
-    cout << "*     cancel   - if you dont want to continue   *" << endl;
+    cout << "*     cancel   - if you don't want to continue  *" << endl;
     cout << "*                                               *" << endl;
     cout << "******************   WARNING   ******************" << endl;
     do{

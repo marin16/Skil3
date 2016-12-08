@@ -11,6 +11,7 @@
 #include "utilities.h"
 #include "linked.h"
 
+
 using namespace std;
 
 ConsoleUI::ConsoleUI()
@@ -532,7 +533,13 @@ void ConsoleUI::_displayComputer(Computer computer)
     cout << setw(nameLenght+1) << left << computer.getName();
     cout << setw(typeLength+1) << left << computer.getType();
     cout << setw(13) << left << computer.getBuildy();
-    cout << computer.getBuilt() << endl;
+    if (computer.getBuilt()) {
+        cout << "Yes" << endl;
+    }
+    else {
+        cout << "No" << endl;
+    }
+
 }
 
 /*

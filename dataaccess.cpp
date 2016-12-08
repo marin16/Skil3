@@ -14,12 +14,19 @@ using namespace std;
 
 DataAccess::DataAccess()
 {
+    // Connect database.
     _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
     _db.setDatabaseName(dbName);
-
     _db.open();
+
+    // Prepare innitialization querys.
     QSqlQuery scientistsTable;
+    QSqlQuery computersTable;
+    QSqlQuery scientistHasComputerTable;
+    QSqlQuery scientistHasComputerView;
+
+    // Scientists table, stores name, gender, dob, dod, country and gives him/her a unique ID.
     scientistsTable.exec("create table if not exists Scientists ("
                          "id integer primary key autoincrement,"
                          "name varchar(50) not null,"
@@ -27,24 +34,25 @@ DataAccess::DataAccess()
                          "dob integer not null,"
                          "dod integer,"
                          "country varchar(50))");
-    QSqlQuery computersTable;
+    // Computers table, stores name, year built(designed), type and whether it was built, gives each computer a unique ID.
     computersTable.exec("create table if not exists Computers ("
                         "id integer primary key autoincrement,"
                         "name varchar(50) not null,"
                         "buildy integer,"
                         "type varchar(50),"
                         "built bool not null)");
-    QSqlQuery scientistHasComputerTable;
+    // Scientist_has_Computer table, stores scientist id and computer id, used to link computers and scientists together.
     scientistHasComputerTable.exec("create table if not exists Scientist_has_Computer ("
                         "sid integer,"
                         "cid integer,"
                         "foreign key(sid) references Scientists(id),"
                         "foreign key(cid) references Computers(id),"
                         "primary key(sid, cid))");
-    QSqlQuery scientistHasComputerView;
+    // SC_view returns all info on scientists and computers that are linked.
     scientistHasComputerView.exec("create view if not exists SC_view as select C.id as 'cId', C.name as 'cName', C.buildy, C.type, C.built, S.id as 'sId', S.name as 'sName', S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
 
 }
+
 bool DataAccess::writeScientist(Scientist scientist)
 {
     QSqlQuery query;
@@ -189,6 +197,7 @@ vector<Linked> DataAccess::readLinkedFromQuery(string q)
     return links;
 }
 
+
 bool DataAccess::writeComputer(Computer computer)
 {
     QSqlQuery query;
@@ -261,6 +270,9 @@ bool DataAccess::link(int cId, int sId)
     return query.exec();
 }
 
+/*
+ * clearList(): Used to remove all data from the database.
+ */
 void DataAccess::clearList()
 {
     QSqlQuery querySciCom;

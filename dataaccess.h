@@ -15,31 +15,97 @@ class DataAccess
 {
 public:
     DataAccess();
-    // Writes a single scientist to the database
+    /*
+     * writeScientist: Used to write scientist to database.
+     * params: Scientist scientist (scientist to be written).
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool writeScientist(Scientist scientist);
-    // Reads all Scientists from the datafile and returns them in a vector
+
+    /*
+     * readScientists: Used to get a vector of all Scientists from the database.
+     * returns: vector<Scientist>
+     */
     vector<Scientist> readScientists();
-    vector<Computer> readComputers();
-    //Writes a single computer to the database
-    bool writeComputer(Computer computer);
-    void clearList();
-    // Returs Scientists returned from the databasequery
+
+    /*
+     * readScientistsFromQuery: Used to get a vector of Scientists from the results of input query.
+     * params: string q (query string that is executed)
+     * returns: vector<Scientist>
+     */
     vector<Scientist> readScientistsFromQuery(string q);
-    // returns vector of computers returned by the database query
+
+    /*
+     * readComputers: Used to get a vector of all Computers from the database.
+     * returns: vector<Computer>
+     */
+    vector<Computer> readComputers();
+
+    /*
+     * writeComputer: Used to write a computer to the database.
+     * params: Computer computer (computer to be written)
+     * returns: true if query execuded successfuly, otherwise false.
+     */
+    bool writeComputer(Computer computer);
+
+    /*
+     * clearList(): Used to remove all data from the database.
+     */
+    void clearList();
+
+    /*
+     * readComputersFromQuery: Used to get a vector of Computers from the results of input query.
+     * params: string q (query string that is executed)
+     * returns: vector<Computer>
+     */
     vector<Computer> readComputersFromQuery(string q);
-    // deletes a scientist from the database by ID
+
+    /*
+     * deleteScientist: Used to remove a scientist from the database.
+     * params: int id (id of the scientist that is to be removed).
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool deleteScientist(int id);
-    // deletes a computer from the database by ID
+
+    /*
+     * deleteComputer: Used to remove a computer from the database.
+     * params: int id (id of the computer that is to be removed).
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool deleteComputer(int id);
-    // edits a scientist by ID
+
+    /*
+     * editScientist: Used to updata a certain scientist in the database.
+     * params: int id (id of the scientist that is to be updated), Scientist scientist (scientist data that is to be set)
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool editScientist(int id, Scientist scientist);
-    // edits computer by ID
+
+    /*
+     * editComputer: Used to updata a certain computer in the database.
+     * params: int id (id of the computer that is to be updated), Computer computer (computer data that is to be set)
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool editComputer(int id, Computer computer);
-    // links computer and scientist
+
+    /*
+     * link: Used to add a link beetween a scientist and a computer.
+     * params: int cId (id of computer that is to be linked), int sId (id of the scientist that is to be linked)
+     * returns: true if query execuded successfuly, otherwise false.
+     */
     bool link(int cId, int sId);
-    // reads from scientist_has_computer into vector of links
+
+    /*
+     * readLinked: Used to get a vector of all linked computers and scientists.
+     * returns: vector<Linked>
+     */
     vector<Linked> readLinked();
-    // reads from scientist_has_computer query results into vector of links
+
+    /*
+     * readLinkedFromQuery: Used to get a vector of Linked computers and scientists from the results of input query.
+     * params: string q (query string that is executed)
+     * returns: vector<Linked>
+     */
     vector<Linked> readLinkedFromQuery(string q);
 private:
     QSqlDatabase _db;

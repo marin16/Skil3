@@ -58,7 +58,7 @@ bool Scientist::contains(string searchTerm)
         return true;
     }
 
-    if (_death != NULL)
+    if (_death != 0)
     {
         string yearDiedString = utils::intToString(_death);
 

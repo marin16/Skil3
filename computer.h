@@ -14,7 +14,7 @@ public:
     {
         return _name;
     }
-    int getbuildy() const
+    int getBuildy() const
     {
         return _buildy;
     }
@@ -26,6 +26,8 @@ public:
     {
         return _built;
     }
+     // Returns true if Computer contains search Term
+    bool contains(string searchTerm);
 private:
     string _name;
     int _buildy;

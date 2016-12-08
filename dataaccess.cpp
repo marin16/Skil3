@@ -34,7 +34,7 @@ DataAccess::DataAccess()
                         "type varchar(50),"
                         "built bool not null)");
 }
-void DataAccess::writePerson(Person person)
+bool DataAccess::writePerson(Person person)
 {
     QSqlQuery query;
 
@@ -44,10 +44,7 @@ void DataAccess::writePerson(Person person)
     query.bindValue(":dob", person.getBirth());
     query.bindValue(":dod", person.getDeath());
     query.bindValue(":country", QString::fromStdString(person.getCountry()));
-    if(query.exec())
-        cout << "Query executed" << endl; //TODO: change to return true
-    else
-        cout << "Query failed" << endl; //TODO: change to return false
+    return query.exec();
 }
 
 vector<Person> DataAccess::readPersons()
@@ -76,7 +73,6 @@ vector<Person> DataAccess::readPersonsFromQuery(string q)
 
     QSqlQuery query;
     query.exec(QString::fromStdString(q));
-    //query.exec("select * from Scientists order by name asc");
 
     while(query.next()){
         string name = query.value("name").toString().toStdString();
@@ -109,13 +105,32 @@ vector<Computer> DataAccess::readComputers()
     return computers;
 }
 
+vector<Computer> DataAccess::readComputersFromQuery(string q)
+{
+    vector<Computer> computers;
+
+    QSqlQuery query;
+    query.exec(QString::fromStdString(q));
+
+    while(query.next()){
+        string name = query.value("name").toString().toStdString();
+        int buildy = query.value("buildy").toUInt();
+        string type = query.value("type").toString().toStdString();
+        bool built = query.value("built").toBool();
+
+        computers.push_back(Computer(name,buildy,type,built));
+    }
+
+    return computers;
+}
+
 void DataAccess::writeComputer(Computer computer)
 {
     QSqlQuery query;
 
     query.prepare("INSERT INTO computers (name, buildy, type, built) VALUES (:name, :buildy, :type, :built)");
     query.bindValue(":name", QString::fromStdString(computer.getName()));
-    query.bindValue(":buildy", computer.getbuildy());
+    query.bindValue(":buildy", computer.getBuildy());
     query.bindValue(":type",QString::fromStdString(computer.getType()));
     query.bindValue(":built",computer.getBuilt());
 

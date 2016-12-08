@@ -12,7 +12,7 @@ class DataAccess
 public:
     DataAccess();
     // Writes a single person to the datafile
-    void writePerson(Person person);
+    bool writePerson(Person person);
     // Reads all persons from the datafile and returns them in a vector
     vector<Person> readPersons();
     vector<Computer> readComputers();
@@ -21,6 +21,8 @@ public:
     void clearList();
     // Returs persons returned from the databasequery
     vector<Person> readPersonsFromQuery(string q);
+    // returns vector of computers returned by the database query
+    vector<Computer> readComputersFromQuery(string q);
 private:
     QSqlDatabase _db;
 };

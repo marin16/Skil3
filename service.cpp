@@ -54,7 +54,7 @@ char genderStr2Char(string fmale)
 
 bool sortBybuildy(const Computer & p1, const Computer & p2)
 {
-   return p1.getbuildy() < p2.getbuildy();
+   return p1.getBuildy() < p2.getBuildy();
 }
 
 bool sortByType(const Computer & p1, const Computer & p2)
@@ -76,7 +76,6 @@ vector<Person> Service::getPersons(int sortBy)
 {
     vector<Person> persons;
 
-    // TODO: logic sort search etc...
     if(sortBy == 1)
         persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by name asc");
     else if(sortBy == 2)
@@ -102,8 +101,7 @@ bool Service::addPerson(Person p)
 {
     if(p.getName() != "" && p.getGender() != NULL && p.getCountry() != "")
     {
-        _dataAccess.writePerson(p);
-        return true;
+        return _dataAccess.writePerson(p);
     }
     else
         return false;
@@ -180,18 +178,20 @@ vector<Computer> Service::getComputers(int sortBy)
 {
     vector<Computer> computers;
 
-    // reads all persons from csv
-    computers = _dataAccess.readComputers();
-
-
-    // TODO: logic sort search etc...
-    /*if(sortBy == 1)
-        sort(computers.begin(), computers.end(), sortComputerByName);
+    if(sortBy == 1)
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by name asc");
     else if(sortBy == 2)
-        sort(computers.begin(), computers.end(), sortBybuildy);
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by buildy asc");
     else if(sortBy == 3)
-        sort(computers.begin(), computers.end(), sortByType);*/
-
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by type asc");
+    else if(sortBy == 4)
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by name desc");
+    else if(sortBy == 5)
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by buildy desc");
+    else if(sortBy == 6)
+        computers = _dataAccess.readComputersFromQuery("select * from Computers order by type desc");
+    else
+        computers = _dataAccess.readComputers();
     return computers;
 }
 
@@ -206,11 +206,11 @@ bool Service::addComputer(Computer c)
         return false;
 }
 
-vector<Computer> Service::searchForComputer(string search, string searchBy)
+vector<Computer> Service::searchForComputer(string search/*, string searchBy*/)
 {
     vector<Computer> computers = getComputers(0);
     vector<Computer> results;
-    for(size_t i = 0; i < computers.size(); ++i){
+    /*for(size_t i = 0; i < computers.size(); ++i){
         if(searchBy == "name" && regex_match(computers[i].getName(),regex(search,regex_constants::icase))){
             results.push_back(computers[i]);
         }
@@ -220,6 +220,13 @@ vector<Computer> Service::searchForComputer(string search, string searchBy)
         // http://www.cplusplus.com/reference/string/stoi/
         else if(searchBy == "buildy" && computers[i].getbuildy() == stoi(search,nullptr,0)){
             results.push_back(computers[i]);
+        }
+    }*/
+    for (size_t i = 0; i < computers.size(); i++)
+    {
+        if (computers.at(i).contains(search))
+        {
+            results.push_back(computers.at(i));
         }
     }
     return results;

@@ -52,7 +52,7 @@ void ConsoleUI::run()
         {
             //_edit();
         }
-        if(command == "add-s")
+        else if(command == "add-s")
         {
             _add();
         }
@@ -205,7 +205,7 @@ void ConsoleUI::_add()
         }
         else
         {
-            cout << "Could not write this data to database" << endl;
+            cout << "Could not write this data to the database." << endl;
         }
     }
     else if (answer == 'n' || answer == 'N')
@@ -336,11 +336,11 @@ void ConsoleUI::_search()
 void ConsoleUI::_searchCPU()
 {
     vector<Computer> results;
-    string searchBy;
+    //string searchBy;
     string search;
     char charsearch[100];
 
-    cout << "=================================================" << endl;
+    /*cout << "=================================================" << endl;
     cout << "||             Enter search parameter:         ||" << endl;
     cout << "=================================================" << endl;
     cout << "||   name    - to search by full name          ||" << endl;
@@ -351,7 +351,7 @@ void ConsoleUI::_searchCPU()
     do{
         cout << "Parameter: ";
         cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "type" && searchBy != "buildy");
+    }while(searchBy != "name" && searchBy != "type" && searchBy != "buildy");*/
 
     cout << "Value: ";
 
@@ -359,7 +359,7 @@ void ConsoleUI::_searchCPU()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForComputer(search, searchBy);
+    results = _service.searchForComputer(search/*, searchBy*/);
 
     _displayComputers(results);
 }
@@ -474,26 +474,35 @@ void ConsoleUI::_list()
  */
 void ConsoleUI::_listCPU()
 {
-    cout << "=================================================" << endl;
-    cout << "|| Please enter one of the following commands: ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||    name     - sort by name alphabeticaly    ||" << endl;
-    cout << "||    buildy   - sort by built year            ||" << endl;
-    cout << "||    type     - sort by type                  ||" << endl;
-    cout << "||    unsorted - get unsorted list (default)   ||" << endl;
-    cout << "=================================================" << endl;
+    cout << "=================================================================" << endl;
+    cout << "||         Please enter one of the following commands:         ||" << endl;
+    cout << "=================================================================" << endl;
+    cout << "||    name-asc      - sort by name alphabeticaly ascending     ||" << endl;
+    cout << "||    buildy-asc    - sort by built year ascending             ||" << endl;
+    cout << "||    type-asc      - sort by type ascending                   ||" << endl;
+    cout << "||    name-desc     - sort by name alphabeticaly descending    ||" << endl;
+    cout << "||    buildy-desc   - sort by built year descending            ||" << endl;
+    cout << "||    type-desc     - sort by type descending                  ||" << endl;
+    cout << "||    unsorted      - get unsorted list (default)              ||" << endl;
+    cout << "=================================================================" << endl;
 
     string sort;
     cin >> sort;
     vector<Computer> computers;
 
-    if (sort == "name")
+    if (sort == "name-asc")
         computers = _service.getComputers(1);
-    else if (sort == "buildy")
+    else if (sort == "buildy-asc")
         computers = _service.getComputers(2);
-    else if (sort == "type")
+    else if (sort == "type-asc")
         computers = _service.getComputers(3);
-    else //if (sort == "unsorted")
+    else if (sort == "name-desc")
+        computers = _service.getComputers(4);
+    else if (sort == "buildy-desc")
+        computers = _service.getComputers(5);
+    else if (sort == "type-desc")
+        computers = _service.getComputers(6);
+    else
         computers = _service.getComputers(0);
 
     _displayComputers(computers);
@@ -663,7 +672,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
     // If there is no person in list we do not want to display anything.
     if (persons.size() > 0) {
         size_t longestName = 0;
-        // Get the longest name, dob, dod, so we can determine with of columns in table.
+        // Get the longest name, so we can determine with of columns in table.
         for (size_t i = 0; i < persons.size(); ++i)
         {
             if (persons[i].getName().length() > longestName)
@@ -693,9 +702,28 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
     }
 }
 
-void ConsoleUI::_displayComputer(Computer computers)
+void ConsoleUI::_displayComputer(Computer computer)
 {
+    size_t nameLenght = computer.getName().length();
+    size_t typeLength = computer.getType().length();
 
+    // longest name cant be shorter than "Name: " (6)
+    if (nameLenght < 6)
+        nameLenght = 6;
+    // same for type
+    if (typeLength < 6)
+        typeLength = 6;
+
+    // Labels for table
+    cout << setw(nameLenght+1) << left << "Name:";
+    cout << setw(typeLength+1) << left << "Type:";
+    cout << setw(13) << left << "Year built:";
+    cout << "Built:" << endl;
+
+    cout << setw(nameLenght+1) << left << computer.getName();
+    cout << setw(typeLength+1) << left << computer.getType();
+    cout << setw(13) << left << computer.getBuildy();
+    cout << computer.getBuilt() << endl;
 }
 
 /*
@@ -703,7 +731,41 @@ void ConsoleUI::_displayComputer(Computer computers)
  */
 void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
+    // If there is no computer in list we do not want to display anything.
+    if (computers.size() > 0) {
+        size_t longestName = 0;
+        size_t longestType = 0;
+        // Get the longest name, dob, dod, so we can determine with of columns in table.
+        for (size_t i = 0; i < computers.size(); ++i)
+        {
+            if (computers[i].getName().length() > longestName)
+                longestName = computers[i].getName().length();
+            if (computers[i].getType().length() > longestType)
+                longestType = computers[i].getType().length();
+        }
 
+        // longest name cant be shorter than "Name: " (6)
+        if (longestName < 6)
+            longestName = 6;
+        // same for type
+        if (longestType < 6)
+            longestType = 6;
+
+        // Labels for table
+        cout << setw(longestName+1) << left << "Name:";
+        cout << setw(longestType+1) << left << "Type:";
+        cout << setw(13) << left << "Year built:";
+        cout << "Built:" << endl;
+
+        // Display every person from the list
+        for(size_t i = 0; i < computers.size(); i++)
+        {
+            cout << setw(longestName+1) << left << computers[i].getName();
+            cout << setw(longestType+1) << left << computers[i].getType();
+            cout << setw(13) << left << computers[i].getBuildy();
+            cout << computers[i].getBuilt() << endl;
+        }
+    }
 }
 
 /*

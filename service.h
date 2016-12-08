@@ -18,7 +18,7 @@ public:
 
 // Service for computers
     vector<Computer> getComputers(int sortBy);
-    vector<Computer> searchForComputer(string search, string searchBy);
+    vector<Computer> searchForComputer(string search/*, string searchBy*/);
     bool deleteComputer(string deleteC);
     bool addComputer(Computer newComputer);
 

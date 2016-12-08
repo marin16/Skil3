@@ -5,68 +5,6 @@
 
 #include "service.h"
 
-//http://stackoverflow.com/questions/14081335/algorithm-vector-sort-with-objects
-/*bool sortPersonByName(const Person & p1, const Person & p2)
-{
-   string p1string = p1.getName();
-   string p2string = p2.getName();
-   p1string[0] = toupper(p1string[0]);
-   p2string[0] = toupper(p2string[0]);
-
-   return p1string < p2string;
-}
-
-bool sortComputerByName(const Computer & p1, const Computer & p2)
-{
-   string p1string = p1.getName();
-   string p2string = p2.getName();
-   p1string[0] = toupper(p1string[0]);
-   p2string[0] = toupper(p2string[0]);
-
-   return p1string < p2string;
-}
-
-bool sortByBirth(const Person & p1, const Person & p2)
-{
-   return p1.getBirth() < p2.getBirth();
-}
-
-bool sortByCountry(const Person & p1, const Person & p2)
-{
-    string p1string = p1.getCountry();
-    string p2string = p2.getCountry();
-    p1string[0] = toupper(p1string[0]);
-    p2string[0] = toupper(p2string[0]);
-
-    return p1string < p2string;
-}*/
-
-//Fall sem breytir streng fyrir gender i char
-char genderStr2Char(string fmale)
-{
-    if(regex_match(fmale,regex("male|m",regex_constants::icase)))
-        return 'M';
-    else if(regex_match(fmale,regex("female|f",regex_constants::icase)))
-        return 'F';
-    else
-        return '0';
-}
-
-bool sortBybuildy(const Computer & p1, const Computer & p2)
-{
-   return p1.getBuildy() < p2.getBuildy();
-}
-
-bool sortByType(const Computer & p1, const Computer & p2)
-{
-    string p1string = p1.getType();
-    string p2string = p2.getType();
-    p1string[0] = toupper(p1string[0]);
-    p2string[0] = toupper(p2string[0]);
-
-    return p1string < p2string;
-}
-
 Service::Service()
 {
 
@@ -111,24 +49,7 @@ vector<Person> Service::searchForPerson(string search/*, string searchBy*/)
 {
     vector<Person> persons = getPersons(0);
     vector<Person> results;
-    /*for(size_t i = 0; i < persons.size(); ++i){
-        if(searchBy == "name" && regex_match(persons[i].getName(),regex(search,regex_constants::icase))){
-            results.push_back(persons[i]);
-        }
-        else if(searchBy == "gender" && (toupper(persons[i].getGender()) == genderStr2Char(search))){
-            results.push_back(persons[i]);
-        }
-        // http://www.cplusplus.com/reference/string/stoi/
-        else if(searchBy == "birth" && persons[i].getBirth() == stoi(search,nullptr,0)){
-            results.push_back(persons[i]);
-        }
-        else if(searchBy == "death" && persons[i].getDeath() == stoi(search,nullptr,0)){
-            results.push_back(persons[i]);
-        }
-        else if(searchBy == "country" && regex_match(persons[i].getCountry(), regex(search, regex_constants::icase))){
-            results.push_back(persons[i]);
-        }
-    }*/
+
     for (size_t i = 0; i < persons.size(); i++)
     {
         if (persons.at(i).contains(search))
@@ -199,8 +120,8 @@ bool Service::addComputer(Computer c)
 {
     if(c.getName() != "" && c.getType() != "")
     {
-        _dataAccess.writeComputer(c);
-        return true;
+        return _dataAccess.writeComputer(c);
+
     }
     else
         return false;
@@ -210,18 +131,7 @@ vector<Computer> Service::searchForComputer(string search/*, string searchBy*/)
 {
     vector<Computer> computers = getComputers(0);
     vector<Computer> results;
-    /*for(size_t i = 0; i < computers.size(); ++i){
-        if(searchBy == "name" && regex_match(computers[i].getName(),regex(search,regex_constants::icase))){
-            results.push_back(computers[i]);
-        }
-        else if(searchBy == "type" && regex_match(computers[i].getType(),regex(search,regex_constants::icase))){
-            results.push_back(computers[i]);
-        }
-        // http://www.cplusplus.com/reference/string/stoi/
-        else if(searchBy == "buildy" && computers[i].getbuildy() == stoi(search,nullptr,0)){
-            results.push_back(computers[i]);
-        }
-    }*/
+
     for (size_t i = 0; i < computers.size(); i++)
     {
         if (computers.at(i).contains(search))

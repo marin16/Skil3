@@ -299,32 +299,15 @@ void ConsoleUI::_addCPU()
 void ConsoleUI::_search()
 {
     vector<Person> results;
-    //string searchBy;
     string search;
     char charsearch[100];
 
-   /* cout << "=================================================" << endl;
-    cout << "||             Enter search parameter:         ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||   name    - to search by full name          ||" << endl;
-    cout << "||   gender  - to search by gender             ||" << endl;
-    cout << "||   birth   - to search by year of birth      ||" << endl;
-    cout << "||   death   - to search by year of death      ||" << endl;
-    cout << "||   country - to search by country of origin  ||" << endl;
-    cout << "=================================================" << endl;
-
-    do{
-        cout << "Parameter: ";
-        cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "gender" && searchBy != "birth" && searchBy != "death" && searchBy != "country");*/
-
     cout << "Value: ";
-
     cin.ignore();
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForPerson(search/*, searchBy*/);
+    results = _service.searchForPerson(search);
 
     _displayPersons(results);
 }
@@ -336,22 +319,8 @@ void ConsoleUI::_search()
 void ConsoleUI::_searchCPU()
 {
     vector<Computer> results;
-    //string searchBy;
     string search;
     char charsearch[100];
-
-    /*cout << "=================================================" << endl;
-    cout << "||             Enter search parameter:         ||" << endl;
-    cout << "=================================================" << endl;
-    cout << "||   name    - to search by full name          ||" << endl;
-    cout << "||   type    - to search by typer              ||" << endl;
-    cout << "||   buildy  - to search by built year         ||" << endl;
-    cout << "=================================================" << endl;
-
-    do{
-        cout << "Parameter: ";
-        cin >> searchBy;
-    }while(searchBy != "name" && searchBy != "type" && searchBy != "buildy");*/
 
     cout << "Value: ";
 
@@ -359,7 +328,7 @@ void ConsoleUI::_searchCPU()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForComputer(search/*, searchBy*/);
+    results = _service.searchForComputer(search);
 
     _displayComputers(results);
 }

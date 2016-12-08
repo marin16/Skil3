@@ -44,6 +44,7 @@ bool DataAccess::writePerson(Person person)
     query.bindValue(":dob", person.getBirth());
     query.bindValue(":dod", person.getDeath());
     query.bindValue(":country", QString::fromStdString(person.getCountry()));
+
     return query.exec();
 }
 
@@ -124,7 +125,7 @@ vector<Computer> DataAccess::readComputersFromQuery(string q)
     return computers;
 }
 
-void DataAccess::writeComputer(Computer computer)
+bool DataAccess::writeComputer(Computer computer)
 {
     QSqlQuery query;
 
@@ -134,10 +135,7 @@ void DataAccess::writeComputer(Computer computer)
     query.bindValue(":type",QString::fromStdString(computer.getType()));
     query.bindValue(":built",computer.getBuilt());
 
-    if(query.exec())
-        cout << "Query executed" << endl; //TODO: change to return true
-    else
-        cout << "Query failed" << endl; //TODO: change to return false
+    return query.exec();
 }
 
 

@@ -9,20 +9,20 @@
 class Service
 {
 public:
-// Service for persons
+    // Service for persons
     Service();
     vector<Person> getPersons(int sortBy);
-    vector<Person> searchForPerson(string search/*, string searchBy*/);
+    vector<Person> searchForPerson(string search);
     bool deletePerson(string deleteP);
     bool addPerson(Person newPerson);
 
-// Service for computers
+    // Service for computers
     vector<Computer> getComputers(int sortBy);
-    vector<Computer> searchForComputer(string search/*, string searchBy*/);
+    vector<Computer> searchForComputer(string search);
     bool deleteComputer(string deleteC);
     bool addComputer(Computer newComputer);
 
-// Shared service
+    // Shared service
     void clearData();
 
 private:

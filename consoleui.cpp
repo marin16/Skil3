@@ -120,7 +120,7 @@ void ConsoleUI::_instructions()
     cout << "||    edit-c   - to edit an computer                    ||" << endl;
     cout << "||    delete-c - to delete a computer                   ||" << endl;
     cout << "||                                                      ||" << endl;
-    cout << "||    add-s    - to add a new scientist                    ||" << endl;
+    cout << "||    add-s    - to add a new scientist                 ||" << endl;
     cout << "||    list-s   - to get a list of scientsits            ||" << endl;
     cout << "||    search-s - to search for scientist                ||" << endl;
     cout << "||    edit-s   - to edit an scientist                   ||" << endl;

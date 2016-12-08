@@ -33,9 +33,9 @@ bool inputcheck::cpuCheck(const string &cpuname)
 }
 
 
-bool inputcheck::genderCheck(char gender)
+bool inputcheck::genderCheck(const string &genderstring)
 {
-    return (gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F');
+    return (genderstring[0] == 'm' || genderstring[0] == 'M' || genderstring[0] == 'f' || genderstring[0] == 'F') && genderstring.length() == 1;
 }
 
 bool inputcheck::birthCheck(string birth)

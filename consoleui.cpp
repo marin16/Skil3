@@ -469,7 +469,10 @@ void ConsoleUI::_displayScientist(Scientist scientist)
     cout << setw(nameLength+1) << left << scientist.getName();
     cout << setw(8) << left << scientist.getGender();
     cout << setw(7) << left << scientist.getBirth();
-    cout << setw(7) << left << scientist.getDeath();
+    if (!scientist.getDeath())
+        cout << setw(7) << left << "Alive";
+    else
+        cout << setw(7) << left << scientist.getDeath();
     cout << scientist.getCountry() << endl;
 }
 
@@ -511,8 +514,11 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists)
             cout << setw(longestName+1) << left << scientists[i].getName();
             cout << setw(8) << left << scientists[i].getGender();
             cout << setw(7) << left << scientists[i].getBirth();
-            cout << setw(7) << left << scientists[i].getDeath();
-            cout << scientists[i].getCountry() << endl;
+            if (!scientists[i].getDeath())
+                cout << setw(7) << left << "Alive";
+            else
+                cout << setw(7) << left << scientists[i].getDeath();
+            cout << scientists[i].getCountry() << endl;      
         }
     }
     cout << "The list contains: " << scientists.size() << " scientists." << endl;
@@ -580,18 +586,23 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
         cout << setw(13) << left << "Year built:";
         cout << "Built:" << endl;
 
-        // Display every scientist from the list
+        // Display every computer from the list
         for(size_t i = 0; i < computers.size(); i++)
         {
             cout << setw(longestId+1) << left << computers[i].getId();
             cout << setw(longestName+1) << left << computers[i].getName();
             cout << setw(longestType+1) << left << computers[i].getType();
             cout << setw(13) << left << computers[i].getBuildy();
-            cout << computers[i].getBuilt() << endl;
+            if (computers[i].getBuilt())
+                cout << "Yes" << endl;
+            else
+                cout << "No" << endl;
         }
     }
+
     cout << "The list contains: " << computers.size() << " computers." << endl;
 }
+
 
 /*
  * _displayLinked: Displays linked computers and scientists.
@@ -691,7 +702,7 @@ void ConsoleUI::_clear()
 Scientist ConsoleUI::_createScientist()
 {
     string name;
-    char gender;
+    string gender;
     string birth;
     string death;
     string country;
@@ -710,7 +721,6 @@ Scientist ConsoleUI::_createScientist()
     {
         cout << "Gender (m/f): ";
         cin >> gender;
-        gender = toupper(gender);
     }while(!_Valid.genderCheck(gender));
 
     do
@@ -739,7 +749,7 @@ Scientist ConsoleUI::_createScientist()
 
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
-    return Scientist(name, gender, birthint, deathint, country);
+    return Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 }
 
 /*

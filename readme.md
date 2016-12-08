@@ -1,11 +1,11 @@
-Hópur 10:
-Arnaldur Bjarnason
-Daði Sigursveinn Harðarson
-Garðar Sigurðsson
-Ívar Sveinn Loftsson
-Marín Viðarsdóttir
-Stefán Már Melstað
+#Hópur 10:
+*Arnaldur Bjarnason
+*Daði Sigursveinn Harðarson
+*Garðar Sigurðsson
+*Ívar Sveinn Loftsson
+*Marín Viðarsdóttir
+*Stefán Már Melstað
 
-Github tengill:
+Github tengill:  
 https://github.com/dadisigursveinn/Skil2
 

@@ -24,6 +24,12 @@ bool Person::contains(string searchTerm)
         return true;
     }
 
+    string countryLower = utils::stringToLower(_country);
+    if (countryLower.find(searchTermLower) != string::npos)
+    {
+        return true;
+    }
+
     if (searchTermLower == "male" && _gender == 'M')
     {
         return true;

@@ -5,6 +5,7 @@
 #include "person.h"
 #include "computer.h"
 #include "dataaccess.h"
+#include "linked.h"
 
 class Service
 {
@@ -26,6 +27,10 @@ public:
 
     // Shared service
     void clearData();
+    // Links computer and scientist
+    bool link(int cId, int sId);
+    // used to get list of links
+    vector<Linked> getLinks(int sortBy);
 
 private:
     // DataAccess

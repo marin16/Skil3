@@ -93,6 +93,23 @@ vector<Computer> Service::getComputers(int sortBy)
     return computers;
 }
 
+vector<Linked> Service::getLinks(int sortBy)
+{
+    vector<Linked> links;
+
+    if(sortBy == 1)
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name asc");
+    else if(sortBy == 2)
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name:1 asc");
+    else if(sortBy == 3)
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name desc");
+    else if(sortBy == 4)
+        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by name:1 desc");
+    else
+        links =_dataAccess.readLinked();
+    return links;
+}
+
 bool Service::addComputer(Computer c)
 {
     if(c.getName() != "" && c.getType() != "")
@@ -132,4 +149,9 @@ bool Service::editPerson(int id, Person editPerson)
 bool Service::editComputer(int id, Computer editComputer)
 {
     return _dataAccess.editComputer(id, editComputer);
+}
+
+bool Service::link(int cId, int sId)
+{
+    return _dataAccess.link(cId, sId);
 }

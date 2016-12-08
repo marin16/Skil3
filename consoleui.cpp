@@ -9,6 +9,7 @@
 #include "person.h"
 #include "computer.h"
 #include "utilities.h"
+#include "linked.h"
 
 using namespace std;
 
@@ -63,7 +64,7 @@ void ConsoleUI::run()
         }
         else if(command == "list-s")
         {
-            _list();
+            _listScientists();
         }
         else if(command == "delete-s")
         {
@@ -75,7 +76,11 @@ void ConsoleUI::run()
         }
         else if(command == "link")
         {
-            //_link();
+            _link();
+        }
+        else if(command == "list")
+        {
+            _list();
         }
         else if(command == "help")
         {
@@ -104,28 +109,29 @@ void ConsoleUI::run()
  */
 void ConsoleUI::_instructions()
 {
-    cout << "===================================================" << endl;
-    cout << "||  Please enter one of the following commands:  ||" << endl;
-    cout << "===================================================" << endl;
-    cout << "||                                               ||" << endl;
-    cout << "||    add-c    - to add a new computer           ||" << endl;
-    cout << "||    list-c   - to get a list of computers      ||" << endl;
-    cout << "||    search-c - to search for computer          ||" << endl;
-    cout << "||    edit-c   - to edit an computer             ||" << endl;
-    cout << "||    delete-c - to delete a computer            ||" << endl;
-    cout << "||                                               ||" << endl;
-    cout << "||    add-s    - to add a new person             ||" << endl;
-    cout << "||    list-s   - to get a list of scientsits     ||" << endl;
-    cout << "||    search-s - to search for scientist         ||" << endl;
-    cout << "||    edit-s   - to edit an scientist            ||" << endl;
-    cout << "||    delete-s - to delete a scientist           ||" << endl;
-    cout << "||                                               ||" << endl;
-    cout << "||    link     - to link scientist and computer  ||" << endl;
-    cout << "||    clear    - to clear all data               ||" << endl;
-    cout << "||    help     - to view this again              ||" << endl;
-    cout << "||    quit     - to exit program                 ||" << endl;
-    cout << "||                                               ||" << endl;
-    cout << "===================================================" << endl;
+    cout << "==========================================================" << endl;
+    cout << "||     Please enter one of the following commands:      ||" << endl;
+    cout << "==========================================================" << endl;
+    cout << "||                                                      ||" << endl;
+    cout << "||    add-c    - to add a new computer                  ||" << endl;
+    cout << "||    list-c   - to get a list of computers             ||" << endl;
+    cout << "||    search-c - to search for computer                 ||" << endl;
+    cout << "||    edit-c   - to edit an computer                    ||" << endl;
+    cout << "||    delete-c - to delete a computer                   ||" << endl;
+    cout << "||                                                      ||" << endl;
+    cout << "||    add-s    - to add a new person                    ||" << endl;
+    cout << "||    list-s   - to get a list of scientsits            ||" << endl;
+    cout << "||    search-s - to search for scientist                ||" << endl;
+    cout << "||    edit-s   - to edit an scientist                   ||" << endl;
+    cout << "||    delete-s - to delete a scientist                  ||" << endl;
+    cout << "||                                                      ||" << endl;
+    cout << "||    link     - to link scientist and computer         ||" << endl;
+    cout << "||    list     - to get linked scientists and computers ||" << endl;
+    cout << "||    clear    - to clear all data                      ||" << endl;
+    cout << "||    help     - to view this again                     ||" << endl;
+    cout << "||    quit     - to exit program                        ||" << endl;
+    cout << "||                                                      ||" << endl;
+    cout << "==========================================================" << endl;
 }
 
 /*
@@ -288,7 +294,7 @@ void ConsoleUI::_deleteCPU()
 /*
  * _list: Displays menu of scientists for list. Displays list based on user's input.
  */
-void ConsoleUI::_list()
+void ConsoleUI::_listScientists()
 {
     cout << "==============================================================" << endl;
     cout << "||        Please enter one of the following commands:       ||" << endl;
@@ -369,6 +375,36 @@ void ConsoleUI::_listCPU()
     _displayComputers(computers);
 }
 
+void ConsoleUI::_list()
+{
+    vector<Linked> links;
+    cout << "============================================================================" << endl;
+    cout << "||              Please enter one of the following commands:               ||" << endl;
+    cout << "============================================================================" << endl;
+    cout << "||    computer-asc      - sort by computer name alphabeticaly ascending   ||" << endl;
+    cout << "||    scientist-asc     - sort by scientist nameyear ascending            ||" << endl;
+    cout << "||    computer-desc     - sort by computer name alphabeticaly descending  ||" << endl;
+    cout << "||    scientist-desc    - sort by scientist nameyear descending           ||" << endl;
+    cout << "||    unsorted          - get unsorted list (default)                     ||" << endl;
+    cout << "============================================================================" << endl;
+
+    string sort;
+    cin >> sort;
+
+    if (sort == "computer-asc")
+        links = _service.getLinks(1);
+    else if (sort == "scientist-asc")
+        links = _service.getLinks(2);
+    else if (sort == "computer-desc")
+        links = _service.getLinks(3);
+    else if (sort == "scientist-desc")
+        links = _service.getLinks(4);
+    else
+        links = _service.getLinks(0);
+
+    _displayLinked(links);
+}
+
 /*
  * _edit: edits a pearson
  */
@@ -436,7 +472,8 @@ void ConsoleUI::_displayPerson(Person person)
 void ConsoleUI::_displayPersons(vector<Person> persons)
 {
     // If there is no person in list we do not want to display anything.
-    if (persons.size() > 0) {
+    if (persons.size() > 0)
+    {
         size_t longestName = 0;
         size_t longestId = 5;
         // Get the longest name, so we can determine with of columns in table.
@@ -471,6 +508,7 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
             cout << persons[i].getCountry() << endl;
         }
     }
+    cout << "The list contains: " << persons.size() << " scientists." << endl;
 }
 
 void ConsoleUI::_displayComputer(Computer computer)
@@ -503,7 +541,8 @@ void ConsoleUI::_displayComputer(Computer computer)
 void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
     // If there is no computer in list we do not want to display anything.
-    if (computers.size() > 0) {
+    if (computers.size() > 0)
+    {
         size_t longestName = 6;
         size_t longestType = 6;
         size_t longestId = 5;
@@ -535,6 +574,68 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
             cout << computers[i].getBuilt() << endl;
         }
     }
+    cout << "The list contains: " << computers.size() << " computers." << endl;
+}
+
+void ConsoleUI::_displayLinked(vector<Linked> links)
+{
+    if (links.size() > 0 )
+    {
+        size_t longestComputerName = 15;
+        size_t longestComputerId = 13;
+        size_t longestScientistName = 16;
+        size_t longestScientistId = 14;
+
+        for (size_t i = 0; i < links.size(); i++)
+        {
+            if(links[i].getComputer().getName().length() > longestComputerName)
+                longestComputerName = links[i].getComputer().getName().length();
+            if(utils::intToString(links[i].getComputer().getId()).length() > longestComputerId)
+                longestComputerId = utils::intToString(links[i].getComputer().getId()).length();
+            if(links[i].getPerson().getName().length() > longestScientistName)
+                longestScientistName = links[i].getComputer().getName().length();
+            if(utils::intToString(links[i].getPerson().getId()).length() > longestScientistId)
+                longestScientistId = utils::intToString(links[i].getPerson().getId()).length();
+        }
+
+        // Labels for table
+        cout << setw(longestScientistId+1) << left << "Scientist ID:";
+        cout << setw(longestScientistName+1) << left << "Scientist Name:";
+        cout << setw(longestComputerId+1) << left << "Computer ID:";
+        cout << setw(longestComputerName+1) << left << "Computer Name:" << endl;
+
+        for (size_t i = 0; i < links.size(); i++)
+        {
+            cout << setw(longestScientistId+1) << left << links[i].getPerson().getId();
+            cout << setw(longestScientistName+1) << left << links[i].getPerson().getName();
+            cout << setw(longestComputerId+1) << left << links[i].getComputer().getId();
+            cout << setw(longestComputerName+1) << left << links[i].getComputer().getName() << endl;
+        }
+    }
+    cout << "The list contains: " << links.size() << " links of computer and scientist." << endl;
+}
+
+void ConsoleUI::_link()
+{
+    int compId;
+    int sciId;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the computer      ||" << endl;
+    cout << "||              you what to link  :             ||" << endl;
+    cout << "==================================================" << endl;
+    cout << "ID: ";
+    cin >> compId;
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the scientist     ||" << endl;
+    cout << "||              you what to link  :             ||" << endl;
+    cout << "==================================================" << endl;
+    cout << "ID: ";
+    cin >> sciId;
+
+    if(_service.link(compId,sciId))
+        cout << "Successfully linked." << endl;
+    else
+        cout << "Failed to link." << endl;
 }
 
 /*

@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     inputcheck.cpp \
     computer.cpp \
     service.cpp \
-    utilities.cpp
+    utilities.cpp \
+    linked.cpp
 
 HEADERS += \
     consoleui.h \
@@ -25,4 +26,5 @@ HEADERS += \
     inputcheck.h \
     computer.h \
     service.h \
-    utilities.h
+    utilities.h \
+    linked.h

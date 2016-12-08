@@ -8,6 +8,7 @@
 #include "dataaccess.h"
 #include "person.h"
 #include "computer.h"
+#include "linked.h"
 
 using namespace std;
 
@@ -18,21 +19,31 @@ DataAccess::DataAccess()
     _db.setDatabaseName(dbName);
 
     _db.open();
-    QSqlQuery ScientistsTable;
-    ScientistsTable.exec("create table if not exists Scientists ("
+    QSqlQuery scientistsTable;
+    scientistsTable.exec("create table if not exists Scientists ("
                          "id integer primary key autoincrement,"
                          "name varchar(50) not null,"
                          "gender char not null,"
                          "dob integer not null,"
                          "dod integer,"
                          "country varchar(50))");
-    QSqlQuery ComputersTable;
-    ComputersTable.exec("create table if not exists Computers ("
+    QSqlQuery computersTable;
+    computersTable.exec("create table if not exists Computers ("
                         "id integer primary key autoincrement,"
                         "name varchar(50) not null,"
                         "buildy integer,"
                         "type varchar(50),"
                         "built bool not null)");
+    QSqlQuery scientistHasComputerTable;
+    scientistHasComputerTable.exec("create table if not exists Scientist_has_Computer ("
+                        "sid integer,"
+                        "cid integer,"
+                        "foreign key(sid) references Scientists(id),"
+                        "foreign key(cid) references Computers(id),"
+                        "primary key(sid, cid))");
+    QSqlQuery scientistHasComputerView;
+    scientistHasComputerView.exec("create view if not exists SC_view as select C.id, C.name, C.buildy, C.type, C.built, S.id, S.name, S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
+
 }
 bool DataAccess::writePerson(Person person)
 {
@@ -95,7 +106,7 @@ vector<Computer> DataAccess::readComputers()
     vector<Computer> computers;
 
     QSqlQuery query;
-    query.exec("SELECT * from computers");
+    query.exec("select * from computers");
     while(query.next()){
         int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
@@ -127,6 +138,55 @@ vector<Computer> DataAccess::readComputersFromQuery(string q)
     }
 
     return computers;
+}
+
+vector<Linked> DataAccess::readLinked()
+{
+    vector<Linked> links;
+
+    QSqlQuery query;
+    query.exec("select * from SC_view");
+    while(query.next()){
+        int cId = query.value("id").toUInt();
+        string cName = query.value("name").toString().toStdString();
+        int buildy = query.value("buildy").toUInt();
+        string type = query.value("type").toString().toStdString();
+        bool built = query.value("built").toBool();
+        int pId = query.value("id:1").toUInt();
+        string pName = query.value("name:1").toString().toStdString();
+        char gender = query.value("gender").toString().toStdString().at(0);
+        int dob = query.value("dob").toUInt();
+        int dod = query.value("dod").toUInt();
+        string country = query.value("country").toString().toStdString();
+
+        links.push_back(Linked(Person(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
+    }
+    return links;
+}
+
+vector<Linked> DataAccess::readLinkedFromQuery(string q)
+{
+    vector<Linked> links;
+
+    QSqlQuery query;
+    query.exec(QString::fromStdString(q));
+
+    while(query.next()){
+        int cId = query.value("id").toUInt();
+        string cName = query.value("name").toString().toStdString();
+        int buildy = query.value("buildy").toUInt();
+        string type = query.value("type").toString().toStdString();
+        bool built = query.value("built").toBool();
+        int pId = query.value("id:1").toUInt();
+        string pName = query.value("name:1").toString().toStdString();
+        char gender = query.value("gender").toString().toStdString().at(0);
+        int dob = query.value("dob").toUInt();
+        int dod = query.value("dod").toUInt();
+        string country = query.value("country").toString().toStdString();
+
+        links.push_back(Linked(Person(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
+    }
+    return links;
 }
 
 bool DataAccess::writeComputer(Computer computer)
@@ -191,8 +251,20 @@ bool DataAccess::editComputer(int id, Computer computer)
     return query.exec();
 }
 
+bool DataAccess::link(int cId, int sId)
+{
+    QSqlQuery query;
+    query.prepare("insert into Scientist_has_Computer (sid, cid) values (:sId, :cId)");
+    query.bindValue(":sId", sId);
+    query.bindValue(":cId", cId);
+
+    return query.exec();
+}
+
 void DataAccess::clearList()
 {
+    QSqlQuery querySciCom;
+    querySciCom.exec("delete from Scientist_has_Computer");
 
     QSqlQuery querySci;
     querySci.exec("delete from Scientists");

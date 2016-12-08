@@ -6,7 +6,7 @@
 
 #include "person.h"
 #include "computer.h"
-
+#include "linked.h"
 
 /*
  * DataAccess manages all communications with the database
@@ -35,6 +35,12 @@ public:
     bool editPerson(int id, Person person);
     // edits computer by ID
     bool editComputer(int id, Computer computer);
+    // links computer and scientist
+    bool link(int cId, int sId);
+    // reads from scientist_has_computer into vector of links
+    vector<Linked> readLinked();
+    // reads from scientist_has_computer query results into vector of links
+    vector<Linked> readLinkedFromQuery(string q);
 private:
     QSqlDatabase _db;
 };

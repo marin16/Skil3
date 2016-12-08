@@ -16,7 +16,7 @@ private:
     void _addCPU();
     void _search();
     void _searchCPU();
-    void _list();
+    void _listScientists();
     void _listCPU();
     void _computers();
     void _scientists();
@@ -27,9 +27,12 @@ private:
     void _displayPersons(vector<Person> persons);
     void _clear();
     void _edit();
+    void _link();
+    void _list();
     void _editComputer();
     void _displayComputer(Computer computer);
     void _displayComputers(vector<Computer> computers);
+    void _displayLinked(vector<Linked> links);
     // creates a new person from user input
     Person _createPerson();
     // creates a new computer from user input

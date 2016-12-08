@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <QtSql>
+#include <QChar>
 
 #include "dataaccess.h"
 #include "scientist.h"
@@ -59,7 +60,7 @@ bool DataAccess::writeScientist(Scientist scientist)
 
     query.prepare("insert into Scientists (name, gender, dob, dod, country) values (:name, :gender, :dob, :dod, :country)");
     query.bindValue(":name", QString::fromStdString(scientist.getName()));
-    query.bindValue(":gender", scientist.getGender());
+    query.bindValue(":gender", QChar(scientist.getGender()));
     query.bindValue(":dob", scientist.getBirth());
     query.bindValue(":dod", scientist.getDeath());
     query.bindValue(":country", QString::fromStdString(scientist.getCountry()));

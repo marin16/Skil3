@@ -33,6 +33,7 @@ private:
     void _displayComputer(Computer computer);
     void _displayComputers(vector<Computer> computers);
     void _displayLinked(vector<Linked> links);
+    void _illegalInput();
     // creates a new scientist from user input
     Scientist _createScientist();
     // creates a new computer from user input

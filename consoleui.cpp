@@ -720,6 +720,7 @@ Scientist ConsoleUI::_createScientist()
     string country;
     char charname[100];
     char charcountry[100];
+    bool valid;
 
     do
     {
@@ -727,13 +728,17 @@ Scientist ConsoleUI::_createScientist()
         cin.ignore();
         cin.getline(charname,sizeof(charname));
         name = string(charname);
-    }while(!_Valid.nameCheck(name));
+        valid = _Valid.nameCheck(name);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
         cout << "Gender (m/f): ";
         cin >> gender;
-    }while(!_Valid.genderCheck(gender));
+        valid = _Valid.genderCheck(gender);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -741,7 +746,9 @@ Scientist ConsoleUI::_createScientist()
         cin.ignore();
         cout << "Year of birth: ";
         cin >> birth;
-    }while(!_Valid.birthCheck(birth));
+        valid = _Valid.birthCheck(birth);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -749,7 +756,9 @@ Scientist ConsoleUI::_createScientist()
         cin.ignore();
         cout << "Year of death (0 if alive): ";
         cin >> death;
-    }while(!_Valid.deathCheck(death, birth));
+        valid = _Valid.deathCheck(death, birth);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -757,7 +766,9 @@ Scientist ConsoleUI::_createScientist()
         cin.ignore();
         cin.getline(charcountry,sizeof(charcountry));
         country = string(charcountry);
-    }while(!_Valid.nameCheck(country));
+        valid = _Valid.nameCheck(country);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
@@ -776,6 +787,7 @@ Computer ConsoleUI::_createComputer()
     char charcpuname[100];
     char charcputype[100];
     bool boolbuilt = false;
+    bool valid;
 
     do
     {
@@ -783,7 +795,9 @@ Computer ConsoleUI::_createComputer()
         cin.ignore();
         cin.getline(charcpuname,sizeof(charcpuname));
         cpuname = string(charcpuname);
-    }while(!_Valid.cpuCheck(cpuname));
+        valid = _Valid.cpuCheck(cpuname);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -791,7 +805,9 @@ Computer ConsoleUI::_createComputer()
         //cin.ignore();
         cout << "Build year: ";
         cin >> buildy;
-    }while(!_Valid.buildyCheck(buildy));
+        valid = _Valid.buildyCheck(buildy);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -799,7 +815,9 @@ Computer ConsoleUI::_createComputer()
         cin.ignore();
         cin.getline(charcputype,sizeof(charcputype));
         type = string(charcputype);
-    }while(!_Valid.nameCheck(type));
+        valid = _Valid.nameCheck(type);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     do
     {
@@ -808,8 +826,17 @@ Computer ConsoleUI::_createComputer()
         built = toupper(built);
         if (built == 'Y')
             boolbuilt = true;
-    }while(!_Valid.answerCheck(built));
+        valid = _Valid.answerCheck(built);
+        if (!valid) _illegalInput();
+    }while(!valid);
 
     int buildyint = atoi(buildy.c_str());
     return Computer(cpuname, buildyint, type, boolbuilt);
+}
+/*
+ * _illegalInput: Writes out error message about illegal input.
+ */
+void ConsoleUI::_illegalInput()
+{
+    cout << "Illegal input. Please try again!" << endl;
 }

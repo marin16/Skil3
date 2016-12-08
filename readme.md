@@ -33,10 +33,25 @@ a = b ∗ c ;
 ```
 we will write something like:
 ```C++
-weekly_pay = hours_worked ∗ pay_rate ;
+weeklyPay = hoursWorked ∗ payRate ;
 ```
 which describes way better what we are doing and eliminates the need put in explanative
 comments.
+
+###Commenting
+We use comments to descripe functions in `.h` files, by writing the title of the function followed by a short description of the functon, parameters and description of what they are used for and return value, in a comment block above the function.  
+```C++
+/*
+ * weeklyPay: used to calculate weekly pay.
+ * params: int hours (hours worked), int rate (hourly pay).
+ * returns: int weekly pay (hours * rate).
+ */
+int weeklyPay(int hours, int rate)
+{
+	return hours * rate;
+}
+```
+We comment our code when it does not explain itself well enaugh and we feel like more information is needed. When commenting we usualy add `// Inline comments.` that explain our code, but if we need to write long texts we write them in `/* Code blocks. */`. Code blocks can also be used when we are commenting insame line as code, but we try to avoid doing that. 
 
 ##SQL coding conventions
 ###Namings

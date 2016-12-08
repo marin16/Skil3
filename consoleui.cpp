@@ -304,10 +304,12 @@ void ConsoleUI::_listScientists()
     cout << "||    birth-asc     - sort by year of birth ascending       ||" << endl;
     cout << "||    death-asc     - sort by year of death ascending       ||" << endl;
     cout << "||    country-asc   - sort by nationality ascending         ||" << endl;
+    cout << "||                                                          ||" << endl;
     cout << "||    name-desc     - sort by name alphabeticaly descending ||" << endl;
     cout << "||    birth-desc    - sort by year of birth descending      ||" << endl;
     cout << "||    death-desc    - sort by year of birth descending      ||" << endl;
     cout << "||    country-desc  - sort by nationality descending        ||" << endl;
+    cout << "||                                                          ||" << endl;
     cout << "||    unsorted      - get unsorted list (default)           ||" << endl;
     cout << "==============================================================" << endl;
 
@@ -348,9 +350,11 @@ void ConsoleUI::_listCPU()
     cout << "||    name-asc      - sort by name alphabeticaly ascending     ||" << endl;
     cout << "||    buildy-asc    - sort by built year ascending             ||" << endl;
     cout << "||    type-asc      - sort by type ascending                   ||" << endl;
+    cout << "||                                                             ||" << endl;
     cout << "||    name-desc     - sort by name alphabeticaly descending    ||" << endl;
     cout << "||    buildy-desc   - sort by built year descending            ||" << endl;
     cout << "||    type-desc     - sort by type descending                  ||" << endl;
+    cout << "||                                                             ||" << endl;
     cout << "||    unsorted      - get unsorted list (default)              ||" << endl;
     cout << "=================================================================" << endl;
 
@@ -387,8 +391,10 @@ void ConsoleUI::_list()
     cout << "============================================================================" << endl;
     cout << "||    computer-asc      - sort by computer name alphabeticaly ascending   ||" << endl;
     cout << "||    scientist-asc     - sort by scientist nameyear ascending            ||" << endl;
+    cout << "||                                                                        ||" << endl;
     cout << "||    computer-desc     - sort by computer name alphabeticaly descending  ||" << endl;
     cout << "||    scientist-desc    - sort by scientist nameyear descending           ||" << endl;
+    cout << "||                                                                        ||" << endl;
     cout << "||    unsorted          - get unsorted list (default)                     ||" << endl;
     cout << "============================================================================" << endl;
 

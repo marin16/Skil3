@@ -25,6 +25,7 @@ https://github.com/dadisigursveinn/Skil2
 * \_camelCase that begins with underscore
   * Private class properties
   * Private class functions
+
 ####Demonstrative Na:mes
 We will use descriptive names in our code so instead of writing something like:
 ```C++

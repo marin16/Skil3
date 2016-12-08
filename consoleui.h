@@ -23,8 +23,8 @@ private:
     void _instructions();
     void _delete();
     void _deleteCPU();
-    void _displayPerson(Person person);
-    void _displayPersons(vector<Person> persons);
+    void _displayScientist(Scientist scientist);
+    void _displayScientists(vector<Scientist> scientists);
     void _clear();
     void _edit();
     void _link();
@@ -33,8 +33,8 @@ private:
     void _displayComputer(Computer computer);
     void _displayComputers(vector<Computer> computers);
     void _displayLinked(vector<Linked> links);
-    // creates a new person from user input
-    Person _createPerson();
+    // creates a new scientist from user input
+    Scientist _createScientist();
     // creates a new computer from user input
     Computer _createComputer();
 };

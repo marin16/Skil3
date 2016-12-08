@@ -1,7 +1,7 @@
 #ifndef LINKED_H
 #define LINKED_H
 
-#include "person.h"
+#include "scientist.h"
 #include "computer.h"
 
 /*
@@ -11,17 +11,17 @@ class Linked
 {
 public:
     Linked();
-    Linked(Person person, Computer computer);
-    Person getPerson() const
+    Linked(Scientist scientist, Computer computer);
+    Scientist getScientist() const
     {
-        return _person;
+        return _scientist;
     }
     Computer getComputer() const
     {
         return _computer;
     }
 private:
-    Person _person;
+    Scientist _scientist;
     Computer _computer;
 };
 

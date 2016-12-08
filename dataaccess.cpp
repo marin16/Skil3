@@ -6,7 +6,7 @@
 #include <QtSql>
 
 #include "dataaccess.h"
-#include "person.h"
+#include "scientist.h"
 #include "computer.h"
 #include "linked.h"
 
@@ -45,23 +45,23 @@ DataAccess::DataAccess()
     scientistHasComputerView.exec("create view if not exists SC_view as select C.id, C.name, C.buildy, C.type, C.built, S.id, S.name, S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
 
 }
-bool DataAccess::writePerson(Person person)
+bool DataAccess::writeScientist(Scientist scientist)
 {
     QSqlQuery query;
 
     query.prepare("insert into Scientists (name, gender, dob, dod, country) values (:name, :gender, :dob, :dod, :country)");
-    query.bindValue(":name", QString::fromStdString(person.getName()));
-    query.bindValue(":gender", person.getGender());
-    query.bindValue(":dob", person.getBirth());
-    query.bindValue(":dod", person.getDeath());
-    query.bindValue(":country", QString::fromStdString(person.getCountry()));
+    query.bindValue(":name", QString::fromStdString(scientist.getName()));
+    query.bindValue(":gender", scientist.getGender());
+    query.bindValue(":dob", scientist.getBirth());
+    query.bindValue(":dod", scientist.getDeath());
+    query.bindValue(":country", QString::fromStdString(scientist.getCountry()));
 
     return query.exec();
 }
 
-vector<Person> DataAccess::readPersons()
+vector<Scientist> DataAccess::readScientists()
 {
-    vector<Person> persons;
+    vector<Scientist> scientists;
 
     QSqlQuery query;
     query.exec("select * from Scientists");
@@ -74,15 +74,15 @@ vector<Person> DataAccess::readPersons()
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(id,name,gender,dob,dod,country));
+        scientists.push_back(Scientist(id,name,gender,dob,dod,country));
     }
 
-    return persons;
+    return scientists;
 }
 
-vector<Person> DataAccess::readPersonsFromQuery(string q)
+vector<Scientist> DataAccess::readScientistsFromQuery(string q)
 {
-    vector<Person> persons;
+    vector<Scientist> scientists;
 
     QSqlQuery query;
     query.exec(QString::fromStdString(q));
@@ -95,10 +95,10 @@ vector<Person> DataAccess::readPersonsFromQuery(string q)
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        persons.push_back(Person(id,name,gender,dob,dod,country));
+        scientists.push_back(Scientist(id,name,gender,dob,dod,country));
     }
 
-    return persons;
+    return scientists;
 }
 
 vector<Computer> DataAccess::readComputers()
@@ -159,7 +159,7 @@ vector<Linked> DataAccess::readLinked()
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        links.push_back(Linked(Person(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
+        links.push_back(Linked(Scientist(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
     }
     return links;
 }
@@ -184,7 +184,7 @@ vector<Linked> DataAccess::readLinkedFromQuery(string q)
         int dod = query.value("dod").toUInt();
         string country = query.value("country").toString().toStdString();
 
-        links.push_back(Linked(Person(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
+        links.push_back(Linked(Scientist(pId,pName,gender,dob,dod,country), Computer(cId,cName,buildy,type,built)));
     }
     return links;
 }
@@ -202,7 +202,7 @@ bool DataAccess::writeComputer(Computer computer)
     return query.exec();
 }
 
-bool DataAccess::deletePerson(int id)
+bool DataAccess::deleteScientist(int id)
 {
     QSqlQuery query;
 
@@ -222,16 +222,16 @@ bool DataAccess::deleteComputer(int id)
     return query.exec();
 }
 
-bool DataAccess::editPerson(int id, Person person)
+bool DataAccess::editScientist(int id, Scientist scientist)
 {
     QSqlQuery query;
 
     query.prepare("update Scientists set name = :name, gender = :gender, dob = :dob, dod = :dod, country = :country where id = :id");
-    query.bindValue(":name", QString::fromStdString(person.getName()));
-    query.bindValue(":gender", person.getGender());
-    query.bindValue(":dob", person.getBirth());
-    query.bindValue(":dod", person.getDeath());
-    query.bindValue(":country", QString::fromStdString(person.getCountry()));
+    query.bindValue(":name", QString::fromStdString(scientist.getName()));
+    query.bindValue(":gender", scientist.getGender());
+    query.bindValue(":dob", scientist.getBirth());
+    query.bindValue(":dod", scientist.getDeath());
+    query.bindValue(":country", QString::fromStdString(scientist.getCountry()));
     query.bindValue(":id", id);
 
     return query.exec();

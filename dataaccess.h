@@ -4,7 +4,7 @@
 #include <vector>
 #include <QtSql>
 
-#include "person.h"
+#include "scientist.h"
 #include "computer.h"
 #include "linked.h"
 
@@ -15,24 +15,24 @@ class DataAccess
 {
 public:
     DataAccess();
-    // Writes a single person to the database
-    bool writePerson(Person person);
-    // Reads all persons from the datafile and returns them in a vector
-    vector<Person> readPersons();
+    // Writes a single scientist to the database
+    bool writeScientist(Scientist scientist);
+    // Reads all Scientists from the datafile and returns them in a vector
+    vector<Scientist> readScientists();
     vector<Computer> readComputers();
     //Writes a single computer to the database
     bool writeComputer(Computer computer);
     void clearList();
-    // Returs persons returned from the databasequery
-    vector<Person> readPersonsFromQuery(string q);
+    // Returs Scientists returned from the databasequery
+    vector<Scientist> readScientistsFromQuery(string q);
     // returns vector of computers returned by the database query
     vector<Computer> readComputersFromQuery(string q);
-    // deletes a person from the database by ID
-    bool deletePerson(int id);
+    // deletes a scientist from the database by ID
+    bool deleteScientist(int id);
     // deletes a computer from the database by ID
     bool deleteComputer(int id);
-    // edits a person by ID
-    bool editPerson(int id, Person person);
+    // edits a scientist by ID
+    bool editScientist(int id, Scientist scientist);
     // edits computer by ID
     bool editComputer(int id, Computer computer);
     // links computer and scientist

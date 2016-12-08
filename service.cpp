@@ -10,51 +10,51 @@ Service::Service()
 
 }
 
-vector<Person> Service::getPersons(int sortBy)
+vector<Scientist> Service::getScientists(int sortBy)
 {
-    vector<Person> persons;
+    vector<Scientist> scientists;
 
     if(sortBy == 1)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by name asc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by name asc");
     else if(sortBy == 2)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dob asc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob asc");
     else if(sortBy == 3)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dod asc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod asc");
     else if(sortBy == 4)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by country asc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country asc");
     else if(sortBy == 5)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by name desc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by name desc");
     else if(sortBy == 6)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dob desc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob desc");
     else if(sortBy == 7)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by dod desc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod desc");
     else if(sortBy == 8)
-        persons = _dataAccess.readPersonsFromQuery("select * from Scientists order by country desc");
+        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country desc");
     else
-        persons = _dataAccess.readPersons();
-    return persons;
+        scientists = _dataAccess.readScientists();
+    return scientists;
 }
 
-bool Service::addPerson(Person p)
+bool Service::addScientist(Scientist p)
 {
     if(p.getName() != "" && p.getGender() != 0 && p.getCountry() != "")
     {
-        return _dataAccess.writePerson(p);
+        return _dataAccess.writeScientist(p);
     }
     else
         return false;
 }
 
-vector<Person> Service::searchForPerson(string search/*, string searchBy*/)
+vector<Scientist> Service::searchForScientist(string search/*, string searchBy*/)
 {
-    vector<Person> persons = getPersons(0);
-    vector<Person> results;
+    vector<Scientist> scientists = getScientists(0);
+    vector<Scientist> results;
 
-    for (size_t i = 0; i < persons.size(); i++)
+    for (size_t i = 0; i < scientists.size(); i++)
     {
-        if (persons.at(i).contains(search))
+        if (scientists.at(i).contains(search))
         {
-            results.push_back(persons.at(i));
+            results.push_back(scientists.at(i));
         }
     }
     return results;
@@ -67,9 +67,9 @@ void Service::clearData()
     _dataAccess.clearList();
 }
 
-bool Service::deletePerson(int id)
+bool Service::deleteScientist(int id)
 {
-    return _dataAccess.deletePerson(id);
+    return _dataAccess.deleteScientist(id);
 }
 
 vector<Computer> Service::getComputers(int sortBy)
@@ -141,9 +141,9 @@ bool Service::deleteComputer(int id)
     return _dataAccess.deleteComputer(id);
 }
 
-bool Service::editPerson(int id, Person editPerson)
+bool Service::editScientist(int id, Scientist editScientist)
 {
-    return _dataAccess.editPerson(id, editPerson);
+    return _dataAccess.editScientist(id, editScientist);
 }
 
 bool Service::editComputer(int id, Computer editComputer)

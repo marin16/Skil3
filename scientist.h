@@ -1,17 +1,17 @@
-#ifndef PERSON_H
-#define PERSON_H
+#ifndef Scientist_H
+#define Scientist_H
 
 #include <string>
 
 using namespace std;
 
-class Person
+class Scientist
 {
 public:
-    Person();
+    Scientist();
 
-    Person(int id, string name, char gender, int birth, int death, string country);
-    Person(string name, char gender, int birth, int death, string country);
+    Scientist(int id, string name, char gender, int birth, int death, string country);
+    Scientist(string name, char gender, int birth, int death, string country);
 
     int getId() const
     {
@@ -37,7 +37,7 @@ public:
     {
         return _country;
     }
-    // Returns true if Person contains search Term (source: example solution for week 1 dabs)
+    // Returns true if Scientist contains search Term (source: example solution for week 1 dabs)
     bool contains(string searchTerm);
 private:
     int _id;
@@ -48,4 +48,4 @@ private:
     string _country;
 };
 
-#endif // PERSON_H
+#endif // Scientist_H

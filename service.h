@@ -2,7 +2,7 @@
 #define Service_H
 
 #include <vector>
-#include "person.h"
+#include "scientist.h"
 #include "computer.h"
 #include "dataaccess.h"
 #include "linked.h"
@@ -10,13 +10,13 @@
 class Service
 {
 public:
-    // Service for persons
+    // Service for scientists
     Service();
-    vector<Person> getPersons(int sortBy);
-    vector<Person> searchForPerson(string search);
-    bool deletePerson(int id);
-    bool addPerson(Person newPerson);
-    bool editPerson(int id, Person editPerson);
+    vector<Scientist> getScientists(int sortBy);
+    vector<Scientist> searchForScientist(string search);
+    bool deleteScientist(int id);
+    bool addScientist(Scientist newScientist);
+    bool editScientist(int id, Scientist editScientist);
 
     // Service for computers
     vector<Computer> getComputers(int sortBy);

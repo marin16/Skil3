@@ -5,8 +5,8 @@ Linked::Linked()
 
 }
 
-Linked::Linked(Person person, Computer computer)
+Linked::Linked(Scientist scientist, Computer computer)
 {
-    _person = person;
+    _scientist = scientist;
     _computer = computer;
 }

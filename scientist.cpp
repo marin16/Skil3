@@ -1,12 +1,12 @@
-#include "person.h"
+#include "scientist.h"
 #include "utilities.h"
 
-Person::Person()
+Scientist::Scientist()
 {
 
 }
 
-Person::Person(int id, string name, char gender, int birth, int death, string country)
+Scientist::Scientist(int id, string name, char gender, int birth, int death, string country)
 {
     _id = id;
     _name = name;
@@ -16,7 +16,7 @@ Person::Person(int id, string name, char gender, int birth, int death, string co
     _country = country;
 }
 
-Person::Person(string name, char gender, int birth, int death, string country)
+Scientist::Scientist(string name, char gender, int birth, int death, string country)
 {
     _name = name;
     _gender = gender;
@@ -25,7 +25,7 @@ Person::Person(string name, char gender, int birth, int death, string country)
     _country = country;
 }
 
-bool Person::contains(string searchTerm)
+bool Scientist::contains(string searchTerm)
 {
     string searchTermLower = utils::stringToLower(searchTerm);
 

@@ -6,7 +6,7 @@
 #include <iomanip>
 
 #include "consoleui.h"
-#include "person.h"
+#include "scientist.h"
 #include "computer.h"
 #include "utilities.h"
 #include "linked.h"
@@ -119,7 +119,7 @@ void ConsoleUI::_instructions()
     cout << "||    edit-c   - to edit an computer                    ||" << endl;
     cout << "||    delete-c - to delete a computer                   ||" << endl;
     cout << "||                                                      ||" << endl;
-    cout << "||    add-s    - to add a new person                    ||" << endl;
+    cout << "||    add-s    - to add a new scientist                    ||" << endl;
     cout << "||    list-s   - to get a list of scientsits            ||" << endl;
     cout << "||    search-s - to search for scientist                ||" << endl;
     cout << "||    edit-s   - to edit an scientist                   ||" << endl;
@@ -146,11 +146,11 @@ void ConsoleUI::_add()
     cout << "||if you input invalid data you will be asked again. ||" << endl;
     cout << "=======================================================" << endl;
 
-    Person newPerson = _createPerson();
+    Scientist newScientist = _createScientist();
 
     do
     {
-        _displayPerson(newPerson);
+        _displayScientist(newScientist);
         cout << "Is the information correct?(Y/N) ";
         cin >> answer;
     }while(!_Valid.answerCheck(answer));
@@ -158,7 +158,7 @@ void ConsoleUI::_add()
     if (answer == 'y' || answer == 'Y')
     {
         cin.ignore();
-        if (_service.addPerson(newPerson))
+        if (_service.addScientist(newScientist))
         {
             cout << "Success!" << endl;
         }
@@ -214,7 +214,7 @@ void ConsoleUI::_addCPU()
  */
 void ConsoleUI::_search()
 {
-    vector<Person> results;
+    vector<Scientist> results;
     string search;
     char charsearch[100];
 
@@ -223,9 +223,9 @@ void ConsoleUI::_search()
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForPerson(search);
+    results = _service.searchForScientist(search);
 
-    _displayPersons(results);
+    _displayScientists(results);
 }
 
 /*
@@ -264,7 +264,7 @@ void ConsoleUI::_delete()
     cout << "ID: ";
     cin >> delId;
 
-    if(_service.deletePerson(delId))
+    if(_service.deleteScientist(delId))
         cout << "Success!" << endl;
     else
         cout << "Failed." << endl;
@@ -312,28 +312,28 @@ void ConsoleUI::_listScientists()
 
     string sort;
     cin >> sort;
-    vector<Person> persons;
+    vector<Scientist> scientists;
 
     if (sort == "name-asc")
-        persons = _service.getPersons(1);
+        scientists = _service.getScientists(1);
     else if (sort == "birth-asc")
-        persons = _service.getPersons(2);
+        scientists = _service.getScientists(2);
     else if (sort == "death-asc")
-        persons = _service.getPersons(3);
+        scientists = _service.getScientists(3);
     else if (sort == "country-asc")
-        persons = _service.getPersons(4);
+        scientists = _service.getScientists(4);
     else if (sort == "name-desc")
-        persons = _service.getPersons(5);
+        scientists = _service.getScientists(5);
     else if (sort == "birth-desc")
-        persons = _service.getPersons(6);
+        scientists = _service.getScientists(6);
     else if (sort == "death-desc")
-        persons = _service.getPersons(7);
+        scientists = _service.getScientists(7);
     else if (sort == "country-desc")
-        persons = _service.getPersons(8);
+        scientists = _service.getScientists(8);
     else
-        persons = _service.getPersons(0);
+        scientists = _service.getScientists(0);
 
-    _displayPersons(persons);
+    _displayScientists(scientists);
 }
 
 /*
@@ -418,8 +418,8 @@ void ConsoleUI::_edit()
     cout << "ID: ";
     cin >> editId;
 
-    if(_service.editPerson(editId,_createPerson()))
-        cout << "Person successfully edited." << endl;
+    if(_service.editScientist(editId,_createScientist()))
+        cout << "Scientist successfully edited." << endl;
     else
         cout << "Failed." << endl;
 }
@@ -441,11 +441,11 @@ void ConsoleUI::_editComputer()
 }
 
 /*
- * _displayPerson: Displays one person
+ * _displayScientist: Displays one scientist
  */
-void ConsoleUI::_displayPerson(Person person)
+void ConsoleUI::_displayScientist(Scientist scientist)
 {
-    size_t nameLength = person.getName().length();
+    size_t nameLength = scientist.getName().length();
 
     // nameLength cant be shorter than "Name: " (6)
     if (nameLength < 6)
@@ -458,31 +458,31 @@ void ConsoleUI::_displayPerson(Person person)
     cout << setw(7) << left << "Died:";
     cout << "Country:" << endl;
 
-    // Print the person
-    cout << setw(nameLength+1) << left << person.getName();
-    cout << setw(8) << left << person.getGender();
-    cout << setw(7) << left << person.getBirth();
-    cout << setw(7) << left << person.getDeath();
-    cout << person.getCountry() << endl;
+    // Print the scientist
+    cout << setw(nameLength+1) << left << scientist.getName();
+    cout << setw(8) << left << scientist.getGender();
+    cout << setw(7) << left << scientist.getBirth();
+    cout << setw(7) << left << scientist.getDeath();
+    cout << scientist.getCountry() << endl;
 }
 
 /*
- * _displayPersons: Displays multiple persons
+ * _displayScientists: Displays multiple scientists
  */
-void ConsoleUI::_displayPersons(vector<Person> persons)
+void ConsoleUI::_displayScientists(vector<Scientist> scientists)
 {
-    // If there is no person in list we do not want to display anything.
-    if (persons.size() > 0)
+    // If there is no scientist in list we do not want to display anything.
+    if (scientists.size() > 0)
     {
         size_t longestName = 0;
         size_t longestId = 5;
         // Get the longest name, so we can determine with of columns in table.
-        for (size_t i = 0; i < persons.size(); ++i)
+        for (size_t i = 0; i < scientists.size(); ++i)
         {
-            if (persons[i].getName().length() > longestName)
-                longestName = persons[i].getName().length();
-            if (utils::intToString(persons[i].getId()).length() > longestId)
-                longestId = utils::intToString(persons[i].getId()).length();
+            if (scientists[i].getName().length() > longestName)
+                longestName = scientists[i].getName().length();
+            if (utils::intToString(scientists[i].getId()).length() > longestId)
+                longestId = utils::intToString(scientists[i].getId()).length();
         }
 
         // longest name cant be shorter than "Name: " (6)
@@ -497,18 +497,18 @@ void ConsoleUI::_displayPersons(vector<Person> persons)
         cout << setw(7) << left << "Died:";
         cout << "Country:" << endl;
 
-        // Display every person from the list
-        for(size_t i = 0; i < persons.size(); i++)
+        // Display every scientist from the list
+        for(size_t i = 0; i < scientists.size(); i++)
         {
-            cout << setw(longestId+1) << left << persons[i].getId();
-            cout << setw(longestName+1) << left << persons[i].getName();
-            cout << setw(8) << left << persons[i].getGender();
-            cout << setw(7) << left << persons[i].getBirth();
-            cout << setw(7) << left << persons[i].getDeath();
-            cout << persons[i].getCountry() << endl;
+            cout << setw(longestId+1) << left << scientists[i].getId();
+            cout << setw(longestName+1) << left << scientists[i].getName();
+            cout << setw(8) << left << scientists[i].getGender();
+            cout << setw(7) << left << scientists[i].getBirth();
+            cout << setw(7) << left << scientists[i].getDeath();
+            cout << scientists[i].getCountry() << endl;
         }
     }
-    cout << "The list contains: " << persons.size() << " scientists." << endl;
+    cout << "The list contains: " << scientists.size() << " scientists." << endl;
 }
 
 void ConsoleUI::_displayComputer(Computer computer)
@@ -536,7 +536,7 @@ void ConsoleUI::_displayComputer(Computer computer)
 }
 
 /*
- * _displayPersons: Displays multiple persons
+ * _displayScientists: Displays multiple scientists
  */
 void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
@@ -564,7 +564,7 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
         cout << setw(13) << left << "Year built:";
         cout << "Built:" << endl;
 
-        // Display every person from the list
+        // Display every scientist from the list
         for(size_t i = 0; i < computers.size(); i++)
         {
             cout << setw(longestId+1) << left << computers[i].getId();
@@ -592,10 +592,10 @@ void ConsoleUI::_displayLinked(vector<Linked> links)
                 longestComputerName = links[i].getComputer().getName().length();
             if(utils::intToString(links[i].getComputer().getId()).length() > longestComputerId)
                 longestComputerId = utils::intToString(links[i].getComputer().getId()).length();
-            if(links[i].getPerson().getName().length() > longestScientistName)
+            if(links[i].getScientist().getName().length() > longestScientistName)
                 longestScientistName = links[i].getComputer().getName().length();
-            if(utils::intToString(links[i].getPerson().getId()).length() > longestScientistId)
-                longestScientistId = utils::intToString(links[i].getPerson().getId()).length();
+            if(utils::intToString(links[i].getScientist().getId()).length() > longestScientistId)
+                longestScientistId = utils::intToString(links[i].getScientist().getId()).length();
         }
 
         // Labels for table
@@ -606,8 +606,8 @@ void ConsoleUI::_displayLinked(vector<Linked> links)
 
         for (size_t i = 0; i < links.size(); i++)
         {
-            cout << setw(longestScientistId+1) << left << links[i].getPerson().getId();
-            cout << setw(longestScientistName+1) << left << links[i].getPerson().getName();
+            cout << setw(longestScientistId+1) << left << links[i].getScientist().getId();
+            cout << setw(longestScientistName+1) << left << links[i].getScientist().getName();
             cout << setw(longestComputerId+1) << left << links[i].getComputer().getId();
             cout << setw(longestComputerName+1) << left << links[i].getComputer().getName() << endl;
         }
@@ -666,7 +666,7 @@ void ConsoleUI::_clear()
     }while(confirm != "confirm" && confirm != "cancel");
 }
 
-Person ConsoleUI::_createPerson()
+Scientist ConsoleUI::_createScientist()
 {
     string name;
     char gender;
@@ -717,7 +717,7 @@ Person ConsoleUI::_createPerson()
 
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
-    return Person(name, gender, birthint, deathint, country);
+    return Scientist(name, gender, birthint, deathint, country);
 }
 
 Computer ConsoleUI::_createComputer()

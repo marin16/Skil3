@@ -10,26 +10,95 @@
 class Service
 {
 public:
-    // Service for scientists
     Service();
+
+    /*
+     * getScientists: Used to get a (optionaly: sorted) list of Scientists.
+     * params: int sortBy (determens how the list should be sorted).
+     * returns: vector<Scientists> sorted list
+     */
     vector<Scientist> getScientists(int sortBy);
+
+    /*
+     * searchForScientist: Used to search for a scientist.
+     * params: string search (search string that is compared with all scientists).
+     * returns: vector<Scientist> all matches.
+     */
     vector<Scientist> searchForScientist(string search);
+
+    /*
+     * deleteScientist: Used when deleteing scientist.
+     * params: int id (id of Scientist that is to be deleted).
+     * returns: true if deletion completed, false if it failed.
+     */
     bool deleteScientist(int id);
+
+    /*
+     * addScientist: Used when adding a new scientist.
+     * params: Scientist newScientist (Scientist containing valuse to be added).
+     * returns: true if addition completed, false if it failed.
+     */
     bool addScientist(Scientist newScientist);
+
+    /*
+     * editScientist: Used when editing a scientist from the database.
+     * params: int id (id of the scientist that is to be edited), Scientist editScientist (Scientist containing new values).
+     * returns: true if the edit succeded, false if it failed.
+     */
     bool editScientist(int id, Scientist editScientist);
 
-    // Service for computers
+    /*
+     * getComputers: Used to get a (optionaly: sorted) list of Computers.
+     * params: int sortBy (determens how the list should be sorted).
+     * returns: vector<Computer> sorted list
+     */
     vector<Computer> getComputers(int sortBy);
+
+    /*
+     * searchForComputer: Used to search for a computer.
+     * params: string search (search string that is compared with all computers).
+     * returns: vector<Scientist> all matches.
+     */
     vector<Computer> searchForComputer(string search);
+
+    /*
+     * deleteComputer: Used when deleteing computer.
+     * params: int id (id of computer that is to be deleted).
+     * returns: true if deletion completed, false if it failed.
+     */
     bool deleteComputer(int id);
+
+    /*
+     * addComputer: Used when adding a new computer.
+     * params: Computer newComputer (Computer containing valuse to be added).
+     * returns: true if addition completed, false if it failed.
+     */
     bool addComputer(Computer newComputer);
+
+    /*
+     * editComputer: Used when editing a computer from the database.
+     * params: int id (id of the computer that is to be edited), Computer editComputer (Computer containing new values).
+     * returns: true if the edit succeded, false if it failed.
+     */
     bool editComputer(int id, Computer editComputer);
 
-    // Shared service
+    /*
+     * clearData(): Used when clearing all data from the database.
+     */
     void clearData();
-    // Links computer and scientist
+
+    /*
+     * link: Used when linking computer and scientist.
+     * params: int cId (id of computer to be linked), id sId (id of scientist to be linked).
+     * returns: true if the link succeded, false if it failed.
+     */
     bool link(int cId, int sId);
-    // used to get list of links
+
+    /*
+     * getLinks: Used to get a (optionaly: sorted) list of Linked Computers and Scientists.
+     * params: int sortBy (determens how the list should be sorted).
+     * returns: vector<Linked> sorted list.
+     */
     vector<Linked> getLinks(int sortBy);
 
 private:

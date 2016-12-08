@@ -26,7 +26,7 @@ https://github.com/dadisigursveinn/Skil2
   * Private class properties
   * Private class functions
 
-####Demonstrative Na:mes
+####Demonstrative Names
 We will use descriptive names in our code so instead of writing something like:
 ```C++
 a = b ∗ c ;

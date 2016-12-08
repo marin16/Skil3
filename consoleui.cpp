@@ -297,25 +297,23 @@ void ConsoleUI::_deleteCPU()
  */
 void ConsoleUI::_listScientists()
 {
-    cout << "==============================================================" << endl;
-    cout << "||        Please enter one of the following commands:       ||" << endl;
-    cout << "==============================================================" << endl;
-    cout << "||    name-asc      - sort by name alphabetically ascending ||" << endl;
-    cout << "||    birth-asc     - sort by year of birth ascending       ||" << endl;
-    cout << "||    death-asc     - sort by year of death ascending       ||" << endl;
-    cout << "||    country-asc   - sort by nationality ascending         ||" << endl;
-<<<<<<< HEAD
-    cout << "||                                                          ||" << endl;
-    cout << "||    name-desc     - sort by name alphabeticaly descending ||" << endl;
-=======
-    cout << "||    name-desc     - sort by name alphabetically descending||" << endl;
->>>>>>> 7ed6bad5a031a3420c328ea78a355d2f3dfb722d
-    cout << "||    birth-desc    - sort by year of birth descending      ||" << endl;
-    cout << "||    death-desc    - sort by year of birth descending      ||" << endl;
-    cout << "||    country-desc  - sort by nationality descending        ||" << endl;
-    cout << "||                                                          ||" << endl;
-    cout << "||    unsorted      - get unsorted list (default)           ||" << endl;
-    cout << "==============================================================" << endl;
+    cout << "===============================================================" << endl;
+    cout << "||        Please enter one of the following commands:        ||" << endl;
+    cout << "===============================================================" << endl;
+    cout << "||                                                           ||" << endl;
+    cout << "||    name-asc      - sort by name alphabetically ascending  ||" << endl;
+    cout << "||    birth-asc     - sort by year of birth ascending        ||" << endl;
+    cout << "||    death-asc     - sort by year of death ascending        ||" << endl;
+    cout << "||    country-asc   - sort by nationality ascending          ||" << endl;
+    cout << "||                                                           ||" << endl;
+    cout << "||    name-desc     - sort by name alphabetically descending ||" << endl;
+    cout << "||    birth-desc    - sort by year of birth descending       ||" << endl;
+    cout << "||    death-desc    - sort by year of birth descending       ||" << endl;
+    cout << "||    country-desc  - sort by nationality descending         ||" << endl;
+    cout << "||                                                           ||" << endl;
+    cout << "||    unsorted      - get unsorted list (default)            ||" << endl;
+    cout << "||                                                           ||" << endl;
+    cout << "===============================================================" << endl;
 
     string sort;
     cin >> sort;
@@ -351,19 +349,17 @@ void ConsoleUI::_listCPU()
     cout << "=================================================================" << endl;
     cout << "||         Please enter one of the following commands:         ||" << endl;
     cout << "=================================================================" << endl;
+    cout << "||                                                             ||" << endl;
     cout << "||    name-asc      - sort by name alphabetically ascending    ||" << endl;
     cout << "||    buildy-asc    - sort by built year ascending             ||" << endl;
     cout << "||    type-asc      - sort by type ascending                   ||" << endl;
-<<<<<<< HEAD
     cout << "||                                                             ||" << endl;
-    cout << "||    name-desc     - sort by name alphabeticaly descending    ||" << endl;
-=======
     cout << "||    name-desc     - sort by name alphabetically descending   ||" << endl;
->>>>>>> 7ed6bad5a031a3420c328ea78a355d2f3dfb722d
     cout << "||    buildy-desc   - sort by built year descending            ||" << endl;
     cout << "||    type-desc     - sort by type descending                  ||" << endl;
     cout << "||                                                             ||" << endl;
     cout << "||    unsorted      - get unsorted list (default)              ||" << endl;
+    cout << "||                                                             ||" << endl;
     cout << "=================================================================" << endl;
 
     string sort;
@@ -397,17 +393,15 @@ void ConsoleUI::_list()
     cout << "============================================================================" << endl;
     cout << "||              Please enter one of the following commands:               ||" << endl;
     cout << "============================================================================" << endl;
+    cout << "||                                                                        ||" << endl;
     cout << "||    computer-asc      - sort by computer name alphabetically ascending  ||" << endl;
     cout << "||    scientist-asc     - sort by scientist nameyear ascending            ||" << endl;
-<<<<<<< HEAD
     cout << "||                                                                        ||" << endl;
-    cout << "||    computer-desc     - sort by computer name alphabeticaly descending  ||" << endl;
-=======
     cout << "||    computer-desc     - sort by computer name alphabetically descending ||" << endl;
->>>>>>> 7ed6bad5a031a3420c328ea78a355d2f3dfb722d
     cout << "||    scientist-desc    - sort by scientist nameyear descending           ||" << endl;
     cout << "||                                                                        ||" << endl;
     cout << "||    unsorted          - get unsorted list (default)                     ||" << endl;
+    cout << "||                                                                        ||" << endl;
     cout << "============================================================================" << endl;
 
     string sort;

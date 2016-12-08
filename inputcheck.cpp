@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <cctype>
+#include <sstream>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ bool inputcheck::nameCheck(const string &name)
 {
     for(size_t i = 0; i < name.length(); i++)
     {
-        if (ispunct(name[i]))
+        if (ispunct(name[i]) || isspace(name[0]))
                 return false;
     }
     return !(name.find_first_of("0123456789") != string::npos) && name.length() < 100;
@@ -26,16 +27,26 @@ bool inputcheck::cpuCheck(const string &cpuname)
 
     for(size_t i = 0; i < cpuname.length(); i++)
     {
-        if (ispunct(cpuname[i]) || isspace(cpuname[i]) || cpuname.empty())
+        if (ispunct(cpuname[i]) || cpuname.empty() || isspace(cpuname[0]))
             return false;
     }
     return cpuname.length() < 100;
 }
 
 
-bool inputcheck::genderCheck(char gender)
+bool inputcheck::genderCheck(const string &genderstring)
 {
-    return (gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F');
+    if (genderstring.length() > 1) {
+        return false;
+    }
+    {
+        if (ispunct(genderstring[0]) || genderstring.empty() || isspace(genderstring[0])) {
+            return false;
+        }
+        else if (genderstring[0] == 'm' || genderstring[0] == 'M' || genderstring[0] == 'f' || genderstring[0] == 'F') {
+            return true;
+        }
+    }
 }
 
 bool inputcheck::birthCheck(string birth)

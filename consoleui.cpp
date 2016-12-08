@@ -676,12 +676,13 @@ void ConsoleUI::_clear()
 Person ConsoleUI::_createPerson()
 {
     string name;
-    char gender;
+    string genderstring;
     string birth;
     string death;
     string country;
     char charname[100];
     char charcountry[100];
+    char gender[100];
 
     do
     {
@@ -694,9 +695,10 @@ Person ConsoleUI::_createPerson()
     do
     {
         cout << "Gender (m/f): ";
-        cin >> gender;
-        gender = toupper(gender);
-    }while(!_Valid.genderCheck(gender));
+        cin.ignore();
+        cin.getline(gender,sizeof(gender));
+        genderstring = string(gender);
+    }while(!_Valid.genderCheck(genderstring));
 
     do
     {
@@ -724,7 +726,7 @@ Person ConsoleUI::_createPerson()
 
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
-    return Person(name, gender, birthint, deathint, country);
+    return Person(name, gender[0], birthint, deathint, country);
 }
 
 Computer ConsoleUI::_createComputer()
@@ -743,7 +745,7 @@ Computer ConsoleUI::_createComputer()
         cin.ignore();
         cin.getline(charcpuname,sizeof(charcpuname));
         cpuname = string(charcpuname);
-    }while(!_Valid.cpuCheck(cpuname));
+    }while(!_Valid.cpuCheck(cpuname));    
 
     do
     {

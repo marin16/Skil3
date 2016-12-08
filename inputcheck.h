@@ -10,7 +10,7 @@ public:
     inputcheck();
     bool nameCheck(const string &name);
     bool cpuCheck(const string &cpuname);
-    bool genderCheck(char gender);
+    bool genderCheck(const string &genderstring);
     bool birthCheck(string birth);
     bool deathCheck(string death, string birth);
     bool commaCheck(string word);

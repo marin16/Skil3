@@ -238,7 +238,7 @@ bool DataAccess::editScientist(int id, Scientist scientist)
 
     query.prepare("update Scientists set name = :name, gender = :gender, dob = :dob, dod = :dod, country = :country where id = :id");
     query.bindValue(":name", QString::fromStdString(scientist.getName()));
-    query.bindValue(":gender", scientist.getGender());
+    query.bindValue(":gender", QChar(scientist.getGender()));
     query.bindValue(":dob", scientist.getBirth());
     query.bindValue(":dod", scientist.getDeath());
     query.bindValue(":country", QString::fromStdString(scientist.getCountry()));

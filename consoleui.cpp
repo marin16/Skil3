@@ -843,9 +843,7 @@ Computer ConsoleUI::_createComputer()
     int buildyint = atoi(buildy.c_str());
     return Computer(cpuname, buildyint, type, boolbuilt);
 }
-/*
- * _illegalInput: Writes out error message about illegal input.
- */
+
 void ConsoleUI::_illegalInput()
 {
     cout << "Illegal input. Please try again!" << endl;

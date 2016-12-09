@@ -42,8 +42,6 @@ private:
      * _list: Displays menu of computers for list. Displays list based on user's input.
      */
     void _listCPU();
-    //void _computers();
-    //void _scientists();
     /*
      * _instructions(): Prints out instructions for the user informing him of what commands he has available.
      */

@@ -235,6 +235,8 @@ void ConsoleUI::_searchCPU()
 void ConsoleUI::_delete()
 {
     int delId;
+    vector<Scientist> scientists;
+    scientists = _service.getScientists(0);
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
@@ -251,16 +253,22 @@ void ConsoleUI::_delete()
         std::cin >> delId;
     }
 
-
+    if(_Valid.idCheck(delId, scientists))
+    {
     if(_service.deleteScientist(delId))
         cout << "Success!" << endl;
     else
         cout << "Failed." << endl;
+    }
+    else
+        _illegalInput();
 }
 
 void ConsoleUI::_deleteCPU()
 {
     int delId;
+    vector<Computer> computers;
+    computers = _service.getComputers(0);
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
@@ -277,10 +285,14 @@ void ConsoleUI::_deleteCPU()
             std::cin >> delId;
     }
 
-    if(_service.deleteComputer(delId))
-        cout << "Success!" << endl;
+    if(_Valid.cpuIdCheck(delId, computers)){
+        if(_service.deleteComputer(delId))
+            cout << "Success!" << endl;
+        else
+            cout << "Failed." << endl;
+    }
     else
-        cout << "Failed." << endl;
+        _illegalInput();
 }
 
 void ConsoleUI::_listScientists()

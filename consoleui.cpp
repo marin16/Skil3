@@ -79,6 +79,10 @@ void ConsoleUI::run(){
 
             _link();
         }
+        else if(command == "unlink"){
+
+            _unLink();
+        }
         else if(command == "list"){
 
             _list();
@@ -124,6 +128,7 @@ void ConsoleUI::_instructions(){
     cout << "||    delete-s - to delete a scientist                  ||" << endl;
     cout << "||                                                      ||" << endl;
     cout << "||    link     - to link scientist and computer         ||" << endl;
+    cout << "||    unlink   - to unlink scientist and computer       ||" << endl;
     cout << "||    list     - to get linked scientists and computers ||" << endl;
     cout << "||    clear    - to clear all data                      ||" << endl;
     cout << "||    help     - to view this again                     ||" << endl;
@@ -718,6 +723,46 @@ void ConsoleUI::_link(){
         cout << "Successfully linked." << endl;
     else
         cout << "Failed to link." << endl;
+}
+
+void ConsoleUI::_unLink() {
+    int compId;
+    int sciId;
+
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the computer      ||" << endl;
+    cout << "||              you want to unlink  :           ||" << endl;
+    cout << "==================================================" << endl;
+
+    cout << "ID: ";
+    cin >> compId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> compId;
+    }
+
+    cout << "==================================================" << endl;
+    cout << "||     Please enter the ID of the scientist     ||" << endl;
+    cout << "||              you want to unlink  :           ||" << endl;
+    cout << "==================================================" << endl;
+
+    cout << "ID: ";
+    cin >> sciId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> sciId;
+    }
+
+    if(_service.unLink(compId,sciId))
+        cout << "Successfully unlinked." << endl;
+    else
+        cout << "Failed to unlink." << endl;
 }
 
 void ConsoleUI::_clear(){

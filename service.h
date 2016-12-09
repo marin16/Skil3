@@ -95,6 +95,13 @@ public:
     bool link(int cId, int sId);
 
     /*
+     * unlink: Used when unlinking computer and scientist.
+     * params: int cId (id of computer to be unlinked), id sId (id of scientist to be unlinked).
+     * returns: true if the unlink succeded, false if it failed.
+     */
+    bool unLink(int cId, int sId);
+
+    /*
      * getLinks: Used to get a (optionaly: sorted) list of Linked Computers and Scientists.
      * params: int sortBy (determens how the list should be sorted).
      * returns: vector<Linked> sorted list.

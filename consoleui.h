@@ -75,6 +75,10 @@ private:
      */
     void _link();
     /*
+     * _unLink: Unlinks scientist and computer together.
+     */
+    void _unLink();
+    /*
      * _list: Displays menu of computers and scientists. Displays list based on user's input.
      */
     void _list();

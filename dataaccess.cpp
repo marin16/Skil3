@@ -270,6 +270,16 @@ bool DataAccess::link(int cId, int sId){
     return query.exec();
 }
 
+bool DataAccess::unLink(int cId, int sId){
+
+    QSqlQuery query;
+    query.prepare("delete from Scientist_has_Computer where cid = :cId and sid = :sId");
+    query.bindValue(":sId", sId);
+    query.bindValue(":cId", cId);
+
+    return query.exec();
+}
+
 /*
  * clearList(): Used to remove all data from the database.
  */

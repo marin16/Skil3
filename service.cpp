@@ -152,3 +152,8 @@ bool Service::link(int cId, int sId){
 
     return _dataAccess.link(cId, sId);
 }
+
+bool Service::unLink(int cId, int sId){
+
+    return _dataAccess.unLink(cId, sId);
+}

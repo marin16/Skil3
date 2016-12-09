@@ -95,6 +95,13 @@ public:
     bool link(int cId, int sId);
 
     /*
+     * unlink: Used to delete a link beetween a scientist and a computer.
+     * params: int cId (id of computer that is to be unlinked), int sId (id of the scientist that is to be unlinked)
+     * returns: true if query execuded successfuly, otherwise false.
+     */
+    bool unLink(int cId, int sId);
+
+    /*
      * readLinked: Used to get a vector of all linked computers and scientists.
      * returns: vector<Linked>
      */

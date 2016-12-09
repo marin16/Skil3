@@ -1,6 +1,9 @@
 #ifndef INPUTCHECK_H
 #define INPUTCHECK_H
 #include <string>
+#include <vector>
+#include "scientist.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -62,6 +65,18 @@ public:
      * returns: true if computer was built
      */
     bool builtCheck(bool built);
+    /*
+     * idCheck: Check if the id is in the database for scientists
+     * params: int id (Scientist id), vector<Scientist> (vector containing scientists table)
+     * returns: true if a mathcing id is in the database
+     */
+    bool idCheck(int id, vector<Scientist>);
+    /*
+     * cpuIdCheck: Check if the id is in the database for computers
+     * params: int id (Computer id), vector<Computer> (vector containing computers table)
+     * returns: true if a mathcing id is in the database
+     */
+    bool cpuIdCheck(int id, vector<Computer>);
 };
 
 #endif // INPUTCHECK_H

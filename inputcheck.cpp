@@ -83,3 +83,25 @@ bool inputcheck::builtCheck(bool built)
 {
     return (built == 1 || built == 0);
 }
+
+bool inputcheck::idCheck(int id, vector<Scientist> scientist)
+{
+    bool match = false;
+    for (size_t i = 0; i < scientist.size(); ++i)
+    {
+        if(scientist[i].getId() == id)
+            match = true;
+    }
+    return match;
+}
+
+bool inputcheck::cpuIdCheck(int id, vector<Computer> computer)
+{
+    bool match = false;
+    for (size_t i = 0; i < computer.size(); ++i)
+    {
+        if(computer[i].getId() == id)
+            match = true;
+    }
+    return match;
+}

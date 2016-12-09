@@ -440,6 +440,8 @@ void ConsoleUI::_list()
 void ConsoleUI::_edit()
 {
     int editId;
+    vector<Scientist> scientists;
+    scientists = _service.getScientists(0);
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
@@ -455,11 +457,15 @@ void ConsoleUI::_edit()
             std::cout << "Wrong input, try again: ";
             std::cin >> editId;
     }
-
+    if(_Valid.idCheck(editId, scientists))
+    {
     if(_service.editScientist(editId,_createScientist()))
         cout << "Scientist successfully edited." << endl;
     else
         cout << "Failed." << endl;
+    }
+    else
+        _illegalInput();
 }
 
 /*
@@ -468,6 +474,8 @@ void ConsoleUI::_edit()
 void ConsoleUI::_editComputer()
 {
     int editId;
+    vector<Computer> computers;
+    computers = _service.getComputers(0);
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
@@ -483,11 +491,15 @@ void ConsoleUI::_editComputer()
             std::cout << "Wrong input, try again: ";
             std::cin >> editId;
     }
-
-    if(_service.editComputer(editId,_createComputer()))
-        cout << "Computer successfully edited." << endl;
+    if(_Valid.cpuIdCheck(editId, computers))
+    {
+        if(_service.editComputer(editId,_createComputer()))
+            cout << "Computer successfully edited." << endl;
+        else
+            cout << "Failed." << endl;
+    }
     else
-        cout << "Failed." << endl;
+        _illegalInput();
 }
 
 /*

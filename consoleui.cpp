@@ -722,10 +722,10 @@ Scientist ConsoleUI::_createScientist()
     char charcountry[100];
     bool valid;
 
+    cin.ignore();
     do
     {
         cout << "Name: ";
-        cin.ignore();
         cin.getline(charname,sizeof(charname));
         name = string(charname);
         valid = _Valid.nameCheck(name);

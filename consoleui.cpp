@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
+#include <limits>
 
 #include "consoleui.h"
 #include "scientist.h"
@@ -148,7 +149,6 @@ void ConsoleUI::_add()
     cout << "=======================================================" << endl;
 
     Scientist newScientist = _createScientist();
-
     do
     {
         _displayScientist(newScientist);
@@ -170,7 +170,6 @@ void ConsoleUI::_add()
     }
     else if (answer == 'n' || answer == 'N')
     {
-        cin.ignore();
         _add();
     }
 }
@@ -205,7 +204,6 @@ void ConsoleUI::_addCPU()
     }
     else if (answer == 'n' || answer == 'N')
     {
-        cin.ignore();
         _addCPU();
     }
 }
@@ -760,10 +758,10 @@ Scientist ConsoleUI::_createScientist()
         if (!valid) _illegalInput();
     }while(!valid);
 
+    cin.ignore();
     do
     {
         cout << "Nationality: ";
-        cin.ignore();
         cin.getline(charcountry,sizeof(charcountry));
         country = string(charcountry);
         valid = _Valid.nameCheck(country);
@@ -789,10 +787,10 @@ Computer ConsoleUI::_createComputer()
     bool boolbuilt = false;
     bool valid;
 
+    cin.ignore();
     do
     {
         cout << "Computer name: ";
-        cin.ignore();
         cin.getline(charcpuname,sizeof(charcpuname));
         cpuname = string(charcpuname);
         valid = _Valid.cpuCheck(cpuname);
@@ -802,17 +800,16 @@ Computer ConsoleUI::_createComputer()
     do
     {
         cin.clear();
-        //cin.ignore();
         cout << "Build year: ";
         cin >> buildy;
         valid = _Valid.buildyCheck(buildy);
         if (!valid) _illegalInput();
     }while(!valid);
 
+    cin.ignore();
     do
     {
         cout << "Type of computer: ";
-        cin.ignore();
         cin.getline(charcputype,sizeof(charcputype));
         type = string(charcputype);
         valid = _Valid.nameCheck(type);

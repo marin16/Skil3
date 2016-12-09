@@ -72,3 +72,7 @@ We comment our code when it does not explain itself well enaugh and we feel like
   * table variables
 * views
   * views are named like Tables but should end with `_view`
+* triggers
+ * triggers are named like Tables but should end with `_trigger`
+* Many\_to\_Many table
+ * Connecting tables should be named `Table1` name followed by \_has\_`Table2` 

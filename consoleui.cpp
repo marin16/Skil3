@@ -106,9 +106,6 @@ void ConsoleUI::run()
     }while(true);
 }
 
-/*
- * _instructions(): Prints out instructions for the user informing him of what commands he has available.
- */
 void ConsoleUI::_instructions()
 {
     cout << "==========================================================" << endl;
@@ -136,9 +133,6 @@ void ConsoleUI::_instructions()
     cout << "==========================================================" << endl;
 }
 
-/*
- * _add: Takes user input and adds to vector.
- */
 void ConsoleUI::_add()
 {
     char answer;
@@ -174,9 +168,6 @@ void ConsoleUI::_add()
     }
 }
 
-/*
- * _add: Takes user input and adds to vector.
- */
 void ConsoleUI::_addCPU()
 {
     char answer;
@@ -208,9 +199,6 @@ void ConsoleUI::_addCPU()
     }
 }
 
-/*
- * _search: Searches scientists based on user's input.
- */
 void ConsoleUI::_search()
 {
     vector<Scientist> results;
@@ -226,10 +214,6 @@ void ConsoleUI::_search()
 
     _displayScientists(results);
 }
-
-/*
- * _search: Searches computers based on user's input.
- */
 
 void ConsoleUI::_searchCPU()
 {
@@ -248,9 +232,6 @@ void ConsoleUI::_searchCPU()
     _displayComputers(results);
 }
 
-/*
- * _delete: Deletes scientist from list.
- */
 void ConsoleUI::_delete()
 {
     int delId;
@@ -277,9 +258,6 @@ void ConsoleUI::_delete()
         cout << "Failed." << endl;
 }
 
-/*
- * _delete: Deletes computer from list.
- */
 void ConsoleUI::_deleteCPU()
 {
     int delId;
@@ -305,9 +283,6 @@ void ConsoleUI::_deleteCPU()
         cout << "Failed." << endl;
 }
 
-/*
- * _list: Displays menu of scientists for list. Displays list based on user's input.
- */
 void ConsoleUI::_listScientists()
 {
     cout << "===============================================================" << endl;
@@ -354,9 +329,6 @@ void ConsoleUI::_listScientists()
     _displayScientists(scientists);
 }
 
-/*
- * _list: Displays menu of computers for list. Displays list based on user's input.
- */
 void ConsoleUI::_listCPU()
 {
     cout << "=================================================================" << endl;
@@ -397,9 +369,6 @@ void ConsoleUI::_listCPU()
     _displayComputers(computers);
 }
 
-/*
- * _list: Displays menu of computers and scientists. Displays list based on user's input.
- */
 void ConsoleUI::_list()
 {
     vector<Linked> links;
@@ -434,9 +403,6 @@ void ConsoleUI::_list()
     _displayLinked(links);
 }
 
-/*
- * _edit: Edits a person.
- */
 void ConsoleUI::_edit()
 {
     int editId;
@@ -468,9 +434,6 @@ void ConsoleUI::_edit()
         _illegalInput();
 }
 
-/*
- * _edit: Edits a computer.
- */
 void ConsoleUI::_editComputer()
 {
     int editId;
@@ -502,9 +465,6 @@ void ConsoleUI::_editComputer()
         _illegalInput();
 }
 
-/*
- * _displayScientist: Displays one scientist.
- */
 void ConsoleUI::_displayScientist(Scientist scientist)
 {
     size_t nameLength = scientist.getName().length();
@@ -531,9 +491,6 @@ void ConsoleUI::_displayScientist(Scientist scientist)
     cout << scientist.getCountry() << endl;
 }
 
-/*
- * _displayScientists: Displays multiple scientists.
- */
 void ConsoleUI::_displayScientists(vector<Scientist> scientists)
 {
     // If there is no scientist in list we do not want to display anything.
@@ -579,9 +536,6 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists)
     cout << "The list contains: " << scientists.size() << " scientists." << endl;
 }
 
-/*
- * _displayComputer: Displays one computer.
- */
 void ConsoleUI::_displayComputer(Computer computer)
 {
     size_t nameLenght = computer.getName().length();
@@ -612,9 +566,6 @@ void ConsoleUI::_displayComputer(Computer computer)
 
 }
 
-/*
- * _displayComputers: Displays multiple computers.
- */
 void ConsoleUI::_displayComputers(vector<Computer> computers)
 {
     // If there is no computer in list we do not want to display anything.
@@ -658,10 +609,6 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
     cout << "The list contains: " << computers.size() << " computers." << endl;
 }
 
-
-/*
- * _displayLinked: Displays linked computers and scientists.
- */
 void ConsoleUI::_displayLinked(vector<Linked> links)
 {
     if (links.size() > 0 )
@@ -741,9 +688,6 @@ void ConsoleUI::_link()
         cout << "Failed to link." << endl;
 }
 
-/*
- * _clear: Clears the data from the list of scientists.
- */
 void ConsoleUI::_clear()
 {
     string confirm;
@@ -769,9 +713,6 @@ void ConsoleUI::_clear()
     }while(confirm != "confirm" && confirm != "cancel");
 }
 
-/*
- * _create: Creates one scientist.
- */
 Scientist ConsoleUI::_createScientist()
 {
     string name;
@@ -836,9 +777,6 @@ Scientist ConsoleUI::_createScientist()
     return Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 }
 
-/*
- * _create: Creates one computer.
- */
 Computer ConsoleUI::_createComputer()
 {
     string cpuname;

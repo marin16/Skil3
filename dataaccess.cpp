@@ -25,6 +25,8 @@ DataAccess::DataAccess(){
     QSqlQuery computersTable;
     QSqlQuery scientistHasComputerTable;
     QSqlQuery scientistHasComputerView;
+    QSqlQuery deleteLinksWithScientist;
+    QSqlQuery deleteLinksWithComputers;
 
     // Scientists table, stores name, gender, dob, dod, country and gives him/her a unique ID.
     scientistsTable.exec("create table if not exists Scientists ("
@@ -51,6 +53,11 @@ DataAccess::DataAccess(){
     // SC_view returns all info on scientists and computers that are linked.
     scientistHasComputerView.exec("create view if not exists SC_view as select C.id as 'cId', C.name as 'cName', C.buildy, C.type, C.built, S.id as 'sId', S.name as 'sName', S.gender, S.dob, S.dod, S.country from Scientist_has_Computer SC join Scientists S on S.id = SC.sid join Computers C on C.id = SC.cid");
 
+    // Trigger that deletes link from Scientist_has_Computer when deleteing a Scientist
+    deleteLinksWithScientist.exec("create trigger if not exists DeleteLinksWithScientist before delete on Scientists for each row begin delete from Scientist_has_Computer join Scientists on Scientists.id = Scientist_has_Computer.sId where Scientists.id = Scientist_has_Computer.cId; end");
+
+    // Trigger that deletes link from Scientist_has_Computer when deleteing a Computer
+    deleteLinksWithComputers.exec("create trigger if not exists deleteLinksWithComputers before delete on Computers for each row begin delete from Scientist_has_Computer join Scientists on Computers.id = Scientist_has_Computer.cId where Computer.id = Scientist_has_Computer.cId; end");
 }
 
 bool DataAccess::writeScientist(Scientist scientist){

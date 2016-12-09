@@ -536,7 +536,8 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists){
         size_t longestName = 0;
         size_t longestId = 5;
         // Get the longest name, so we can determine with of columns in table.
-        for (size_t i = 0; i < scientists.size(); ++i){
+        for (size_t i = 0; i < scientists.size(); ++i)
+        {
 
             if (scientists[i].getName().length() > longestName)
                 longestName = scientists[i].getName().length();
@@ -557,7 +558,8 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists){
         cout << "Country:" << endl;
 
         // Display every scientist from the list
-        for(size_t i = 0; i < scientists.size(); i++){
+        for(size_t i = 0; i < scientists.size(); i++)
+        {
 
             cout << setw(longestId+1) << left << scientists[i].getId();
             cout << setw(longestName+1) << left << scientists[i].getName();
@@ -612,7 +614,8 @@ void ConsoleUI::_displayComputers(vector<Computer> computers){
         size_t longestType = 6;
         size_t longestId = 5;
         // Get the longest name, dob, dod, so we can determine with of columns in table.
-        for (size_t i = 0; i < computers.size(); ++i){
+        for (size_t i = 0; i < computers.size(); ++i)
+        {
 
             if (computers[i].getName().length() > longestName)
                 longestName = computers[i].getName().length();
@@ -630,7 +633,8 @@ void ConsoleUI::_displayComputers(vector<Computer> computers){
         cout << "Built:" << endl;
 
         // Display every computer from the list
-        for(size_t i = 0; i < computers.size(); i++){
+        for(size_t i = 0; i < computers.size(); i++)
+        {
 
             cout << setw(longestId+1) << left << computers[i].getId();
             cout << setw(longestName+1) << left << computers[i].getName();
@@ -655,14 +659,14 @@ void ConsoleUI::_displayLinked(vector<Linked> links){
         size_t longestScientistName = 16;
         size_t longestScientistId = 14;
 
-        for (size_t i = 0; i < links.size(); i++){
-
+        for (size_t i = 0; i < links.size(); i++)
+        {
             if(links[i].getComputer().getName().length() > longestComputerName)
                 longestComputerName = links[i].getComputer().getName().length();
             if(utils::intToString(links[i].getComputer().getId()).length() > longestComputerId)
                 longestComputerId = utils::intToString(links[i].getComputer().getId()).length();
             if(links[i].getScientist().getName().length() > longestScientistName)
-                longestScientistName = links[i].getComputer().getName().length();
+                longestScientistName = links[i].getScientist().getName().length();
             if(utils::intToString(links[i].getScientist().getId()).length() > longestScientistId)
                 longestScientistId = utils::intToString(links[i].getScientist().getId()).length();
         }
@@ -673,7 +677,8 @@ void ConsoleUI::_displayLinked(vector<Linked> links){
         cout << setw(longestComputerId+1) << left << "Computer ID:";
         cout << setw(longestComputerName+1) << left << "Computer Name:" << endl;
 
-        for (size_t i = 0; i < links.size(); i++){
+        for (size_t i = 0; i < links.size(); i++)
+        {
 
             cout << setw(longestScientistId+1) << left << links[i].getScientist().getId();
             cout << setw(longestScientistName+1) << left << links[i].getScientist().getName();

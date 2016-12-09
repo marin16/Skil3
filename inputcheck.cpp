@@ -1,31 +1,30 @@
-#include "inputcheck.h"
 #include <string>
 #include <iostream>
 #include <cctype>
 
+#include "inputcheck.h"
+
 using namespace std;
 
-inputcheck::inputcheck()
-{
+inputcheck::inputcheck(){
 
 }
 
 
-bool inputcheck::nameCheck(const string &name)
-{
-    for(size_t i = 0; i < name.length(); i++)
-    {
+bool inputcheck::nameCheck(const string &name){
+
+    for(size_t i = 0; i < name.length(); i++){
+
         if (ispunct(name[i]))
                 return false;
     }
     return !(name.find_first_of("0123456789") != string::npos) && name.length() < 100;
 }
 
-bool inputcheck::cpuCheck(const string &cpuname)
-{
+bool inputcheck::cpuCheck(const string &cpuname){
 
-    for(size_t i = 0; i < cpuname.length(); i++)
-    {
+    for(size_t i = 0; i < cpuname.length(); i++){
+
         if (ispunct(cpuname[i]) || isspace(cpuname[0]) || cpuname.empty())
             return false;
     }
@@ -33,13 +32,13 @@ bool inputcheck::cpuCheck(const string &cpuname)
 }
 
 
-bool inputcheck::genderCheck(const string &genderstring)
-{
+bool inputcheck::genderCheck(const string &genderstring){
+
     return (genderstring[0] == 'm' || genderstring[0] == 'M' || genderstring[0] == 'f' || genderstring[0] == 'F') && genderstring.length() == 1;
 }
 
-bool inputcheck::birthCheck(string birth)
-{
+bool inputcheck::birthCheck(string birth){
+
     for(size_t i = 0; i < birth.length(); i++)
         if(!isdigit(birth[i]) || ispunct(birth[i]))
             return false;
@@ -48,8 +47,8 @@ bool inputcheck::birthCheck(string birth)
 }
 
 
-bool inputcheck::deathCheck(string death, string birth)
-{
+bool inputcheck::deathCheck(string death, string birth){
+
     for(size_t i = 0; i < death.length(); i++)
         if(!isdigit(death[i]) || ispunct(birth[i]))
             return false;
@@ -59,19 +58,19 @@ bool inputcheck::deathCheck(string death, string birth)
 }
 
 
-bool inputcheck::commaCheck(string word)
-{
+bool inputcheck::commaCheck(string word){
+
     return (word.find(',')!=std::string::npos);
 }
 
 
-bool inputcheck::answerCheck(char answer)
-{
+bool inputcheck::answerCheck(char answer){
+
     return (answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N');
 }
 
-bool inputcheck::buildyCheck(string buildy)
-{
+bool inputcheck::buildyCheck(string buildy){
+
     for(size_t i = 0; i < buildy.length(); i++)
         if(!isdigit(buildy[i]) || ispunct(buildy[i]))
             return false;
@@ -79,27 +78,27 @@ bool inputcheck::buildyCheck(string buildy)
     return (buildyint <= 2016);
 }
 
-bool inputcheck::builtCheck(bool built)
-{
+bool inputcheck::builtCheck(bool built){
+
     return (built == 1 || built == 0);
 }
 
-bool inputcheck::idCheck(int id, vector<Scientist> scientist)
-{
+bool inputcheck::idCheck(int id, vector<Scientist> scientist){
+
     bool match = false;
-    for (size_t i = 0; i < scientist.size(); ++i)
-    {
+    for (size_t i = 0; i < scientist.size(); ++i){
+
         if(scientist[i].getId() == id)
             match = true;
     }
     return match;
 }
 
-bool inputcheck::cpuIdCheck(int id, vector<Computer> computer)
-{
+bool inputcheck::cpuIdCheck(int id, vector<Computer> computer){
+
     bool match = false;
-    for (size_t i = 0; i < computer.size(); ++i)
-    {
+    for (size_t i = 0; i < computer.size(); ++i){
+
         if(computer[i].getId() == id)
             match = true;
     }

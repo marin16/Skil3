@@ -7,19 +7,19 @@
 /*
  * Linked is used to manage linked Computers and Scientists
  */
-class Linked
-{
+class Linked{
 public:
     Linked();
     Linked(Scientist scientist, Computer computer);
-    Scientist getScientist() const
-    {
+    Scientist getScientist() const{
+
         return _scientist;
     }
-    Computer getComputer() const
-    {
+    Computer getComputer() const{
+
         return _computer;
     }
+
 private:
     Scientist _scientist;
     Computer _computer;

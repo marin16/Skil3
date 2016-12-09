@@ -15,18 +15,17 @@
 
 using namespace std;
 
-ConsoleUI::ConsoleUI()
-{
+ConsoleUI::ConsoleUI(){
 
 }
 
 
-void ConsoleUI::run()
-{
+void ConsoleUI::run(){
+
     bool separate = false;
     _instructions();
-    do
-    {
+
+    do{
         if (separate) {
             cout << endl;
         }
@@ -36,69 +35,69 @@ void ConsoleUI::run()
         string command;
         cin >> command;
 
-        if(command == "add-c")
-        {
+        if(command == "add-c"){
+
             _addCPU();
         }
-        else if(command == "search-c")
-        {
+        else if(command == "search-c"){
+
             _searchCPU();
         }
-        else if(command == "list-c")
-        {
+        else if(command == "list-c"){
+
             _listCPU();
         }
-        else if(command == "delete-c")
-        {
+        else if(command == "delete-c"){
+
             _deleteCPU();
         }
-        else if(command == "edit-c")
-        {
+        else if(command == "edit-c"){
+
             _editComputer();
         }
-        else if(command == "add-s")
-        {
+        else if(command == "add-s"){
+
             _add();
         }
-        else if(command == "search-s")
-        {
+        else if(command == "search-s"){
+
             _search();
         }
-        else if(command == "list-s")
-        {
+        else if(command == "list-s"){
+
             _listScientists();
         }
-        else if(command == "delete-s")
-        {
+        else if(command == "delete-s"){
+
             _delete();
         }
-        else if(command == "edit-s")
-        {
+        else if(command == "edit-s"){
+
             _edit();
         }
-        else if(command == "link")
-        {
+        else if(command == "link"){
+
             _link();
         }
-        else if(command == "list")
-        {
+        else if(command == "list"){
+
             _list();
         }
-        else if(command == "help")
-        {
+        else if(command == "help"){
+
             _instructions();
             separate = false;
         }
-        else if(command == "clear")
-        {
+        else if(command == "clear"){
+
             _clear();
         }
-        else if(command == "quit" || command == "q" || command == "exit")
-        {
+        else if(command == "quit" || command == "q" || command == "exit"){
+
             break;
         }
-        else
-        {
+        else{
+
             cout << "Unknown command: " << command << endl;
             cout << "please try again or write \"help\" for a list of commands." << endl;
             separate = false;
@@ -106,8 +105,8 @@ void ConsoleUI::run()
     }while(true);
 }
 
-void ConsoleUI::_instructions()
-{
+void ConsoleUI::_instructions(){
+
     cout << "==========================================================" << endl;
     cout << "||     Please enter one of the following commands:      ||" << endl;
     cout << "==========================================================" << endl;
@@ -133,8 +132,8 @@ void ConsoleUI::_instructions()
     cout << "==========================================================" << endl;
 }
 
-void ConsoleUI::_add()
-{
+void ConsoleUI::_add(){
+
     char answer;
 
     cout << "=======================================================" << endl;
@@ -143,34 +142,35 @@ void ConsoleUI::_add()
     cout << "=======================================================" << endl;
 
     Scientist newScientist = _createScientist();
-    do
-    {
+
+    do{
         _displayScientist(newScientist);
         cout << "Is the information correct?(Y/N) ";
         cin >> answer;
     }while(!_Valid.answerCheck(answer));
 
-    if (answer == 'y' || answer == 'Y')
-    {
+    if (answer == 'y' || answer == 'Y'){
+
         cin.ignore();
-        if (_service.addScientist(newScientist))
-        {
+        if (_service.addScientist(newScientist)){
+
             cout << "Success!" << endl;
         }
-        else
-        {
+        else{
+
             cout << "Could not write this data to the database." << endl;
         }
     }
-    else if (answer == 'n' || answer == 'N')
-    {
+    else if (answer == 'n' || answer == 'N'){
+
         _add();
     }
 }
 
-void ConsoleUI::_addCPU()
-{
+void ConsoleUI::_addCPU(){
+
     char answer;
+
     cout << "=======================================================" << endl;
     cout << "||Please add the parameters for the computer         ||" << endl;
     cout << "||if you input invalid data you will be asked again. ||" << endl;
@@ -185,23 +185,28 @@ void ConsoleUI::_addCPU()
         cin >> answer;
     }while(!_Valid.answerCheck(answer));
 
-    if (answer == 'y' || answer == 'Y')
-    {
+    if (answer == 'y' || answer == 'Y'){
+
         cin.ignore();
-        if (_service.addComputer(newComputer))
+        if (_service.addComputer(newComputer)){
+
             cout << "Success!" << endl;
-        else
+        }
+        else{
+
             cout << "Could not write this data to the database" << endl;
+        }
     }
-    else if (answer == 'n' || answer == 'N')
-    {
+    else if (answer == 'n' || answer == 'N'){
+
         _addCPU();
     }
 }
 
-void ConsoleUI::_search()
-{
+void ConsoleUI::_search(){
+
     vector<Scientist> results;
+
     string search;
     char charsearch[100];
 
@@ -215,9 +220,10 @@ void ConsoleUI::_search()
     _displayScientists(results);
 }
 
-void ConsoleUI::_searchCPU()
-{
+void ConsoleUI::_searchCPU(){
+
     vector<Computer> results;
+
     string search;
     char charsearch[100];
 
@@ -232,11 +238,12 @@ void ConsoleUI::_searchCPU()
     _displayComputers(results);
 }
 
-void ConsoleUI::_delete()
-{
-    int delId;
+void ConsoleUI::_delete(){
+
     vector<Scientist> scientists;
     scientists = _service.getScientists(0);
+
+    int delId;
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
@@ -253,22 +260,24 @@ void ConsoleUI::_delete()
         std::cin >> delId;
     }
 
-    if(_Valid.idCheck(delId, scientists))
-    {
-    if(_service.deleteScientist(delId))
-        cout << "Success!" << endl;
-    else
-        cout << "Failed." << endl;
+    if(_Valid.idCheck(delId, scientists)){
+
+        if(_service.deleteScientist(delId))
+            cout << "Success!" << endl;
+        else
+            cout << "Failed." << endl;
     }
-    else
+    else{
         _illegalInput();
+    }
 }
 
-void ConsoleUI::_deleteCPU()
-{
-    int delId;
+void ConsoleUI::_deleteCPU(){
+
     vector<Computer> computers;
     computers = _service.getComputers(0);
+
+    int delId;
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
@@ -286,17 +295,19 @@ void ConsoleUI::_deleteCPU()
     }
 
     if(_Valid.cpuIdCheck(delId, computers)){
+
         if(_service.deleteComputer(delId))
             cout << "Success!" << endl;
         else
             cout << "Failed." << endl;
     }
-    else
+    else{
         _illegalInput();
+    }
 }
 
-void ConsoleUI::_listScientists()
-{
+void ConsoleUI::_listScientists(){
+
     cout << "===============================================================" << endl;
     cout << "||        Please enter one of the following commands:        ||" << endl;
     cout << "===============================================================" << endl;
@@ -317,6 +328,7 @@ void ConsoleUI::_listScientists()
 
     string sort;
     cin >> sort;
+
     vector<Scientist> scientists;
 
     if (sort == "name-asc")
@@ -341,8 +353,8 @@ void ConsoleUI::_listScientists()
     _displayScientists(scientists);
 }
 
-void ConsoleUI::_listCPU()
-{
+void ConsoleUI::_listCPU(){
+
     cout << "=================================================================" << endl;
     cout << "||         Please enter one of the following commands:         ||" << endl;
     cout << "=================================================================" << endl;
@@ -361,6 +373,7 @@ void ConsoleUI::_listCPU()
 
     string sort;
     cin >> sort;
+
     vector<Computer> computers;
 
     if (sort == "name-asc")
@@ -381,9 +394,8 @@ void ConsoleUI::_listCPU()
     _displayComputers(computers);
 }
 
-void ConsoleUI::_list()
-{
-    vector<Linked> links;
+void ConsoleUI::_list(){
+
     cout << "============================================================================" << endl;
     cout << "||              Please enter one of the following commands:               ||" << endl;
     cout << "============================================================================" << endl;
@@ -401,6 +413,8 @@ void ConsoleUI::_list()
     string sort;
     cin >> sort;
 
+    vector<Linked> links;
+
     if (sort == "computer-asc")
         links = _service.getLinks(1);
     else if (sort == "scientist-asc")
@@ -415,11 +429,12 @@ void ConsoleUI::_list()
     _displayLinked(links);
 }
 
-void ConsoleUI::_edit()
-{
-    int editId;
+void ConsoleUI::_edit(){
+
     vector<Scientist> scientists;
     scientists = _service.getScientists(0);
+
+    int editId;
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
@@ -435,22 +450,25 @@ void ConsoleUI::_edit()
             std::cout << "Wrong input, try again: ";
             std::cin >> editId;
     }
-    if(_Valid.idCheck(editId, scientists))
-    {
-    if(_service.editScientist(editId,_createScientist()))
-        cout << "Scientist successfully edited." << endl;
-    else
-        cout << "Failed." << endl;
+
+    if(_Valid.idCheck(editId, scientists)){
+
+        if(_service.editScientist(editId,_createScientist()))
+            cout << "Scientist successfully edited." << endl;
+        else
+            cout << "Failed." << endl;
     }
-    else
+    else{
         _illegalInput();
+    }
 }
 
-void ConsoleUI::_editComputer()
-{
-    int editId;
+void ConsoleUI::_editComputer(){
+
     vector<Computer> computers;
     computers = _service.getComputers(0);
+
+    int editId;
 
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
@@ -466,19 +484,21 @@ void ConsoleUI::_editComputer()
             std::cout << "Wrong input, try again: ";
             std::cin >> editId;
     }
-    if(_Valid.cpuIdCheck(editId, computers))
-    {
+
+    if(_Valid.cpuIdCheck(editId, computers)){
+
         if(_service.editComputer(editId,_createComputer()))
             cout << "Computer successfully edited." << endl;
         else
             cout << "Failed." << endl;
     }
-    else
+    else{
         _illegalInput();
+    }
 }
 
-void ConsoleUI::_displayScientist(Scientist scientist)
-{
+void ConsoleUI::_displayScientist(Scientist scientist){
+
     size_t nameLength = scientist.getName().length();
 
     // nameLength cant be shorter than "Name: " (6)
@@ -503,16 +523,16 @@ void ConsoleUI::_displayScientist(Scientist scientist)
     cout << scientist.getCountry() << endl;
 }
 
-void ConsoleUI::_displayScientists(vector<Scientist> scientists)
-{
+void ConsoleUI::_displayScientists(vector<Scientist> scientists){
+
     // If there is no scientist in list we do not want to display anything.
-    if (scientists.size() > 0)
-    {
+    if (scientists.size() > 0){
+
         size_t longestName = 0;
         size_t longestId = 5;
         // Get the longest name, so we can determine with of columns in table.
-        for (size_t i = 0; i < scientists.size(); ++i)
-        {
+        for (size_t i = 0; i < scientists.size(); ++i){
+
             if (scientists[i].getName().length() > longestName)
                 longestName = scientists[i].getName().length();
             if (utils::intToString(scientists[i].getId()).length() > longestId)
@@ -532,8 +552,8 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists)
         cout << "Country:" << endl;
 
         // Display every scientist from the list
-        for(size_t i = 0; i < scientists.size(); i++)
-        {
+        for(size_t i = 0; i < scientists.size(); i++){
+
             cout << setw(longestId+1) << left << scientists[i].getId();
             cout << setw(longestName+1) << left << scientists[i].getName();
             cout << setw(8) << left << scientists[i].getGender();
@@ -548,8 +568,8 @@ void ConsoleUI::_displayScientists(vector<Scientist> scientists)
     cout << "The list contains: " << scientists.size() << " scientists." << endl;
 }
 
-void ConsoleUI::_displayComputer(Computer computer)
-{
+void ConsoleUI::_displayComputer(Computer computer){
+
     size_t nameLenght = computer.getName().length();
     size_t typeLength = computer.getType().length();
 
@@ -578,17 +598,17 @@ void ConsoleUI::_displayComputer(Computer computer)
 
 }
 
-void ConsoleUI::_displayComputers(vector<Computer> computers)
-{
+void ConsoleUI::_displayComputers(vector<Computer> computers){
+
     // If there is no computer in list we do not want to display anything.
-    if (computers.size() > 0)
-    {
+    if (computers.size() > 0){
+
         size_t longestName = 6;
         size_t longestType = 6;
         size_t longestId = 5;
         // Get the longest name, dob, dod, so we can determine with of columns in table.
-        for (size_t i = 0; i < computers.size(); ++i)
-        {
+        for (size_t i = 0; i < computers.size(); ++i){
+
             if (computers[i].getName().length() > longestName)
                 longestName = computers[i].getName().length();
             if (computers[i].getType().length() > longestType)
@@ -605,8 +625,8 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
         cout << "Built:" << endl;
 
         // Display every computer from the list
-        for(size_t i = 0; i < computers.size(); i++)
-        {
+        for(size_t i = 0; i < computers.size(); i++){
+
             cout << setw(longestId+1) << left << computers[i].getId();
             cout << setw(longestName+1) << left << computers[i].getName();
             cout << setw(longestType+1) << left << computers[i].getType();
@@ -621,17 +641,17 @@ void ConsoleUI::_displayComputers(vector<Computer> computers)
     cout << "The list contains: " << computers.size() << " computers." << endl;
 }
 
-void ConsoleUI::_displayLinked(vector<Linked> links)
-{
-    if (links.size() > 0 )
-    {
+void ConsoleUI::_displayLinked(vector<Linked> links){
+
+    if (links.size() > 0 ){
+
         size_t longestComputerName = 15;
         size_t longestComputerId = 13;
         size_t longestScientistName = 16;
         size_t longestScientistId = 14;
 
-        for (size_t i = 0; i < links.size(); i++)
-        {
+        for (size_t i = 0; i < links.size(); i++){
+
             if(links[i].getComputer().getName().length() > longestComputerName)
                 longestComputerName = links[i].getComputer().getName().length();
             if(utils::intToString(links[i].getComputer().getId()).length() > longestComputerId)
@@ -648,8 +668,8 @@ void ConsoleUI::_displayLinked(vector<Linked> links)
         cout << setw(longestComputerId+1) << left << "Computer ID:";
         cout << setw(longestComputerName+1) << left << "Computer Name:" << endl;
 
-        for (size_t i = 0; i < links.size(); i++)
-        {
+        for (size_t i = 0; i < links.size(); i++){
+
             cout << setw(longestScientistId+1) << left << links[i].getScientist().getId();
             cout << setw(longestScientistName+1) << left << links[i].getScientist().getName();
             cout << setw(longestComputerId+1) << left << links[i].getComputer().getId();
@@ -659,8 +679,8 @@ void ConsoleUI::_displayLinked(vector<Linked> links)
     cout << "The list contains: " << links.size() << " links of computer and scientist." << endl;
 }
 
-void ConsoleUI::_link()
-{
+void ConsoleUI::_link(){
+
     int compId;
     int sciId;
 
@@ -700,9 +720,10 @@ void ConsoleUI::_link()
         cout << "Failed to link." << endl;
 }
 
-void ConsoleUI::_clear()
-{
+void ConsoleUI::_clear(){
+
     string confirm;
+
     cout << "******************   WARNING   ******************" << endl;
     cout << "*        you are about to clear all data        *" << endl;
     cout << "*                                               *" << endl;
@@ -710,23 +731,25 @@ void ConsoleUI::_clear()
     cout << "*     cancel   - if you don't want to continue  *" << endl;
     cout << "*                                               *" << endl;
     cout << "******************   WARNING   ******************" << endl;
+
     do{
         cout << "confirm / cancel: ";
         cin >> confirm;
-        if(confirm == "confirm")
-        {
+
+        if(confirm == "confirm"){
+
             _service.clearData();
             cout << "All data was erased." << endl;
         }
-        else if(confirm == "cancel")
-        {
+        else if(confirm == "cancel"){
+
             cout << "No data was erased." << endl;
         }
     }while(confirm != "confirm" && confirm != "cancel");
 }
 
-Scientist ConsoleUI::_createScientist()
-{
+Scientist ConsoleUI::_createScientist(){
+
     string name;
     string gender;
     string birth;
@@ -737,8 +760,8 @@ Scientist ConsoleUI::_createScientist()
     bool valid;
 
     cin.ignore();
-    do
-    {
+
+    do{
         cout << "Name: ";
         cin.getline(charname,sizeof(charname));
         name = string(charname);
@@ -746,16 +769,14 @@ Scientist ConsoleUI::_createScientist()
         if (!valid) _illegalInput();
     }while(!valid);
 
-    do
-    {
+    do{
         cout << "Gender (m/f): ";
         cin >> gender;
         valid = _Valid.genderCheck(gender);
         if (!valid) _illegalInput();
     }while(!valid);
 
-    do
-    {
+    do{
         cin.clear();
         cin.ignore();
         cout << "Year of birth: ";
@@ -764,8 +785,7 @@ Scientist ConsoleUI::_createScientist()
         if (!valid) _illegalInput();
     }while(!valid);
 
-    do
-    {
+    do{
         cin.clear();
         cin.ignore();
         cout << "Year of death (0 if alive): ";
@@ -775,8 +795,8 @@ Scientist ConsoleUI::_createScientist()
     }while(!valid);
 
     cin.ignore();
-    do
-    {
+
+    do{
         cout << "Nationality: ";
         cin.getline(charcountry,sizeof(charcountry));
         country = string(charcountry);
@@ -789,8 +809,8 @@ Scientist ConsoleUI::_createScientist()
     return Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 }
 
-Computer ConsoleUI::_createComputer()
-{
+Computer ConsoleUI::_createComputer(){
+
     string cpuname;
     string buildy;
     string type;
@@ -801,8 +821,8 @@ Computer ConsoleUI::_createComputer()
     bool valid;
 
     cin.ignore();
-    do
-    {
+
+    do{
         cout << "Computer name: ";
         cin.getline(charcpuname,sizeof(charcpuname));
         cpuname = string(charcpuname);
@@ -810,8 +830,7 @@ Computer ConsoleUI::_createComputer()
         if (!valid) _illegalInput();
     }while(!valid);
 
-    do
-    {
+    do{
         cin.clear();
         cout << "Build year: ";
         cin >> buildy;
@@ -820,8 +839,8 @@ Computer ConsoleUI::_createComputer()
     }while(!valid);
 
     cin.ignore();
-    do
-    {
+
+    do{
         cout << "Type of computer: ";
         cin.getline(charcputype,sizeof(charcputype));
         type = string(charcputype);
@@ -829,8 +848,7 @@ Computer ConsoleUI::_createComputer()
         if (!valid) _illegalInput();
     }while(!valid);
 
-    do
-    {
+    do{
         cout << "Was the computer built (Y/N)?: ";
         cin >> built;
         built = toupper(built);
@@ -841,10 +859,11 @@ Computer ConsoleUI::_createComputer()
     }while(!valid);
 
     int buildyint = atoi(buildy.c_str());
+
     return Computer(cpuname, buildyint, type, boolbuilt);
 }
 
-void ConsoleUI::_illegalInput()
-{
+void ConsoleUI::_illegalInput(){
+
     cout << "Illegal input. Please try again!" << endl;
 }

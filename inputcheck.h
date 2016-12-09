@@ -1,14 +1,15 @@
 #ifndef INPUTCHECK_H
 #define INPUTCHECK_H
+
 #include <string>
 #include <vector>
+
 #include "scientist.h"
 #include "computer.h"
 
 using namespace std;
 
-class inputcheck
-{
+class inputcheck{
 public:
     inputcheck();
     /*

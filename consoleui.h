@@ -4,11 +4,11 @@
 #include "service.h"
 #include "inputcheck.h"
 
-class ConsoleUI
-{
+class ConsoleUI{
 public:
     ConsoleUI();
     void run();
+
 private:
     Service _service;
     inputcheck _Valid;

@@ -13,8 +13,7 @@
 
 using namespace std;
 
-DataAccess::DataAccess()
-{
+DataAccess::DataAccess(){
     // Connect database.
     _db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "csdb";
@@ -54,8 +53,8 @@ DataAccess::DataAccess()
 
 }
 
-bool DataAccess::writeScientist(Scientist scientist)
-{
+bool DataAccess::writeScientist(Scientist scientist){
+
     QSqlQuery query;
 
     query.prepare("insert into Scientists (name, gender, dob, dod, country) values (:name, :gender, :dob, :dod, :country)");
@@ -68,8 +67,8 @@ bool DataAccess::writeScientist(Scientist scientist)
     return query.exec();
 }
 
-vector<Scientist> DataAccess::readScientists()
-{
+vector<Scientist> DataAccess::readScientists(){
+
     vector<Scientist> scientists;
 
     QSqlQuery query;
@@ -89,8 +88,8 @@ vector<Scientist> DataAccess::readScientists()
     return scientists;
 }
 
-vector<Scientist> DataAccess::readScientistsFromQuery(string q)
-{
+vector<Scientist> DataAccess::readScientistsFromQuery(string q){
+
     vector<Scientist> scientists;
 
     QSqlQuery query;
@@ -110,8 +109,8 @@ vector<Scientist> DataAccess::readScientistsFromQuery(string q)
     return scientists;
 }
 
-vector<Computer> DataAccess::readComputers()
-{
+vector<Computer> DataAccess::readComputers(){
+
     vector<Computer> computers;
 
     QSqlQuery query;
@@ -129,8 +128,8 @@ vector<Computer> DataAccess::readComputers()
     return computers;
 }
 
-vector<Computer> DataAccess::readComputersFromQuery(string q)
-{
+vector<Computer> DataAccess::readComputersFromQuery(string q){
+
     vector<Computer> computers;
 
     QSqlQuery query;
@@ -149,8 +148,8 @@ vector<Computer> DataAccess::readComputersFromQuery(string q)
     return computers;
 }
 
-vector<Linked> DataAccess::readLinked()
-{
+vector<Linked> DataAccess::readLinked(){
+
     vector<Linked> links;
 
     QSqlQuery query;
@@ -173,8 +172,8 @@ vector<Linked> DataAccess::readLinked()
     return links;
 }
 
-vector<Linked> DataAccess::readLinkedFromQuery(string q)
-{
+vector<Linked> DataAccess::readLinkedFromQuery(string q){
+
     vector<Linked> links;
 
     QSqlQuery query;
@@ -199,8 +198,8 @@ vector<Linked> DataAccess::readLinkedFromQuery(string q)
 }
 
 
-bool DataAccess::writeComputer(Computer computer)
-{
+bool DataAccess::writeComputer(Computer computer){
+
     QSqlQuery query;
 
     query.prepare("insert into computers (name, buildy, type, built) values (:name, :buildy, :type, :built)");
@@ -212,8 +211,8 @@ bool DataAccess::writeComputer(Computer computer)
     return query.exec();
 }
 
-bool DataAccess::deleteScientist(int id)
-{
+bool DataAccess::deleteScientist(int id){
+
     QSqlQuery query;
 
     query.prepare("delete from Scientists where  id = :id");
@@ -222,8 +221,8 @@ bool DataAccess::deleteScientist(int id)
     return query.exec();
 }
 
-bool DataAccess::deleteComputer(int id)
-{
+bool DataAccess::deleteComputer(int id){
+
     QSqlQuery query;
 
     query.prepare("delete from Computers where  id = :id");
@@ -232,8 +231,8 @@ bool DataAccess::deleteComputer(int id)
     return query.exec();
 }
 
-bool DataAccess::editScientist(int id, Scientist scientist)
-{
+bool DataAccess::editScientist(int id, Scientist scientist){
+
     QSqlQuery query;
 
     query.prepare("update Scientists set name = :name, gender = :gender, dob = :dob, dod = :dod, country = :country where id = :id");
@@ -247,8 +246,8 @@ bool DataAccess::editScientist(int id, Scientist scientist)
     return query.exec();
 }
 
-bool DataAccess::editComputer(int id, Computer computer)
-{
+bool DataAccess::editComputer(int id, Computer computer){
+
     QSqlQuery query;
 
     query.prepare("update Computers set name = :name, buildy = :buildy, type = :type, built = :built where id = :id");
@@ -261,8 +260,8 @@ bool DataAccess::editComputer(int id, Computer computer)
     return query.exec();
 }
 
-bool DataAccess::link(int cId, int sId)
-{
+bool DataAccess::link(int cId, int sId){
+
     QSqlQuery query;
     query.prepare("insert into Scientist_has_Computer (sid, cid) values (:sId, :cId)");
     query.bindValue(":sId", sId);
@@ -274,8 +273,8 @@ bool DataAccess::link(int cId, int sId)
 /*
  * clearList(): Used to remove all data from the database.
  */
-void DataAccess::clearList()
-{
+void DataAccess::clearList(){
+
     QSqlQuery querySciCom;
     querySciCom.exec("delete from Scientist_has_Computer");
 

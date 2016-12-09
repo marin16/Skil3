@@ -5,13 +5,12 @@
 
 #include "service.h"
 
-Service::Service()
-{
+Service::Service(){
 
 }
 
-vector<Scientist> Service::getScientists(int sortBy)
-{
+vector<Scientist> Service::getScientists(int sortBy){
+
     vector<Scientist> scientists;
     // To make alive appear in right places
     // http://stackoverflow.com/questions/15023226/sql-sort-by-priority-but-put-0-last
@@ -36,45 +35,43 @@ vector<Scientist> Service::getScientists(int sortBy)
     return scientists;
 }
 
-bool Service::addScientist(Scientist p)
-{
-    if(p.getName() != "" && p.getGender() != 0 && p.getCountry() != "")
-    {
+bool Service::addScientist(Scientist p){
+
+    if(p.getName() != "" && p.getGender() != 0 && p.getCountry() != ""){
+
         return _dataAccess.writeScientist(p);
     }
     else
         return false;
 }
 
-vector<Scientist> Service::searchForScientist(string search/*, string searchBy*/)
-{
+vector<Scientist> Service::searchForScientist(string search/*, string searchBy*/){
+
     vector<Scientist> scientists = getScientists(0);
     vector<Scientist> results;
 
-    for (size_t i = 0; i < scientists.size(); i++)
-    {
-        if (scientists.at(i).contains(search))
-        {
+    for (size_t i = 0; i < scientists.size(); i++){
+
+        if (scientists.at(i).contains(search)){
+
             results.push_back(scientists.at(i));
         }
     }
     return results;
 }
 
+void Service::clearData(){
 
-
-void Service::clearData()
-{
     _dataAccess.clearList();
 }
 
-bool Service::deleteScientist(int id)
-{
+bool Service::deleteScientist(int id){
+
     return _dataAccess.deleteScientist(id);
 }
 
-vector<Computer> Service::getComputers(int sortBy)
-{
+vector<Computer> Service::getComputers(int sortBy){
+
     vector<Computer> computers;
 
     if(sortBy == 1)
@@ -94,8 +91,8 @@ vector<Computer> Service::getComputers(int sortBy)
     return computers;
 }
 
-vector<Linked> Service::getLinks(int sortBy)
-{
+vector<Linked> Service::getLinks(int sortBy){
+
     vector<Linked> links;
 
     if(sortBy == 1)
@@ -111,48 +108,47 @@ vector<Linked> Service::getLinks(int sortBy)
     return links;
 }
 
-bool Service::addComputer(Computer c)
-{
-    if(c.getName() != "" && c.getType() != "")
-    {
-        return _dataAccess.writeComputer(c);
+bool Service::addComputer(Computer c){
 
+    if(c.getName() != "" && c.getType() != ""){
+
+        return _dataAccess.writeComputer(c);
     }
     else
         return false;
 }
 
-vector<Computer> Service::searchForComputer(string search)
-{
+vector<Computer> Service::searchForComputer(string search){
+
     vector<Computer> computers = getComputers(0);
     vector<Computer> results;
 
-    for (size_t i = 0; i < computers.size(); i++)
-    {
-        if (computers.at(i).contains(search))
-        {
+    for (size_t i = 0; i < computers.size(); i++){
+
+        if (computers.at(i).contains(search)){
+
             results.push_back(computers.at(i));
         }
     }
     return results;
 }
 
-bool Service::deleteComputer(int id)
-{
+bool Service::deleteComputer(int id){
+
     return _dataAccess.deleteComputer(id);
 }
 
-bool Service::editScientist(int id, Scientist editScientist)
-{
+bool Service::editScientist(int id, Scientist editScientist){
+
     return _dataAccess.editScientist(id, editScientist);
 }
 
-bool Service::editComputer(int id, Computer editComputer)
-{
+bool Service::editComputer(int id, Computer editComputer){
+
     return _dataAccess.editComputer(id, editComputer);
 }
 
-bool Service::link(int cId, int sId)
-{
+bool Service::link(int cId, int sId){
+
     return _dataAccess.link(cId, sId);
 }

@@ -2,13 +2,13 @@
 #define Service_H
 
 #include <vector>
+
 #include "scientist.h"
 #include "computer.h"
 #include "dataaccess.h"
 #include "linked.h"
 
-class Service
-{
+class Service{
 public:
     Service();
 

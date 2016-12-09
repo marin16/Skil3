@@ -11,8 +11,7 @@
 /*
  * DataAccess manages all communications with the database
  */
-class DataAccess
-{
+class DataAccess{
 public:
     DataAccess();
     /*
@@ -107,6 +106,7 @@ public:
      * returns: vector<Linked>
      */
     vector<Linked> readLinkedFromQuery(string q);
+
 private:
     QSqlDatabase _db;
 };

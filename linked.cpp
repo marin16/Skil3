@@ -1,12 +1,11 @@
 #include "linked.h"
 
-Linked::Linked()
-{
+Linked::Linked(){
 
 }
 
-Linked::Linked(Scientist scientist, Computer computer)
-{
+Linked::Linked(Scientist scientist, Computer computer){
+
     _scientist = scientist;
     _computer = computer;
 }

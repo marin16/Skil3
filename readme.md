@@ -8,6 +8,15 @@
 Github tengill:  
 https://github.com/dadisigursveinn/Skil2
 
+#Database
+The database is locaded in the build directory and is named `csdb`, the database is automaticaly generated when you don't have a database already.  
+We provide a sample database that you can move to the build directory and a `insert.sql` file that you can run on the database to get the sample data.
+```shell
+sqlite3 csdb
+sqlite> .read insert.sql
+sqlite>
+```
+
 ##C++ coding conventions
 ###Namings
 * PascalCase

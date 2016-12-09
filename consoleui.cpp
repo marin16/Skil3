@@ -263,7 +263,15 @@ void ConsoleUI::_delete()
     cout << "==================================================" << endl;
 
     cout << "ID: ";
-    cin >> delId;
+    std::cin >> delId;
+
+    while(std::cin.fail()){
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        std::cout << "Wrong input, try again: ";
+        std::cin >> delId;
+    }
+
 
     if(_service.deleteScientist(delId))
         cout << "Success!" << endl;
@@ -285,6 +293,13 @@ void ConsoleUI::_deleteCPU()
 
     cout << "ID: ";
     cin >> delId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> delId;
+    }
 
     if(_service.deleteComputer(delId))
         cout << "Success!" << endl;
@@ -427,12 +442,21 @@ void ConsoleUI::_list()
 void ConsoleUI::_edit()
 {
     int editId;
+
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
     cout << "||              you want to edit:               ||" << endl;
     cout << "==================================================" << endl;
+
     cout << "ID: ";
     cin >> editId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> editId;
+    }
 
     if(_service.editScientist(editId,_createScientist()))
         cout << "Scientist successfully edited." << endl;
@@ -446,12 +470,21 @@ void ConsoleUI::_edit()
 void ConsoleUI::_editComputer()
 {
     int editId;
+
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
     cout << "||              you want to edit:               ||" << endl;
     cout << "==================================================" << endl;
+
     cout << "ID: ";
     cin >> editId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> editId;
+    }
 
     if(_service.editComputer(editId,_createComputer()))
         cout << "Computer successfully edited." << endl;
@@ -661,18 +694,36 @@ void ConsoleUI::_link()
 {
     int compId;
     int sciId;
+
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the computer      ||" << endl;
     cout << "||              you want to link  :             ||" << endl;
     cout << "==================================================" << endl;
+
     cout << "ID: ";
     cin >> compId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> compId;
+    }
+
     cout << "==================================================" << endl;
     cout << "||     Please enter the ID of the scientist     ||" << endl;
     cout << "||              you want to link  :             ||" << endl;
     cout << "==================================================" << endl;
+
     cout << "ID: ";
     cin >> sciId;
+
+    while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Wrong input, try again: ";
+            std::cin >> sciId;
+    }
 
     if(_service.link(compId,sciId))
         cout << "Successfully linked." << endl;

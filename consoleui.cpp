@@ -111,6 +111,7 @@ void ConsoleUI::run(){
 
 void ConsoleUI::_instructions(){
 
+    cout << "Hello world" << endl;
     cout << "==========================================================" << endl;
     cout << "||     Please enter one of the following commands:      ||" << endl;
     cout << "==========================================================" << endl;

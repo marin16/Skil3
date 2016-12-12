@@ -1,4 +1,4 @@
-#VLN1 Hópur 10:
+#VLN1 Skil3 Hópur 10:
 * Daði Sigursveinn Harðarson
 * Garðar Sigurðsson
 * Ívar Sveinn Loftsson

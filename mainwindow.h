@@ -27,6 +27,8 @@ private slots:
     void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
 
+    void on_filterScientistsList_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Service _service;

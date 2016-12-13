@@ -24,7 +24,7 @@ public:
      * params: string search (search string that is compared with all scientists).
      * returns: vector<Scientist> all matches.
      */
-    vector<Scientist> searchForScientist(string search);
+    vector<Scientist> searchForScientist(string search, int orderBy);
 
     /*
      * deleteScientist: Used when deleteing scientist.

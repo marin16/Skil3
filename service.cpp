@@ -45,9 +45,9 @@ bool Service::addScientist(Scientist p){
         return false;
 }
 
-vector<Scientist> Service::searchForScientist(string search/*, string searchBy*/){
+vector<Scientist> Service::searchForScientist(string search, int orderBy){
 
-    vector<Scientist> scientists = getScientists(0);
+    vector<Scientist> scientists = getScientists(orderBy);
     vector<Scientist> results;
 
     for (size_t i = 0; i < scientists.size(); i++){

@@ -159,7 +159,13 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
 
     ui->listScientist->clear();
 
-    scientists = _service.searchForScientist(arg1.toStdString());
+    scientists = _service.searchForScientist(arg1.toStdString(), _orderBy);
 
     DisplayScientists(scientists);
+}
+
+void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
+{
+    _orderBy = index;
+    on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }

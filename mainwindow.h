@@ -29,10 +29,13 @@ private slots:
 
     void on_filterScientistsList_textChanged(const QString &arg1);
 
+    void on_ddmSortScientists_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     Service _service;
     inputcheck _valid;
+    int _orderBy;
 };
 
 #endif // MAINWINDOW_H

@@ -37,7 +37,7 @@ private slots:
     void on_filterScientistsList_textChanged(const QString &arg1);
 
     void on_ddmSortScientists_currentIndexChanged(int index);
-
+    void on_deleteComputer_clicked();
 
 private:
     Ui::MainWindow *ui;

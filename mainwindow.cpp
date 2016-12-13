@@ -264,3 +264,22 @@ void MainWindow::on_addComputer_clicked()
     }
     DisplayAllComputers();
 }
+
+void MainWindow::on_deleteComputer_clicked()
+{
+    int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    bool success =_service.deleteComputer(selectedComputer.getId());
+
+    if(success)
+    {
+        ui -> filterComputers -> setText("");
+        DisplayAllComputers();
+
+        ui -> deleteComputer -> setEnabled(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error", "Failed to delete");
+    }
+}

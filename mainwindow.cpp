@@ -57,9 +57,9 @@ void MainWindow::on_addScientist_clicked()
 {
     string name = ui -> addScientistName -> text().toStdString();
     string gender = ui -> addScientistGender -> currentText().toStdString();
-    string birth = ui -> addScientistBirth -> text().toStdString();
-    string death = ui -> addScientistDeath -> text().toStdString();
-    string country = ui -> addScientistNationality -> text().toStdString();
+    string birth = ui -> addScientistBirth -> currentText().toStdString();
+    string death = ui -> addScientistDeath -> currentText().toStdString();
+    string country = ui -> addScientistNationality -> currentText().toStdString();
 
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());

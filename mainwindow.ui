@@ -67,15 +67,15 @@
         <item>
          <layout class="QHBoxLayout" name="yearScientist">
           <item>
-           <widget class="QComboBox" name="ddmScientistBirth"/>
+           <widget class="QComboBox" name="addScientistBirth"/>
           </item>
           <item>
-           <widget class="QComboBox" name="ddmScientistDeath"/>
+           <widget class="QComboBox" name="addScientistDeath"/>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QComboBox" name="nationalityScientist"/>
+         <widget class="QComboBox" name="addScientistNationality"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="manageScientist">
@@ -151,7 +151,7 @@
         <item>
          <layout class="QHBoxLayout" name="typeComputer">
           <item>
-           <widget class="QComboBox" name="ddmComputerYear"/>
+           <widget class="QComboBox" name="addComputerYear"/>
           </item>
           <item>
            <widget class="QLineEdit" name="addComputerType">

@@ -84,18 +84,28 @@ void MainWindow::on_addScientist_clicked()
     int birthint = atoi(birth.c_str());
     int deathint = atoi(death.c_str());
 
-    Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
-
-    DisplayScientist(newScientist);
-
-    QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
-                                                QMessageBox::Yes|QMessageBox::No);
-    if (reply == QMessageBox::Yes) {
-        _service.addScientist(newScientist);
+    if(!_valid.nameCheck(name)) {
+        QMessageBox::warning(this, "Name wrong", "This name is illegal. Try again!");
+        ui -> addScientistName -> clear();
     }
     else {
-        MainWindow();
+
+        Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
+
+        DisplayScientist(newScientist);
+
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
+                                                    QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            _service.addScientist(newScientist);
+            QMessageBox::information(this, "Scientist added", "This scientist has been added to the database!");
+            ui -> listScientist -> clear();
+            ui -> addScientistName -> clear();
+        }
+        else {
+            MainWindow();
+        }
     }
 }
 
@@ -118,7 +128,13 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
 void MainWindow::DisplayScientist(Scientist scientist){
     ui->listScientist->clear();
 
+        QString genderstring = QChar(scientist.getGender());
+
         ui->listScientist->addItem(QString::fromStdString(scientist.getName()));
+        ui->listScientist->addItem(genderstring);
+        ui->listScientist->addItem(QString::number(scientist.getBirth()));
+        ui->listScientist->addItem(QString::number(scientist.getDeath()));
+        ui->listScientist->addItem(QString::fromStdString(scientist.getCountry()));
 
 }
 

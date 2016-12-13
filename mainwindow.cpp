@@ -99,7 +99,7 @@ void MainWindow::on_addScientist_clicked()
                                                     QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             _service.addScientist(newScientist);
-            QMessageBox::warning(this, "Scientist added", "This scientist has been added to the database!");
+            QMessageBox::information(this, "Scientist added", "This scientist has been added to the database!");
             ui -> listScientist -> clear();
             ui -> addScientistName -> clear();
         }

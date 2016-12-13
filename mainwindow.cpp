@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
 

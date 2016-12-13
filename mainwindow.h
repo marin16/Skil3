@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <string>
 #include "service.h"
+#include "inputcheck.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Service _service;
+    inputcheck _valid;
 };
 
 #endif // MAINWINDOW_H

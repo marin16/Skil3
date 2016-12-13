@@ -16,21 +16,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
 
+    ui -> ddmSortScientists -> addItem("Unsorted");
     ui -> ddmSortScientists -> addItem("Name-asc");
     ui -> ddmSortScientists -> addItem("Birth-asc");
     ui -> ddmSortScientists -> addItem("Death-asc");
     ui -> ddmSortScientists -> addItem("Country-asc");
-    ui -> ddmSortScientists -> addItem("-----");
     ui -> ddmSortScientists -> addItem("Name-desc");
     ui -> ddmSortScientists -> addItem("Birth-desc");
     ui -> ddmSortScientists -> addItem("Death-desc");
     ui -> ddmSortScientists -> addItem("Country-desc");
-    ui -> ddmSortScientists -> addItem("-----");
-    ui -> ddmSortScientists -> addItem("Unsorted");
-
 
     ui -> ddmComputerSort -> addItem("Name-asc");
     ui -> ddmComputerSort -> addItem("BuildYear-asc");
@@ -104,7 +102,7 @@ void MainWindow::on_addScientist_clicked()
 
         Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 
-        DisplayScientist(newScientist);
+        //DisplayScientist(newScientist);
 
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
@@ -112,7 +110,7 @@ void MainWindow::on_addScientist_clicked()
         if (reply == QMessageBox::Yes) {
             _service.addScientist(newScientist);
             QMessageBox::information(this, "Scientist added", "This scientist has been added to the database!");
-            ui -> listScientist -> clear();
+            ui -> tableScientist -> clear();
             ui -> addScientistName -> clear();
         }
         else {
@@ -128,30 +126,46 @@ void MainWindow::DisplayAllScientists(){
 }
 
 void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
-    ui->listScientist->clear();
+    ///ui->tableScientist->clearContents();
+    ui -> tableScientist -> setRowCount(scientists.size());
 
-    for (unsigned int i = 0; i < scientists.size(); i++)
+    for (unsigned int row = 0; row < scientists.size(); row++)
     {
-        Scientist currentScientist = scientists.at(i);
+        Scientist currentScientist = scientists.at(row);
 
-        ui->listScientist->addItem(QString::fromStdString(currentScientist.getName()));
+        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
+        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QChar(currentScientist.getGender())));
+        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
+        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
+        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
     }
     displayedScientist = scientists;
 }
 
-void MainWindow::DisplayScientist(Scientist scientist){
-        ui->listScientist->clear();
+//void MainWindow::DisplayScientist(Scientist scientist){
+//    ui->tableScientist->clear();
 
-        QString genderstring = QChar(scientist.getGender());
+//        QString genderstring = QChar(scientist.getGender());
 
-        ui->listScientist->addItem(QString::fromStdString(scientist.getName()));
-        ui->listScientist->addItem(genderstring);
-        ui->listScientist->addItem(QString::number(scientist.getBirth()));
-        ui->listScientist->addItem(QString::number(scientist.getDeath()));
-        ui->listScientist->addItem(QString::fromStdString(scientist.getCountry()));
+//        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(scientist.getName())));
+//        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(genderstring));
+//        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(scientist.getBirth())));
+//        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(scientist.getDeath())));
+//        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(scientist.getCountry())));
 
+//}
+
+
+void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
+{
+    ui -> deleteScientist -> setEnabled(true);
 }
 
+
+void MainWindow::on_tableComputer_clicked(const QModelIndex &index)
+{
+    ui -> deleteComputer -> setEnabled(true);
+}
 
 
 
@@ -159,12 +173,13 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
 {
     vector<Scientist> scientists;
 
-    ui->listScientist->clear();
+    ui->tableScientist->clearContents();
 
-    scientists = _service.searchForScientist(arg1.toStdString());
+    scientists = _service.searchForScientist(arg1.toStdString(), _orderBy);
 
     DisplayScientists(scientists);
 }
+
 
 void MainWindow::on_listScientist_clicked(const QModelIndex &index)
 {
@@ -173,7 +188,7 @@ void MainWindow::on_listScientist_clicked(const QModelIndex &index)
 
 void MainWindow::on_deleteScientist_clicked()
 {
-    int selectedScientistIndex = ui -> listScientist -> currentIndex().row();
+    int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
     Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
     bool success =_service.deleteScientist(selectedScientist.getId());
 
@@ -188,4 +203,10 @@ void MainWindow::on_deleteScientist_clicked()
     {
         QMessageBox::warning(this, "Name wrong", "Failed to delete");
     }
+}
+
+void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
+{
+    _orderBy = index;
+    on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }

@@ -221,7 +221,7 @@ void ConsoleUI::_search(){
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForScientist(search);
+    //results = _service.searchForScientist(search);
 
     _displayScientists(results);
 }

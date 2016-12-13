@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    DisplayAllScientists();
+
     ui -> ddmSortScientists -> addItem("Name-asc");
     ui -> ddmSortScientists -> addItem("Birth-asc");
     ui -> ddmSortScientists -> addItem("Death-asc");

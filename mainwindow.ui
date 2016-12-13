@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -151,7 +151,13 @@
         <item>
          <layout class="QHBoxLayout" name="typeComputer">
           <item>
-           <widget class="QComboBox" name="addComputerYear"/>
+           <widget class="QComboBox" name="addComputerYear">
+            <item>
+             <property name="text">
+              <string>asdf</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="addComputerType">

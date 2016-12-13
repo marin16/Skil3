@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "constants.h"
 #include <QDebug>
 #include "scientist.h"
 #include <string>
@@ -65,6 +66,11 @@ MainWindow::MainWindow(QWidget *parent) :
         ui -> addComputerYear -> addItem(s);
     }
 
+    for(size_t i = 0; i < (sizeof(constants::nationalities)/sizeof(*constants::nationalities)); i++)
+    {
+        QString nationality = QString::fromStdString(constants::nationalities[i]);
+        ui -> addScientistNationality -> addItem(nationality);
+    }
 }
 
 MainWindow::~MainWindow()

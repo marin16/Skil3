@@ -27,6 +27,14 @@ private slots:
     void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
 
+    void on_listScientist_clicked(const QModelIndex &index);
+
+    void on_listComputer_clicked(const QModelIndex &index);
+
+    void on_tableScientist_clicked(const QModelIndex &index);
+
+    void on_tableComputer_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Service _service;

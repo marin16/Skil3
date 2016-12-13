@@ -43,14 +43,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui -> addScientistGender -> addItem("Male");
     ui -> addScientistGender -> addItem("Female");
 
-    for(size_t i = 1800; i <= 2016; i++)
+    for(size_t i = 2016; i >= 1800; i--)
     {
         QString year = QString::number(i);
         ui -> addScientistBirth -> addItem(year);
 
     }
 
-    for(size_t i = 1800; i <= 2016; i++)
+    for(size_t i = 2016; i >= 1800; i--)
     {
         QString year = QString::number(i);
         ui -> addScientistDeath -> addItem(year);

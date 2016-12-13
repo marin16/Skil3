@@ -135,27 +135,17 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
     {
         Scientist currentScientist = scientists.at(row);
 
-        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
-        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QChar(currentScientist.getGender())));
-        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
-        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
-        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
+        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
+        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
+        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QChar(currentScientist.getGender())));
+        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
+        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
+        ui->tableScientist->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
     }
     displayedScientist = scientists;
 }
 
-//void MainWindow::DisplayScientist(Scientist scientist){
-//    ui->tableScientist->clear();
 
-//        QString genderstring = QChar(scientist.getGender());
-
-//        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(scientist.getName())));
-//        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(genderstring));
-//        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(scientist.getBirth())));
-//        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(scientist.getDeath())));
-//        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(scientist.getCountry())));
-
-//}
 
 void MainWindow::DisplayAllComputers(){
     vector<Computer> computers = _service.getComputers(1);
@@ -170,10 +160,11 @@ void MainWindow::DisplayComputers(std::vector<Computer> computers){
     {
         Computer currentComputers = computers.at(row);
 
-        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
-        ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
-        ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
-        ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QChar(currentComputers.getBuilt())));
+        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(QString::number(currentComputers.getId())));
+        ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
+        ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
+        ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
+        ui->tableComputer->setItem(row, 4, new QTableWidgetItem(QChar(currentComputers.getBuilt())));
     }
     displayedComputer = computers;
 }

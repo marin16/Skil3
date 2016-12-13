@@ -26,13 +26,17 @@ private slots:
     void DisplayScientists(std::vector<Scientist> scientists);
     void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
+    void on_deleteScientist_clicked();
 
     void on_filterScientistsList_textChanged(const QString &arg1);
+
+    void on_listScientist_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
     Service _service;
     inputcheck _valid;
+    std::vector<Scientist> displayedScientist;
 };
 
 #endif // MAINWINDOW_H

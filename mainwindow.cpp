@@ -121,6 +121,7 @@ void MainWindow::on_addScientist_clicked()
     }
 }
 
+
 void MainWindow::DisplayAllScientists(){
     vector<Scientist> scientists = _service.getScientists(1);
     DisplayScientists(scientists);
@@ -135,6 +136,7 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
 
         ui->listScientist->addItem(QString::fromStdString(currentScientist.getName()));
     }
+    displayedScientist = scientists;
 }
 
 void MainWindow::DisplayScientist(Scientist scientist){
@@ -162,4 +164,28 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
     scientists = _service.searchForScientist(arg1.toStdString());
 
     DisplayScientists(scientists);
+}
+
+void MainWindow::on_listScientist_clicked(const QModelIndex &index)
+{
+    ui -> deleteScientist -> setEnabled(true);
+}
+
+void MainWindow::on_deleteScientist_clicked()
+{
+    int selectedScientistIndex = ui -> listScientist -> currentIndex().row();
+    Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+    bool success =_service.deleteScientist(selectedScientist.getId());
+
+    if(success)
+    {
+        ui -> filterScientistsList -> setText("");
+        DisplayAllScientists();
+
+        ui -> deleteScientist -> setEnabled(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Name wrong", "Failed to delete");
+    }
 }

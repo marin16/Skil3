@@ -24,10 +24,10 @@ public:
 private slots:
     void DisplayAllScientists();
     void DisplayScientists(std::vector<Scientist> scientists);
-    void DisplayScientist(Scientist scientist);
+    //void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
-    void on_listScientist_clicked(const QModelIndex &index);
-    void on_listComputer_clicked(const QModelIndex &index);
+    //void on_listScientist_clicked(const QModelIndex &index);
+    //void on_listComputer_clicked(const QModelIndex &index);
     void on_tableScientist_clicked(const QModelIndex &index);
     void on_tableComputer_clicked(const QModelIndex &index);
     void on_filterScientistsList_textChanged(const QString &arg1);

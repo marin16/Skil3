@@ -19,18 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     DisplayAllScientists();
 
+    ui -> ddmSortScientists -> addItem("Unsorted");
     ui -> ddmSortScientists -> addItem("Name-asc");
     ui -> ddmSortScientists -> addItem("Birth-asc");
     ui -> ddmSortScientists -> addItem("Death-asc");
     ui -> ddmSortScientists -> addItem("Country-asc");
-    ui -> ddmSortScientists -> addItem("-----");
     ui -> ddmSortScientists -> addItem("Name-desc");
     ui -> ddmSortScientists -> addItem("Birth-desc");
     ui -> ddmSortScientists -> addItem("Death-desc");
     ui -> ddmSortScientists -> addItem("Country-desc");
-    ui -> ddmSortScientists -> addItem("-----");
-    ui -> ddmSortScientists -> addItem("Unsorted");
-
 
     ui -> ddmComputerSort -> addItem("Name-asc");
     ui -> ddmComputerSort -> addItem("BuildYear-asc");

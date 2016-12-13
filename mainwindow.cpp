@@ -182,3 +182,4 @@ void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
     _orderBy = index;
     on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }
+

@@ -55,6 +55,56 @@
             </property>
            </widget>
           </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="yearScientist">
+          <item>
+           <widget class="QLabel" name="labelScientistBirth">
+            <property name="maximumSize">
+             <size>
+              <width>176</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select date of birth</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistBirth"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelScientistDeath">
+            <property name="text">
+             <string>Select date of death</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistDeath"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="nationalityScientist">
+          <item>
+           <widget class="QLabel" name="labelScientistNationality">
+            <property name="text">
+             <string>Select scientist nationality</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistNationality"/>
+          </item>
           <item>
            <widget class="QComboBox" name="addScientistGender">
             <property name="currentText">
@@ -65,22 +115,15 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="yearScientist">
-          <item>
-           <widget class="QComboBox" name="addScientistBirth"/>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addScientistDeath"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QComboBox" name="addScientistNationality"/>
-        </item>
-        <item>
          <layout class="QHBoxLayout" name="manageScientist">
           <item>
            <widget class="QPushButton" name="addScientist">
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Add</string>
             </property>
@@ -150,6 +193,13 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="typeComputer">
+          <item>
+           <widget class="QLabel" name="labelComputerYear">
+            <property name="text">
+             <string>Computer design year</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QComboBox" name="addComputerYear"/>
           </item>

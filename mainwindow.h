@@ -21,12 +21,14 @@ public:
 
 
 private slots:
+    void DisplayAllScientists();
+    void DisplayScientists(std::vector<Scientist> scientists);
+    void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
-    void displayScientist(Scientist scientist);
 
 private:
     Ui::MainWindow *ui;
-    Service serviceScientist;
+    Service _service;
 };
 
 #endif // MAINWINDOW_H

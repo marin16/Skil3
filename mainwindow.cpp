@@ -80,19 +80,39 @@ void MainWindow::on_addScientist_clicked()
 
     Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 
-    displayScientist(newScientist);
+    DisplayScientist(newScientist);
 
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
                                                 QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        serviceScientist.addScientist(newScientist);
+        _service.addScientist(newScientist);
     }
     else {
         MainWindow();
     }
 }
 
-void MainWindow::displayScientist(Scientist scientist)
-{
+void MainWindow::DisplayAllScientists(){
+    vector<Scientist> scientists = _service.getScientists(1);
+    DisplayScientists(scientists);
 }
+
+void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
+    ui->listScientist->clear();
+
+    for (unsigned int i = 0; i < scientists.size(); i++)
+    {
+        Scientist currentScientist = scientists.at(i);
+
+        ui->listScientist->addItem(QString::fromStdString(currentScientist.getName()));
+    }
+}
+
+void MainWindow::DisplayScientist(Scientist scientist){
+    ui->listScientist->clear();
+
+        ui->listScientist->addItem(QString::fromStdString(scientist.getName()));
+
+}
+

@@ -45,6 +45,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui -> ddmTableLink -> addItem("Link Sort");
 
+    for (int i = 2016; i > 1800; i--)
+    {
+        QString s = QString::number(i);
+        ui -> addComputerYear -> addItem(s);
+    }
+
 }
 
 MainWindow::~MainWindow()

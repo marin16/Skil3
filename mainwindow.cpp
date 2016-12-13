@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
 
@@ -116,7 +117,9 @@ void MainWindow::on_addScientist_clicked()
             MainWindow();
         }
     }
+    DisplayAllScientists();
 }
+
 
 void MainWindow::DisplayAllScientists(){
     vector<Scientist> scientists = _service.getScientists(1);
@@ -137,6 +140,7 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
         ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
         ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
     }
+    displayedScientist = scientists;
 }
 
 //void MainWindow::DisplayScientist(Scientist scientist){
@@ -175,6 +179,31 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
     scientists = _service.searchForScientist(arg1.toStdString(), _orderBy);
 
     DisplayScientists(scientists);
+}
+
+
+void MainWindow::on_listScientist_clicked(const QModelIndex &index)
+{
+    ui -> deleteScientist -> setEnabled(true);
+}
+
+void MainWindow::on_deleteScientist_clicked()
+{
+    int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
+    Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+    bool success =_service.deleteScientist(selectedScientist.getId());
+
+    if(success)
+    {
+        ui -> filterScientistsList -> setText("");
+        DisplayAllScientists();
+
+        ui -> deleteScientist -> setEnabled(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Name wrong", "Failed to delete");
+    }
 }
 
 void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)

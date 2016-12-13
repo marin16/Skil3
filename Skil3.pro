@@ -32,7 +32,8 @@ HEADERS  += mainwindow.h \
     linked.h \
     scientist.h \
     service.h \
-    utilities.h
+    utilities.h \
+    constants.h
 
 FORMS    += mainwindow.ui
 

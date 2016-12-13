@@ -27,6 +27,7 @@ private slots:
     void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
 
+<<<<<<< HEAD
     void on_listScientist_clicked(const QModelIndex &index);
 
     void on_listComputer_clicked(const QModelIndex &index);
@@ -34,6 +35,9 @@ private slots:
     void on_tableScientist_clicked(const QModelIndex &index);
 
     void on_tableComputer_clicked(const QModelIndex &index);
+=======
+    void on_filterScientistsList_textChanged(const QString &arg1);
+>>>>>>> ea69ae5a5cd914625d1b5723afb2a5b4de8e3822
 
 private:
     Ui::MainWindow *ui;

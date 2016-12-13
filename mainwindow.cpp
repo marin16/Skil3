@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QComboBox>
 
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -140,8 +142,13 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
     }
 }
 
+<<<<<<< HEAD
 //void MainWindow::DisplayScientist(Scientist scientist){
 //    ui->tableScientist->clear();
+=======
+void MainWindow::DisplayScientist(Scientist scientist){
+        ui->listScientist->clear();
+>>>>>>> ea69ae5a5cd914625d1b5723afb2a5b4de8e3822
 
 //        QString genderstring = QChar(scientist.getGender());
 
@@ -159,7 +166,22 @@ void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
     ui -> deleteScientist -> setEnabled(true);
 }
 
+<<<<<<< HEAD
 void MainWindow::on_tableComputer_clicked(const QModelIndex &index)
 {
     ui -> deleteComputer -> setEnabled(true);
+=======
+
+
+
+void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
+{
+    vector<Scientist> scientists;
+
+    ui->listScientist->clear();
+
+    scientists = _service.searchForScientist(arg1.toStdString());
+
+    DisplayScientists(scientists);
+>>>>>>> ea69ae5a5cd914625d1b5723afb2a5b4de8e3822
 }

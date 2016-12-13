@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -53,11 +53,6 @@
           </attribute>
           <column>
            <property name="text">
-            <string>New Column</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
             <string>Name</string>
            </property>
           </column>
@@ -69,6 +64,11 @@
           <column>
            <property name="text">
             <string>Year of birth</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of death</string>
            </property>
           </column>
           <column>
@@ -210,11 +210,6 @@
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
           </attribute>
-          <column>
-           <property name="text">
-            <string>New Column</string>
-           </property>
-          </column>
           <column>
            <property name="text">
             <string>Name</string>

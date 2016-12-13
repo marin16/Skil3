@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -47,7 +47,36 @@
          </layout>
         </item>
         <item>
-         <widget class="QListWidget" name="listScientist"/>
+         <widget class="QTableWidget" name="tableScientist">
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>New Column</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of birth</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Nationality</string>
+           </property>
+          </column>
+         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="nameScientist">
@@ -141,6 +170,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteScientist">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Delete</string>
             </property>
@@ -174,7 +206,31 @@
          </layout>
         </item>
         <item>
-         <widget class="QListWidget" name="listComputer"/>
+         <widget class="QTableWidget" name="tableComputer">
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>New Column</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Design Year</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Built</string>
+           </property>
+          </column>
+         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="nameComputer">
@@ -236,6 +292,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteComputer">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Delete</string>
             </property>

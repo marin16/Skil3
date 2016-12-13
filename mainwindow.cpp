@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     }
 
+    ui -> addScientistDeath -> addItem("Alive");
     for(size_t i = 2016; i >= 1800; i--)
     {
         QString year = QString::number(i);

@@ -257,6 +257,7 @@ void MainWindow::on_addComputer_clicked()
             QMessageBox::information(this, "Computer added", "This computer has been added to the database!");
             ui -> tableComputer -> clear();
             ui -> addComputerName -> clear();
+            ui -> addComputerType -> clear();
         }
         else {
             MainWindow();

@@ -117,6 +117,7 @@ void MainWindow::on_addScientist_clicked()
             MainWindow();
         }
     }
+    DisplayAllScientists();
 }
 
 

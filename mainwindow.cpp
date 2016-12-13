@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui -> addScientistGender -> addItem("Male");
     ui -> addScientistGender -> addItem("Female");
 
+
     for(size_t i = 2016; i >= 1800; i--)
     {
         QString year = QString::number(i);
@@ -224,3 +225,42 @@ void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
     on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }
 
+
+void MainWindow::on_addComputer_clicked()
+{
+    string name = ui -> addComputerName -> text().toStdString();
+    string type = ui -> addComputerType -> text().toStdString();
+    string year = ui -> addComputerYear -> currentText().toStdString();
+    string built = ui -> ddmComputerBuilt -> currentText().toStdString();
+
+    bool builtbool;
+    int yearint = atoi(year.c_str());
+    if(built == "built")
+        builtbool = true;
+    else
+        builtbool = false;
+
+    if(!_valid.cpuCheck(name)) {
+        QMessageBox::warning(this, "Name wrong", "This name is illegal. Try again!");
+        ui -> addComputerName -> clear();
+    }
+    else {
+
+        Computer newComputer = Computer(name, yearint, type, builtbool);
+
+
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Computer", "Are you sure the information is correct?",
+                                                    QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            _service.addComputer(newComputer);
+            QMessageBox::information(this, "Computer added", "This computer has been added to the database!");
+            ui -> tableComputer -> clear();
+            ui -> addComputerName -> clear();
+        }
+        else {
+            MainWindow();
+        }
+    }
+    DisplayAllComputers();
+}

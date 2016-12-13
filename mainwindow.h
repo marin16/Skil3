@@ -26,9 +26,9 @@ private slots:
     void DisplayScientists(std::vector<Scientist> scientists);
     void DisplayAllComputers();
     void DisplayComputers(std::vector<Computer> computers);
-    //void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
     void on_deleteScientist_clicked();
+    void on_addComputer_clicked();
 
     void on_listScientist_clicked(const QModelIndex &index);
     //void on_listComputer_clicked(const QModelIndex &index);

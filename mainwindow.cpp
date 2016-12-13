@@ -1,6 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include "scientist.h"
+#include <string>
+#include <Qstring>
+#include <QLabel>
+#include <QMessageBox>
+#include <QComboBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,8 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui -> ddmComputerBuilt -> addItem("Built");
     ui -> ddmComputerBuilt -> addItem("Not Built");
 
-    ui -> ddmScientistGender -> addItem("Male");
-    ui -> ddmScientistGender -> addItem("Female");
+    ui -> addScientistGender -> addItem("Male");
+    ui -> addScientistGender -> addItem("Female");
 
     ui -> ddmTableLink -> addItem("Link Sort");
 
@@ -46,3 +52,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_addScientist_clicked()
+{
+    string name = ui -> addScientistName -> text().toStdString();
+    string gender = ui -> addScientistGender -> currentText().toStdString();
+    string birth = ui -> addScientistBirth -> text().toStdString();
+    string death = ui -> addScientistDeath -> text().toStdString();
+    string country = ui -> addScientistNationality -> text().toStdString();
+
+    int birthint = atoi(birth.c_str());
+    int deathint = atoi(death.c_str());
+
+    Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
+
+    displayScientist(newScientist);
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
+                                                QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        serviceScientist.addScientist(newScientist);
+    }
+    else {
+        MainWindow();
+    }
+}
+
+void MainWindow::displayScientist(Scientist scientist)
+{
+}

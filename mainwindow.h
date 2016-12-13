@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 
+#include "scientist.h"
 #include <QMainWindow>
+#include <string>
+#include "service.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,8 +20,13 @@ public:
     ~MainWindow();
 
 
+private slots:
+    void on_addScientist_clicked();
+    void displayScientist(Scientist scientist);
+
 private:
     Ui::MainWindow *ui;
+    Service serviceScientist;
 };
 
 #endif // MAINWINDOW_H

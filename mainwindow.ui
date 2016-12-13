@@ -67,27 +67,15 @@
         <item>
          <layout class="QHBoxLayout" name="yearScientist">
           <item>
-           <widget class="QLineEdit" name="addScientistBirth">
-            <property name="placeholderText">
-             <string>Year of Birth</string>
-            </property>
-           </widget>
+           <widget class="QComboBox" name="ddmScientistBirth"/>
           </item>
           <item>
-           <widget class="QLineEdit" name="addScientistDeath">
-            <property name="placeholderText">
-             <string>Year of Death</string>
-            </property>
-           </widget>
+           <widget class="QComboBox" name="ddmScientistDeath"/>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QLineEdit" name="addScientistNationality">
-          <property name="placeholderText">
-           <string>Nationality</string>
-          </property>
-         </widget>
+         <widget class="QComboBox" name="nationalityScientist"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="manageScientist">
@@ -162,12 +150,8 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="typeComputer">
-          <item alignment="Qt::AlignLeft">
-           <widget class="QLineEdit" name="addComputerDesignYear">
-            <property name="placeholderText">
-             <string>Design Year</string>
-            </property>
-           </widget>
+          <item>
+           <widget class="QComboBox" name="ddmComputerYear"/>
           </item>
           <item>
            <widget class="QLineEdit" name="addComputerType">
@@ -289,7 +273,7 @@
      <x>0</x>
      <y>0</y>
      <width>593</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

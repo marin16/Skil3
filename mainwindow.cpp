@@ -3,7 +3,7 @@
 #include <QDebug>
 #include "scientist.h"
 #include <string>
-#include <Qstring>
+#include <QString>
 #include <QLabel>
 #include <QMessageBox>
 #include <QComboBox>
@@ -42,6 +42,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui -> addScientistGender -> addItem("Male");
     ui -> addScientistGender -> addItem("Female");
+
+    for(size_t i = 1800; i <= 2016; i++)
+    {
+        QString year = QString::number(i);
+        ui -> addScientistBirth -> addItem(year);
+
+    }
+
+    for(size_t i = 1800; i <= 2016; i++)
+    {
+        QString year = QString::number(i);
+        ui -> addScientistDeath -> addItem(year);
+
+    }
 
     ui -> ddmTableLink -> addItem("Link Sort");
 

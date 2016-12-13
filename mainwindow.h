@@ -24,6 +24,8 @@ public:
 private slots:
     void DisplayAllScientists();
     void DisplayScientists(std::vector<Scientist> scientists);
+    void DisplayAllComputers();
+    void DisplayComputers(std::vector<Computer> computers);
     //void DisplayScientist(Scientist scientist);
     void on_addScientist_clicked();
     void on_deleteScientist_clicked();
@@ -42,6 +44,7 @@ private:
     Service _service;
     inputcheck _valid;
     std::vector<Scientist> displayedScientist;
+    std::vector<Computer> displayedComputer;
     int _orderBy;
 };
 

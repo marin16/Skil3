@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
+    DisplayAllComputers();
 
     ui -> ddmSortScientists -> addItem("Unsorted");
     ui -> ddmSortScientists -> addItem("Name-asc");
@@ -156,6 +157,26 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
 
 //}
 
+void MainWindow::DisplayAllComputers(){
+    vector<Computer> computers = _service.getComputers(1);
+    DisplayComputers(computers);
+}
+
+void MainWindow::DisplayComputers(std::vector<Computer> computers){
+    ///ui->tableScientist->clearContents();
+    ui -> tableComputer -> setRowCount(computers.size());
+
+    for (unsigned int row = 0; row < computers.size(); row++)
+    {
+        Computer currentComputers = computers.at(row);
+
+        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
+        ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
+        ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
+        ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QChar(currentComputers.getBuilt())));
+    }
+    displayedComputer = computers;
+}
 
 void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
 {

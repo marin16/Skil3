@@ -169,6 +169,8 @@ void MainWindow::DisplayComputers(std::vector<Computer> computers){
     ///ui->tableScientist->clearContents();
     ui -> tableComputer -> verticalHeader() -> setVisible(false);
     ui -> tableComputer -> setRowCount(computers.size());
+    string built = "Yes";
+    string notbuilt = "No";
 
     for (unsigned int row = 0; row < computers.size(); row++)
     {
@@ -178,7 +180,10 @@ void MainWindow::DisplayComputers(std::vector<Computer> computers){
         ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
         ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
         ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
-        ui->tableComputer->setItem(row, 4, new QTableWidgetItem(QChar(currentComputers.getBuilt())));
+        if (currentComputers.getBuilt())
+            ui->tableComputer->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(built)));
+        else
+            ui->tableComputer->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(notbuilt)));
     }
     displayedComputer = computers;
 }

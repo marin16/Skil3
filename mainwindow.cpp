@@ -130,6 +130,7 @@ void MainWindow::DisplayAllScientists(){
 
 void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
     ///ui->tableScientist->clearContents();
+    ui -> tableScientist -> verticalHeader() -> setVisible(false);
     ui -> tableScientist -> setRowCount(scientists.size());
     string alive = "Alive";
     string male = "Male";
@@ -166,6 +167,7 @@ void MainWindow::DisplayAllComputers(){
 
 void MainWindow::DisplayComputers(std::vector<Computer> computers){
     ///ui->tableScientist->clearContents();
+    ui -> tableComputer -> verticalHeader() -> setVisible(false);
     ui -> tableComputer -> setRowCount(computers.size());
 
     for (unsigned int row = 0; row < computers.size(); row++)

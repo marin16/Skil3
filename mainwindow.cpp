@@ -383,3 +383,19 @@ void MainWindow::DisplayLinked(std::vector<Linked> linked){
     }
     displayedLinked = linked;
 }
+
+void MainWindow::on_editScientist_clicked()
+{
+        string male = "Male";
+        string female = "Female";
+        int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
+        Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+        ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));
+        ui -> addScientistBirth -> setCurrentText(QString::number(selectedScientist.getBirth()));
+        ui -> addScientistDeath -> setCurrentText(QString::number(selectedScientist.getDeath()));
+        ui -> addScientistNationality -> setCurrentText(QString::fromStdString(selectedScientist.getCountry()));
+        if (selectedScientist.getGender() == 'M')
+            ui -> addScientistGender -> setCurrentText(QString::fromStdString(male));
+        else
+            ui -> addScientistGender -> setCurrentText(QString::fromStdString(female));
+}

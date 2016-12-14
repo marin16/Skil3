@@ -118,9 +118,9 @@ bool Service::addComputer(Computer c){
         return false;
 }
 
-vector<Computer> Service::searchForComputer(string search){
+vector<Computer> Service::searchForComputer(string search, int orderBy){
 
-    vector<Computer> computers = getComputers(0);
+    vector<Computer> computers = getComputers(orderBy);
     vector<Computer> results;
 
     for (size_t i = 0; i < computers.size(); i++){

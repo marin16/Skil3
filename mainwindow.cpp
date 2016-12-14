@@ -31,15 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui -> ddmSortScientists -> addItem("Death-desc");
     ui -> ddmSortScientists -> addItem("Country-desc");
 
+    ui -> ddmComputerSort -> addItem("Unsorted");
     ui -> ddmComputerSort -> addItem("Name-asc");
     ui -> ddmComputerSort -> addItem("BuildYear-asc");
     ui -> ddmComputerSort -> addItem("Type-asc");
-    ui -> ddmComputerSort -> addItem("-----");
     ui -> ddmComputerSort -> addItem("Name-desc");
     ui -> ddmComputerSort -> addItem("BuildYear-desc");
     ui -> ddmComputerSort -> addItem("Type-desc");
-    ui -> ddmComputerSort -> addItem("-----");
-    ui -> ddmComputerSort -> addItem("Unsorted");
 
     ui -> ddmComputerBuilt -> addItem("Built");
     ui -> ddmComputerBuilt -> addItem("Not Built");
@@ -218,7 +216,7 @@ void MainWindow::on_filterComputers_textChanged(const QString &arg1)
 
     ui->tableComputer->clearContents();
 
-    computers = _service.searchForComputer(arg1.toStdString());
+    computers = _service.searchForComputer(arg1.toStdString(), _orderBy);
 
     DisplayComputers(computers);
 }
@@ -254,6 +252,11 @@ void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
     on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }
 
+void MainWindow::on_ddmComputerSort_currentIndexChanged(int index)
+{
+    _orderBy = index;
+    on_filterComputers_textChanged(ui->filterComputers->text());
+}
 
 void MainWindow::on_addComputer_clicked()
 {

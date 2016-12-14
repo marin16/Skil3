@@ -59,7 +59,7 @@ public:
      * params: string search (search string that is compared with all computers).
      * returns: vector<Scientist> all matches.
      */
-    vector<Computer> searchForComputer(string search);
+    vector<Computer> searchForComputer(string search, int orderBy);
 
     /*
      * deleteComputer: Used when deleteing computer.

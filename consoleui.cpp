@@ -239,7 +239,7 @@ void ConsoleUI::_searchCPU(){
     cin.getline(charsearch,sizeof(charsearch));
     search = string(charsearch);
 
-    results = _service.searchForComputer(search);
+    results = _service.searchForComputer(search,0);
 
     _displayComputers(results);
 }

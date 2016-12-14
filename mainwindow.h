@@ -38,6 +38,7 @@ private slots:
     void on_filterComputers_textChanged(const QString &arg1);
 
     void on_ddmSortScientists_currentIndexChanged(int index);
+    void on_ddmComputerSort_currentIndexChanged(int index);
     void on_deleteComputer_clicked();
 
 private:

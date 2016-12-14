@@ -384,7 +384,7 @@ void MainWindow::DisplayLinked(std::vector<Linked> linked){
     displayedLinked = linked;
 }
 
-void MainWindow::on_editScientist_clicked()
+void MainWindow::on_tableScientist_clicked()
 {
         string male = "Male";
         string female = "Female";

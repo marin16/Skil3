@@ -5,17 +5,16 @@
 * Marín Viðarsdóttir
 * Stefán Már Melstað
 
-Github tengill:  
-https://github.com/dadisigursveinn/Skil2
+Github tengilar:  
+[Skil 1](https://github.com/SoYman/skil1)
+[Skil 2](https://github.com/dadisigursveinn/skil2)
+[Skil 3](https://github.com/marin16/skil3)
 
 #Database
-The database is locaded in the build directory and is named `csdb`, the database is automaticaly generated when you don't have a database already.  
-We provide a sample database that you can move to the build directory and a `insert.sql` file that you can run on the database to get the sample data.
-```shell
-sqlite3 csdb
-sqlite> .read insert.sql
-sqlite>
-```
+The databese is hosted on a [Digital Ocean](https://www.digitalocean.com/) server. We use [PostgreSQL](https://www.postgresql.org/) wich means that your computer has to have [PostgreSQL](https://www.postgresql.org/) installed on your computer and make sure that Qt has the path to `bin` and `lib`.
+
+1. Install PostgreSQL
+2. Add the path to `bin` and `lib` (which can for exaple be found at ``C:\Program Files\PostgreSQL\9.5\lib`), under `Build Enviroment` in Qt
 
 ##C++ coding conventions
 ###Namings

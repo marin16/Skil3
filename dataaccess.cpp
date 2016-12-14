@@ -15,10 +15,20 @@ using namespace std;
 
 DataAccess::DataAccess(){
     // Connect database.
-    _db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "csdb";
-    _db.setDatabaseName(dbName);
-    _db.open();
+    _db = QSqlDatabase::addDatabase("QPSQL");
+    // Digital ocean server IP
+    _db.setHostName("178.62.9.177");
+    _db.setDatabaseName("vlnui");
+    _db.setUserName("vlnui");
+    _db.setPassword("SamsungOK");
+    if(_db.open())
+    {
+        qDebug() << "database opened";
+    }
+    else
+    {
+        qDebug() << _db.lastError().text();
+    }
 
     // Prepare innitialization querys.
     QSqlQuery scientistsTable;
@@ -30,7 +40,7 @@ DataAccess::DataAccess(){
 
     // Scientists table, stores name, gender, dob, dod, country and gives him/her a unique ID.
     scientistsTable.exec("create table if not exists Scientists ("
-                         "id integer primary key autoincrement,"
+                         "id serial primary key,"
                          "name varchar(50) not null,"
                          "gender char not null,"
                          "dob integer not null,"
@@ -38,7 +48,7 @@ DataAccess::DataAccess(){
                          "country varchar(50))");
     // Computers table, stores name, year built(designed), type and whether it was built, gives each computer a unique ID.
     computersTable.exec("create table if not exists Computers ("
-                        "id integer primary key autoincrement,"
+                        "id serial primary key,"
                         "name varchar(50) not null,"
                         "buildy integer,"
                         "type varchar(50),"

@@ -124,7 +124,7 @@ void MainWindow::on_addScientist_clicked()
 
 
 void MainWindow::DisplayAllScientists(){
-    vector<Scientist> scientists = _service.getScientists(1);
+    vector<Scientist> scientists = _service.getScientists(_orderBy);
     DisplayScientists(scientists);
 }
 

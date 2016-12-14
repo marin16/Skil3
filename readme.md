@@ -11,9 +11,9 @@ Github tengilar:
 [Skil 3](https://github.com/marin16/skil3)
 
 #Database
-The databese is hosted on a [Digital Ocean](https://www.digitalocean.com/) server. We use [PostgreSQL](https://www.postgresql.org/) wich means that your computer has to have [PostgreSQL](https://www.postgresql.org/) installed on your computer and make sure that Qt has the path to 'bin' and 'lib'.
-1. Install PostgreSQL
-2. Add the path to 'bin' and 'lib' under 'Build Enviroment' in Qt
+The databese is hosted on a [Digital Ocean](https://www.digitalocean.com/) server. We use [PostgreSQL](https://www.postgresql.org/) wich means that your computer has to have [PostgreSQL](https://www.postgresql.org/) installed on your computer and make sure that Qt has the path to `bin` and `lib`.
+1.  Install PostgreSQL
+2.  Add the path to `bin` and `lib` under `Build Enviroment` in Qt
 
 ##C++ coding conventions
 ###Namings

@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
+    DisplayAllComputers();
 
     ui -> ddmSortScientists -> addItem("Unsorted");
     ui -> ddmSortScientists -> addItem("Name-asc");
@@ -45,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui -> addScientistGender -> addItem("Male");
     ui -> addScientistGender -> addItem("Female");
+
 
     for(size_t i = 2016; i >= 1800; i--)
     {
@@ -134,28 +136,39 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
     {
         Scientist currentScientist = scientists.at(row);
 
-        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
-        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QChar(currentScientist.getGender())));
-        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
-        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
-        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
+        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
+        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
+        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QChar(currentScientist.getGender())));
+        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
+        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
+        ui->tableScientist->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
     }
     displayedScientist = scientists;
 }
 
-//void MainWindow::DisplayScientist(Scientist scientist){
-//    ui->tableScientist->clear();
 
-//        QString genderstring = QChar(scientist.getGender());
 
-//        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(scientist.getName())));
-//        ui->tableScientist->setItem(row, 1, new QTableWidgetItem(genderstring));
-//        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::number(scientist.getBirth())));
-//        ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(scientist.getDeath())));
-//        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(scientist.getCountry())));
+void MainWindow::DisplayAllComputers(){
+    vector<Computer> computers = _service.getComputers(1);
+    DisplayComputers(computers);
+}
 
-//}
+void MainWindow::DisplayComputers(std::vector<Computer> computers){
+    ///ui->tableScientist->clearContents();
+    ui -> tableComputer -> setRowCount(computers.size());
 
+    for (unsigned int row = 0; row < computers.size(); row++)
+    {
+        Computer currentComputers = computers.at(row);
+
+        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(QString::number(currentComputers.getId())));
+        ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
+        ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
+        ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
+        ui->tableComputer->setItem(row, 4, new QTableWidgetItem(QChar(currentComputers.getBuilt())));
+    }
+    displayedComputer = computers;
+}
 
 void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
 {
@@ -212,3 +225,62 @@ void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
     on_filterScientistsList_textChanged(ui->filterScientistsList->text());
 }
 
+
+void MainWindow::on_addComputer_clicked()
+{
+    string name = ui -> addComputerName -> text().toStdString();
+    string type = ui -> addComputerType -> text().toStdString();
+    string year = ui -> addComputerYear -> currentText().toStdString();
+    string built = ui -> ddmComputerBuilt -> currentText().toStdString();
+
+    bool builtbool;
+    int yearint = atoi(year.c_str());
+    if(built == "built")
+        builtbool = true;
+    else
+        builtbool = false;
+
+    if(!_valid.cpuCheck(name)) {
+        QMessageBox::warning(this, "Name wrong", "This name is illegal. Try again!");
+        ui -> addComputerName -> clear();
+    }
+    else {
+
+        Computer newComputer = Computer(name, yearint, type, builtbool);
+
+
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Computer", "Are you sure the information is correct?",
+                                                    QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            _service.addComputer(newComputer);
+            QMessageBox::information(this, "Computer added", "This computer has been added to the database!");
+            ui -> tableComputer -> clear();
+            ui -> addComputerName -> clear();
+            ui -> addComputerType -> clear();
+        }
+        else {
+            MainWindow();
+        }
+    }
+    DisplayAllComputers();
+}
+
+void MainWindow::on_deleteComputer_clicked()
+{
+    int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    bool success =_service.deleteComputer(selectedComputer.getId());
+
+    if(success)
+    {
+        ui -> filterComputers -> setText("");
+        DisplayAllComputers();
+
+        ui -> deleteComputer -> setEnabled(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error", "Failed to delete");
+    }
+}

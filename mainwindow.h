@@ -24,9 +24,11 @@ public:
 private slots:
     void DisplayAllScientists();
     void DisplayScientists(std::vector<Scientist> scientists);
-    //void DisplayScientist(Scientist scientist);
+    void DisplayAllComputers();
+    void DisplayComputers(std::vector<Computer> computers);
     void on_addScientist_clicked();
     void on_deleteScientist_clicked();
+    void on_addComputer_clicked();
 
     void on_listScientist_clicked(const QModelIndex &index);
     //void on_listComputer_clicked(const QModelIndex &index);
@@ -35,13 +37,14 @@ private slots:
     void on_filterScientistsList_textChanged(const QString &arg1);
 
     void on_ddmSortScientists_currentIndexChanged(int index);
-
+    void on_deleteComputer_clicked();
 
 private:
     Ui::MainWindow *ui;
     Service _service;
     inputcheck _valid;
     std::vector<Scientist> displayedScientist;
+    std::vector<Computer> displayedComputer;
     int _orderBy;
 };
 

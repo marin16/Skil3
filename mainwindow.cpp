@@ -131,16 +131,27 @@ void MainWindow::DisplayAllScientists(){
 void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
     ///ui->tableScientist->clearContents();
     ui -> tableScientist -> setRowCount(scientists.size());
-
+    string alive = "Alive";
+    string male = "Male";
+    string female = "Female";
+    string other = "Other";
     for (unsigned int row = 0; row < scientists.size(); row++)
     {
         Scientist currentScientist = scientists.at(row);
 
         ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
         ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
-        ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QChar(currentScientist.getGender())));
+        if (currentScientist.getGender() == 'M')
+            ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(male)));
+        else if (currentScientist.getGender() == 'F')
+            ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(female)));
+        else
+            ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(other)));
         ui->tableScientist->setItem(row, 3, new QTableWidgetItem(QString::number(currentScientist.getBirth())));
-        ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
+        if (currentScientist.getDeath() == 0)
+            ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(alive)));
+        else
+            ui->tableScientist->setItem(row, 4, new QTableWidgetItem(QString::number(currentScientist.getDeath())));
         ui->tableScientist->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(currentScientist.getCountry())));
     }
     displayedScientist = scientists;

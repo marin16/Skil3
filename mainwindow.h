@@ -7,6 +7,7 @@
 #include <string>
 #include "service.h"
 #include "inputcheck.h"
+#include "linked.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,12 @@ private slots:
     void DisplayScientists(std::vector<Scientist> scientists);
     void DisplayAllComputers();
     void DisplayComputers(std::vector<Computer> computers);
+    void DisplayAllIdScientists();
+    void DisplayIdScientists(std::vector<Scientist> scientists);
+    void DisplayAllIdComputers();
+    void DisplayIdComputers(std::vector<Computer> computers);
+    void DisplayAllLinked();
+    void DisplayLinked(std::vector<Linked> linked);
     void on_addScientist_clicked();
     void on_deleteScientist_clicked();
     void on_addComputer_clicked();
@@ -47,6 +54,7 @@ private:
     inputcheck _valid;
     std::vector<Scientist> displayedScientist;
     std::vector<Computer> displayedComputer;
+    std::vector<Linked> displayedLinked;
     int _orderBy;
 };
 

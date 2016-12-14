@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -380,17 +380,76 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableTableLink">
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="verticalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="horizontalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="6,4">
+          <item>
+           <widget class="QTableWidget" name="tableTableLink">
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="verticalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
+            <property name="horizontalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
+            <column>
+             <property name="text">
+              <string>Scientist ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Scientist Name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Computer ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Computer Name</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QTableWidget" name="tableIdScientist">
+              <column>
+               <property name="text">
+                <string>ID</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Scientist Name</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tableIdComputer">
+              <column>
+               <property name="text">
+                <string>ID</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Computer Name</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
         <item>
          <layout class="QHBoxLayout" name="tableLinkID">

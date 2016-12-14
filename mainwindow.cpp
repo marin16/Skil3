@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     DisplayAllScientists();
     DisplayAllComputers();
+    DisplayAllIdScientists();
+    DisplayAllIdComputers();
+    DisplayAllLinked();
 
     ui -> ddmSortScientists -> addItem("Unsorted");
     ui -> ddmSortScientists -> addItem("Name-asc");
@@ -315,4 +318,68 @@ void MainWindow::on_deleteComputer_clicked()
     {
         QMessageBox::warning(this, "Error", "Failed to delete");
     }
+}
+
+void MainWindow::DisplayAllIdScientists(){
+    vector<Scientist> scientists = _service.getScientists(_orderBy);
+    DisplayIdScientists(scientists);
+}
+
+void MainWindow::DisplayIdScientists(std::vector<Scientist> scientists){
+    ///ui->tableScientist->clearContents();
+    ui -> tableIdScientist -> verticalHeader() -> setVisible(false);
+    ui -> tableIdScientist -> setRowCount(scientists.size());
+
+    for (unsigned int row = 0; row < scientists.size(); row++)
+    {
+        Scientist currentScientist = scientists.at(row);
+
+        ui->tableIdScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
+        ui->tableIdScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
+    }
+    displayedScientist = scientists;
+}
+
+void MainWindow::DisplayAllIdComputers(){
+    vector<Computer> computers = _service.getComputers(1);
+    DisplayIdComputers(computers);
+}
+
+void MainWindow::DisplayIdComputers(std::vector<Computer> computers){
+    ///ui->tableIdComputer->clearContents();
+    ui -> tableIdComputer -> verticalHeader() -> setVisible(false);
+    ui -> tableIdComputer -> setRowCount(computers.size());
+
+    for (unsigned int row = 0; row < computers.size(); row++)
+    {
+        Computer currentComputers = computers.at(row);
+
+        ui->tableIdComputer->setItem(row, 0, new QTableWidgetItem(QString::number(currentComputers.getId())));
+        ui->tableIdComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
+
+    }
+    displayedComputer = computers;
+}
+
+void MainWindow::DisplayAllLinked(){
+    vector<Linked> linked = _service.getLinks(1);
+    DisplayLinked(linked);
+}
+
+void MainWindow::DisplayLinked(std::vector<Linked> linked){
+    ///ui->tableIdComputer->clearContents();
+    ui -> tableTableLink -> verticalHeader() -> setVisible(false);
+    ui -> tableTableLink -> setRowCount(linked.size());
+
+    for (unsigned int row = 0; row < linked.size(); row++)
+    {
+        Linked currentLink = linked.at(row);
+
+        ui->tableTableLink->setItem(row, 0, new QTableWidgetItem(QString::number(currentLink.getScientist().getId())));
+        ui->tableTableLink->setItem(row, 1, new QTableWidgetItem(QString::QString::fromStdString(currentLink.getScientist().getName())));
+        ui->tableTableLink->setItem(row, 2, new QTableWidgetItem(QString::number(currentLink.getComputer().getId())));
+        ui->tableTableLink->setItem(row, 3, new QTableWidgetItem(QString::QString::fromStdString(currentLink.getComputer().getName())));
+
+    }
+    displayedLinked = linked;
 }

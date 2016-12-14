@@ -212,6 +212,17 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
     DisplayScientists(scientists);
 }
 
+void MainWindow::on_filterComputers_textChanged(const QString &arg1)
+{
+    vector<Computer> computers;
+
+    ui->tableComputer->clearContents();
+
+    computers = _service.searchForComputer(arg1.toStdString());
+
+    DisplayComputers(computers);
+}
+
 
 void MainWindow::on_listScientist_clicked(const QModelIndex &index)
 {

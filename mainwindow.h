@@ -35,6 +35,7 @@ private slots:
     void on_tableScientist_clicked(const QModelIndex &index);
     void on_tableComputer_clicked(const QModelIndex &index);
     void on_filterScientistsList_textChanged(const QString &arg1);
+    void on_filterComputers_textChanged(const QString &arg1);
 
     void on_ddmSortScientists_currentIndexChanged(int index);
     void on_deleteComputer_clicked();

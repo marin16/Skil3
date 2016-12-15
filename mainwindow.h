@@ -40,6 +40,7 @@ private slots:
 
     void on_tableScientist_clicked(const QModelIndex &index);
     void on_tableComputer_clicked(const QModelIndex &index);
+    void on_tableTableLink_clicked(const QModelIndex &index);
     void on_filterScientistsList_textChanged(const QString &arg1);
     void on_filterComputers_textChanged(const QString &arg1);
 
@@ -52,6 +53,8 @@ private slots:
 
     void on_tableIdScientist_clicked();
     void on_tableIdComputer_clicked();
+
+    void on_deleteTableLink_clicked();
 
 private:
     Ui::MainWindow *ui;

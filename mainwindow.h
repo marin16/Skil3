@@ -53,6 +53,9 @@ private slots:
     void on_tableScientist_clicked();
     void on_tableComputer_clicked();
 
+    void on_tableIdScientist_clicked();
+    void on_tableIdComputer_clicked();
+
 private:
     Ui::MainWindow *ui;
     Service _service;

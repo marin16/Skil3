@@ -560,16 +560,6 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="editTableLink">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 223, 109)</string>
-            </property>
-            <property name="text">
-             <string>Edit Link</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="deleteTableLink">
             <property name="enabled">
              <bool>false</bool>
@@ -596,7 +586,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
      <x>0</x>
      <y>0</y>
      <width>704</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -24,7 +24,6 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
        <number>2</number>
       </property>
       <widget class="QWidget" name="tabScientists">
@@ -413,7 +412,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="6,4">
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0">
           <item>
            <widget class="QTableWidget" name="tableTableLink">
             <property name="styleSheet">
@@ -572,6 +571,9 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
           </item>
           <item>
            <widget class="QPushButton" name="deleteTableLink">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(254, 86, 73)</string>
             </property>

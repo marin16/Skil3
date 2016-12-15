@@ -567,3 +567,30 @@ QString MainWindow::_paddId(int iId)
     return QString::fromStdString(id);
 }
 
+void MainWindow::on_tableTableLink_clicked(const QModelIndex &index)
+{
+    if(ui->tableTableLink->currentItem()->isSelected() == true)
+        ui->deleteTableLink->setEnabled(true);
+    else
+        ui->deleteTableLink->setEnabled(false);
+}
+
+void MainWindow::on_deleteTableLink_clicked()
+{
+    int selectedLinkIndex = ui -> tableTableLink -> currentIndex().row();
+    Linked selectedLink = displayedLinked.at(selectedLinkIndex);
+    bool success = _service.unLink(selectedLink.getComputer().getId(), selectedLink.getScientist().getId());
+
+    if(success)
+    {
+        ui -> filterLinkedTables -> setText("");
+        DisplayAllLinked();
+
+        ui -> deleteTableLink -> setEnabled(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Failed", "Failed to delete");
+    }
+    ui -> deleteTableLink -> setDisabled(true);
+}

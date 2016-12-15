@@ -18,199 +18,8 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="tabScientists">
-       <attribute name="title">
-        <string>Scientists</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <layout class="QHBoxLayout" name="filterScientist">
-          <item>
-           <widget class="QLineEdit" name="filterScientistsList">
-            <property name="placeholderText">
-             <string>Type to filter scientist list</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="ddmSortScientists">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTableWidget" name="tableScientist">
-          <property name="cursor" stdset="0">
-           <cursorShape>ArrowCursor</cursorShape>
-          </property>
-          <property name="mouseTracking">
-           <bool>false</bool>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustIgnored</enum>
-          </property>
-          <property name="autoScrollMargin">
-           <number>16</number>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="verticalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="horizontalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <attribute name="horizontalHeaderStretchLastSection">
-           <bool>true</bool>
-          </attribute>
-          <column>
-           <property name="text">
-            <string>ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Gender</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Year of birth</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Year of death</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Nationality</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="nameScientist">
-          <item>
-           <widget class="QLineEdit" name="addScientistName">
-            <property name="placeholderText">
-             <string>Name of scientist</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="yearScientist">
-          <item>
-           <widget class="QLabel" name="labelScientistBirth">
-            <property name="maximumSize">
-             <size>
-              <width>176</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select date of birth</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addScientistBirth"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelScientistDeath">
-            <property name="text">
-             <string>Select date of death</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addScientistDeath"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="nationalityScientist">
-          <item>
-           <widget class="QLabel" name="labelScientistNationality">
-            <property name="text">
-             <string>Select scientist nationality</string>
-            </property>
-            <property name="scaledContents">
-             <bool>false</bool>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addScientistNationality"/>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addScientistGender">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="manageScientist">
-          <item>
-           <widget class="QPushButton" name="addScientist">
-            <property name="mouseTracking">
-             <bool>false</bool>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Add</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="editScientist">
-            <property name="text">
-             <string>Edit</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="deleteScientist">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Delete</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="tabComputers">
        <attribute name="title">
         <string>Computers</string>
@@ -356,6 +165,203 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tabScientists">
+       <attribute name="title">
+        <string>Scientists</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="filterScientist">
+          <item>
+           <widget class="QLineEdit" name="filterScientistsList">
+            <property name="placeholderText">
+             <string>Type to filter scientist list</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="ddmSortScientists">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableScientist">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="cursor" stdset="0">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="autoScrollMargin">
+           <number>16</number>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of birth</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of death</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Nationality</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="nameScientist">
+          <item>
+           <widget class="QLineEdit" name="addScientistName">
+            <property name="placeholderText">
+             <string>Name of scientist</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="yearScientist">
+          <item>
+           <widget class="QLabel" name="labelScientistBirth">
+            <property name="maximumSize">
+             <size>
+              <width>176</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select date of birth</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistBirth"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelScientistDeath">
+            <property name="text">
+             <string>Select date of death</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistDeath"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="nationalityScientist">
+          <item>
+           <widget class="QLabel" name="labelScientistNationality">
+            <property name="text">
+             <string>Select scientist nationality</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistNationality"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addScientistGender">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="manageScientist">
+          <item>
+           <widget class="QPushButton" name="addScientist">
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editScientist">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteScientist">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tabTableLink">
        <attribute name="title">
         <string>Table Link</string>
@@ -392,6 +398,12 @@
             <property name="horizontalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
             </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
             <column>
              <property name="text">
               <string>Scientist ID</string>
@@ -421,6 +433,9 @@
             </property>
             <item>
              <widget class="QTableWidget" name="tableIdScientist">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>ID</string>
@@ -435,6 +450,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="tableIdComputer">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>ID</string>
@@ -473,13 +491,55 @@
          <layout class="QHBoxLayout" name="manageTableLink">
           <item>
            <widget class="QPushButton" name="addTableLink">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::menu-indicator:pressed, QPushButton::menu-indicator:open {
+	background-color: rgb(162, 255, 137);
+}
+QPushButton:pressed  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:default  { 
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:open  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:hover  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton {
+     background-color: rgb(132, 246, 107);
+}
+
+QPushButton:disabled {
+    background-color: rgb(102, 246, 177);
+}</string>
+            </property>
             <property name="text">
              <string>Add Link</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="default">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="editTableLink">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 223, 109)</string>
+            </property>
             <property name="text">
              <string>Edit Link</string>
             </property>
@@ -487,6 +547,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteTableLink">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(254, 86, 73)</string>
+            </property>
             <property name="text">
              <string>Delete Link</string>
             </property>
@@ -506,7 +569,7 @@
      <x>0</x>
      <y>0</y>
      <width>671</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -24,7 +24,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -40,13 +40,6 @@
             </property>
             <property name="clearButtonEnabled">
              <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="ddmSortScientists">
-            <property name="currentText">
-             <string/>
             </property>
            </widget>
           </item>
@@ -259,13 +252,6 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QComboBox" name="ddmComputerSort">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
@@ -420,13 +406,6 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
            <widget class="QLineEdit" name="filterLinkedTables">
             <property name="placeholderText">
              <string>Type to filter linked table list</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="ddmTableLink">
-            <property name="currentText">
-             <string/>
             </property>
            </widget>
           </item>

@@ -28,24 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     DisplayAllIdComputers();
     DisplayAllLinked();
 
-    ui -> ddmSortScientists -> addItem("Unsorted");
-    ui -> ddmSortScientists -> addItem("Name-asc");
-    ui -> ddmSortScientists -> addItem("Birth-asc");
-    ui -> ddmSortScientists -> addItem("Death-asc");
-    ui -> ddmSortScientists -> addItem("Country-asc");
-    ui -> ddmSortScientists -> addItem("Name-desc");
-    ui -> ddmSortScientists -> addItem("Birth-desc");
-    ui -> ddmSortScientists -> addItem("Death-desc");
-    ui -> ddmSortScientists -> addItem("Country-desc");
-
-    ui -> ddmComputerSort -> addItem("Unsorted");
-    ui -> ddmComputerSort -> addItem("Name-asc");
-    ui -> ddmComputerSort -> addItem("BuildYear-asc");
-    ui -> ddmComputerSort -> addItem("Type-asc");
-    ui -> ddmComputerSort -> addItem("Name-desc");
-    ui -> ddmComputerSort -> addItem("BuildYear-desc");
-    ui -> ddmComputerSort -> addItem("Type-desc");
-
     ui -> ddmComputerBuilt -> addItem("Built");
     ui -> ddmComputerBuilt -> addItem("Not Built");
 
@@ -68,8 +50,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui -> addScientistDeath -> addItem(year);
 
     }
-
-    ui -> ddmTableLink -> addItem("Link Sort");
 
     for (int i = 2016; i > 1799; i--)
     {
@@ -237,12 +217,6 @@ void MainWindow::on_filterComputers_textChanged(const QString &arg1)
     DisplayComputers(computers);
 }
 
-
-void MainWindow::on_listScientist_clicked(const QModelIndex &index)
-{
-    ui -> deleteScientist -> setEnabled(true);
-}
-
 void MainWindow::on_deleteScientist_clicked()
 {
     int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
@@ -260,18 +234,6 @@ void MainWindow::on_deleteScientist_clicked()
     {
         QMessageBox::warning(this, "Name wrong", "Failed to delete");
     }
-}
-
-void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
-{
-    _orderBy = index;
-    on_filterScientistsList_textChanged(ui->filterScientistsList->text());
-}
-
-void MainWindow::on_ddmComputerSort_currentIndexChanged(int index)
-{
-    _orderBy = index;
-    on_filterComputers_textChanged(ui->filterComputers->text());
 }
 
 void MainWindow::on_addComputer_clicked()

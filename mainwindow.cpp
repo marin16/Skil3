@@ -283,7 +283,7 @@ void MainWindow::on_addComputer_clicked()
 
     bool builtbool;
     int yearint = atoi(year.c_str());
-    if(built == "built")
+    if(built == "Built")
         builtbool = true;
     else
         builtbool = false;
@@ -469,25 +469,87 @@ void MainWindow::on_editScientist_clicked()
          else {
             MainWindow();
          }
-
     }
     DisplayAllScientists();
 }
 
 void MainWindow::on_tableComputer_clicked()
 {
-        string built = "Built";
-        string notbuilt = "Not Built";
-        int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
-        Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
-        ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
-        ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
-        ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
-        if (selectedComputer.getBuilt())
-            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(built));
-        else
-            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(notbuilt));
+    string built = "Built";
+    string notbuilt = "Not Built";
+    int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
+    ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
+    ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
+    if (selectedComputer.getBuilt())
+        ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(built));
+    else
+        ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(notbuilt));
 }
+
+void MainWindow::on_editComputer_clicked()
+{
+    int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    int id = selectedComputer.getId();
+    string name = ui -> addComputerName -> text().toStdString();
+    string type = ui -> addComputerType -> text().toStdString();
+    string year = ui -> addComputerYear -> currentText().toStdString();
+    string built = ui -> ddmComputerBuilt -> currentText().toStdString();
+
+    bool builtbool;
+    int yearint = atoi(year.c_str());
+    if(built == "Built")
+        builtbool = true;
+    else
+        builtbool = false;
+
+    if(!_valid.cpuCheck(name)) {
+        QMessageBox::warning(this, "Name wrong", "This name is illegal. Try again!");
+        ui -> addComputerName -> setText(QString::fromStdString(selectedComputer.getName()));
+    }
+
+    else {
+        Computer editedComputer = Computer(name, yearint, type, builtbool);
+        QMessageBox::StandardButton check;
+        check = QMessageBox::question(this, "Computer Edit", "Are you sure you've edited the information correctly?",
+                                                QMessageBox::Yes|QMessageBox::No);
+        if (check == QMessageBox::Yes) {
+            bool success = _service.editComputer(id, editedComputer);
+
+            if(success) {
+                QMessageBox::information(this, "Computer edited", "This computer has been edited in the database");
+                ui -> tableComputer -> clearContents();
+                ui -> addComputerName -> clear();
+                ui -> addComputerType -> clear();
+                ui -> addComputerYear -> setCurrentText(QString::number(2016));
+                ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString("Built"));
+            }
+            else {
+                QMessageBox::information(this, "Database error", "Error updating the database");
+            }
+        }
+        else if (check == QMessageBox::No) {
+            string built = "Built";
+            string notbuilt = "Not Built";
+            ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
+            ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
+            ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
+            if (selectedComputer.getBuilt()) {
+                ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(built));
+            }
+            else {
+                ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(notbuilt));
+            }
+        }
+        else {
+           MainWindow();
+        }
+    }
+    DisplayAllComputers();
+}
+
 
 void MainWindow::on_addTableLink_clicked()
 {

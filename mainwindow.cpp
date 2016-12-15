@@ -17,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableComputer->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableTableLink->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableIdComputer->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableIdScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
     DisplayAllComputers();
@@ -468,4 +472,44 @@ void MainWindow::on_editScientist_clicked()
 
     }
     DisplayAllScientists();
+}
+
+void MainWindow::on_tableComputer_clicked()
+{
+        string built = "Built";
+        string notbuilt = "Not Built";
+        int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+        Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+        ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
+        ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
+        ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
+        if (selectedComputer.getBuilt())
+            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(built));
+        else
+            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(notbuilt));
+}
+
+void MainWindow::on_addTableLink_clicked()
+{
+    string scientistId = ui -> addTableLinkSID -> text().toStdString();
+    string computerId = ui -> addTableLinkCID -> text().toStdString();
+
+    int scientistIdInt = atoi(scientistId.c_str());
+    int computerIdInt = atoi(computerId.c_str());
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Link", "Are you sure the information is correct?",
+                                                QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        if(_service.link(computerIdInt, scientistIdInt))
+            QMessageBox::information(this, "Link", "This link has been added to the database!");
+        else
+            QMessageBox::information(this, "Link", "This link has failed!");
+        ui -> addTableLinkSID -> clear();
+        ui -> addTableLinkCID -> clear();
+    }
+    else {
+        MainWindow();
+    }
+    DisplayAllLinked();
 }

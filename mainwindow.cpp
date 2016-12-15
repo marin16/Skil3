@@ -184,7 +184,10 @@ void MainWindow::DisplayComputers(vector<Computer> computers){
 
 void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
 {
-    ui -> deleteScientist -> setEnabled(true);
+    if(ui->tableScientist->currentItem()->isSelected() == true)
+        ui->deleteScientist->setEnabled(true);
+    else
+        ui->deleteScientist->setEnabled(false);
 }
 
 
@@ -234,6 +237,7 @@ void MainWindow::on_deleteScientist_clicked()
     {
         QMessageBox::warning(this, "Name wrong", "Failed to delete");
     }
+    ui -> deleteScientist -> setDisabled(true);
 }
 
 void MainWindow::on_addComputer_clicked()
@@ -552,3 +556,4 @@ void MainWindow::on_tableIdComputer_clicked()
     Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
     ui -> addTableLinkCID -> setText(QString::number(selectedComputer.getId()));
 }
+

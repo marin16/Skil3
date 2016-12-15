@@ -53,6 +53,8 @@ private slots:
     void on_tableIdScientist_clicked();
     void on_tableIdComputer_clicked();
 
+    void on_tableComputer_activated(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Service _service;

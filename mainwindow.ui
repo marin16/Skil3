@@ -48,6 +48,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="tableScientist">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="cursor" stdset="0">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
@@ -71,6 +74,9 @@
           </property>
           <property name="horizontalScrollMode">
            <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
@@ -506,7 +512,7 @@
      <x>0</x>
      <y>0</y>
      <width>671</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

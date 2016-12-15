@@ -469,3 +469,28 @@ void MainWindow::on_editScientist_clicked()
     }
     DisplayAllScientists();
 }
+
+void MainWindow::on_addTableLink_clicked()
+{
+    string scientistId = ui -> addTableLinkSID -> text().toStdString();
+    string computerId = ui -> addTableLinkCID -> text().toStdString();
+
+    int scientistIdInt = atoi(scientistId.c_str());
+    int computerIdInt = atoi(computerId.c_str());
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Link", "Are you sure the information is correct?",
+                                                QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        if(_service.link(computerIdInt, scientistIdInt))
+            QMessageBox::information(this, "Link", "This link has been added to the database!");
+        else
+            QMessageBox::information(this, "Link", "This link has failed!");
+        ui -> addTableLinkSID -> clear();
+        ui -> addTableLinkCID -> clear();
+    }
+    else {
+        MainWindow();
+    }
+    DisplayAllLinked();
+}

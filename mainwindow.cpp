@@ -17,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableComputer->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableTableLink->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableIdComputer->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableIdScientist->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     DisplayAllScientists();
     DisplayAllComputers();

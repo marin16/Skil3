@@ -105,16 +105,25 @@ void MainWindow::on_addScientist_clicked()
 
         Scientist newScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
 
-        //DisplayScientist(newScientist);
-
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Scientist", "Are you sure the information is correct?",
                                                     QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes) {
-            _service.addScientist(newScientist);
-            QMessageBox::information(this, "Scientist added", "This scientist has been added to the database!");
-            ui -> tableScientist -> clear();
-            ui -> addScientistName -> clear();
+            bool success = _service.addScientist(newScientist);
+
+            if(success) {
+                QMessageBox::information(this, "Scientist added", "This scientist has been added to the database!");
+                ui -> tableScientist -> clearContents();
+                ui -> addScientistName -> clear();
+                ui -> addScientistBirth -> setCurrentText(QString::number(2016));
+                ui -> addScientistDeath -> setCurrentText(QString::fromStdString("Alive"));
+                ui -> addScientistNationality -> setCurrentText(QString::fromStdString("Afghan"));
+                ui -> addScientistGender -> setCurrentText(QString::fromStdString("Male"));
+            }
+            else {
+                QMessageBox::information(this, "Database error", "Error updating the database");
+            }
+
         }
         else {
             MainWindow();
@@ -290,7 +299,7 @@ void MainWindow::on_addComputer_clicked()
         if (reply == QMessageBox::Yes) {
             _service.addComputer(newComputer);
             QMessageBox::information(this, "Computer added", "This computer has been added to the database!");
-            ui -> tableComputer -> clear();
+            ui -> tableComputer -> clearContents();
             ui -> addComputerName -> clear();
             ui -> addComputerType -> clear();
         }
@@ -397,5 +406,66 @@ void MainWindow::on_tableScientist_clicked()
         if (selectedScientist.getGender() == 'M')
             ui -> addScientistGender -> setCurrentText(QString::fromStdString(male));
         else
-            ui -> addScientistGender -> setCurrentText(QString::fromStdString(female));
+            ui -> addScientistGender -> setCurrentText(QString::fromStdString(female));  
+}
+
+void MainWindow::on_editScientist_clicked()
+{
+    int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
+    Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+    int id = selectedScientist.getId();
+    string name = ui -> addScientistName -> text().toStdString();
+    string gender = ui -> addScientistGender -> currentText().toStdString();
+    string birth = ui -> addScientistBirth -> currentText().toStdString();
+    string death = ui -> addScientistDeath -> currentText().toStdString();
+    string country = ui -> addScientistNationality -> currentText().toStdString();
+
+    int birthint = atoi(birth.c_str());
+    int deathint = atoi(death.c_str());
+
+    if(!_valid.nameCheck(name)) {
+        QMessageBox::warning(this, "Name wrong", "This name is illegal. Try again!");
+        ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));
+    }
+
+    else {
+        Scientist editedScientist = Scientist(name, toupper(gender.at(0)), birthint, deathint, country);
+        QMessageBox::StandardButton check;
+        check = QMessageBox::question(this, "Scientist Edit", "Are you sure you've edited the information correctly?",
+                                                QMessageBox::Yes|QMessageBox::No);
+        if (check == QMessageBox::Yes) {
+            bool success = _service.editScientist(id, editedScientist);
+
+            if(success) {
+            QMessageBox::information(this, "Scientist edited", "This scientist has been edited in the database");
+            ui -> tableScientist -> clearContents();
+            ui -> addScientistName -> clear();
+            ui -> addScientistBirth -> setCurrentText(QString::number(2016));
+            ui -> addScientistDeath -> setCurrentText(QString::fromStdString("Alive"));
+            ui -> addScientistNationality -> setCurrentText(QString::fromStdString("Afghan"));
+            ui -> addScientistGender -> setCurrentText(QString::fromStdString("Male"));
+            }
+
+            else {
+                QMessageBox::information(this, "Database error", "Error updating the database");
+            }
+         }
+         else if (check == QMessageBox::No) {
+            string male = "Male";
+            string female = "Female";
+            ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));
+            ui -> addScientistBirth -> setCurrentText(QString::number(selectedScientist.getBirth()));
+            ui -> addScientistDeath -> setCurrentText(QString::number(selectedScientist.getDeath()));
+            ui -> addScientistNationality -> setCurrentText(QString::fromStdString(selectedScientist.getCountry()));
+            if (selectedScientist.getGender() == 'M')
+                ui -> addScientistGender -> setCurrentText(QString::fromStdString(male));
+            else
+                ui -> addScientistGender -> setCurrentText(QString::fromStdString(female));
+         }
+         else {
+            MainWindow();
+         }
+
+    }
+    DisplayAllScientists();
 }

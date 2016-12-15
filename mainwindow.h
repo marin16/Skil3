@@ -48,7 +48,7 @@ private slots:
     void on_ddmComputerSort_currentIndexChanged(int index);
     void on_deleteComputer_clicked();
 
-    //void on_editScientist_clicked();
+    void on_editScientist_clicked();
     void on_tableScientist_clicked();
 
 private:

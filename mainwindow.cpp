@@ -469,3 +469,18 @@ void MainWindow::on_editScientist_clicked()
     }
     DisplayAllScientists();
 }
+
+void MainWindow::on_tableComputer_clicked()
+{
+        string built = "Built";
+        string notbuilt = "Not Built";
+        int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+        Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+        ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
+        ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
+        ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
+        if (selectedComputer.getBuilt())
+            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(built));
+        else
+            ui -> ddmComputerBuilt -> setCurrentText(QString::fromStdString(notbuilt));
+}

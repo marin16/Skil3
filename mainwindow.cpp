@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QComboBox>
+#include <QSpinBox>
+#include "tableitem.h"
 
 using namespace std;
 
@@ -134,7 +136,7 @@ void MainWindow::DisplayScientists(vector<Scientist> scientists){
     {
         Scientist currentScientist = scientists.at(row);
 
-        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
+        ui->tableScientist->setItem(row, 0, new QTableWidgetItem(_paddId(currentScientist.getId())));
         ui->tableScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
         if (currentScientist.getGender() == 'M')
             ui->tableScientist->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(male)));
@@ -170,7 +172,7 @@ void MainWindow::DisplayComputers(vector<Computer> computers){
     {
         Computer currentComputers = computers.at(row);
 
-        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(QString::number(currentComputers.getId())));
+        ui->tableComputer->setItem(row, 0, new QTableWidgetItem(_paddId(currentComputers.getId())));
         ui->tableComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
         ui->tableComputer->setItem(row, 2, new QTableWidgetItem(QString::number(currentComputers.getBuildy())));
         ui->tableComputer->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(currentComputers.getType())));
@@ -313,7 +315,7 @@ void MainWindow::DisplayIdScientists(std::vector<Scientist> scientists){
     {
         Scientist currentScientist = scientists.at(row);
 
-        ui->tableIdScientist->setItem(row, 0, new QTableWidgetItem(QString::number(currentScientist.getId())));
+        ui->tableIdScientist->setItem(row, 0, new QTableWidgetItem(_paddId(currentScientist.getId())));
         ui->tableIdScientist->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentScientist.getName())));
     }
     displayedScientist = scientists;
@@ -333,7 +335,7 @@ void MainWindow::DisplayIdComputers(std::vector<Computer> computers){
     {
         Computer currentComputers = computers.at(row);
 
-        ui->tableIdComputer->setItem(row, 0, new QTableWidgetItem(QString::number(currentComputers.getId())));
+        ui->tableIdComputer->setItem(row, 0, new QTableWidgetItem(_paddId(currentComputers.getId())));
         ui->tableIdComputer->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(currentComputers.getName())));
 
     }
@@ -354,9 +356,9 @@ void MainWindow::DisplayLinked(std::vector<Linked> linked){
     {
         Linked currentLink = linked.at(row);
 
-        ui->tableTableLink->setItem(row, 0, new QTableWidgetItem(QString::number(currentLink.getScientist().getId())));
+        ui->tableTableLink->setItem(row, 0, new QTableWidgetItem(_paddId(currentLink.getScientist().getId())));
         ui->tableTableLink->setItem(row, 1, new QTableWidgetItem(QString::QString::fromStdString(currentLink.getScientist().getName())));
-        ui->tableTableLink->setItem(row, 2, new QTableWidgetItem(QString::number(currentLink.getComputer().getId())));
+        ui->tableTableLink->setItem(row, 2, new QTableWidgetItem(_paddId(currentLink.getComputer().getId())));
         ui->tableTableLink->setItem(row, 3, new QTableWidgetItem(QString::QString::fromStdString(currentLink.getComputer().getName())));
 
     }
@@ -555,5 +557,13 @@ void MainWindow::on_tableIdComputer_clicked()
     int selectedComputerIndex = ui -> tableIdComputer -> currentIndex().row();
     Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
     ui -> addTableLinkCID -> setText(QString::number(selectedComputer.getId()));
+}
+
+QString MainWindow::_paddId(int iId)
+{
+    string id = to_string(iId);
+    if(constants::padding > id.size())
+        id.insert(0,constants::padding - id.size(), ' ');
+    return QString::fromStdString(id);
 }
 

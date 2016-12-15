@@ -53,7 +53,7 @@ private slots:
     void on_tableIdScientist_clicked();
     void on_tableIdComputer_clicked();
 
-    void on_tableComputer_activated(const QModelIndex &index);
+    //void on_tableComputer_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
@@ -63,6 +63,7 @@ private:
     std::vector<Computer> displayedComputer;
     std::vector<Linked> displayedLinked;
     int _orderBy;
+    QString _paddId(int iId);
 };
 
 #endif // MAINWINDOW_H

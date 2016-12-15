@@ -36,6 +36,7 @@ private slots:
     void on_addScientist_clicked();
     void on_deleteScientist_clicked();
     void on_addComputer_clicked();
+    void on_addTableLink_clicked();
 
     void on_listScientist_clicked(const QModelIndex &index);
     //void on_listComputer_clicked(const QModelIndex &index);

@@ -31,6 +31,7 @@ public:
 
         return _built;
     }
+
      // Returns true if Computer contains search Term
     bool contains(string searchTerm);
 

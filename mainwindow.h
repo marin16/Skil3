@@ -51,6 +51,7 @@ private slots:
 
     void on_editScientist_clicked();
     void on_tableScientist_clicked();
+    void on_tableComputer_clicked();
 
 private:
     Ui::MainWindow *ui;

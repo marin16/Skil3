@@ -18,8 +18,153 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
+      <widget class="QWidget" name="tabComputers">
+       <attribute name="title">
+        <string>Computers</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="filterComputer">
+          <item>
+           <widget class="QLineEdit" name="filterComputers">
+            <property name="placeholderText">
+             <string>Type to filter computer list</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="ddmComputerSort">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableComputer">
+          <property name="minimumSize">
+           <size>
+            <width>543</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Design Year</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Built</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="nameComputer">
+          <item>
+           <widget class="QLineEdit" name="addComputerName">
+            <property name="placeholderText">
+             <string>Name of computer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="ddmComputerBuilt">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="typeComputer">
+          <item>
+           <widget class="QLabel" name="labelComputerYear">
+            <property name="text">
+             <string>Computer design year</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="addComputerYear"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="addComputerType">
+            <property name="placeholderText">
+             <string>Type of computer</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="manageComputer">
+          <item>
+           <widget class="QPushButton" name="addComputer">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editComputer">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteComputer">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
         <string>Scientists</string>
@@ -217,151 +362,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabComputers">
-       <attribute name="title">
-        <string>Computers</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <layout class="QHBoxLayout" name="filterComputer">
-          <item>
-           <widget class="QLineEdit" name="filterComputers">
-            <property name="placeholderText">
-             <string>Type to filter computer list</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="ddmComputerSort">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTableWidget" name="tableComputer">
-          <property name="minimumSize">
-           <size>
-            <width>543</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="verticalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="horizontalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="gridStyle">
-           <enum>Qt::SolidLine</enum>
-          </property>
-          <attribute name="horizontalHeaderStretchLastSection">
-           <bool>true</bool>
-          </attribute>
-          <column>
-           <property name="text">
-            <string>ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Design Year</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Type</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Built</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="nameComputer">
-          <item>
-           <widget class="QLineEdit" name="addComputerName">
-            <property name="placeholderText">
-             <string>Name of computer</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="ddmComputerBuilt">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="typeComputer">
-          <item>
-           <widget class="QLabel" name="labelComputerYear">
-            <property name="text">
-             <string>Computer design year</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="addComputerYear"/>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="addComputerType">
-            <property name="placeholderText">
-             <string>Type of computer</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="manageComputer">
-          <item>
-           <widget class="QPushButton" name="addComputer">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Add</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="editComputer">
-            <property name="text">
-             <string>Edit</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="deleteComputer">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Delete</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="tabTableLink">
        <attribute name="title">
         <string>Table Link</string>
@@ -398,6 +398,12 @@
             <property name="horizontalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
             </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
             <column>
              <property name="text">
               <string>Scientist ID</string>
@@ -427,6 +433,9 @@
             </property>
             <item>
              <widget class="QTableWidget" name="tableIdScientist">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>ID</string>
@@ -441,6 +450,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="tableIdComputer">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>ID</string>
@@ -479,13 +491,55 @@
          <layout class="QHBoxLayout" name="manageTableLink">
           <item>
            <widget class="QPushButton" name="addTableLink">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::menu-indicator:pressed, QPushButton::menu-indicator:open {
+	background-color: rgb(162, 255, 137);
+}
+QPushButton:pressed  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:default  { 
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:open  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton:hover  {
+    background-color: rgb(162, 255, 137);
+}
+QPushButton {
+     background-color: rgb(132, 246, 107);
+}
+
+QPushButton:disabled {
+    background-color: rgb(102, 246, 177);
+}</string>
+            </property>
             <property name="text">
              <string>Add Link</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="default">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="editTableLink">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 223, 109)</string>
+            </property>
             <property name="text">
              <string>Edit Link</string>
             </property>
@@ -493,6 +547,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteTableLink">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(254, 86, 73)</string>
+            </property>
             <property name="text">
              <string>Delete Link</string>
             </property>

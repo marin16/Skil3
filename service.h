@@ -17,14 +17,14 @@ public:
      * params: int sortBy (determens how the list should be sorted).
      * returns: vector<Scientists> sorted list
      */
-    vector<Scientist> getScientists(int sortBy);
+    vector<Scientist> getScientists();
 
     /*
      * searchForScientist: Used to search for a scientist.
      * params: string search (search string that is compared with all scientists).
      * returns: vector<Scientist> all matches.
      */
-    vector<Scientist> searchForScientist(string search, int orderBy);
+    vector<Scientist> searchForScientist(string search);
 
     /*
      * deleteScientist: Used when deleteing scientist.
@@ -52,14 +52,14 @@ public:
      * params: int sortBy (determens how the list should be sorted).
      * returns: vector<Computer> sorted list
      */
-    vector<Computer> getComputers(int sortBy);
+    vector<Computer> getComputers();
 
     /*
      * searchForComputer: Used to search for a computer.
      * params: string search (search string that is compared with all computers).
      * returns: vector<Scientist> all matches.
      */
-    vector<Computer> searchForComputer(string search, int orderBy);
+    vector<Computer> searchForComputer(string search);
 
     /*
      * deleteComputer: Used when deleteing computer.
@@ -106,7 +106,7 @@ public:
      * params: int sortBy (determens how the list should be sorted).
      * returns: vector<Linked> sorted list.
      */
-    vector<Linked> getLinks(int sortBy);
+    vector<Linked> getLinks();
 
 private:
     // DataAccess

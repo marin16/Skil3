@@ -9,29 +9,10 @@ Service::Service(){
 
 }
 
-vector<Scientist> Service::getScientists(int sortBy){
+vector<Scientist> Service::getScientists(){
 
     vector<Scientist> scientists;
-    // To make alive appear in right places
-    // http://stackoverflow.com/questions/15023226/sql-sort-by-priority-but-put-0-last
-    if(sortBy == 1)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by name asc");
-    else if(sortBy == 2)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob asc");
-    else if(sortBy == 3)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dod=0,dod asc");
-    else if(sortBy == 4)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country asc");
-    else if(sortBy == 5)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by name desc");
-    else if(sortBy == 6)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by dob desc");
-    else if(sortBy == 7)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by case dod when 0 then 1 else 2 end, dod desc");
-    else if(sortBy == 8)
-        scientists = _dataAccess.readScientistsFromQuery("select * from Scientists order by country desc");
-    else
-        scientists = _dataAccess.readScientists();
+    scientists = _dataAccess.readScientists();
     return scientists;
 }
 
@@ -45,9 +26,9 @@ bool Service::addScientist(Scientist p){
         return false;
 }
 
-vector<Scientist> Service::searchForScientist(string search, int orderBy){
+vector<Scientist> Service::searchForScientist(string search){
 
-    vector<Scientist> scientists = getScientists(orderBy);
+    vector<Scientist> scientists = getScientists();
     vector<Scientist> results;
 
     for (size_t i = 0; i < scientists.size(); i++){
@@ -70,41 +51,17 @@ bool Service::deleteScientist(int id){
     return _dataAccess.deleteScientist(id);
 }
 
-vector<Computer> Service::getComputers(int sortBy){
+vector<Computer> Service::getComputers(){
 
     vector<Computer> computers;
-
-    if(sortBy == 1)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by name asc");
-    else if(sortBy == 2)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by buildy asc");
-    else if(sortBy == 3)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by type asc");
-    else if(sortBy == 4)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by name desc");
-    else if(sortBy == 5)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by buildy desc");
-    else if(sortBy == 6)
-        computers = _dataAccess.readComputersFromQuery("select * from Computers order by type desc");
-    else
-        computers = _dataAccess.readComputers();
+    computers = _dataAccess.readComputers();
     return computers;
 }
 
-vector<Linked> Service::getLinks(int sortBy){
+vector<Linked> Service::getLinks(){
 
     vector<Linked> links;
-
-    if(sortBy == 1)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by cName asc");
-    else if(sortBy == 2)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by sName asc");
-    else if(sortBy == 3)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by cName desc");
-    else if(sortBy == 4)
-        links = _dataAccess.readLinkedFromQuery("select * from SC_view order by sName desc");
-    else
-        links =_dataAccess.readLinked();
+    links =_dataAccess.readLinked();
     return links;
 }
 
@@ -118,9 +75,9 @@ bool Service::addComputer(Computer c){
         return false;
 }
 
-vector<Computer> Service::searchForComputer(string search, int orderBy){
+vector<Computer> Service::searchForComputer(string search){
 
-    vector<Computer> computers = getComputers(orderBy);
+    vector<Computer> computers = getComputers();
     vector<Computer> results;
 
     for (size_t i = 0; i < computers.size(); i++){

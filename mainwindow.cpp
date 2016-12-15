@@ -28,24 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     DisplayAllIdComputers();
     DisplayAllLinked();
 
-    ui -> ddmSortScientists -> addItem("Unsorted");
-    ui -> ddmSortScientists -> addItem("Name-asc");
-    ui -> ddmSortScientists -> addItem("Birth-asc");
-    ui -> ddmSortScientists -> addItem("Death-asc");
-    ui -> ddmSortScientists -> addItem("Country-asc");
-    ui -> ddmSortScientists -> addItem("Name-desc");
-    ui -> ddmSortScientists -> addItem("Birth-desc");
-    ui -> ddmSortScientists -> addItem("Death-desc");
-    ui -> ddmSortScientists -> addItem("Country-desc");
-
-    ui -> ddmComputerSort -> addItem("Unsorted");
-    ui -> ddmComputerSort -> addItem("Name-asc");
-    ui -> ddmComputerSort -> addItem("BuildYear-asc");
-    ui -> ddmComputerSort -> addItem("Type-asc");
-    ui -> ddmComputerSort -> addItem("Name-desc");
-    ui -> ddmComputerSort -> addItem("BuildYear-desc");
-    ui -> ddmComputerSort -> addItem("Type-desc");
-
     ui -> ddmComputerBuilt -> addItem("Built");
     ui -> ddmComputerBuilt -> addItem("Not Built");
 
@@ -68,8 +50,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui -> addScientistDeath -> addItem(year);
 
     }
-
-    ui -> ddmTableLink -> addItem("Link Sort");
 
     for (int i = 2016; i > 1799; i--)
     {
@@ -138,11 +118,11 @@ void MainWindow::on_addScientist_clicked()
 
 
 void MainWindow::DisplayAllScientists(){
-    vector<Scientist> scientists = _service.getScientists(_orderBy);
+    vector<Scientist> scientists = _service.getScientists();
     DisplayScientists(scientists);
 }
 
-void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
+void MainWindow::DisplayScientists(vector<Scientist> scientists){
     ///ui->tableScientist->clearContents();
     ui -> tableScientist -> verticalHeader() -> setVisible(false);
     ui -> tableScientist -> setRowCount(scientists.size());
@@ -175,11 +155,11 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
 
 
 void MainWindow::DisplayAllComputers(){
-    vector<Computer> computers = _service.getComputers(1);
+    vector<Computer> computers = _service.getComputers();
     DisplayComputers(computers);
 }
 
-void MainWindow::DisplayComputers(std::vector<Computer> computers){
+void MainWindow::DisplayComputers(vector<Computer> computers){
     ///ui->tableScientist->clearContents();
     ui -> tableComputer -> verticalHeader() -> setVisible(false);
     ui -> tableComputer -> setRowCount(computers.size());
@@ -224,7 +204,7 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
 
     ui->tableScientist->clearContents();
 
-    scientists = _service.searchForScientist(arg1.toStdString(), _orderBy);
+    scientists = _service.searchForScientist(arg1.toStdString());
 
     DisplayScientists(scientists);
 }
@@ -235,15 +215,9 @@ void MainWindow::on_filterComputers_textChanged(const QString &arg1)
 
     ui->tableComputer->clearContents();
 
-    computers = _service.searchForComputer(arg1.toStdString(), _orderBy);
+    computers = _service.searchForComputer(arg1.toStdString());
 
     DisplayComputers(computers);
-}
-
-
-void MainWindow::on_listScientist_clicked(const QModelIndex &index)
-{
-    ui -> deleteScientist -> setEnabled(true);
 }
 
 void MainWindow::on_deleteScientist_clicked()
@@ -264,18 +238,6 @@ void MainWindow::on_deleteScientist_clicked()
         QMessageBox::warning(this, "Name wrong", "Failed to delete");
     }
     ui -> deleteScientist -> setDisabled(true);
-}
-
-void MainWindow::on_ddmSortScientists_currentIndexChanged(int index)
-{
-    _orderBy = index;
-    on_filterScientistsList_textChanged(ui->filterScientistsList->text());
-}
-
-void MainWindow::on_ddmComputerSort_currentIndexChanged(int index)
-{
-    _orderBy = index;
-    on_filterComputers_textChanged(ui->filterComputers->text());
 }
 
 void MainWindow::on_addComputer_clicked()
@@ -338,7 +300,7 @@ void MainWindow::on_deleteComputer_clicked()
 }
 
 void MainWindow::DisplayAllIdScientists(){
-    vector<Scientist> scientists = _service.getScientists(_orderBy);
+    vector<Scientist> scientists = _service.getScientists();
     DisplayIdScientists(scientists);
 }
 
@@ -358,7 +320,7 @@ void MainWindow::DisplayIdScientists(std::vector<Scientist> scientists){
 }
 
 void MainWindow::DisplayAllIdComputers(){
-    vector<Computer> computers = _service.getComputers(1);
+    vector<Computer> computers = _service.getComputers();
     DisplayIdComputers(computers);
 }
 
@@ -379,7 +341,7 @@ void MainWindow::DisplayIdComputers(std::vector<Computer> computers){
 }
 
 void MainWindow::DisplayAllLinked(){
-    vector<Linked> linked = _service.getLinks(1);
+    vector<Linked> linked = _service.getLinks();
     DisplayLinked(linked);
 }
 

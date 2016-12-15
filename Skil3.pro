@@ -16,7 +16,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
-    consoleui.cpp \
     dataaccess.cpp \
     inputcheck.cpp \
     linked.cpp \
@@ -26,7 +25,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     computer.h \
-    consoleui.h \
     dataaccess.h \
     inputcheck.h \
     linked.h \

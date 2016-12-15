@@ -513,3 +513,18 @@ void MainWindow::on_addTableLink_clicked()
     }
     DisplayAllLinked();
 }
+
+
+void MainWindow::on_tableIdScientist_clicked()
+{
+    int selectedScientistIndex = ui -> tableIdScientist -> currentIndex().row();
+    Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+    ui -> addTableLinkSID -> setText(QString::number(selectedScientist.getId()));
+}
+
+void MainWindow::on_tableIdComputer_clicked()
+{
+    int selectedComputerIndex = ui -> tableIdComputer -> currentIndex().row();
+    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    ui -> addTableLinkCID -> setText(QString::number(selectedComputer.getId()));
+}

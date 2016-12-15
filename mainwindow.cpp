@@ -138,11 +138,11 @@ void MainWindow::on_addScientist_clicked()
 
 
 void MainWindow::DisplayAllScientists(){
-    vector<Scientist> scientists = _service.getScientists(_orderBy);
+    vector<Scientist> scientists = _service.getScientists();
     DisplayScientists(scientists);
 }
 
-void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
+void MainWindow::DisplayScientists(vector<Scientist> scientists){
     ///ui->tableScientist->clearContents();
     ui -> tableScientist -> verticalHeader() -> setVisible(false);
     ui -> tableScientist -> setRowCount(scientists.size());
@@ -175,11 +175,11 @@ void MainWindow::DisplayScientists(std::vector<Scientist> scientists){
 
 
 void MainWindow::DisplayAllComputers(){
-    vector<Computer> computers = _service.getComputers(1);
+    vector<Computer> computers = _service.getComputers();
     DisplayComputers(computers);
 }
 
-void MainWindow::DisplayComputers(std::vector<Computer> computers){
+void MainWindow::DisplayComputers(vector<Computer> computers){
     ///ui->tableScientist->clearContents();
     ui -> tableComputer -> verticalHeader() -> setVisible(false);
     ui -> tableComputer -> setRowCount(computers.size());
@@ -221,7 +221,7 @@ void MainWindow::on_filterScientistsList_textChanged(const QString &arg1)
 
     ui->tableScientist->clearContents();
 
-    scientists = _service.searchForScientist(arg1.toStdString(), _orderBy);
+    scientists = _service.searchForScientist(arg1.toStdString());
 
     DisplayScientists(scientists);
 }
@@ -232,7 +232,7 @@ void MainWindow::on_filterComputers_textChanged(const QString &arg1)
 
     ui->tableComputer->clearContents();
 
-    computers = _service.searchForComputer(arg1.toStdString(), _orderBy);
+    computers = _service.searchForComputer(arg1.toStdString());
 
     DisplayComputers(computers);
 }
@@ -334,7 +334,7 @@ void MainWindow::on_deleteComputer_clicked()
 }
 
 void MainWindow::DisplayAllIdScientists(){
-    vector<Scientist> scientists = _service.getScientists(_orderBy);
+    vector<Scientist> scientists = _service.getScientists();
     DisplayIdScientists(scientists);
 }
 
@@ -354,7 +354,7 @@ void MainWindow::DisplayIdScientists(std::vector<Scientist> scientists){
 }
 
 void MainWindow::DisplayAllIdComputers(){
-    vector<Computer> computers = _service.getComputers(1);
+    vector<Computer> computers = _service.getComputers();
     DisplayIdComputers(computers);
 }
 
@@ -375,7 +375,7 @@ void MainWindow::DisplayIdComputers(std::vector<Computer> computers){
 }
 
 void MainWindow::DisplayAllLinked(){
-    vector<Linked> linked = _service.getLinks(1);
+    vector<Linked> linked = _service.getLinks();
     DisplayLinked(linked);
 }
 

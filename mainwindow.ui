@@ -25,7 +25,6 @@
       </property>
       <property name="currentIndex">
        <number>1</number>
-       <number>2</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -291,6 +290,9 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
           </property>
           <property name="gridStyle">
            <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
@@ -612,7 +614,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
      <x>0</x>
      <y>0</y>
      <width>704</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

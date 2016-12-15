@@ -116,6 +116,7 @@ void MainWindow::on_addScientist_clicked()
         }
     }
     DisplayAllScientists();
+    DisplayAllIdScientists();
 }
 
 
@@ -240,6 +241,7 @@ void MainWindow::on_deleteScientist_clicked()
         QMessageBox::warning(this, "Name wrong", "Failed to delete");
     }
     ui -> deleteScientist -> setDisabled(true);
+    DisplayAllIdScientists();
 }
 
 void MainWindow::on_addComputer_clicked()
@@ -280,6 +282,7 @@ void MainWindow::on_addComputer_clicked()
         }
     }
     DisplayAllComputers();
+    DisplayAllIdComputers();
 }
 
 void MainWindow::on_deleteComputer_clicked()
@@ -299,6 +302,7 @@ void MainWindow::on_deleteComputer_clicked()
     {
         QMessageBox::warning(this, "Error", "Failed to delete");
     }
+    DisplayAllIdComputers();
 }
 
 void MainWindow::DisplayAllIdScientists(){
@@ -439,6 +443,7 @@ void MainWindow::on_editScientist_clicked()
          }
     }
     DisplayAllScientists();
+    DisplayAllIdScientists();
 }
 
 void MainWindow::on_tableComputer_clicked()
@@ -516,6 +521,7 @@ void MainWindow::on_editComputer_clicked()
         }
     }
     DisplayAllComputers();
+    DisplayAllIdComputers();
 }
 
 

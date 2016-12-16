@@ -121,6 +121,13 @@ public:
      */
     Scientist getScientistById(int id);
 
+    /*
+     * getComputerById: Used when getting computer by ID.
+     * params: int id (id of Computer that is to be found).
+     * returns: computer.
+     */
+    Computer getComputerById(int id);
+
 private:
     QSqlDatabase _db;
 };

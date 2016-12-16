@@ -118,3 +118,7 @@ bool Service::unLink(int cId, int sId){
 Scientist Service::getScientistById(int id){
     return _dataAccess.getScientistById(id);
 }
+
+Computer Service::getComputerById(int id){
+    return _dataAccess.getComputerById(id);
+}

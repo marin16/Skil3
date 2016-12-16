@@ -10,6 +10,8 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include "tableitem.h"
+#include <QHeaderView>
+#include <QMainWindow>
 
 using namespace std;
 
@@ -71,9 +73,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::on_addScientist_clicked()
 {
+    ui -> tableScientist -> setSortingEnabled(false);
     string name = ui -> addScientistName -> text().toStdString();
     string gender = ui -> addScientistGender -> currentText().toStdString();
     string birth = ui -> addScientistBirth -> currentText().toStdString();
@@ -117,6 +119,7 @@ void MainWindow::on_addScientist_clicked()
     }
     DisplayAllScientists();
     DisplayAllIdScientists();
+    ui -> tableScientist -> setSortingEnabled(true);
 }
 
 
@@ -126,7 +129,7 @@ void MainWindow::DisplayAllScientists(){
 }
 
 void MainWindow::DisplayScientists(vector<Scientist> scientists){
-    ///ui->tableScientist->clearContents();
+    ///ui-> tableScientist -> clearContents();
     ui -> tableScientist -> verticalHeader() -> setVisible(false);
     ui -> tableScientist -> setRowCount(scientists.size());
     string alive = "Alive";
@@ -249,6 +252,7 @@ void MainWindow::on_deleteScientist_clicked()
 
 void MainWindow::on_addComputer_clicked()
 {
+    ui -> tableComputer -> setSortingEnabled(false);
     string name = ui -> addComputerName -> text().toStdString();
     string type = ui -> addComputerType -> text().toStdString();
     string year = ui -> addComputerYear -> currentText().toStdString();
@@ -286,6 +290,7 @@ void MainWindow::on_addComputer_clicked()
     }
     DisplayAllComputers();
     DisplayAllIdComputers();
+    ui -> tableComputer -> setSortingEnabled(true);
 }
 
 void MainWindow::on_deleteComputer_clicked()
@@ -396,9 +401,11 @@ void MainWindow::on_tableScientist_clicked()
 
 void MainWindow::on_editScientist_clicked()
 {
+    ui -> tableScientist -> setSortingEnabled(false);
     int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
     Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
-    int id = selectedScientist.getId();
+    QItemSelectionModel *select = ui->tableScientist->selectionModel();
+    int scientistID = select->selectedRows(0).value(0).data().toInt();
     string name = ui -> addScientistName -> text().toStdString();
     string gender = ui -> addScientistGender -> currentText().toStdString();
     string birth = ui -> addScientistBirth -> currentText().toStdString();
@@ -419,7 +426,7 @@ void MainWindow::on_editScientist_clicked()
         check = QMessageBox::question(this, "Scientist Edit", "Are you sure you've edited the information correctly?",
                                                 QMessageBox::Yes|QMessageBox::No);
         if (check == QMessageBox::Yes) {
-            bool success = _service.editScientist(id, editedScientist);
+            bool success = _service.editScientist(scientistID, editedScientist);
 
             if(success) {
             QMessageBox::information(this, "Scientist edited", "This scientist has been edited in the database");
@@ -453,14 +460,20 @@ void MainWindow::on_editScientist_clicked()
     }
     DisplayAllScientists();
     DisplayAllIdScientists();
+    ui -> tableScientist -> setSortingEnabled(true);
 }
 
 void MainWindow::on_tableComputer_clicked()
 {
     string built = "Built";
     string notbuilt = "Not Built";
-    int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
-    Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
+    QItemSelectionModel *select = ui->tableComputer->selectionModel();
+    int computerID = select->selectedRows(0).value(0).data().toInt();
+
+    Computer selectedComputer = _service.getComputerById(computerID);
+
+    //int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
+    //Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
     ui -> addComputerName-> setText(QString::fromStdString(selectedComputer.getName()));
     ui -> addComputerType -> setText(QString::fromStdString(selectedComputer.getType()));
     ui -> addComputerYear -> setCurrentText(QString::number(selectedComputer.getBuildy()));
@@ -472,9 +485,12 @@ void MainWindow::on_tableComputer_clicked()
 
 void MainWindow::on_editComputer_clicked()
 {
+    ui -> tableComputer -> setSortingEnabled(false);
     int selectedComputerIndex = ui -> tableComputer -> currentIndex().row();
     Computer selectedComputer = displayedComputer.at(selectedComputerIndex);
-    int id = selectedComputer.getId();
+    //int id = selectedComputer.getId();
+    QItemSelectionModel *select = ui->tableComputer->selectionModel();
+    int computerID = select->selectedRows(0).value(0).data().toInt();
     string name = ui -> addComputerName -> text().toStdString();
     string type = ui -> addComputerType -> text().toStdString();
     string year = ui -> addComputerYear -> currentText().toStdString();
@@ -498,7 +514,7 @@ void MainWindow::on_editComputer_clicked()
         check = QMessageBox::question(this, "Computer Edit", "Are you sure you've edited the information correctly?",
                                                 QMessageBox::Yes|QMessageBox::No);
         if (check == QMessageBox::Yes) {
-            bool success = _service.editComputer(id, editedComputer);
+            bool success = _service.editComputer(computerID, editedComputer);
 
             if(success) {
                 QMessageBox::information(this, "Computer edited", "This computer has been edited in the database");
@@ -531,11 +547,13 @@ void MainWindow::on_editComputer_clicked()
     }
     DisplayAllComputers();
     DisplayAllIdComputers();
+    ui -> tableComputer -> setSortingEnabled(true);
 }
 
 
 void MainWindow::on_addTableLink_clicked()
 {
+    ui -> tableTableLink -> setSortingEnabled(false);
     string scientistId = ui -> addTableLinkSID -> text().toStdString();
     string computerId = ui -> addTableLinkCID -> text().toStdString();
 
@@ -557,6 +575,7 @@ void MainWindow::on_addTableLink_clicked()
         MainWindow();
     }
     DisplayAllLinked();
+    ui -> tableTableLink -> setSortingEnabled(true);
 }
 
 

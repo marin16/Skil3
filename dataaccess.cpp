@@ -333,3 +333,23 @@ Scientist DataAccess::getScientistById(int id){
 
     return scientist;
 }
+
+Computer DataAccess::getComputerById(int id){
+    Computer computer;
+    QSqlQuery query;
+    query.prepare("select * from Computers where id = :id");
+
+    query.bindValue(":id", id);
+    query.exec();
+    while(query.next()){
+        int id = query.value("id").toUInt();
+        string name = query.value("name").toString().toStdString();
+        int buildy = query.value("buildy").toUInt();
+        string type = query.value("type").toString().toStdString();
+        bool built = query.value("built").toBool();
+
+        computer = Computer(id,name,buildy,type,built);
+    }
+
+    return computer;
+}

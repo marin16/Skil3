@@ -41,6 +41,13 @@ public:
     Scientist getScientistById(int id);
 
     /*
+     * getComputerById: Used when getting computer by ID.
+     * params: int id (id of Computer that is to be found).
+     * returns: computer.
+     */
+    Computer getComputerById(int id);
+
+    /*
      * addScientist: Used when adding a new scientist.
      * params: Scientist newScientist (Scientist containing valuse to be added).
      * returns: true if addition completed, false if it failed.

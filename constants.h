@@ -4,6 +4,7 @@
 #include <string>
 
 namespace constants {
+    const int padding = 5;
     const std::string nationalities[] = {
             "Afghan",
             "Albanian",

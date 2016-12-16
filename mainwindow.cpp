@@ -377,7 +377,10 @@ void MainWindow::on_tableScientist_clicked()
         Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
         ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));
         ui -> addScientistBirth -> setCurrentText(QString::number(selectedScientist.getBirth()));
-        ui -> addScientistDeath -> setCurrentText(QString::number(selectedScientist.getDeath()));
+        if(selectedScientist.getDeath() == 0)
+            ui -> addScientistDeath -> setCurrentText(QString::fromStdString("Alive"));
+        else
+            ui -> addScientistDeath -> setCurrentText(QString::number(selectedScientist.getDeath()));
         ui -> addScientistNationality -> setCurrentText(QString::fromStdString(selectedScientist.getCountry()));
         if (selectedScientist.getGender() == 'M')
             ui -> addScientistGender -> setCurrentText(QString::fromStdString(male));

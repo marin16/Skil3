@@ -34,6 +34,13 @@ public:
     bool deleteScientist(int id);
 
     /*
+     * getScientistById: Used when getting scientist by ID.
+     * params: int id (id of Scientist that is to be found).
+     * returns: scientist.
+     */
+    Scientist getScientistById(int id);
+
+    /*
      * addScientist: Used when adding a new scientist.
      * params: Scientist newScientist (Scientist containing valuse to be added).
      * returns: true if addition completed, false if it failed.

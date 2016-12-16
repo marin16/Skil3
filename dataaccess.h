@@ -114,6 +114,13 @@ public:
      */
     vector<Linked> readLinkedFromQuery(string q);
 
+    /*
+     * getScientistById: Used when getting scientist by ID.
+     * params: int id (id of Scientist that is to be found).
+     * returns: scientist.
+     */
+    Scientist getScientistById(int id);
+
 private:
     QSqlDatabase _db;
 };

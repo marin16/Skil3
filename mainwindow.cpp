@@ -373,8 +373,13 @@ void MainWindow::on_tableScientist_clicked()
 {
         string male = "Male";
         string female = "Female";
-        int selectedScientistIndex = ui -> tableScientist -> currentIndex().row();
-        Scientist selectedScientist = displayedScientist.at(selectedScientistIndex);
+
+        QItemSelectionModel *select = ui->tableScientist->selectionModel();
+        int scientistID = select->selectedRows(0).value(0).data().toInt();
+        qDebug()<<select->selectedRows(0).value(0).data().toString();
+        qDebug()<< scientistID;
+
+        Scientist selectedScientist = _service.getScientistById(scientistID);
         ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));
         ui -> addScientistBirth -> setCurrentText(QString::number(selectedScientist.getBirth()));
         if(selectedScientist.getDeath() == 0)

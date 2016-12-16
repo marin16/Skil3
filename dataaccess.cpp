@@ -312,3 +312,24 @@ void DataAccess::clearList(){
     queryCom.exec("delete from Computers");
 
 }
+
+Scientist DataAccess::getScientistById(int id){
+    Scientist scientist;
+    QSqlQuery query;
+    query.prepare("select * from Scientists where id = :id");
+
+    query.bindValue(":id", id);
+    query.exec();
+    while(query.next()){
+        int id = query.value("id").toUInt();
+        string name = query.value("name").toString().toStdString();
+        char gender = query.value("gender").toString().toStdString().at(0);
+        int dob = query.value("dob").toUInt();
+        int dod = query.value("dod").toUInt();
+        string country = query.value("country").toString().toStdString();
+
+        scientist = Scientist(id,name,gender,dob,dod,country);
+    }
+
+    return scientist;
+}

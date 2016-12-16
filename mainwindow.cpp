@@ -185,12 +185,15 @@ void MainWindow::DisplayComputers(vector<Computer> computers){
     displayedComputer = computers;
 }
 
+
+
 void MainWindow::on_tableScientist_clicked(const QModelIndex &index)
 {
     if(ui->tableScientist->currentItem()->isSelected() == true)
         ui->deleteScientist->setEnabled(true);
     else
         ui->deleteScientist->setEnabled(false);
+
 }
 
 

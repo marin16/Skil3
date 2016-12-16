@@ -24,7 +24,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -76,6 +76,12 @@
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectItems</enum>
           </property>
           <property name="verticalScrollMode">
            <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -200,7 +206,7 @@
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">Background-color: rgb(102, 246, 177);</string>
+             <string notr="true">Background-color: rgb(22, 182, 13);</string>
             </property>
             <property name="text">
              <string>Add</string>
@@ -210,7 +216,7 @@
           <item>
            <widget class="QPushButton" name="editScientist">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 223, 109)</string>
+             <string notr="true">background-color: rgb(238, 199, 1);</string>
             </property>
             <property name="text">
              <string>Edit</string>
@@ -223,7 +229,7 @@
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton:Active{Background-color: rgb(254, 86, 73)
+             <string notr="true">QPushButton:Active{Background-color: rgb(234, 0, 0)
 }
 QPushButton:disabled{Background-color:rgb(125, 0, 0)
 }
@@ -357,7 +363,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
              <bool>true</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">Background-color: rgb(102, 246, 177);</string>
+             <string notr="true">Background-color: rgb(22, 182, 13);</string>
             </property>
             <property name="text">
              <string>Add</string>
@@ -367,7 +373,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
           <item>
            <widget class="QPushButton" name="editComputer">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 223, 109)</string>
+             <string notr="true">background-color: rgb(238, 199, 1);</string>
             </property>
             <property name="text">
              <string>Edit</string>
@@ -380,7 +386,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton:Active{Background-color: rgb(254, 86, 73)
+             <string notr="true">QPushButton:Active{Background-color: rgb(234, 0, 0)
 }
 QPushButton:disabled{Background-color:rgb(125, 0, 0)
 }
@@ -539,8 +545,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
              <bool>true</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">Background-color: rgb(102, 246, 177);
-</string>
+             <string notr="true">Background-color: rgb(22, 182, 13);</string>
             </property>
             <property name="text">
              <string>Add Link</string>
@@ -565,7 +570,11 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(254, 86, 73)</string>
+             <string notr="true">QPushButton:Active{Background-color: rgb(234, 0, 0)
+}
+QPushButton:disabled{Background-color:rgb(125, 0, 0)
+}
+</string>
             </property>
             <property name="text">
              <string>Delete Link</string>
@@ -586,7 +595,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
      <x>0</x>
      <y>0</y>
      <width>704</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

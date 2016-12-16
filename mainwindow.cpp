@@ -379,8 +379,6 @@ void MainWindow::on_tableScientist_clicked()
 
         QItemSelectionModel *select = ui->tableScientist->selectionModel();
         int scientistID = select->selectedRows(0).value(0).data().toInt();
-        qDebug()<<select->selectedRows(0).value(0).data().toString();
-        qDebug()<< scientistID;
 
         Scientist selectedScientist = _service.getScientistById(scientistID);
         ui -> addScientistName -> setText(QString::fromStdString(selectedScientist.getName()));

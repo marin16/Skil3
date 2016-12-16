@@ -24,7 +24,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -570,7 +570,11 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(234, 0, 0)</string>
+             <string notr="true">QPushButton:Active{Background-color: rgb(234, 0, 0)
+}
+QPushButton:disabled{Background-color:rgb(125, 0, 0)
+}
+</string>
             </property>
             <property name="text">
              <string>Delete Link</string>
@@ -591,7 +595,7 @@ QPushButton:disabled{Background-color:rgb(125, 0, 0)
      <x>0</x>
      <y>0</y>
      <width>704</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

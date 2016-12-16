@@ -11,17 +11,17 @@ Github tengilar:
 [Skil 3](https://github.com/marin16/skil3)
 
 #Database
-The databese is hosted on a [Digital Ocean](https://www.digitalocean.com/) server. We use [PostgreSQL](https://www.postgresql.org/) wich means that your computer has to have [PostgreSQL](https://www.postgresql.org/) installed on your computer and make sure that Qt has the path to `bin` and `lib`.
+The databese is hosted on a [Digital Ocean](https://www.digitalocean.com/) server. We use [PostgreSQL](https://www.postgresql.org/) which means that you have to have [PostgreSQL](https://www.postgresql.org/) installed on your computer and make sure that Qt has the path to `bin` and `lib`.
 
 1. Install PostgreSQL
-2. Add the path to `bin` and `lib` (which can for exaple be found at ``C:\Program Files\PostgreSQL\9.5\lib`), under `Build Enviroment` in Qt
+2. Add the path to `bin` and `lib` (which can for example be found at ``C:\Program Files\PostgreSQL\9.5\lib`), under `Build Environment` in Qt
 
 ##C++ coding conventions
 ###Namings
 * PascalCase
   * Classes
 * camelCase
-  * Parameter
+  * Parameters
   * Properties
   * Enum types
   * Enum values
@@ -43,7 +43,7 @@ we will write something like:
 ```C++
 weeklyPay = hoursWorked ∗ payRate ;
 ```
-which describes way better what we are doing and eliminates the need put in explanative
+Which describes much better what we are doing and eliminates the need to put in explanative
 comments.
 
 ###Commenting
@@ -59,7 +59,7 @@ int weeklyPay(int hours, int rate)
 	return hours * rate;
 }
 ```
-We comment our code when it does not explain itself well enaugh and we feel like more information is needed. When commenting we usualy add `// Inline comments.` that explain our code, but if we need to write long texts we write them in `/* Code blocks. */`. Code blocks can also be used when we are commenting insame line as code, but we try to avoid doing that. 
+We comment our code when it does not explain itself well enough and we feel like more information is needed. When commenting we usually add `// Inline comments.` that explain our code, but if we need to write long texts we write them in `/* Code blocks. */`. Code blocks can also be used when we are commenting in the same line as code, but we try to avoid doing that.
 
 ##SQL coding conventions
 ###Namings
